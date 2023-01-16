@@ -1,4 +1,7 @@
 gdown
 tqdm
-nibabel
+nibabel==4.0.2
 matplotlib
+tensorflow
+pandas
+pyyaml
