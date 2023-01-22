@@ -6,15 +6,15 @@ from src.model.generator import build_generator, generator_loss
 from src.utils.training import create_checkpoint, train_step
 from src.utils.utils import generate_and_save_images
 
-image_shape = (16, 16, 32, 1)
+image_shape = (16, 16, 32)
 
-generator = build_generator(image_shape)
-discriminator = build_discriminator(image_shape)
+generator = build_generator(input_shape=(*image_shape, 1))
+discriminator = build_discriminator(input_shape=(*image_shape, 1))
 
 generator_optimizer = tf.keras.optimizers.Adam(1e-4)
 discriminator_optimizer = tf.keras.optimizers.Adam(1e-4)
 
-seed = tf.random.normal([1, 16, 16, 32])
+seed = tf.random.normal([1, *image_shape])
 EPOCHS = 5
 training_data = DataLoader('training').get_dataset(batch_size=1, limit=3)
 checkpoint, checkpoint_prefix = create_checkpoint(generator=generator,

@@ -2,8 +2,8 @@ import tensorflow as tf
 from tensorflow import keras
 
 
-def build_discriminator(image_shape):
-    in_src_image = keras.layers.Input(shape=image_shape)
+def build_discriminator(input_shape):
+    in_src_image = keras.layers.Input(shape=input_shape)
     discriminator = keras.layers.Conv3D(filters=64,
                                         kernel_size=(4, 4, 4),
                                         strides=(1, 1, 1),

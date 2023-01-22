@@ -99,37 +99,3 @@ def downsample():
 
     print(max_x, max_y, max_z)
     # 26 26 37 --- 5%
-
-
-# downsample()
-
-def pad_and_concat():
-    for image_path, label_path in tqdm(
-            zip(glob.glob(os.path.join(f'../data/downsampled/05/training/images', '*CT.nii.gz')),
-                glob.glob(os.path.join(f'../data/downsampled/05/training/labels', '*.nii.gz')))):
-        image = nib.load(image_path)
-        label = nib.load(label_path)
-        # Load the affine matrices from the two images
-        affine1 = image.affine
-        affine2 = label.affine
-
-        image_path = image_path.split('\\')[1]
-        label_path = label_path.split('\\')[1]
-
-        image_data = image.get_fdata()
-        label_data = label.get_fdata()
-
-        max_shape = (26, 26, 38)
-        padded_image = np.pad(image_data, [(0, max_shape[i] - image_data.shape[i]) for i in range(3)], 'constant',
-                              constant_values=0)
-
-        padded_label = np.pad(label_data, [(0, max_shape[i] - label_data.shape[i]) for i in range(3)], 'constant',
-                              constant_values=0)
-
-        concat = np.concatenate([padded_image, padded_label], 2)
-        #
-        # # Concatenate the affine matrices along the last axis
-        # affine = np.concatenate((affine1, affine2), axis=-1)
-        #
-        # nii_image = nib.Nifti1Image(concat, affine)
-        # nib.save(nii_image, os.path.join("../data/concated/downsampled_05/images", image_path))
