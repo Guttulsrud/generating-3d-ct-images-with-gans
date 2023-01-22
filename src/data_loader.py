@@ -26,16 +26,6 @@ class DataLoader:
         # down_sampled_image = sp.ndimage.zoom(image, (0.25, 0.25, 0.25))
         # down_sampled_label = sp.ndimage.zoom(label, (0.25, 0.25, 0.25))
 
-        # max_shape = (52, 52, 74)
-        # max_shape = (32, 32, 96)
-
-        # padded_image = np.pad(image, [(0, max_shape[i] - image.shape[i]) for i in range(3)], 'constant',
-        #                       constant_values=0)
-        # padded_label = np.pad(label, [(0, max_shape[i] - label.shape[i]) for i in range(3)], 'constant',
-        #                       constant_values=0)
-        #
-        # concat = np.concatenate([down_sampled_image, down_sampled_label], 2)
-
         max_shape = (16, 16, 16)
         padded_image = np.pad(image, [(0, max_shape[i] - image.shape[i]) for i in range(3)], 'constant',
                               constant_values=0)
@@ -44,11 +34,15 @@ class DataLoader:
                               constant_values=0)
 
         concat = np.concatenate([padded_image, padded_label], 2)
+        concat = tf.convert_to_tensor(concat, dtype='float32')
+        concat = tf.expand_dims(concat, -1)
 
-        return tf.convert_to_tensor(concat, dtype='float32')
+        return concat
 
-    def get_dataset(self):
-        return tf.data.Dataset.from_tensor_slices((self.image_paths, self.label_paths)).map(self.wrapper_load)
+    def get_dataset(self, batch_size, limit):
+        dataset = tf.data.Dataset.from_tensor_slices((self.image_paths, self.label_paths)).map(self.wrapper_load)
+        dataset = dataset.take(limit)
+        return dataset.batch(batch_size)
 
 
 def resize_slice(slice, image_array):
@@ -105,6 +99,7 @@ def downsample():
 
     print(max_x, max_y, max_z)
     # 26 26 37 --- 5%
+
 
 # downsample()
 

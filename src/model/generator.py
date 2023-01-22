@@ -42,7 +42,7 @@ def decoder(layer_in, skip_in, n_filters, dropout=True):
     return keras.layers.Activation('relu')(g)
 
 
-def define_generator(input_shape):
+def build_generator(input_shape):
     in_image = keras.layers.Input(shape=input_shape)
 
     # Encoder
@@ -83,6 +83,6 @@ def define_generator(input_shape):
     return model
 
 
-# g = define_generator()
-# g.summary()
-
+def generator_loss(fake_output):
+    cross_entropy = tf.keras.losses.BinaryCrossentropy(from_logits=True)
+    return cross_entropy(tf.ones_like(fake_output), fake_output)

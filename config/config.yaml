@@ -1,3 +1,4 @@
-network:
-  dataloader:
-    batch_size: 32
+image_shape: None
+network: None
+dataloader:
+  batch_size: 32

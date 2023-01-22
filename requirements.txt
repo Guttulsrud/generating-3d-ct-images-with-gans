@@ -1,7 +1,7 @@
-gdown
 tqdm
 nibabel==4.0.2
 matplotlib
-tensorflow
+tensorflow-gpu
 pandas
 pyyaml
+scipy

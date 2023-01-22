@@ -5,14 +5,14 @@
 # import matplotlib.pyplot as plt
 #
 # from src.data_loader import DataLoader
-# from src.model.discriminator import define_discriminator
-# from src.model.generator import define_generator
+# from src.model.discriminator import build_discriminator
+# from src.model.generator import build_generator
 # import os
 #
 # image_shape = (256, 256, 256, 3)
 #
-# generator = define_generator(image_shape)
-# discriminator = define_discriminator(image_shape)
+# generator = build_generator(image_shape)
+# discriminator = build_discriminator(image_shape)
 #
 # # This method returns a helper function to compute cross entropy loss
 # cross_entropy = tf.keras.losses.BinaryCrossentropy(from_logits=True)

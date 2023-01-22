@@ -1,7 +1,8 @@
+import tensorflow as tf
 from tensorflow import keras
 
 
-def define_discriminator(image_shape):
+def build_discriminator(image_shape):
     in_src_image = keras.layers.Input(shape=image_shape)
     discriminator = keras.layers.Conv3D(filters=64,
                                         kernel_size=(4, 4, 4),
@@ -45,5 +46,10 @@ def define_discriminator(image_shape):
     return keras.models.Model(inputs=in_src_image, outputs=discriminator, name='discriminator')
 
 
-# d = define_discriminator((16, 16, 32,))
-# d.summary()
+def discriminator_loss(real_output, fake_output):
+    cross_entropy = tf.keras.losses.BinaryCrossentropy(from_logits=True)
+
+    real_loss = cross_entropy(tf.ones_like(real_output), real_output)
+    fake_loss = cross_entropy(tf.zeros_like(fake_output), fake_output)
+    total_loss = real_loss + fake_loss
+    return total_loss
