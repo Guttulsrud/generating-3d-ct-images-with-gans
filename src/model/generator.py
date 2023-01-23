@@ -86,3 +86,7 @@ def build_generator(input_shape):
 def generator_loss(fake_output):
     cross_entropy = tf.keras.losses.BinaryCrossentropy(from_logits=True)
     return cross_entropy(tf.ones_like(fake_output), fake_output)
+
+
+# g = build_generator((32, 32, 64, 1))
+# g.summary()
