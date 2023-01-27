@@ -1,6 +1,6 @@
 from tensorflow import keras
 import tensorflow as tf
-
+from config import config
 
 # define an encoder block
 def encoder(layer_in, n_filters, batch_normalization=True):
@@ -42,8 +42,8 @@ def decoder(layer_in, skip_in, n_filters, dropout=True):
     return keras.layers.Activation('relu')(g)
 
 
-def build_generator(input_shape):
-    in_image = keras.layers.Input(shape=input_shape)
+def build_generator():
+    in_image = keras.layers.Input(shape=(*config['image_shape'], 1))
 
     # Encoder
     encoder_1 = encoder(in_image, 64, batch_normalization=False)
@@ -86,7 +86,3 @@ def build_generator(input_shape):
 def generator_loss(fake_output):
     cross_entropy = tf.keras.losses.BinaryCrossentropy(from_logits=True)
     return cross_entropy(tf.ones_like(fake_output), fake_output)
-
-
-# g = build_generator((32, 32, 64, 1))
-# g.summary()

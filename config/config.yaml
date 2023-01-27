@@ -1,4 +1,13 @@
-image_shape: None
-network: None
+training:
+  epochs: 5
 dataloader:
-  batch_size: 32
+  batch_size: 1
+  limit: 3
+image_shape: [16,16,32]
+network:
+  generator:
+    optimizer:
+      learning_rate: 0.0001
+  discriminator:
+    optimizer:
+      learning_rate: 0.0001
