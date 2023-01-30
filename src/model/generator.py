@@ -2,6 +2,7 @@ from tensorflow import keras
 import tensorflow as tf
 from config import config
 
+
 # define an encoder block
 def encoder(layer_in, n_filters, batch_normalization=True):
     # weight initialization
@@ -43,7 +44,7 @@ def decoder(layer_in, skip_in, n_filters, dropout=True):
 
 
 def build_generator():
-    in_image = keras.layers.Input(shape=(*config['image_shape'], 1))
+    in_image = keras.layers.Input(shape=(*config['images']['shape'], 1))
 
     # Encoder
     encoder_1 = encoder(in_image, 64, batch_normalization=False)
@@ -86,3 +87,4 @@ def build_generator():
 def generator_loss(fake_output):
     cross_entropy = tf.keras.losses.BinaryCrossentropy(from_logits=True)
     return cross_entropy(tf.ones_like(fake_output), fake_output)
+    # gradient penalty?

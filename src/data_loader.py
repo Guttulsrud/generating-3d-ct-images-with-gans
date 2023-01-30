@@ -3,8 +3,7 @@ import tensorflow as tf
 import nibabel as nib
 import glob
 import os
-import scipy as sp
-from tqdm import tqdm
+from config import config
 
 
 # Todo: use TF Records instead?
@@ -23,15 +22,9 @@ class DataLoader:
         image = nib.load(image_path.numpy().decode()).get_fdata()
         label = nib.load(label_path.numpy().decode()).get_fdata()
 
-        # down_sampled_image = sp.ndimage.zoom(image, (0.25, 0.25, 0.25))
-        # down_sampled_label = sp.ndimage.zoom(label, (0.25, 0.25, 0.25))
-
-        max_shape = (16, 16, 16)
-        padded_image = np.pad(image, [(0, max_shape[i] - image.shape[i]) for i in range(3)], 'constant',
-                              constant_values=0)
-
-        padded_label = np.pad(label, [(0, max_shape[i] - label.shape[i]) for i in range(3)], 'constant',
-                              constant_values=0)
+        max_shape = config['images']['padded_shape']
+        padded_image = pad_image(image, max_shape)
+        padded_label = pad_image(label, max_shape)
 
         concat = np.concatenate([padded_image, padded_label], 2)
         concat = tf.convert_to_tensor(concat, dtype='float32')
@@ -48,5 +41,5 @@ class DataLoader:
         return dataset.batch(batch_size)
 
 
-def resize_slice(slice, image_array):
-    return tf.image.resize(slice, (image_array.shape[0] // 4, image_array.shape[1] // 4))
+def pad_image(image, shape):
+    return np.pad(image, [(0, shape[i] - image.shape[i]) for i in range(3)], 'constant', constant_values=0)

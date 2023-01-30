@@ -3,7 +3,9 @@ training:
 dataloader:
   batch_size: 1
   limit: 3
-image_shape: [16,16,32]
+images:
+  shape: [ 16,16,32 ] #Shape of the concatenated images used by the network
+  padded_shape: [ 16,16,16 ] #Shape of individual images to be padded
 network:
   generator:
     optimizer:

@@ -8,7 +8,8 @@ import os
 
 class Network:
     def __init__(self, load_checkpoint=False):
-        image_shape = config['image_shape']
+        image_shape = config['images']['shape']
+
         self.seed = tf.random.normal([1, *image_shape])
 
         if load_checkpoint:
@@ -38,7 +39,7 @@ class Network:
         # images (produced by the generator). The loss is calculated for each of these models, and the gradients are
         # used to update the generator and discriminator.
 
-        noise = tf.random.normal([1, *config['image_shape']])
+        noise = tf.random.normal([1, *config['images']['shape']])
 
         with tf.GradientTape() as gen_tape, tf.GradientTape() as disc_tape:
             # Generate synthetic image from noise with generator

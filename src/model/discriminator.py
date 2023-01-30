@@ -4,7 +4,7 @@ from config import config
 
 
 def build_discriminator():
-    in_src_image = keras.layers.Input(shape=(*config['image_shape'], 1))
+    in_src_image = keras.layers.Input(shape=(*config['images']['shape'], 1))
 
     discriminator = keras.layers.Conv3D(filters=64,
                                         kernel_size=(4, 4, 4),
