@@ -7,9 +7,9 @@ import os
 
 
 class Network:
-    def __init__(self, load_checkpoint=False):
+    def __init__(self, start_datetime, load_checkpoint=False):
         image_shape = config['images']['shape']
-
+        self.start_datetime = start_datetime
         self.seed = tf.random.normal([1, *image_shape])
 
         if load_checkpoint:
@@ -25,7 +25,7 @@ class Network:
         self.generator_optimizer = tf.keras.optimizers.Adam(generator_learning_rate)
         self.discriminator_optimizer = tf.keras.optimizers.Adam(discriminator_learning_rate)
 
-        self.checkpoint_prefix = os.path.join('../training_checkpoints', "ckpt")
+        self.checkpoint_prefix = os.path.join(f'logs/{self.start_datetime}/training_checkpoints', "ckpt")
         self.checkpoint = tf.train.Checkpoint(generator_optimizer=self.generator_optimizer,
                                               discriminator_optimizer=self.discriminator_optimizer,
                                               generator=self.generator,
@@ -69,18 +69,13 @@ class Network:
         self.checkpoint.save(file_prefix=self.checkpoint_prefix)
 
     def restore_checkpoint(self):
-        self.checkpoint.restore(tf.train.latest_checkpoint('../training_checkpoints'))
+        self.checkpoint.restore(tf.train.latest_checkpoint(f'logs/{self.start_datetime}/training_checkpoints'))
 
     def save_images(self, epoch):
         generated_images = self.generator(self.seed, training=False)
-
-        # fig = plt.figure(figsize=(4, 4))
-
-        print(generated_images.shape)
         for i in range(generated_images.shape[0]):
-            # plt.subplot(4, 4, i + 1)
             plt.imshow(generated_images[i, :, :, 0] * 127.5 + 127.5, cmap='gray')
             plt.axis('off')
 
-        plt.savefig('image_at_epoch_{:04d}.png'.format(epoch))
+        plt.savefig(f'logs/{self.start_datetime}/epoch_images/Epoch_{epoch}.png')
         plt.show()
