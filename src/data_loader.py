@@ -10,8 +10,13 @@ from config import config
 
 class DataLoader:
     def __init__(self, data_type):
-        self.image_paths = glob.glob(os.path.join(f'../data/downsampled/10/{data_type}/images', '*CT.nii.gz'))
-        self.label_paths = glob.glob(os.path.join(f'../data/downsampled/10/{data_type}/labels', '*.nii.gz'))
+        if config['cluster']['enabled']:
+            path = f'/home/haakong/thesis/data'
+        else:
+            path = f'../data'
+
+        self.image_paths = glob.glob(os.path.join(f'{path}/downsampled/10/{data_type}/images', '*CT.nii.gz'))
+        self.label_paths = glob.glob(os.path.join(f'{path}/downsampled/10/{data_type}/labels', '*.nii.gz'))
 
     def wrapper_load(self, img_path, label_path):
         return tf.py_function(func=self.preprocess_image_label, inp=[img_path, label_path],
