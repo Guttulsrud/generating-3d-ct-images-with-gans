@@ -5,3 +5,4 @@ tensorflow-gpu
 pandas
 pyyaml
 scipy
+tensorboard
