@@ -2,7 +2,7 @@ import time
 from src.data_loader import DataLoader
 from src.model.network import Network
 from config import config
-from src.utils.handler import Handler
+from handler import Handler
 from datetime import datetime
 
 data_loader = DataLoader('training')

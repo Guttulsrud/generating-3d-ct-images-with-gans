@@ -77,5 +77,5 @@ class Network:
             plt.imshow(generated_images[i, :, :, 0] * 127.5 + 127.5, cmap='gray')
             plt.axis('off')
 
-        plt.savefig(f'logs/{self.start_datetime}/epoch_images/Epoch_{epoch}.png')
+        plt.savefig(f'../logs/{self.start_datetime}/epoch_images/Epoch_{epoch}.png')
         plt.show()

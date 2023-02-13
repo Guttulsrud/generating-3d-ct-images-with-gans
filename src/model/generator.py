@@ -47,30 +47,24 @@ def build_generator():
     in_image = keras.layers.Input(shape=(*config['images']['shape'], 1))
 
     # Encoder
-    encoder_1 = encoder(in_image, 64, batch_normalization=False)
-    encoder_2 = encoder(encoder_1, 128)
-    encoder_3 = encoder(encoder_2, 256)
-    encoder_4 = encoder(encoder_3, 512)
-    encoder_5 = encoder(encoder_4, 512)
-    encoder_6 = encoder(encoder_5, 512)
-    encoder_7 = encoder(encoder_6, 512)
+    encoder_1 = encoder(in_image, 32, batch_normalization=False)
+    encoder_2 = encoder(encoder_1, 64)
+    encoder_3 = encoder(encoder_2, 128)
+    encoder_4 = encoder(encoder_3, 256)
 
     # Bottleneck
-    bottleneck = keras.layers.Conv3D(filters=512,
+    bottleneck = keras.layers.Conv3D(filters=256,
                                      kernel_size=(4, 4, 4),
                                      strides=(1, 1, 1),
                                      padding='same',
-                                     kernel_initializer=keras.initializers.RandomNormal(stddev=0.02))(encoder_7)
+                                     kernel_initializer=keras.initializers.RandomNormal(stddev=0.02))(encoder_4)
     bottleneck = keras.layers.Activation('relu')(bottleneck)
 
     # Decoder
-    decoder_1 = decoder(bottleneck, encoder_7, 512)
-    decoder_2 = decoder(decoder_1, encoder_6, 512)
-    decoder_3 = decoder(decoder_2, encoder_5, 512)
-    decoder_4 = decoder(decoder_3, encoder_4, 512, dropout=False)
-    decoder_5 = decoder(decoder_4, encoder_3, 256, dropout=False)
-    decoder_6 = decoder(decoder_5, encoder_2, 128, dropout=False)
-    decoder_7 = decoder(decoder_6, encoder_1, 64, dropout=False)
+    decoder_1 = decoder(bottleneck, encoder_4, 256, dropout=False)
+    decoder_2 = decoder(decoder_1, encoder_3, 128, dropout=False)
+    decoder_3 = decoder(decoder_2, encoder_2, 64, dropout=False)
+    decoder_4 = decoder(decoder_3, encoder_1, 32, dropout=False)
 
     # output
     output = keras.layers.Conv3DTranspose(filters=1,
@@ -78,7 +72,7 @@ def build_generator():
                                           strides=(1, 1, 1),
                                           padding='same',
                                           kernel_initializer=keras.initializers.RandomNormal(stddev=0.02),
-                                          activation='tanh')(decoder_7)
+                                          activation='tanh')(decoder_4)
     model = keras.models.Model(inputs=in_image, outputs=output, name='generator')
     # print(model.output_shape)
     return model
