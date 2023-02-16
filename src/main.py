@@ -15,6 +15,9 @@ dt_string = now.strftime("%Y-%m-%d %H-%M-%S")
 logger = Logger(start_datetime=dt_string)
 network = Network(start_datetime=dt_string)
 
+# network.upload_tensorboard_results()
+#
+# exit()
 epochs = config['training']['epochs']
 
 for epoch in range(1, epochs + 1):

@@ -4,9 +4,7 @@ from src.model.discriminator import build_discriminator, discriminator_loss
 from src.model.generator import build_generator, generator_loss
 import tensorflow as tf
 import os
-import tensorboard as tb
-from tensorflow.python.eager import def_function
-from tensorboard import summary as summary_lib
+from google.cloud import storage
 
 
 class Network:
@@ -41,6 +39,9 @@ class Network:
                                               discriminator_optimizer=self.discriminator_optimizer,
                                               generator=self.generator,
                                               discriminator=self.discriminator)
+
+        self.client = storage.Client(project='thesis-377808')
+        self.bucket = self.client.bucket('thesis-tensorboard')
 
     # This annotation causes the function to be "compiled" with TF.
     @tf.function
@@ -105,3 +106,11 @@ class Network:
         with self.file_writer.as_default():
             tf.summary.scalar("Generator Loss", gen_loss, step=epoch)
             tf.summary.scalar("Discriminator Loss", disc_loss, step=epoch)
+
+    def upload_tensorboard_results(self):
+
+        for file in os.listdir(self.log_dir):
+            blob = self.bucket.blob(f'{self.start_datetime}/{file}')
+
+            blob.upload_from_filename(os.path.join(self.log_dir, file))
+
