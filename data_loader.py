@@ -42,7 +42,7 @@ class DataLoader:
         if limit:
             dataset = dataset.take(limit)
 
-        return dataset.batch(batch_size).prefetch(1)
+        return dataset.batch(batch_size)
 
 
 # def pad_image(image, shape):

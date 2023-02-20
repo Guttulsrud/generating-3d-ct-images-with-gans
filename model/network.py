@@ -1,11 +1,14 @@
 import numpy as np
 from matplotlib import pyplot as plt
+from monai.handlers.tensorboard_handlers import SummaryWriter
+
 from config import config
 from model.discriminator import build_discriminator, discriminator_loss
 from model.generator import build_generator, generator_loss
 import tensorflow as tf
 import os
 from google.cloud import storage
+from monai.visualize import plot_2d_or_3d_image
 
 
 class Network:
@@ -86,6 +89,8 @@ class Network:
         generated_image = self.generator(self.seed, training=False)
 
         generated_image = np.squeeze(generated_image)
+
+        plot_2d_or_3d_image(data=generated_image, step=0, writer=SummaryWriter(log_dir=self.log_dir), frame_dim=-1, tag="image")
         z, y, x = generated_image.shape
 
         # Create a figure with a custom grid of subplots
