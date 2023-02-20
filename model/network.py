@@ -7,7 +7,7 @@ from model.discriminator import build_discriminator, discriminator_loss
 from model.generator import build_generator, generator_loss
 import tensorflow as tf
 import os
-from google.cloud import storage
+# from google.cloud import storage
 from monai.visualize import plot_2d_or_3d_image
 
 
@@ -44,8 +44,8 @@ class Network:
                                               generator=self.generator,
                                               discriminator=self.discriminator)
 
-        self.client = storage.Client(project='thesis-377808')
-        self.bucket = self.client.bucket('thesis-tensorboard')
+        # self.client = storage.Client(project='thesis-377808')
+        # self.bucket = self.client.bucket('thesis-tensorboard')
 
     # This annotation causes the function to be "compiled" with TF.
     @tf.function
@@ -90,7 +90,8 @@ class Network:
 
         generated_image = np.squeeze(generated_image)
 
-        plot_2d_or_3d_image(data=generated_image, step=0, writer=SummaryWriter(log_dir=self.log_dir), frame_dim=-1, tag="image")
+        plot_2d_or_3d_image(data=generated_image, step=0, writer=SummaryWriter(log_dir=self.log_dir), frame_dim=-1,
+                            tag="image")
         z, y, x = generated_image.shape
 
         # Create a figure with a custom grid of subplots
@@ -119,10 +120,9 @@ class Network:
             tf.summary.scalar("Generator Loss", gen_loss, step=epoch)
             tf.summary.scalar("Discriminator Loss", disc_loss, step=epoch)
 
-    def upload_tensorboard_results(self):
-
-        for file in os.listdir(self.log_dir):
-            blob = self.bucket.blob(f'{self.start_datetime}/{file}')
-
-            blob.upload_from_filename(os.path.join(self.log_dir, file))
-
+    # def upload_tensorboard_results(self):
+    #
+    #     for file in os.listdir(self.log_dir):
+    #         blob = self.bucket.blob(f'{self.start_datetime}/{file}')
+    #
+    #         blob.upload_from_filename(os.path.join(self.log_dir, file))
