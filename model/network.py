@@ -1,7 +1,8 @@
+import numpy as np
 from matplotlib import pyplot as plt
 from config import config
-from src.model.discriminator import build_discriminator, discriminator_loss
-from src.model.generator import build_generator, generator_loss
+from model.discriminator import build_discriminator, discriminator_loss
+from model.generator import build_generator, generator_loss
 import tensorflow as tf
 import os
 from google.cloud import storage
@@ -12,7 +13,7 @@ class Network:
         if config['cluster']['enabled']:
             self.path = f'/home/haakong/thesis/logs/{start_datetime}'
         else:
-            self.path = f'../logs/{start_datetime}'
+            self.path = f'logs/{start_datetime}'
 
         self.log_dir = os.path.join(f'{self.path}/tensorboard')
         self.file_writer = tf.summary.create_file_writer(self.log_dir)
@@ -46,11 +47,6 @@ class Network:
     # This annotation causes the function to be "compiled" with TF.
     @tf.function
     def train(self, images, epoch):
-        # The training loop begins with generator receiving a random seed as input. That seed is used to produce an
-        # image. The discriminator is then used to classify real images (drawn from the training set) and fakes
-        # images (produced by the generator). The loss is calculated for each of these models, and the gradients are
-        # used to update the generator and discriminator.
-
         noise = tf.random.normal([1, *config['images']['shape']])
 
         with tf.GradientTape() as gen_tape, tf.GradientTape() as disc_tape:
@@ -87,13 +83,24 @@ class Network:
         self.checkpoint.restore(tf.train.latest_checkpoint(f'{self.path}/training_checkpoints'))
 
     def save_images(self, epoch):
-        generated_images = self.generator(self.seed, training=False)
-        for i in range(generated_images.shape[0]):
-            plt.imshow(generated_images[i, :, :, 0] * 127.5 + 127.5, cmap='gray')
-            plt.axis('off')
+        generated_image = self.generator(self.seed, training=False)
 
-        plt.savefig(f'{self.path}/epoch_images/epoch_{epoch}.png')
-        # plt.show()
+        generated_image = np.squeeze(generated_image)
+        z, y, x = generated_image.shape
+
+        # Create a figure with a custom grid of subplots
+        fig = plt.figure(figsize=(10, 10))
+        rows, cols = int(np.ceil(np.sqrt(z))), int(np.ceil(z / float(np.ceil(np.sqrt(z)))))
+        grid = plt.GridSpec(rows, cols, wspace=0.03, hspace=0.03)
+
+        # Loop over each slice and plot it in a subplot
+        for i in range(z):
+            ax = fig.add_subplot(grid[i])
+            ax.imshow(generated_image[i], cmap='gray')
+            ax.axis('off')
+
+        plt.savefig(f'{self.path}/epoch_images/epoch_{epoch}.png', bbox_inches='tight')
+        plt.show()
 
     def log_images(self, epoch):
         with self.file_writer.as_default():

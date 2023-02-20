@@ -9,7 +9,7 @@ def encoder(layer_in, n_filters, batch_normalization=True):
     init = keras.initializers.RandomNormal(stddev=0.02)
     # add down sampling layer
     g = keras.layers.Conv3D(filters=n_filters,
-                            kernel_size=(4, 4, 4),
+                            kernel_size=(3, 3, 3),
                             strides=(1, 1, 1),
                             padding='same',
                             kernel_initializer=init)(layer_in)
@@ -27,7 +27,7 @@ def decoder(layer_in, skip_in, n_filters, dropout=True):
     init = keras.initializers.RandomNormal(stddev=0.02)
     # add up sampling layer
     g = keras.layers.Conv3DTranspose(filters=n_filters,
-                                     kernel_size=(4, 4, 4),
+                                     kernel_size=(3, 3, 3),
                                      strides=(1, 1, 1),
                                      padding='same',
                                      kernel_initializer=init)(layer_in)
@@ -47,28 +47,28 @@ def build_generator():
     in_image = keras.layers.Input(shape=(*config['images']['shape'], 1))
 
     # Encoder
-    encoder_1 = encoder(in_image, 32, batch_normalization=False)
-    encoder_2 = encoder(encoder_1, 64)
-    encoder_3 = encoder(encoder_2, 128)
-    encoder_4 = encoder(encoder_3, 256)
+    encoder_1 = encoder(in_image, 16, batch_normalization=False)
+    encoder_2 = encoder(encoder_1, 32)
+    encoder_3 = encoder(encoder_2, 64)
+    encoder_4 = encoder(encoder_3, 128)
 
     # Bottleneck
-    bottleneck = keras.layers.Conv3D(filters=256,
-                                     kernel_size=(4, 4, 4),
+    bottleneck = keras.layers.Conv3D(filters=128,
+                                     kernel_size=(3, 3, 3),
                                      strides=(1, 1, 1),
                                      padding='same',
                                      kernel_initializer=keras.initializers.RandomNormal(stddev=0.02))(encoder_4)
     bottleneck = keras.layers.Activation('relu')(bottleneck)
 
     # Decoder
-    decoder_1 = decoder(bottleneck, encoder_4, 256, dropout=False)
-    decoder_2 = decoder(decoder_1, encoder_3, 128, dropout=False)
-    decoder_3 = decoder(decoder_2, encoder_2, 64, dropout=False)
-    decoder_4 = decoder(decoder_3, encoder_1, 32, dropout=False)
+    decoder_1 = decoder(bottleneck, encoder_4, 128, dropout=False)
+    decoder_2 = decoder(decoder_1, encoder_3, 64, dropout=False)
+    decoder_3 = decoder(decoder_2, encoder_2, 32, dropout=False)
+    decoder_4 = decoder(decoder_3, encoder_1, 16, dropout=False)
 
     # output
     output = keras.layers.Conv3DTranspose(filters=1,
-                                          kernel_size=(4, 4, 4),
+                                          kernel_size=(3, 3, 3),
                                           strides=(1, 1, 1),
                                           padding='same',
                                           kernel_initializer=keras.initializers.RandomNormal(stddev=0.02),
@@ -79,6 +79,6 @@ def build_generator():
 
 
 def generator_loss(fake_output):
-    cross_entropy = tf.keras.losses.BinaryCrossentropy(from_logits=True)
+    cross_entropy = tf.keras.losses.BinaryCrossentropy()
     return cross_entropy(tf.ones_like(fake_output), fake_output)
     # gradient penalty?

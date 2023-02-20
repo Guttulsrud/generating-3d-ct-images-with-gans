@@ -3,6 +3,9 @@ import tensorflow as tf
 import nibabel as nib
 import glob
 import os
+
+from scipy.ndimage import zoom
+
 from config import config
 
 
@@ -13,10 +16,10 @@ class DataLoader:
         if config['cluster']['enabled']:
             path = f'/home/haakong/thesis/data'
         else:
-            path = f'../data'
+            path = f'data'
 
-        self.image_paths = glob.glob(os.path.join(f'{path}/downsampled/10/{data_type}/images', '*CT.nii.gz'))
-        self.label_paths = glob.glob(os.path.join(f'{path}/downsampled/10/{data_type}/labels', '*.nii.gz'))
+        self.image_paths = glob.glob(os.path.join(f'{path}/chopped/images', '*CT.nii.gz'))
+        self.label_paths = glob.glob(os.path.join(f'{path}/chopped/labels', '*.nii.gz'))
 
     def wrapper_load(self, img_path, label_path):
         return tf.py_function(func=self.preprocess_image_label, inp=[img_path, label_path],
@@ -27,11 +30,7 @@ class DataLoader:
         image = nib.load(image_path.numpy().decode()).get_fdata()
         label = nib.load(label_path.numpy().decode()).get_fdata()
 
-        max_shape = config['images']['padded_shape']
-        padded_image = pad_image(image, max_shape)
-        padded_label = pad_image(label, max_shape)
-
-        concat = np.concatenate([padded_image, padded_label], 2)
+        concat = np.concatenate([image, label], 2)
         concat = tf.convert_to_tensor(concat, dtype='float32')
         concat = tf.expand_dims(concat, -1)
 
@@ -43,8 +42,8 @@ class DataLoader:
         if limit:
             dataset = dataset.take(limit)
 
-        return dataset.batch(batch_size)
+        return dataset.batch(batch_size).prefetch(1)
 
 
-def pad_image(image, shape):
-    return np.pad(image, [(0, shape[i] - image.shape[i]) for i in range(3)], 'constant', constant_values=0)
+# def pad_image(image, shape):
+#     return np.pad(image, [(0, shape[i] - image.shape[i]) for i in range(3)], 'constant', constant_values=0)

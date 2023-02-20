@@ -4,8 +4,7 @@ dataloader:
   batch_size: 1
   limit: 3
 images:
-  shape: [ 16,16,32 ] #Shape of the concatenated images used by the network
-  padded_shape: [ 16,16,16 ] #Shape of individual images to be padded
+  shape: [ 154,154,54 ] #Shape of the concatenated images used by the network
 network:
   generator:
     optimizer:

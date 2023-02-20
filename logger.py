@@ -8,7 +8,7 @@ class Logger:
         if config['cluster']['enabled']:
             path = f'/home/haakong/thesis/logs/{start_datetime}'
         else:
-            path = f'../logs/{start_datetime}'
+            path = f'logs/{start_datetime}'
 
         self.path = path
         os.mkdir(path)
