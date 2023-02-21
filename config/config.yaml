@@ -2,7 +2,7 @@ training:
   epochs: 1000
 dataloader:
   batch_size: 1
-  limit: 3
+  samples_per_epoch: 10
 images:
   shape: [ 154,154,54 ] #Shape of the concatenated images used by the network
 network:

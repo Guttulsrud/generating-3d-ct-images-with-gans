@@ -3,9 +3,6 @@ import tensorflow as tf
 import nibabel as nib
 import glob
 import os
-
-from scipy.ndimage import zoom
-
 from config import config
 
 
@@ -37,8 +34,7 @@ class DataLoader:
         return concat
 
     def get_dataset(self):
-        return tf.data.Dataset.from_tensor_slices((self.image_paths, self.label_paths)).map(self.wrapper_load)
-
-
-# def pad_image(image, shape):
-#     return np.pad(image, [(0, shape[i] - image.shape[i]) for i in range(3)], 'constant', constant_values=0)
+        dataset = tf.data.Dataset.from_tensor_slices((self.image_paths, self.label_paths)).map(self.wrapper_load)
+        dataset = dataset.shuffle(config['dataloader']['samples_per_epoch'])
+        dataset = dataset.take(config['dataloader']['samples_per_epoch'])
+        return dataset.batch(config['dataloader']['batch_size'])

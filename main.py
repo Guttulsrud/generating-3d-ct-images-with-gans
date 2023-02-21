@@ -21,7 +21,7 @@ for epoch in range(1, epochs + 1):
     logger.log(f'Epoch: {epoch}', newline=False)
     start = time.time()
 
-    training_data = data_loader.get_dataset().shuffle(10).take(10).batch(1)
+    training_data = data_loader.get_dataset()
 
     for image_batch in training_data:
         network.train(images=image_batch, epoch=tf.convert_to_tensor(epoch, dtype=tf.int64))
