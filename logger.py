@@ -12,7 +12,7 @@ class Logger:
 
         self.path = path
         os.mkdir(path)
-        os.mkdir(f'{path}/epoch_images')
+        os.mkdir(f'{path}/epochs')
 
     def log(self, message, newline=True):
         with open(f'{self.path}/log.txt', "a") as log:

@@ -84,28 +84,17 @@ class Network:
     def restore_checkpoint(self):
         self.checkpoint.restore(tf.train.latest_checkpoint(f'{self.path}/training_checkpoints'))
 
-    def save_images(self, epoch):
+    def save_images(self, epoch, real_images):
         generated_image = self.generator(self.seed, training=False)
         generated_image = np.squeeze(generated_image)
+        real_image = [np.squeeze(x) for x in real_images.take(1)][0]
 
-        plot_2d_or_3d_image(data=generated_image, step=0,
-                            writer=SummaryWriter(log_dir=self.log_dir), frame_dim=-1, tag="image")
+        os.mkdir(f'{self.path}/epochs/{epoch}')
+        generated_plot = create_plot(generated_image, title=f'Epoch {epoch} - Generated image')
+        real_plot = create_plot(real_image, title=f'Epoch {epoch} - Real image')
 
-        z, y, x = generated_image.shape
-
-        # Create a figure with a custom grid of subplots
-        fig = plt.figure(figsize=(10, 10))
-        rows, cols = int(np.ceil(np.sqrt(z))), int(np.ceil(z / float(np.ceil(np.sqrt(z)))))
-        grid = plt.GridSpec(rows, cols, wspace=0.03, hspace=0.03)
-
-        # Loop over each slice and plot it in a subplot
-        for i in range(z):
-            ax = fig.add_subplot(grid[i])
-            ax.imshow(generated_image[i], cmap='gray')
-            ax.axis('off')
-
-        plt.savefig(f'{self.path}/epoch_images/epoch_{epoch}.png', bbox_inches='tight')
-        # plt.show()
+        generated_plot.savefig(f'{self.path}/epochs/{epoch}/generated.png')
+        real_plot.savefig(f'{self.path}/epochs/{epoch}/real.png')
 
     def log_images(self, epoch):
         with self.file_writer.as_default():
@@ -119,9 +108,35 @@ class Network:
             tf.summary.scalar("Generator Loss", gen_loss, step=epoch)
             tf.summary.scalar("Discriminator Loss", disc_loss, step=epoch)
 
-    # def upload_tensorboard_results(self):
-    #
-    #     for file in os.listdir(self.log_dir):
-    #         blob = self.bucket.blob(f'{self.start_datetime}/{file}')
-    #
-    #         blob.upload_from_filename(os.path.join(self.log_dir, file))
+
+# def upload_tensorboard_results(self):
+#
+#     for file in os.listdir(self.log_dir):
+#         blob = self.bucket.blob(f'{self.start_datetime}/{file}')
+#
+#         blob.upload_from_filename(os.path.join(self.log_dir, file))
+def separate_mask(input_image):
+    image = input_image[:, :, :27]
+    mask = input_image[:, :, 27:54]
+    return image, mask
+
+
+def create_plot(image, title):
+    fig, axs = plt.subplots(9, 6, figsize=(15, 20))
+    image, mask = separate_mask(image)
+
+    for i in range(27):
+        row = i // 3
+        col = (i % 3) * 2
+
+        axs[row, col].imshow(image[:, :, i], cmap='viridis')
+        axs[row, col].set_title(f"Slice {i + 1}", size=15)
+        axs[row, col].axis('off')
+
+        axs[row, col + 1].imshow(mask[:, :, i], cmap='viridis')
+        axs[row, col + 1].set_title(f"Slice {i + 1}", size=15)
+        axs[row, col + 1].axis('off')
+
+    fig.suptitle(title, fontsize=20)
+    plt.tight_layout(rect=[0, 0, 1, 0.98])
+    return fig
