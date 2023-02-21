@@ -1,7 +1,6 @@
 import numpy as np
 from matplotlib import pyplot as plt
 from monai.handlers.tensorboard_handlers import SummaryWriter
-
 from config import config
 from model.discriminator import build_discriminator, discriminator_loss
 from model.generator import build_generator, generator_loss
@@ -87,10 +86,11 @@ class Network:
 
     def save_images(self, epoch):
         generated_image = self.generator(self.seed, training=False)
-
         generated_image = np.squeeze(generated_image)
 
-        plot_2d_or_3d_image(data=generated_image, step=0, writer=SummaryWriter(log_dir=self.log_dir), frame_dim=-1, tag="image")
+        plot_2d_or_3d_image(data=generated_image, step=0,
+                            writer=SummaryWriter(log_dir=self.log_dir), frame_dim=-1, tag="image")
+
         z, y, x = generated_image.shape
 
         # Create a figure with a custom grid of subplots
@@ -105,7 +105,7 @@ class Network:
             ax.axis('off')
 
         plt.savefig(f'{self.path}/epoch_images/epoch_{epoch}.png', bbox_inches='tight')
-        plt.show()
+        # plt.show()
 
     def log_images(self, epoch):
         with self.file_writer.as_default():
@@ -125,4 +125,3 @@ class Network:
             blob = self.bucket.blob(f'{self.start_datetime}/{file}')
 
             blob.upload_from_filename(os.path.join(self.log_dir, file))
-

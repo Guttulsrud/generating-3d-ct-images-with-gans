@@ -6,10 +6,7 @@ from logger import Logger
 from datetime import datetime
 import tensorflow as tf
 
-
 data_loader = DataLoader('training')
-training_data = data_loader.get_dataset(batch_size=config['dataloader']['batch_size'],
-                                        limit=config['dataloader']['limit'])
 
 now = datetime.now()
 dt_string = now.strftime("%Y-%m-%d %H-%M-%S")
@@ -17,17 +14,15 @@ dt_string = now.strftime("%Y-%m-%d %H-%M-%S")
 logger = Logger(start_datetime=dt_string)
 network = Network(start_datetime=dt_string)
 
-# network.upload_tensorboard_results()
-#
-# exit()
 epochs = config['training']['epochs']
 
 for epoch in range(1, epochs + 1):
-    print(f'Epoch: {epoch}')
-    logger.log(f'Epoch: {epoch}')
+    print(f'Epoch: {epoch}', end='')
+    logger.log(f'Epoch: {epoch}', newline=False)
     start = time.time()
+    dataset = data_loader.get_dataset()
 
-    for image_batch in training_data:
+    for image_batch in dataset.shuffle(25).take(25).batch(1):
         network.train(images=image_batch, epoch=tf.convert_to_tensor(epoch, dtype=tf.int64))
 
     network.save_images(epoch)
@@ -36,7 +31,8 @@ for epoch in range(1, epochs + 1):
     if epoch % 5 == 0:
         network.save_checkpoint()
 
-    print(f'Time for epoch {epoch}: {time.time() - start} sec')
-    logger.log(f'Time for epoch {epoch}: {time.time() - start} sec')
+    print(f' - {round(time.time() - start, 2)} sec')
+    logger.log(f' - {round(time.time() - start, 2)} sec')
 
+network.upload_tensorboard_results()
 network.file_writer.flush()

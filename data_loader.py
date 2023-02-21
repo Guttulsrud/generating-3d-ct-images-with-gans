@@ -36,13 +36,10 @@ class DataLoader:
 
         return concat
 
-    def get_dataset(self, batch_size, limit=None):
+    def get_dataset(self):
         dataset = tf.data.Dataset.from_tensor_slices((self.image_paths, self.label_paths)).map(self.wrapper_load)
+        return dataset
 
-        if limit:
-            dataset = dataset.take(limit)
-
-        return dataset.batch(batch_size)
 
 
 # def pad_image(image, shape):

@@ -14,6 +14,9 @@ class Logger:
         os.mkdir(path)
         os.mkdir(f'{path}/epoch_images')
 
-    def log(self, message):
+    def log(self, message, newline=True):
         with open(f'{self.path}/log.txt', "a") as log:
-            log.write(f'{message}\n')
+            if newline:
+                log.write(f'{message}\n')
+            else:
+                log.write(f'{message}')
