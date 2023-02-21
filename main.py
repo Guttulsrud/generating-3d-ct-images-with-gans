@@ -1,8 +1,8 @@
 import time
-from data_loader import DataLoader
+from utils.data_loader import DataLoader
 from model.network import Network
 from config import config
-from logger import Logger
+from utils.logger import Logger
 from datetime import datetime
 import tensorflow as tf
 
