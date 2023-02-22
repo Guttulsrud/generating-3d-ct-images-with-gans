@@ -1,5 +1,8 @@
 import logging
 import os
+
+import yaml
+
 from config import config
 
 
@@ -13,6 +16,9 @@ class Logger:
         self.path = path
         os.mkdir(path)
         os.mkdir(f'{path}/epochs')
+        with open(f'{path}/config.yml', 'w') as outfile:
+            yaml.dump(config, outfile, default_flow_style=False)
+
 
     def log(self, message, newline=True):
         with open(f'{self.path}/log.txt', "a") as log:
