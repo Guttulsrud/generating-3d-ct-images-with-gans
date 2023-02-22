@@ -15,8 +15,8 @@ class DataLoader:
         else:
             path = f'data'
 
-        self.image_paths = glob.glob(os.path.join(f'{path}/chopped/images', '*CT.nii.gz'))
-        self.label_paths = glob.glob(os.path.join(f'{path}/chopped/labels', '*.nii.gz'))
+        self.image_paths = glob.glob(os.path.join(f'{path}/chopped/resampled_0_03/images', '*CT.nii.gz'))
+        self.label_paths = glob.glob(os.path.join(f'{path}/chopped/resampled_0_03/labels', '*.nii.gz'))
 
     def wrapper_load(self, img_path, label_path):
         return tf.py_function(func=self.preprocess_image_label, inp=[img_path, label_path],

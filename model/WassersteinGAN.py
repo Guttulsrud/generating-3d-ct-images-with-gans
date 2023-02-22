@@ -81,17 +81,17 @@ class WassersteinGAN:
     def restore_checkpoint(self):
         self.checkpoint.restore(tf.train.latest_checkpoint(f'{self.path}/training_checkpoints'))
 
-    def save_images(self, epoch, real_images):
+    def save_images(self, real_images):
         generated_image = self.generator(self.seed, training=False)
         generated_image = np.squeeze(generated_image)
         real_image = [np.squeeze(x) for x in real_images.take(1)][0]
 
-        os.mkdir(f'{self.path}/epochs/{epoch}')
-        generated_plot = create_plot(generated_image, title=f'Epoch {epoch} - Generated image')
-        real_plot = create_plot(real_image, title=f'Epoch {epoch} - Real image')
+        os.mkdir(f'{self.path}/epochs/{self.epoch}')
+        generated_plot = create_plot(generated_image, title=f'Epoch {self.epoch} - Generated image')
+        real_plot = create_plot(real_image, title=f'Epoch {self.epoch} - Real image')
 
-        generated_plot.savefig(f'{self.path}/epochs/{epoch}/generated.png')
-        real_plot.savefig(f'{self.path}/epochs/{epoch}/real.png')
+        generated_plot.savefig(f'{self.path}/epochs/{self.epoch}/generated.png')
+        real_plot.savefig(f'{self.path}/epochs/{self.epoch}/real.png')
 
     def log_images(self, images):
         with self.file_writer.as_default():

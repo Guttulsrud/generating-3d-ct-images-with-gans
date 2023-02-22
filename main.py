@@ -20,7 +20,7 @@ for epoch in range(1, config['training']['epochs'] + 1):
     for image_batch in training_data:
         network.train(images=image_batch, epoch=tf.convert_to_tensor(epoch, dtype=tf.int64))
 
-    # network.save_images(epoch, real_images=training_data)
+    network.save_images(real_images=training_data)
 
     # Save the model every 5 epochs
     if epoch % 5 == 0:

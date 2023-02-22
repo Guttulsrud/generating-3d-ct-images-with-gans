@@ -1,6 +1,6 @@
 from model.WassersteinGAN import WassersteinGAN
 from model.WassersteinGPGAN import WassersteinGPGAN
-from utils.data_loader import DataLoader
+from utils.DataLoader import DataLoader
 from model.VanillaGAN import VanillaGAN
 from config import config
 from utils.logger import Logger
