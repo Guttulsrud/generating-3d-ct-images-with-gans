@@ -1,14 +1,17 @@
 import time
+
+import numpy as np
+
 from config import config
 import tensorflow as tf
 import os
 
 from utils.init import init
+from utils.plotting import save_images
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+# os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 data_loader, logger, network = init()
-
 
 for epoch in range(1, config['training']['epochs'] + 1):
     print(f'Epoch: {epoch}', end='')
@@ -18,9 +21,13 @@ for epoch in range(1, config['training']['epochs'] + 1):
     training_data = data_loader.get_dataset()
 
     for image_batch in training_data:
-        network.train(images=image_batch, epoch=tf.convert_to_tensor(epoch, dtype=tf.int64))
+        network.train(images=image_batch, epoch=epoch)
 
-    network.save_images(real_images=training_data)
+    generated_image = network.generator(network.seed, training=False)
+    generated_image = np.squeeze(generated_image)
+    real_image = [np.squeeze(x) for x in training_data.take(1)][0]
+
+    save_images(real_image=real_image, fake_image=generated_image, epoch=epoch, path=network.path)
 
     # Save the model every 5 epochs
     if epoch % 5 == 0:

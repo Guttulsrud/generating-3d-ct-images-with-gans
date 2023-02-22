@@ -46,12 +46,3 @@ def build_discriminator():
     discriminator = keras.layers.Dense(1, activation='sigmoid')(discriminator)
 
     return keras.models.Model(inputs=in_src_image, outputs=discriminator, name='discriminator')
-
-
-def discriminator_loss(real_output, fake_output):
-    cross_entropy = tf.keras.losses.BinaryCrossentropy()
-
-    real_loss = cross_entropy(tf.ones_like(real_output), real_output)
-    fake_loss = cross_entropy(tf.zeros_like(fake_output), fake_output)
-    total_loss = real_loss + fake_loss
-    return total_loss

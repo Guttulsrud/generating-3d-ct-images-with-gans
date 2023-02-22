@@ -76,9 +76,3 @@ def build_generator():
     model = keras.models.Model(inputs=in_image, outputs=output, name='generator')
     # print(model.output_shape)
     return model
-
-
-def generator_loss(fake_output):
-    cross_entropy = tf.keras.losses.BinaryCrossentropy()
-    return cross_entropy(tf.ones_like(fake_output), fake_output)
-

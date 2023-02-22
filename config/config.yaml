@@ -4,14 +4,14 @@ dataloader:
   batch_size: 1
   samples_per_epoch: 10
 images:
-  shape: [ 15,15,6 ] #Shape of the concatenated images used by the network
+  shape: [ 154,154,54 ] #Shape of the concatenated images used by the network
 network:
-  architecture: 'wasserstein_gp' #wasserstein or vanilla
+  architecture: 'wasserstein' #wasserstein, wasserstein_gp or vanilla
   generator:
     optimizer:
       learning_rate: 0.0002
   discriminator:
-    gradient_penalty_weight: 10
+    gradient_penalty_weight: 5
     clip_value: 0.01
     optimizer:
       learning_rate: 0.0001

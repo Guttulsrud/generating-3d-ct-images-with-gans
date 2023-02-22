@@ -2,8 +2,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 from monai.handlers.tensorboard_handlers import SummaryWriter
 from config import config
-from model.discriminator import build_discriminator, discriminator_loss
-from model.generator import build_generator, generator_loss
+from model.discriminator import build_discriminator
+from model.generator import build_generator
 import tensorflow as tf
 import os
 # from google.cloud import storage
@@ -50,7 +50,7 @@ class VanillaGAN:
     # This annotation causes the function to be "compiled" with TF.
     @tf.function
     def train(self, images, epoch):
-        self.epoch = epoch
+        self.epoch = int(epoch)
 
         noise = tf.random.normal([1, *config['images']['shape']])
 
@@ -90,18 +90,6 @@ class VanillaGAN:
     def restore_checkpoint(self):
         self.checkpoint.restore(tf.train.latest_checkpoint(f'{self.path}/training_checkpoints'))
 
-    def save_images(self, epoch, real_images):
-        generated_image = self.generator(self.seed, training=False)
-        generated_image = np.squeeze(generated_image)
-        real_image = [np.squeeze(x) for x in real_images.take(1)][0]
-
-        os.mkdir(f'{self.path}/epochs/{epoch}')
-        generated_plot = create_plot(generated_image, title=f'Epoch {epoch} - Generated image')
-        real_plot = create_plot(real_image, title=f'Epoch {epoch} - Real image')
-
-        generated_plot.savefig(f'{self.path}/epochs/{epoch}/generated.png')
-        real_plot.savefig(f'{self.path}/epochs/{epoch}/real.png')
-
     def log_images(self, images):
         with self.file_writer.as_default():
             img = tf.squeeze(images, axis=0)
@@ -120,28 +108,3 @@ class VanillaGAN:
 #         blob = self.bucket.blob(f'{self.start_datetime}/{file}')
 #
 #         blob.upload_from_filename(os.path.join(self.log_dir, file))
-def separate_mask(input_image):
-    image = input_image[:, :, :27]
-    mask = input_image[:, :, 27:54]
-    return image, mask
-
-
-def create_plot(image, title):
-    fig, axs = plt.subplots(9, 6, figsize=(15, 20))
-    image, mask = separate_mask(image)
-
-    for i in range(27):
-        row = i // 3
-        col = (i % 3) * 2
-
-        axs[row, col].imshow(image[:, :, i], cmap='viridis')
-        axs[row, col].set_title(f"Slice {i + 1}", size=15)
-        axs[row, col].axis('off')
-
-        axs[row, col + 1].imshow(mask[:, :, i], cmap='viridis')
-        axs[row, col + 1].set_title(f"Slice {i + 1}", size=15)
-        axs[row, col + 1].axis('off')
-
-    fig.suptitle(title, fontsize=20)
-    plt.tight_layout(rect=[0, 0, 1, 0.98])
-    return fig
