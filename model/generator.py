@@ -81,4 +81,4 @@ def build_generator():
 def generator_loss(fake_output):
     cross_entropy = tf.keras.losses.BinaryCrossentropy()
     return cross_entropy(tf.ones_like(fake_output), fake_output)
-    # gradient penalty?
+

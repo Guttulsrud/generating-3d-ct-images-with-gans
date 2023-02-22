@@ -2,15 +2,15 @@ import numpy as np
 from matplotlib import pyplot as plt
 from monai.handlers.tensorboard_handlers import SummaryWriter
 from config import config
-from model.discriminator import build_discriminator, discriminator_loss
-from model.generator import build_generator, generator_loss
+from model.discriminator import build_discriminator
+from model.generator import build_generator
 import tensorflow as tf
 import os
 # from google.cloud import storage
 from monai.visualize import plot_2d_or_3d_image
 
 
-class Network:
+class WassersteinGPGAN:
     def __init__(self, start_datetime, load_checkpoint=False):
         if config['cluster']['enabled']:
             self.path = f'/home/haakong/thesis/logs/{start_datetime}'
@@ -34,49 +34,57 @@ class Network:
         self.generator = build_generator()
         self.discriminator = build_discriminator()
 
-        self.generator_optimizer = tf.keras.optimizers.Adam(generator_learning_rate)
-        self.discriminator_optimizer = tf.keras.optimizers.Adam(discriminator_learning_rate)
+        self.generator_optimizer = tf.keras.optimizers.RMSprop(learning_rate=generator_learning_rate)
+        self.discriminator_optimizer = tf.keras.optimizers.RMSprop(learning_rate=discriminator_learning_rate)
 
         self.checkpoint_prefix = os.path.join(f'{self.path}/training_checkpoints', "ckpt")
         self.checkpoint = tf.train.Checkpoint(generator_optimizer=self.generator_optimizer,
                                               discriminator_optimizer=self.discriminator_optimizer,
                                               generator=self.generator,
                                               discriminator=self.discriminator)
+        self.epoch = None
 
-        # self.client = storage.Client(project='thesis-377808')
-        # self.bucket = self.client.bucket('thesis-tensorboard')
+    @tf.function
+    def gradient_penalty(self, images, generated_images):
+        epsilon = tf.random.uniform([images.shape[0], 1, 1, 1], 0.0, 1.0)
+        interpolated_images = epsilon * images + (1 - epsilon) * generated_images
 
-    # This annotation causes the function to be "compiled" with TF.
+        with tf.GradientTape() as t:
+            t.watch(interpolated_images)
+            interpolated_output = self.discriminator(interpolated_images, training=True)
+        gradients = t.gradient(interpolated_output, interpolated_images)
+        slopes = tf.sqrt(tf.reduce_sum(tf.square(gradients), axis=[1, 2, 3]))
+        gradient_penalty = tf.reduce_mean((slopes - 1.0) ** 2)
+        return gradient_penalty
+
     @tf.function
     def train(self, images, epoch):
+        self.epoch = epoch
         noise = tf.random.normal([1, *config['images']['shape']])
 
-        with tf.GradientTape() as gen_tape, tf.GradientTape() as disc_tape:
-            # Generate synthetic image from noise with generator
+        # Train the discriminator
+        with tf.GradientTape() as disc_tape:
             generated_images = self.generator(noise, training=True)
-
-            # Get the predictions from the discriminator on the real and fake images
             real_output = self.discriminator(images, training=True)
             fake_output = self.discriminator(generated_images, training=True)
-
-            # Calculate loss for generator and discriminator
-            gen_loss = generator_loss(fake_output)
             disc_loss = discriminator_loss(real_output, fake_output)
+            gradient_penalty = self.gradient_penalty(images, generated_images)
+            disc_loss += config['network']['discriminator']['gradient_penalty_weight'] * gradient_penalty
 
-            self.log_scalars(epoch, gen_loss, disc_loss)
-            self.log_images(epoch)
+        disc_gradients = disc_tape.gradient(disc_loss, self.discriminator.trainable_variables)
+        self.discriminator_optimizer.apply_gradients(zip(disc_gradients, self.discriminator.trainable_variables))
 
-        # Get the gradients for each model
-        gradients_of_generator = gen_tape.gradient(gen_loss, self.generator.trainable_variables)
-        gradients_of_discriminator = disc_tape.gradient(disc_loss, self.discriminator.trainable_variables)
+        # Train the generator
+        with tf.GradientTape() as gen_tape:
+            generated_images = self.generator(noise, training=True)
+            fake_output = self.discriminator(generated_images, training=True)
+            gen_loss = generator_loss(fake_output)
 
-        # Combine gradients with training variables
-        generator_gradients = zip(gradients_of_generator, self.generator.trainable_variables)
-        discriminator_gradients = zip(gradients_of_discriminator, self.discriminator.trainable_variables)
+        gen_gradients = gen_tape.gradient(gen_loss, self.generator.trainable_variables)
+        self.generator_optimizer.apply_gradients(zip(gen_gradients, self.generator.trainable_variables))
 
-        # Apply gradients to the models
-        self.generator_optimizer.apply_gradients(generator_gradients)
-        self.discriminator_optimizer.apply_gradients(discriminator_gradients)
+        self.log_scalars(gen_loss, disc_loss)
+        self.log_images(generated_images)
 
     def save_checkpoint(self):
         self.checkpoint.save(file_prefix=self.checkpoint_prefix)
@@ -96,25 +104,18 @@ class Network:
         generated_plot.savefig(f'{self.path}/epochs/{epoch}/generated.png')
         real_plot.savefig(f'{self.path}/epochs/{epoch}/real.png')
 
-    def log_images(self, epoch):
+    def log_images(self, images):
         with self.file_writer.as_default():
-            img = self.generator(self.seed, training=False)
-            img = tf.squeeze(img, axis=0)
+            img = tf.squeeze(images, axis=0)
 
-            tf.summary.image("Generated Images", img, step=epoch)
+            tf.summary.image("Generated Images", img, step=self.epoch)
 
-    def log_scalars(self, epoch, gen_loss, disc_loss):
+    def log_scalars(self, gen_loss, disc_loss):
         with self.file_writer.as_default():
-            tf.summary.scalar("Generator Loss", gen_loss, step=epoch)
-            tf.summary.scalar("Discriminator Loss", disc_loss, step=epoch)
+            tf.summary.scalar("Generator Loss", gen_loss, step=self.epoch)
+            tf.summary.scalar("Discriminator Loss", disc_loss, step=self.epoch)
 
 
-# def upload_tensorboard_results(self):
-#
-#     for file in os.listdir(self.log_dir):
-#         blob = self.bucket.blob(f'{self.start_datetime}/{file}')
-#
-#         blob.upload_from_filename(os.path.join(self.log_dir, file))
 def separate_mask(input_image):
     image = input_image[:, :, :27]
     mask = input_image[:, :, 27:54]
@@ -140,3 +141,11 @@ def create_plot(image, title):
     fig.suptitle(title, fontsize=20)
     plt.tight_layout(rect=[0, 0, 1, 0.98])
     return fig
+
+
+def generator_loss(fake_output):
+    return -tf.reduce_mean(fake_output)
+
+
+def discriminator_loss(real_output, fake_output):
+    return tf.reduce_mean(fake_output) - tf.reduce_mean(real_output)

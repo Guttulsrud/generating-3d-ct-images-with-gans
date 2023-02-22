@@ -1,22 +1,16 @@
 import time
-from utils.data_loader import DataLoader
-from model.network import Network
 from config import config
-from utils.logger import Logger
-from datetime import datetime
 import tensorflow as tf
+import os
 
-data_loader = DataLoader('training')
+from utils.init import init
 
-now = datetime.now()
-dt_string = now.strftime("%Y-%m-%d %H-%M-%S")
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
-logger = Logger(start_datetime=dt_string)
-network = Network(start_datetime=dt_string)
+data_loader, logger, network = init()
 
-epochs = config['training']['epochs']
 
-for epoch in range(1, epochs + 1):
+for epoch in range(1, config['training']['epochs'] + 1):
     print(f'Epoch: {epoch}', end='')
     logger.log(f'Epoch: {epoch}', newline=False)
     start = time.time()
@@ -26,7 +20,7 @@ for epoch in range(1, epochs + 1):
     for image_batch in training_data:
         network.train(images=image_batch, epoch=tf.convert_to_tensor(epoch, dtype=tf.int64))
 
-    network.save_images(epoch, real_images=training_data)
+    # network.save_images(epoch, real_images=training_data)
 
     # Save the model every 5 epochs
     if epoch % 5 == 0:
