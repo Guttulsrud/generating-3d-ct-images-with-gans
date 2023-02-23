@@ -15,8 +15,8 @@ class DataLoader:
         else:
             path = f'data'
 
-        self.image_paths = glob.glob(os.path.join(f'{path}/chopped/images', '*CT.nii.gz'))
-        self.label_paths = glob.glob(os.path.join(f'{path}/chopped/labels', '*.nii.gz'))
+        self.image_paths = glob.glob(os.path.join(f'{path}/chopped/resampled_0_03/images', '*CT.nii.gz'))
+        self.label_paths = glob.glob(os.path.join(f'{path}/chopped/resampled_0_03/labels', '*.nii.gz'))
 
         if not len(self.image_paths):
             raise Exception('No images found!')

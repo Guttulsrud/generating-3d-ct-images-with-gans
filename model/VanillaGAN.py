@@ -1,14 +1,11 @@
 import numpy as np
 from matplotlib import pyplot as plt
-from monai.handlers.tensorboard_handlers import SummaryWriter
 from config import config
 from model.discriminator import build_discriminator
 from model.generator import build_generator
 import tensorflow as tf
 import os
 # from google.cloud import storage
-from monai.visualize import plot_2d_or_3d_image
-
 from model.loss_functions import generator_loss, discriminator_loss
 
 
