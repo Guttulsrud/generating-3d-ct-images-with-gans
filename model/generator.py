@@ -1,6 +1,4 @@
 from tensorflow import keras
-import tensorflow as tf
-from config import config
 
 
 # define an encoder block
@@ -43,7 +41,7 @@ def decoder(layer_in, skip_in, n_filters, dropout=True):
     return keras.layers.Activation('relu')(g)
 
 
-def build_generator():
+def build_generator(config):
     in_image = keras.layers.Input(shape=(*config['images']['shape'], 1))
 
     # Encoder

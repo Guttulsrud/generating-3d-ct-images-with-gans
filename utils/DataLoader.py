@@ -3,13 +3,11 @@ import tensorflow as tf
 import nibabel as nib
 import glob
 import os
-from config import config
 
-
-# Todo: use TF Records instead?
 
 class DataLoader:
-    def __init__(self, data_type):
+    def __init__(self, data_type, config):
+        self.config = config
         if config['cluster']['enabled']:
             path = f'/home/haakong/thesis/data'
         else:
@@ -43,6 +41,6 @@ class DataLoader:
 
     def get_dataset(self):
         dataset = tf.data.Dataset.from_tensor_slices((self.image_paths, self.label_paths)).map(self.wrapper_load)
-        dataset = dataset.shuffle(config['dataloader']['samples_per_epoch'])
-        dataset = dataset.take(config['dataloader']['samples_per_epoch'])
-        return dataset.batch(config['dataloader']['batch_size'])
+        dataset = dataset.shuffle(self.config['dataloader']['samples_per_epoch'])
+        dataset = dataset.take(self.config['dataloader']['samples_per_epoch'])
+        return dataset.batch(self.config['dataloader']['batch_size'])

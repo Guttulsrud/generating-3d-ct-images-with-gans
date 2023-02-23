@@ -1,16 +1,13 @@
-import numpy as np
-from matplotlib import pyplot as plt
-from config import config
 from model.discriminator import build_discriminator
 from model.generator import build_generator
 import tensorflow as tf
 import os
-# from google.cloud import storage
 from model.loss_functions import generator_loss, discriminator_loss
 
 
 class VanillaGAN:
-    def __init__(self, start_datetime, load_checkpoint=False):
+    def __init__(self, start_datetime, config):
+        self.config = config
         if config['cluster']['enabled']:
             self.path = f'/home/haakong/thesis/logs/{start_datetime}'
         else:
@@ -23,15 +20,11 @@ class VanillaGAN:
         self.start_datetime = start_datetime
         self.seed = tf.random.normal([1, *image_shape])
 
-        if load_checkpoint:
-            self.restore_checkpoint()
-            return
-
         generator_learning_rate = config['network']['generator']['optimizer']['learning_rate']
         discriminator_learning_rate = config['network']['discriminator']['optimizer']['learning_rate']
 
-        self.generator = build_generator()
-        self.discriminator = build_discriminator()
+        self.generator = build_generator(config)
+        self.discriminator = build_discriminator(config)
 
         self.generator_optimizer = tf.keras.optimizers.Adam(generator_learning_rate)
         self.discriminator_optimizer = tf.keras.optimizers.Adam(discriminator_learning_rate)
@@ -51,7 +44,7 @@ class VanillaGAN:
     def train(self, images, epoch):
         self.epoch = int(epoch)
 
-        noise = tf.random.normal([1, *config['images']['shape']])
+        noise = tf.random.normal([1, *self.config['images']['shape']])
 
         with tf.GradientTape() as gen_tape, tf.GradientTape() as disc_tape:
             # Generate synthetic image from noise with generator
@@ -99,11 +92,3 @@ class VanillaGAN:
         with self.file_writer.as_default():
             tf.summary.scalar("Generator Loss", gen_loss, step=self.epoch)
             tf.summary.scalar("Discriminator Loss", disc_loss, step=self.epoch)
-
-
-# def upload_tensorboard_results(self):
-#
-#     for file in os.listdir(self.log_dir):
-#         blob = self.bucket.blob(f'{self.start_datetime}/{file}')
-#
-#         blob.upload_from_filename(os.path.join(self.log_dir, file))

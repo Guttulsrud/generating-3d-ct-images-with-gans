@@ -1,13 +1,9 @@
-import logging
 import os
-
 import yaml
-
-from config import config
 
 
 class Logger:
-    def __init__(self, start_datetime):
+    def __init__(self, start_datetime, config):
         if config['cluster']['enabled']:
             path = f'/home/haakong/thesis/logs/{start_datetime}'
         else:
@@ -18,7 +14,6 @@ class Logger:
         os.mkdir(f'{path}/epochs')
         with open(f'{path}/config.yml', 'w') as outfile:
             yaml.dump(config, outfile, default_flow_style=False)
-
 
     def log(self, message, newline=True):
         with open(f'{self.path}/log.txt', "a") as log:

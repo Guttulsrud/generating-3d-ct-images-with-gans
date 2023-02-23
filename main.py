@@ -1,26 +1,15 @@
 import time
-
 import numpy as np
-
-from config import config
-import tensorflow as tf
-import os
-
+from utils.config import get_config
 from utils.init import init
 from utils.plotting import save_images
+import os
 
-# os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
-data_loader, logger, network = init()
-import yaml
+config = get_config()
 
-
-def apply_hparams():
-    with open('hpo.yml', 'r') as f:
-        return yaml.safe_load(f)
-
-
-config = apply_hparams()
+data_loader, logger, network = init(config)
 
 for epoch in range(1, config['training']['epochs'] + 1):
     print(f'Epoch: {epoch}', end='')
@@ -47,4 +36,4 @@ for epoch in range(1, config['training']['epochs'] + 1):
     logger.log(f' - {round(time.time() - start, 2)} sec')
 
 # network.upload_tensorboard_results()
-network.file_writer.flush()
+# network.file_writer.flush()

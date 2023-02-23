@@ -2,12 +2,11 @@ from model.WassersteinGAN import WassersteinGAN
 from model.WassersteinGPGAN import WassersteinGPGAN
 from utils.DataLoader import DataLoader
 from model.VanillaGAN import VanillaGAN
-from config import config
 from utils.logger import Logger
 from datetime import datetime
 
 
-def get_architecture():
+def get_architecture(config):
     config_architecture = config['network']['architecture']
 
     architectures = {
@@ -24,16 +23,15 @@ def get_architecture():
     return architecture
 
 
-def init():
-    data_loader = DataLoader('training')
+def init(config):
+    data_loader = DataLoader(data_type='training', config=config)
 
     now = datetime.now()
     dt_string = now.strftime("%Y-%m-%d %H-%M-%S")
 
-    logger = Logger(start_datetime=dt_string)
-    architecture = get_architecture()
-
-    network = architecture(start_datetime=dt_string)
+    logger = Logger(start_datetime=dt_string, config=config)
+    architecture = get_architecture(config=config)
+    network = architecture(start_datetime=dt_string, config=config)
 
     epochs = config['training']['epochs']
 

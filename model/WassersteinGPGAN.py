@@ -1,19 +1,13 @@
-import numpy as np
-from matplotlib import pyplot as plt
-from monai.handlers.tensorboard_handlers import SummaryWriter
-from config import config
 from model.discriminator import build_discriminator
 from model.generator import build_generator
 import tensorflow as tf
 import os
-# from google.cloud import storage
-from monai.visualize import plot_2d_or_3d_image
-
 from model.loss_functions import wasserstein_discriminator_loss, wasserstein_generator_loss
 
 
 class WassersteinGPGAN:
-    def __init__(self, start_datetime, load_checkpoint=False):
+    def __init__(self, start_datetime, config):
+        self.config = config
         if config['cluster']['enabled']:
             self.path = f'/home/haakong/thesis/logs/{start_datetime}'
         else:
@@ -26,15 +20,11 @@ class WassersteinGPGAN:
         self.start_datetime = start_datetime
         self.seed = tf.random.normal([1, *image_shape])
 
-        if load_checkpoint:
-            self.restore_checkpoint()
-            return
-
         generator_learning_rate = config['network']['generator']['optimizer']['learning_rate']
         discriminator_learning_rate = config['network']['discriminator']['optimizer']['learning_rate']
 
-        self.generator = build_generator()
-        self.discriminator = build_discriminator()
+        self.generator = build_generator(config)
+        self.discriminator = build_discriminator(config)
 
         self.generator_optimizer = tf.keras.optimizers.RMSprop(learning_rate=generator_learning_rate)
         self.discriminator_optimizer = tf.keras.optimizers.RMSprop(learning_rate=discriminator_learning_rate)
@@ -62,7 +52,7 @@ class WassersteinGPGAN:
     @tf.function
     def train(self, images, epoch):
         self.epoch = epoch
-        noise = tf.random.normal([1, *config['images']['shape']])
+        noise = tf.random.normal([1, *self.config['images']['shape']])
 
         # Train the discriminator
         with tf.GradientTape() as disc_tape:
@@ -71,7 +61,7 @@ class WassersteinGPGAN:
             fake_output = self.discriminator(generated_images, training=True)
             disc_loss = wasserstein_discriminator_loss(real_output, fake_output)
             gradient_penalty = self.gradient_penalty(images, generated_images)
-            disc_loss += config['network']['discriminator']['gradient_penalty_weight'] * gradient_penalty
+            disc_loss += self.config['network']['discriminator']['gradient_penalty_weight'] * gradient_penalty
 
         disc_gradients = disc_tape.gradient(disc_loss, self.discriminator.trainable_variables)
         self.discriminator_optimizer.apply_gradients(zip(disc_gradients, self.discriminator.trainable_variables))
