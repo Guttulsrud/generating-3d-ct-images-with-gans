@@ -9,6 +9,8 @@ import os
 # from google.cloud import storage
 from monai.visualize import plot_2d_or_3d_image
 
+from model.loss_functions import generator_loss, discriminator_loss
+
 
 class VanillaGAN:
     def __init__(self, start_datetime, load_checkpoint=False):
