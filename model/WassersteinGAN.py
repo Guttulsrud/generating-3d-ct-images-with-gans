@@ -41,7 +41,7 @@ class WassersteinGAN:
     @tf.function
     def train(self, images, epoch):
         self.epoch = epoch
-        noise = tf.random.normal([images.shape[0], *config['images']['shape']])
+        noise = tf.random.normal([images.shape[0], *self.config['images']['shape']])
 
         # Train the discriminator
         with tf.GradientTape() as disc_tape:

@@ -17,9 +17,9 @@ def chop_image(image, slices):
     return image[:, :, z_start:z_end]
 
 
-def chop_images(slices=3):
-    image_paths = glob.glob(os.path.join(f'{path}/resampled/resampled_0_03/training/images', '*CT.nii.gz'))
-    label_paths = glob.glob(os.path.join(f'{path}/resampled/resampled_0_03/training/labels', '*.nii.gz'))
+def chop_images(slices=27):
+    image_paths = glob.glob(os.path.join(f'{path}/chopped/resampled_0_3/images', '*CT.nii.gz'))
+    label_paths = glob.glob(os.path.join(f'{path}/chopped/resampled_0_3/labels', '*.nii.gz'))
 
     for image_path, label_path in tqdm(zip(image_paths, label_paths)):
         image = nib.load(image_path)
@@ -33,8 +33,8 @@ def chop_images(slices=3):
         x = nib.Nifti1Image(image_data, image.affine)
         y = nib.Nifti1Image(label_data, label.affine)
         #
-        nib.save(x, os.path.join("../../data/chopped/resampled_0_03/images", image_path.split('images\\')[-1]))
-        nib.save(y, os.path.join("../../data/chopped/resampled_0_03/labels", label_path.split('labels\\')[-1]))
+        nib.save(x, os.path.join("../../data/chopped/resampled_0_3/images", image_path.split('images\\')[-1]))
+        nib.save(y, os.path.join("../../data/chopped/resampled_0_3/labels", label_path.split('labels\\')[-1]))
 
 
 chop_images()

@@ -23,9 +23,14 @@ def resample(percent):
 
         x = nib.Nifti1Image(resampled_image, image.affine)
         y = nib.Nifti1Image(resampled_label, label.affine)
+
+        # append info to .txt file
+        with open(f'info.txt', 'a') as f:
+            f.write(
+                f'{image_path} To {resampled_image.shape} from {image_data.shape}\n')
         #
-        nib.save(x, os.path.join("../data/resampled/resampled_0_03/training/images/", image_path))
-        nib.save(y, os.path.join("../data/resampled/resampled_0_03/training/labels/", label_path))
+        nib.save(x, os.path.join("../data/resampled/resampled_0_3/training/images/", image_path))
+        nib.save(y, os.path.join("../data/resampled/resampled_0_3/training/labels/", label_path))
 
 
-resample(percent=0.03)
+resample(percent=0.3)
