@@ -3,9 +3,13 @@ import itertools
 import pprint
 
 
-def get_config():
+def load_config_file():
     with open('config.yaml', 'r') as f:
-        config = yaml.safe_load(f)
+        return yaml.safe_load(f)
+
+
+def get_config():
+    config = load_config_file()
 
     if not config['hpo']:
         return config, range(1)

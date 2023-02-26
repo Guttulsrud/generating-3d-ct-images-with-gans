@@ -1,8 +1,12 @@
 training:
-  epochs: 2
+  epochs: 10
 dataloader:
   batch_size: 1
-  samples_per_epoch: 4
+  samples_per_epoch: 1
+augmentations:
+  gaussian_noise:
+    enabled: True
+    sigma: 2
 images:
   shape: [ 15,15,6 ] #Shape of the concatenated images used by the network
 network:
@@ -16,5 +20,9 @@ network:
     optimizer:
       learning_rate: 0.0001
 hpo: False
+inference:
+  enabled: True
+  architecture: 'vanilla'
+  checkpoint_path: 'checkpoints/example'
 cluster:
   enabled: False

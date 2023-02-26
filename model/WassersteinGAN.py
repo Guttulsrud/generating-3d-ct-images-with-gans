@@ -1,3 +1,4 @@
+from model.GAN import GAN
 from model.discriminator import build_discriminator
 from model.generator import build_generator
 import tensorflow as tf
@@ -5,50 +6,28 @@ import os
 from model.loss_functions import wasserstein_discriminator_loss, wasserstein_generator_loss
 
 
-class WassersteinGAN:
+class WassersteinGAN(GAN):
     def __init__(self, start_datetime, config):
-        self.config = config
-        if config['cluster']['enabled']:
-            self.path = f'/home/haakong/thesis/logs/{start_datetime}'
-        else:
-            self.path = f'logs/{start_datetime}'
+        super().__init__(start_datetime, config)
 
-        self.log_dir = os.path.join(f'{self.path}/tensorboard')
-        self.file_writer = tf.summary.create_file_writer(self.log_dir)
-
-        image_shape = config['images']['shape']
-        self.start_datetime = start_datetime
-        self.seed = tf.random.normal([1, *image_shape])
-
-        generator_learning_rate = config['network']['generator']['optimizer']['learning_rate']
-        discriminator_learning_rate = config['network']['discriminator']['optimizer']['learning_rate']
-
-        self.generator = build_generator(config)
-        self.discriminator = build_discriminator(config)
-
-        self.generator_optimizer = tf.keras.optimizers.RMSprop(learning_rate=generator_learning_rate)
-        self.discriminator_optimizer = tf.keras.optimizers.RMSprop(learning_rate=discriminator_learning_rate)
+        self.generator_optimizer = tf.keras.optimizers.RMSprop(learning_rate=self.generator_learning_rate)
+        self.discriminator_optimizer = tf.keras.optimizers.RMSprop(learning_rate=self.discriminator_learning_rate)
 
         self.clip_value = config['network']['discriminator']['clip_value']
-
-        self.checkpoint_prefix = os.path.join(f'{self.path}/training_checkpoints', "ckpt")
-        self.checkpoint = tf.train.Checkpoint(generator_optimizer=self.generator_optimizer,
-                                              discriminator_optimizer=self.discriminator_optimizer,
-                                              generator=self.generator,
-                                              discriminator=self.discriminator)
-        self.epoch = None
+        self.init_checkpoint()
 
     @tf.function
     def train(self, images, epoch):
         self.epoch = epoch
         noise = tf.random.normal([images.shape[0], *self.config['images']['shape']])
 
-        # Train the discriminator
         with tf.GradientTape() as disc_tape:
             generated_images = self.generator(noise, training=True)
+
             real_output = self.discriminator(images, training=True)
             fake_output = self.discriminator(generated_images, training=True)
             disc_loss = wasserstein_discriminator_loss(real_output, fake_output)
+
         disc_gradients = disc_tape.gradient(disc_loss, self.discriminator.trainable_variables)
         self.discriminator_optimizer.apply_gradients(zip(disc_gradients, self.discriminator.trainable_variables))
 
@@ -67,20 +46,3 @@ class WassersteinGAN:
 
         self.log_scalars(gen_loss, disc_loss)
         self.log_images(generated_images)
-
-    def save_checkpoint(self):
-        self.checkpoint.save(file_prefix=self.checkpoint_prefix)
-
-    def restore_checkpoint(self):
-        self.checkpoint.restore(tf.train.latest_checkpoint(f'{self.path}/training_checkpoints'))
-
-    def log_images(self, images):
-        with self.file_writer.as_default():
-            img = tf.squeeze(images, axis=0)
-
-            tf.summary.image("Generated Images", img, step=self.epoch)
-
-    def log_scalars(self, gen_loss, disc_loss):
-        with self.file_writer.as_default():
-            tf.summary.scalar("Generator Loss", gen_loss, step=self.epoch)
-            tf.summary.scalar("Discriminator Loss", disc_loss, step=self.epoch)
