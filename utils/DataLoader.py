@@ -3,8 +3,6 @@ import tensorflow as tf
 import nibabel as nib
 import glob
 import os
-from scipy.ndimage import gaussian_filter
-
 
 class DataLoader:
     def __init__(self, data_type, config):
@@ -46,30 +44,3 @@ class DataLoader:
         dataset = dataset.shuffle(self.config['dataloader']['samples_per_epoch'])
         dataset = dataset.take(self.config['dataloader']['samples_per_epoch'])
         return dataset.batch(self.config['dataloader']['batch_size'])
-
-
-class Augmentor:
-    def __init__(self, config, save_images=True):
-        self.config = config
-        self.data = DataLoader(data_type='train', config=config).get_dataset()
-
-    def apply_augmentation(self, augmentation):
-        augmentations = {
-            'gaussian_noise': self.gaussian_noise,
-        }
-
-        aug = augmentations.get(augmentation)
-        if not aug:
-            raise Exception(f'No augmentation found for {augmentation}')
-
-        # aug(self.data)
-        
-
-    def gaussian_noise(self):
-        sigma = self.config['augmentations']['gaussian_noise']['sigma']
-        for image in self.data.get_dataset():
-            # image = image.numpy()
-            image = gaussian_filter(image, sigma=sigma)
-            # image = tf.convert_to_tensor(image, dtype='float32')
-            # image = tf.expand_dims(image, -1)
-            # yield image

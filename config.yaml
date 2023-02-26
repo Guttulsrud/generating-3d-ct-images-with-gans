@@ -3,10 +3,6 @@ training:
 dataloader:
   batch_size: 1
   samples_per_epoch: 1
-augmentations:
-  gaussian_noise:
-    enabled: True
-    sigma: 2
 images:
   shape: [ 15,15,6 ] #Shape of the concatenated images used by the network
 network:
