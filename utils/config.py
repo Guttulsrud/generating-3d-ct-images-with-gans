@@ -31,4 +31,21 @@ def apply_hpo(config, operation):
     if config['hpo']:
         config['network']['architecture'] = operation['architecture']
         config['dataloader']['samples_per_epoch'] = operation['samples_per_epoch']
+        config['network']['generator']['optimizer']['learning_rate'] = operation['generator_learning_rate']
+        config['network']['discriminator']['optimizer']['learning_rate'] = operation['discriminator_learning_rate']
+
+        resample_factor = operation['resample_factor']
+
+        if resample_factor == 0.3:
+            config['images']['shape'] = (154, 154, 54)
+            config['dataloader']['image_path'] = 'chopped/0.3'
+        elif resample_factor == 0.15:
+            config['images']['shape'] = (78, 78, 78)
+            config['dataloader']['image_path'] = 'chopped/0.15'
+        elif resample_factor == 0.075:
+            config['images']['shape'] = (38, 38, 38)
+            config['dataloader']['image_path'] = 'chopped/0.075'
+        else:
+            raise Exception('Invalid resample factor')
+
     return config
