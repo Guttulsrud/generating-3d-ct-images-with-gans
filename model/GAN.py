@@ -1,8 +1,8 @@
 import os
 import tensorflow as tf
 
-from model.discriminator import build_discriminator
-from model.generator import build_generator
+from model.discriminator_2d import build_discriminator
+from model.generator_2d import build_generator
 
 
 class GAN:
@@ -54,6 +54,7 @@ class GAN:
 
     def log_images(self, images):
         with self.file_writer.as_default():
+            print(images.shape)
             img = tf.squeeze(images, axis=0)
 
             tf.summary.image("Generated Images", img, step=self.epoch)

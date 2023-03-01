@@ -5,7 +5,7 @@ from utils.init import init
 from utils.plotting import save_images
 import os
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+#os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 config, operations = get_config()
 
