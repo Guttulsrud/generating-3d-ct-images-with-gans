@@ -7,10 +7,16 @@ import os
 from scipy import ndimage
 from tqdm import tqdm
 
-images = glob.glob(os.path.join(f'../data/2d_resampled/concat', '*.png'))
+images = glob.glob(os.path.join(f'../data/2d_squared', '*.png'))
 max_x = 0
 max_y = 0
 max_shape = (23552, 2048)
+
+def chop_image(image, slices):
+    z_start = (image.shape[0] - slices) // 2
+    z_end = z_start + slices
+
+    return image[z_start:z_end:, :]
 
 for image_path in tqdm(images):
     image = Image.open(image_path)
@@ -22,15 +28,20 @@ for image_path in tqdm(images):
     #     max_x = x
     # if y > max_y:
     #     max_y = y
+    # print('before ', array.shape)
 
-    pad_width = ((0, max_shape[0] - array.shape[0]), (0, max_shape[1] - array.shape[1]))
+    if x > 5000:
 
-    # pad the array
-    padded_arr = np.pad(array, pad_width, mode='constant')
-    result_image = Image.fromarray(padded_arr)
+        array = chop_image(array, 5002)
+    else:
+        # Pad array
+        num_rows_to_add = 5000 - x
+        array = np.pad(array, ((num_rows_to_add, 0), (0, 0)), mode='constant')
+
+    result_image = Image.fromarray(array)
 
     name = image_path.split('\\')[1]
 
-    result_image.save(f'../data/2d_padded/images/{name}')
+    result_image.save(f'../data/2d_resampled_chopped/{name}')
 
-print(max_x, max_y)
+# print(max_x, max_y)

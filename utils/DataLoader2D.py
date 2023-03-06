@@ -31,6 +31,6 @@ class DataLoader2D:
     def get_dataset(self):
         dataset = tf.data.Dataset.from_tensor_slices(self.image_paths)
         dataset = dataset.map(self.load_png)
-        dataset = dataset.shuffle(buffer_size=len(self.image_paths)).batch(self.config['dataloader']['batch_size'])
+        dataset = dataset.shuffle(buffer_size=10 * len(self.image_paths)).batch(self.config['dataloader']['batch_size'])
 
         return dataset.prefetch(buffer_size=tf.data.AUTOTUNE)
