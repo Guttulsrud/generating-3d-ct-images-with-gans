@@ -11,3 +11,7 @@ monai
 numpy~=1.24.2
 simpleitk~=2.2.1
 pillow~=9.4.0
+nilearn
+tensorboardX
+torch
+scikit-image

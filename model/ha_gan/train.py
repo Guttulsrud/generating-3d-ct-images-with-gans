@@ -35,7 +35,7 @@ parser.add_argument('--workers', default=8, type=int,
                     help='number of data loading workers (default: 8)')
 parser.add_argument('--img-size', default=128, type=int,
                     help='size of training images (default: 256, can be 128 or 256)')
-parser.add_argument('--num-iter', default=100000, type=int,
+parser.add_argument('--num-iter', default=80000, type=int,
                     help='number of iteration for training (default: 80000)')
 parser.add_argument('--log-iter', default=200, type=int,
                     help='number of iteration between logging (default: 20)')
@@ -73,9 +73,9 @@ def main():
     gen_load = inf_train_gen(train_loader)
     
     if args.img_size == 256:
-        from models.Model_HA_GAN_256 import Discriminator, Generator, Encoder, Sub_Encoder
+        from Model_HA_GAN_256 import Discriminator, Generator, Encoder, Sub_Encoder
     elif args.img_size == 128:
-        from models.Model_HA_GAN_128 import Discriminator, Generator, Encoder, Sub_Encoder
+        from Model_HA_GAN_128 import Discriminator, Generator, Encoder, Sub_Encoder
     else:
         raise NotImplmentedError
         

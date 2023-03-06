@@ -73,13 +73,25 @@ for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
         new_mask, new_mask_affine = pad_nifti(mask)
 
     if new_image.shape[1] > 512:
-        new_image = new_image[:, :-1, :]
+        print(image_path)
+        continue
 
     if new_mask.shape[1] > 512:
-        new_mask = new_mask[:, :-1, :]
+        print(mask_path)
+        continue
 
     image = nib.Nifti1Image(new_image, new_image_affine)
     mask = nib.Nifti1Image(new_mask, new_mask_affine)
 
     nib.save(image, os.path.join("../../data/3d/preprocessed/images", image_path.split('images\\')[-1]))
     nib.save(mask, os.path.join("../../data/3d/preprocessed/masks", mask_path.split('labels\\')[-1]))
+
+# invalid masks with 513+ z dimension:
+# CHUP-008.nii.gz
+# CHUP-020.nii.gz
+# CHUP-036.nii.gz
+# CHUP-068.nii.gz
+# CHUS-009.nii.gz
+# CHUS-086.nii.gz
+# MDA-108.nii.gz
+# MDA-125.nii.gz
