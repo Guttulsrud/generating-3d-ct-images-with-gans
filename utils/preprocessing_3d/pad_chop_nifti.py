@@ -13,19 +13,6 @@ path = f'../../data'
 mpl.use('TkAgg')
 
 
-def chop_image(image, slices):
-    z_start = (image.shape[2] - slices) // 2
-    z_end = z_start + slices
-
-    return image[:, :, z_start:z_end]
-
-
-def pad_image(image, shape):
-    pad_width = [(0, shape[i] - image.shape[i]) for i in range(3)]
-    padded_image = np.pad(image, pad_width, mode='constant')
-    return padded_image
-
-
 def pad_nifti(nifti_image):
     # Get the current size of the last dimension
     current_size = nifti_image.shape[2]
@@ -69,34 +56,30 @@ def chop_nifti(nifti_image):
     return new_image, new_affine
 
 
-def preprocess_nifti():
-    dataset = 'original_size'
+dataset = 'original_size'
 
-    image_paths = glob.glob(os.path.join(f'{path}/{dataset}/training/images', '*CT.nii.gz'))
-    label_paths = glob.glob(os.path.join(f'{path}/{dataset}/training/labels', '*.nii.gz'))
+image_paths = glob.glob(os.path.join(f'{path}/{dataset}/training/images', '*CT.nii.gz'))
+label_paths = glob.glob(os.path.join(f'{path}/{dataset}/training/labels', '*.nii.gz'))
 
-    for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
-        image = nib.load(image_path)
-        mask = nib.load(mask_path)
+for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
+    image = nib.load(image_path)
+    mask = nib.load(mask_path)
 
-        if image.shape[2] > 256:
-            new_image, new_image_affine = chop_nifti(image)
-            new_mask, new_mask_affine = chop_nifti(mask)
-        else:
-            new_image, new_image_affine = pad_nifti(image)
-            new_mask, new_mask_affine = pad_nifti(mask)
+    if image.shape[2] > 256:
+        new_image, new_image_affine = chop_nifti(image)
+        new_mask, new_mask_affine = chop_nifti(mask)
+    else:
+        new_image, new_image_affine = pad_nifti(image)
+        new_mask, new_mask_affine = pad_nifti(mask)
 
-        if new_image.shape[1] > 512:
-            new_image = new_image[:, :-1, :]
+    if new_image.shape[1] > 512:
+        new_image = new_image[:, :-1, :]
 
-        if new_mask.shape[1] > 512:
-            new_mask = new_mask[:, :-1, :]
+    if new_mask.shape[1] > 512:
+        new_mask = new_mask[:, :-1, :]
 
-        image = nib.Nifti1Image(new_image, new_image_affine)
-        mask = nib.Nifti1Image(new_mask, new_mask_affine)
+    image = nib.Nifti1Image(new_image, new_image_affine)
+    mask = nib.Nifti1Image(new_mask, new_mask_affine)
 
-        nib.save(image, os.path.join("../../data/3d/preprocessed/images", image_path.split('images\\')[-1]))
-        nib.save(mask, os.path.join("../../data/3d/preprocessed/masks", mask_path.split('labels\\')[-1]))
-
-
-preprocess_nifti()
+    nib.save(image, os.path.join("../../data/3d/preprocessed/images", image_path.split('images\\')[-1]))
+    nib.save(mask, os.path.join("../../data/3d/preprocessed/masks", mask_path.split('labels\\')[-1]))

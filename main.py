@@ -2,9 +2,11 @@ import time
 import numpy as np
 from utils.config import get_config, apply_hpo
 from utils.init import init
-from utils.plotting import save_images
 import os
 import tensorflow as tf
+
+from visualization.plotting import save_images
+
 # os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 config, operations = get_config()

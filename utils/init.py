@@ -1,8 +1,7 @@
+from dataloader.DataLoader import DataLoader
 from model.WassersteinGAN import WassersteinGAN
 from model.WassersteinGPGAN import WassersteinGPGAN
-from utils.DataLoader import DataLoader
 from model.VanillaGAN import VanillaGAN
-from utils.DataLoader2D import DataLoader2D
 from utils.logger import Logger
 from datetime import datetime
 
