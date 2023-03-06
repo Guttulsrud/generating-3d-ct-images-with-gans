@@ -56,7 +56,16 @@ def chop_nifti(nifti_image):
     return new_image, new_affine
 
 
-dataset = 'original_size'
+def correct_affine_matrix(new_image):
+    # Update the affine matrix for new_image
+    old_shape = new_image.shape
+    new_image = new_image[:, :-1, :]
+    new_shape = new_image.shape
+    new_image_affine[1, 1] = new_image_affine[1, 1] * old_shape[1] / new_shape[1]
+    return new_image, new_image_affine
+
+
+dataset = 'unzipped'
 
 image_paths = glob.glob(os.path.join(f'{path}/{dataset}/training/images', '*CT.nii.gz'))
 label_paths = glob.glob(os.path.join(f'{path}/{dataset}/training/labels', '*.nii.gz'))
@@ -73,25 +82,37 @@ for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
         new_mask, new_mask_affine = pad_nifti(mask)
 
     if new_image.shape[1] > 512:
-        print(image_path)
-        continue
+        # Update the affine matrix for new_image
+        new_image, new_imagine_affine = correct_affine_matrix(new_image)
+
+        # Use the updated affine matrix for new_mask
+        new_mask_affine = np.copy(new_image_affine)
 
     if new_mask.shape[1] > 512:
-        print(mask_path)
-        continue
+        # Update the affine matrix for new_mask
+        new_mask, new_mask_affine = correct_affine_matrix(new_mask)
 
-    image = nib.Nifti1Image(new_image, new_image_affine)
-    mask = nib.Nifti1Image(new_mask, new_mask_affine)
+        # Use the updated affine matrix for new_mask
+        new_image_affine = np.copy(new_mask_affine)
 
-    nib.save(image, os.path.join("../../data/3d/preprocessed/images", image_path.split('images\\')[-1]))
-    nib.save(mask, os.path.join("../../data/3d/preprocessed/masks", mask_path.split('labels\\')[-1]))
+    # Check if the affine matrices match
+    if not np.allclose(new_image_affine, new_mask_affine):
+        raise ValueError("Affine matrices for input images do not match")
 
-# invalid masks with 513+ z dimension:
-# CHUP-008.nii.gz
-# CHUP-020.nii.gz
-# CHUP-036.nii.gz
-# CHUP-068.nii.gz
-# CHUS-009.nii.gz
-# CHUS-086.nii.gz
-# MDA-108.nii.gz
-# MDA-125.nii.gz
+    image = nib.Nifti1Image(new_image, new_image_affine, image.header)
+    mask = nib.Nifti1Image(new_mask, new_mask_affine, mask.header)
+
+    image_path = os.path.join("../../data/3d/preprocessed/images", image_path.split('images\\')[-1])
+    mask_path = os.path.join("../../data/3d/preprocessed/masks", mask_path.split('labels\\')[-1])
+    nib.save(image, image_path)
+    nib.save(mask, mask_path)
+
+    img1 = nib.load(image_path)
+    img2 = nib.load(mask_path)
+
+    concat_img = nib.concat_images([img1, img2], axis=2)
+
+    path = image_path.split('images\\')[-1]
+    path = path.replace('__CT', '')
+
+    nib.save(concat_img, os.path.join("../../data/3d/preprocessed/concatenated", path))
