@@ -7,6 +7,7 @@ import matplotlib as mpl
 import nibabel as nib
 import os
 from tqdm import tqdm
+from nibabel.processing import resample_to_output
 
 path = f'../../data'
 mpl.use('TkAgg')
@@ -25,49 +26,84 @@ def pad_image(image, shape):
     return padded_image
 
 
-def chop_pad_images():
-    dataset = '0.075'
+def pad_nifti(nifti_image):
+    # Get the current size of the last dimension
+    current_size = nifti_image.shape[2]
 
-    image_paths = glob.glob(os.path.join(f'{path}/chopped/{dataset}/images', '*CT.nii.gz'))
-    label_paths = glob.glob(os.path.join(f'{path}/chopped/{dataset}/labels', '*.nii.gz'))
+    # Set the desired size of the last dimension
+    desired_size = 256
 
-    for image_path, label_path in tqdm(zip(image_paths, label_paths)):
+    # Determine the amount of padding needed to reach the desired size
+    pad_size = desired_size - current_size
+
+    # Pad the image with zeros using numpy.pad
+    pad_width = ((0, 0), (0, 0), (0, pad_size))
+    new_image = np.pad(nifti_image.get_fdata(), pad_width, mode='constant', constant_values=0)
+
+    # Update the affine transformation matrix to reflect the new image dimensions
+    new_affine = np.copy(nifti_image.affine)
+    new_affine[:3, :3] *= np.diag(
+        [new_size / old_size for old_size, new_size in zip(nifti_image.shape[:3], new_image.shape[:3])])
+
+    return new_image, new_affine
+
+
+def chop_nifti(nifti_image):
+    # Get the current size of the last dimension
+    current_size = nifti_image.shape[2]
+
+    # Set the desired size of the last dimension
+    desired_size = 256
+
+    # Determine the amount of chopping needed to reach the desired size
+    chop_size = max(0, current_size - desired_size)
+
+    # Chop the image along the last dimension using numpy indexing
+    new_image = nifti_image.get_fdata()[..., :nifti_image.shape[2] - chop_size]
+
+    # Update the affine transformation matrix to reflect the new image dimensions
+    new_affine = np.copy(nifti_image.affine)
+    new_affine[:3, :3] *= np.diag(
+        [new_size / old_size for old_size, new_size in zip(nifti_image.shape[:3], new_image.shape[:3])])
+
+    return new_image, new_affine
+
+
+def preprocess_nifti():
+    dataset = 'original_size'
+
+    image_paths = glob.glob(os.path.join(f'{path}/{dataset}/training/images', '*CT.nii.gz'))
+    label_paths = glob.glob(os.path.join(f'{path}/{dataset}/training/labels', '*.nii.gz'))
+
+    for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
         image = nib.load(image_path)
-        label = nib.load(label_path)
-        image_data = image.get_fdata()
-        label_data = label.get_fdata()
-        print(image.shape)
-        continue
+        mask = nib.load(mask_path)
 
-        if dataset == 'resampled_0_15':
-            z_dimension = 39
-        elif dataset == 'resampled_0_075':
-            z_dimension = 19
+        if image.shape[2] > 256:
+            new_image, new_image_affine = chop_nifti(image)
+            new_mask, new_mask_affine = chop_nifti(mask)
         else:
-            z_dimension = 27
+            new_image, new_image_affine = pad_nifti(image)
+            new_mask, new_mask_affine = pad_nifti(mask)
 
-        image_shape = (image_data.shape[0], image_data.shape[1], z_dimension)
+        image = nib.Nifti1Image(new_image, new_image_affine)
+        mask = nib.Nifti1Image(new_mask, new_mask_affine)
 
-        if image_data.shape[2] > z_dimension:
-            image_data = chop_image(image_data, z_dimension)
-            label_data = chop_image(label_data, z_dimension)
-        else:
-            image_data = pad_image(image_data, image_shape)
-            label_data = pad_image(label_data, image_shape)
-
-        if dataset == 'resampled_0_15':
-            image_data = pad_image(image_data, (78, 78, 39))
-            label_data = pad_image(label_data, (78, 78, 39))
-
-        if image_data.shape != label_data.shape:
-            print('BAD', ' ', image_path)
-        if image_data.shape != (38, 38, 19):
-            continue
-        x = nib.Nifti1Image(image_data, image.affine)
-        y = nib.Nifti1Image(label_data, label.affine)
-
-        nib.save(x, os.path.join("../../data/chopped/0.075/images", image_path.split('images\\')[-1]))
-        nib.save(y, os.path.join("../../data/chopped/0.075/labels", label_path.split('labels\\')[-1]))
+        nib.save(image, os.path.join("../../data/3d/preprocessed/images", image_path.split('images\\')[-1]))
+        nib.save(mask, os.path.join("../../data/3d/preprocessed/masks", mask_path.split('labels\\')[-1]))
 
 
-chop_pad_images()
+preprocess_nifti()
+# image_paths = glob.glob(os.path.join(f'{path}/3d/preprocessed/images', '*CT.nii.gz'))
+# mask_paths = glob.glob(os.path.join(f'{path}/3d/preprocessed/masks', '*.nii.gz'))
+#
+# image_paths = image_paths[:3]
+# mask_paths = mask_paths[:3]
+# for image_path, mask_path in tqdm(zip(image_paths, mask_paths)):
+#     path = os.path.join("../../data/3d/preprocessed/concatenated", image_path.split('images\\')[-1])
+#     path = path.replace('__CT', '')
+#     img1 = nib.load(image_path)
+#     img2 = nib.load(mask_path)
+#
+#     concat_img = nib.concat_images([img1, img2])
+#     nib.save(concat_img, path)
