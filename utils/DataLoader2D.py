@@ -20,11 +20,8 @@ class DataLoader2D:
     @staticmethod
     # define a function to load the PNG images
     def load_png(file_path):
-        # load the image
         img = tf.io.read_file(file_path)
-        # decode the PNG image
         img = tf.image.decode_png(img, channels=1)
-        # convert the pixel values to floats in the range [0, 1]
         img = tf.image.convert_image_dtype(img, tf.float32)
         return img
 

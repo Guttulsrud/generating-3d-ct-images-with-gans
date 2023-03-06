@@ -4,6 +4,7 @@ import nibabel as nib
 import glob
 import os
 
+
 class DataLoader:
     def __init__(self, data_type, config):
         self.config = config
@@ -15,6 +16,7 @@ class DataLoader:
         image_path = config['dataloader']['image_path']
         self.image_paths = glob.glob(os.path.join(f'{path}/{image_path}/images', '*CT.nii.gz'))
         self.label_paths = glob.glob(os.path.join(f'{path}/{image_path}/labels', '*.nii.gz'))
+        print(f'{path}/{image_path}/images')
 
         if not len(self.image_paths):
             raise Exception('No images found!')
@@ -24,6 +26,17 @@ class DataLoader:
         if len(self.image_paths) != len(self.label_paths):
             raise Exception('Mismatched length images/labels')
 
+        self.image_paths, self.label_paths = self._shuffle_filenames(self.image_paths, self.label_paths)
+
+    @staticmethod
+    def _shuffle_filenames(image_filenames, label_filenames):
+        # Shuffle the order of the filenames
+        shuffled_order = np.random.permutation(len(image_filenames))
+        image_filenames = [image_filenames[i] for i in shuffled_order]
+        label_filenames = [label_filenames[i] for i in shuffled_order]
+        return image_filenames, label_filenames
+
+        # Shuffle the order of the image and label filenames
         self.image_paths, self.label_paths = self._shuffle_filenames(self.image_paths, self.label_paths)
 
     @staticmethod
@@ -52,6 +65,6 @@ class DataLoader:
 
     def get_dataset(self):
         dataset = tf.data.Dataset.from_tensor_slices((self.image_paths, self.label_paths)).map(self.wrapper_load)
-        dataset = dataset.shuffle(len(self.image_paths))
+        dataset = dataset.shuffle(10 * len(self.image_paths))
         dataset = dataset.take(self.config['dataloader']['samples_per_epoch'])
         return dataset.batch(self.config['dataloader']['batch_size'])

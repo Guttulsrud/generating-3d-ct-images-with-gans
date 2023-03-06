@@ -3,10 +3,11 @@ training:
 dataloader:
   batch_size: 1
   samples_per_epoch: 1
+  image_path: 'chopped/0.075'
 images:
-  shape: [ 23552, 2048 ] #Shape of the concatenated images used by the network
+  shape: [ 38,38,38 ] #Shape of the concatenated images used by the network
 network:
-  architecture: 'wasserstein' #wasserstein, wasserstein_gp or vanilla
+  architecture: 'vanilla' #wasserstein, wasserstein_gp or vanilla
   generator:
     optimizer:
       learning_rate: 0.0002

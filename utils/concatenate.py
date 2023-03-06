@@ -9,8 +9,7 @@ from tqdm import tqdm
 
 images = glob.glob(os.path.join(f'../data/2d_resampled/images', '*.png'))
 masks = glob.glob(os.path.join(f'../data/2d_resampled/masks', '*.png'))
-images = images[:100]
-masks = masks[:100]
+
 for image_path, mask_path in tqdm(zip(images, masks)):
     image = Image.open(image_path)
     mask = Image.open(mask_path)

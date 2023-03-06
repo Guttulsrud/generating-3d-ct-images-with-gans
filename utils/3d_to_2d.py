@@ -35,10 +35,13 @@ def image_3d_to_2d(path, mask=True):
     pil_image.save(image_path)
 
 
-images = glob.glob(os.path.join(f'../data/resampled/0.5/images', '*CT.nii.gz'))
-labels = glob.glob(os.path.join(f'../data/resampled/0.5/labels', '*.nii.gz'))
-images = images[:100]
-labels = labels[:100]
-for image_path, label_path in tqdm(zip(images, labels)):
-    image_3d_to_2d(image_path, mask=False)
-    image_3d_to_2d(label_path)
+# images = glob.glob(os.path.join(f'../data/resampled/0.5/images', '*CT.nii.gz'))
+# labels = glob.glob(os.path.join(f'../data/resampled/0.5/labels', '*.nii.gz'))
+# images = images[:100]
+# labels = labels[:100]
+# for image_path, label_path in tqdm(zip(images, labels)):
+#     image_3d_to_2d(image_path, mask=False)
+#     image_3d_to_2d(label_path)
+
+
+image_3d_to_2d('../data/resampled/0.5/images/CT_0.nii.gz', mask=False)

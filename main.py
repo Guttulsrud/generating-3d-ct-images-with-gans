@@ -4,8 +4,8 @@ from utils.config import get_config, apply_hpo
 from utils.init import init
 from utils.plotting import save_images
 import os
-
-#os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+import tensorflow as tf
+# os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 config, operations = get_config()
 
@@ -16,6 +16,7 @@ for index, operation in enumerate(operations):
 
     config = apply_hpo(config, operation)
     data_loader, logger, network = init(config)
+    training_data = data_loader.get_dataset()
 
     for epoch in range(1, config['training']['epochs'] + 1):
 
@@ -23,17 +24,14 @@ for index, operation in enumerate(operations):
         logger.log(f'Epoch: {epoch}', newline=False)
         start = time.time()
 
-        training_data = data_loader.get_dataset()
-
         for image_batch in training_data:
-            # print(image_batch.shape)
             network.train(images=image_batch, epoch=epoch)
 
         generated_image = network.generator(network.seed, training=False)
         generated_image = np.squeeze(generated_image)
         real_image = [np.squeeze(x) for x in training_data.take(1)][0]
 
-        # save_images(real_image=real_image, fake_image=generated_image, epoch=epoch, path=network.path)
+        save_images(real_image=real_image, fake_image=generated_image, epoch=epoch, path=network.path, config=config)
 
         # Save the model every 5 epochs
         if epoch % 5 == 0:

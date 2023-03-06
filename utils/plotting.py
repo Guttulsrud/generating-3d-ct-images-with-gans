@@ -1,7 +1,9 @@
 import os
+import matplotlib as mpl
 
 from matplotlib import pyplot as plt
 
+mpl.use('TkAgg')  # !IMPORTANT
 
 def save_images(fake_image, real_image, epoch, path, config):
     os.mkdir(f'{path}/epochs/{epoch}')
@@ -20,7 +22,6 @@ def create_plot(input_image, title, config):
     image = None
     mask = None
     fig, axs = plt.subplots(9, 6, figsize=(15, 20))
-
     if size == (154, 154, 54):
         image = input_image[:, :, :27]
         mask = input_image[:, :, 27:54]

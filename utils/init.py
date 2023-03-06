@@ -25,7 +25,7 @@ def get_architecture(config):
 
 
 def init(config):
-    data_loader = DataLoader2D(data_type='training', config=config)
+    data_loader = DataLoader(data_type='training', config=config)
 
     now = datetime.now()
     dt_string = now.strftime("%Y-%m-%d %H-%M-%S")

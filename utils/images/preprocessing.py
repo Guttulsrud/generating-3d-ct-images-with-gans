@@ -26,16 +26,18 @@ def pad_image(image, shape):
 
 
 def chop_pad_images():
-    dataset = 'resampled_0_075'
+    dataset = '0.075'
 
-    image_paths = glob.glob(os.path.join(f'{path}/resampled/{dataset}/training/images', '*CT.nii.gz'))
-    label_paths = glob.glob(os.path.join(f'{path}/resampled/{dataset}/training/labels', '*.nii.gz'))
+    image_paths = glob.glob(os.path.join(f'{path}/chopped/{dataset}/images', '*CT.nii.gz'))
+    label_paths = glob.glob(os.path.join(f'{path}/chopped/{dataset}/labels', '*.nii.gz'))
 
     for image_path, label_path in tqdm(zip(image_paths, label_paths)):
         image = nib.load(image_path)
         label = nib.load(label_path)
         image_data = image.get_fdata()
         label_data = label.get_fdata()
+        print(image.shape)
+        continue
 
         if dataset == 'resampled_0_15':
             z_dimension = 39
