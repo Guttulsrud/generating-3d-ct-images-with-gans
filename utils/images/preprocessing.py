@@ -86,6 +86,12 @@ def preprocess_nifti():
             new_image, new_image_affine = pad_nifti(image)
             new_mask, new_mask_affine = pad_nifti(mask)
 
+        if new_image.shape[1] > 512:
+            new_image = new_image[:, :-1, :]
+
+        if new_mask.shape[1] > 512:
+            new_mask = new_mask[:, :-1, :]
+
         image = nib.Nifti1Image(new_image, new_image_affine)
         mask = nib.Nifti1Image(new_mask, new_mask_affine)
 
@@ -94,16 +100,3 @@ def preprocess_nifti():
 
 
 preprocess_nifti()
-# image_paths = glob.glob(os.path.join(f'{path}/3d/preprocessed/images', '*CT.nii.gz'))
-# mask_paths = glob.glob(os.path.join(f'{path}/3d/preprocessed/masks', '*.nii.gz'))
-#
-# image_paths = image_paths[:3]
-# mask_paths = mask_paths[:3]
-# for image_path, mask_path in tqdm(zip(image_paths, mask_paths)):
-#     path = os.path.join("../../data/3d/preprocessed/concatenated", image_path.split('images\\')[-1])
-#     path = path.replace('__CT', '')
-#     img1 = nib.load(image_path)
-#     img2 = nib.load(mask_path)
-#
-#     concat_img = nib.concat_images([img1, img2])
-#     nib.save(concat_img, path)
