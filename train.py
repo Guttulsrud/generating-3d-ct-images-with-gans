@@ -94,11 +94,7 @@ def train(logger, config):
     fake_labels = torch.zeros((batch_size, 1)).cuda()
     real_labels = torch.ones((batch_size, 1)).cuda()
 
-    summary_writer = SummaryWriter("./checkpoint/" + exp_name)
-
-    # save configurations to a dictionary
-    with open(os.path.join("./checkpoint/" + exp_name, 'configs.json'), 'w') as f:
-        json.dump(config, f, indent=2)
+    summary_writer = SummaryWriter(f'{logger.path}/checkpoint')
 
     for p in D.parameters():
         p.requires_grad = False

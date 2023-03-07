@@ -56,10 +56,15 @@ def chop_nifti(nifti_image):
     return new_image, new_affine
 
 
-def correct_affine_matrix(new_image):
+def correct_affine_matrix(new_image, axis=1):
     # Update the affine matrix for new_image
     old_shape = new_image.shape
-    new_image = new_image[:, :-1, :]
+    if axis == 1:
+        new_image = new_image[:, :-1, :]
+    elif axis == 2:
+        new_image = new_image[:, :, :-1]
+    else:
+        raise ValueError('axis must be 1 or 2')
     new_shape = new_image.shape
     new_image_affine[1, 1] = new_image_affine[1, 1] * old_shape[1] / new_shape[1]
     return new_image, new_image_affine
@@ -69,20 +74,21 @@ dataset = 'original_size'
 
 image_paths = glob.glob(os.path.join(f'{path}/{dataset}/training/images', '*CT.nii.gz'))
 label_paths = glob.glob(os.path.join(f'{path}/{dataset}/training/labels', '*.nii.gz'))
-i = 0
 for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
-    i += 1
-
     image = nib.load(image_path)
     mask = nib.load(mask_path)
 
+    # Mask is bigger than image for some reason, chop mask
+    if image.shape[2] == mask.shape[2] - 1:
+        mask_data = mask.get_fdata()
+        mask = nib.Nifti1Image(mask_data[:, :, :-1], np.copy(image.affine), mask.header)
+
+    # Image and mask must have 256 in the last dimension, in this case the image is too big, chop center 256 slices
     if image.shape[2] > 256:
         new_image, new_image_affine = chop_nifti(image)
         new_mask, new_mask_affine = chop_nifti(mask)
-
-        if image.shape != mask.shape:
-            new_mask_affine = np.copy(new_image_affine)
     else:
+        # Last dimension is less than 256, pad
         new_image, new_image_affine = pad_nifti(image)
         new_mask, new_mask_affine = pad_nifti(mask)
 
@@ -102,8 +108,6 @@ for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
 
     # Check if the affine matrices match
     if not np.allclose(new_image_affine, new_mask_affine):
-        print(image.shape, mask.shape)
-        print(new_image.shape, new_mask.shape)
         raise ValueError("Affine matrices for input images do not match")
 
     image = nib.Nifti1Image(new_image, new_image_affine, image.header)
