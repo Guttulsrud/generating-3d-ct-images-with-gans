@@ -1,3 +1,5 @@
+import time
+
 import numpy as np
 import torch
 import os
@@ -31,6 +33,7 @@ def continue_checkpoint(name, checkpoint_path, model, optimizer, continue_iter):
 
 
 def train(logger, config):
+    run_start_time = time.time()
     gen_load = get_data_loader(config)
 
     G, D, E, Sub_E, = get_model(config)
@@ -43,6 +46,7 @@ def train(logger, config):
     latent_dim = config['latent_dim']
     batch_size = config['batch_size']
     img_size = config['img_size']
+    print_log_interval = config['print_log_interval']
     num_iter = config['num_iter']
     generator_passes_per_iteration = config['network']['generator_passes_per_iteration']
     lambda_class = config['lambda_class']
@@ -105,7 +109,10 @@ def train(logger, config):
     for p in Sub_E.parameters():
         p.requires_grad = False
 
+    start_time = time.time()
     for iteration in range(continue_iter, num_iter):
+        if iteration % print_log_interval == 0:
+            start_time = time.time()
 
         ###############################################
         # Train Discriminator (D^H and D^L)
@@ -249,4 +256,7 @@ def train(logger, config):
                          'g_optimizer': g_optimizer,
                          'd_optimizer': d_optimizer,
                          'e_optimizer': e_optimizer,
-                         'sub_e_optimizer': sub_e_optimizer}, logger=logger)
+                         'sub_e_optimizer': sub_e_optimizer,
+                         'start_time': start_time,
+                         'run_start_time': run_start_time,
+                     }, logger=logger)

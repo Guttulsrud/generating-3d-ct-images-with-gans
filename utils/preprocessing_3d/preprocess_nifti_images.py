@@ -13,24 +13,23 @@ path = f'../../data'
 mpl.use('TkAgg')
 
 
-def pad_nifti(nifti_image):
-    # Get the current size of the last dimension
-    current_size = nifti_image.shape[2]
-
-    # Set the desired size of the last dimension
-    desired_size = 256
+def pad_nifti(nifti_image, desired_size, dimensions):
+    # Get the current size of the specified dimensions
+    current_size = [nifti_image.shape[i] for i in range(3) if i in dimensions]
 
     # Determine the amount of padding needed to reach the desired size
-    pad_size = desired_size - current_size
+    pad_size = [max(0, desired_size - size) for size in current_size]
 
     # Pad the image with zeros using numpy.pad
-    pad_width = ((0, 0), (0, 0), (0, pad_size))
+    pad_width = [(0, 0) if i not in dimensions else (0, pad_size[dimensions.index(i)]) for i in range(3)]
     new_image = np.pad(nifti_image.get_fdata(), pad_width, mode='constant', constant_values=0)
 
     # Update the affine transformation matrix to reflect the new image dimensions
     new_affine = np.copy(nifti_image.affine)
-    new_affine[:3, :3] *= np.diag(
-        [new_size / old_size for old_size, new_size in zip(nifti_image.shape[:3], new_image.shape[:3])])
+    new_shape = list(nifti_image.shape)
+    for i, dim in enumerate(dimensions):
+        new_shape[dim] += pad_size[i]
+    new_affine[:3, :3] *= np.diag([new_size / old_size for old_size, new_size in zip(nifti_image.shape[:3], new_shape[:3])])
 
     return new_image, new_affine
 
@@ -74,11 +73,25 @@ dataset = 'original_size'
 
 image_paths = glob.glob(os.path.join(f'{path}/{dataset}/training/images', '*CT.nii.gz'))
 label_paths = glob.glob(os.path.join(f'{path}/{dataset}/training/labels', '*.nii.gz'))
+i = 0
 for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
+    i +=1
+
+    if i < 354:
+        continue
+
     image = nib.load(image_path)
     mask = nib.load(mask_path)
 
     # Mask is bigger than image for some reason, chop mask
+    if image.shape[0] == mask.shape[0] - 1:
+        mask_data = mask.get_fdata()
+        mask = nib.Nifti1Image(mask_data[:-1, :, :], np.copy(image.affine), mask.header)
+
+    if image.shape[1] == mask.shape[1] - 1:
+        mask_data = mask.get_fdata()
+        mask = nib.Nifti1Image(mask_data[:, :-1, :], np.copy(image.affine), mask.header)
+
     if image.shape[2] == mask.shape[2] - 1:
         mask_data = mask.get_fdata()
         mask = nib.Nifti1Image(mask_data[:, :, :-1], np.copy(image.affine), mask.header)
@@ -89,8 +102,21 @@ for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
         new_mask, new_mask_affine = chop_nifti(mask)
     else:
         # Last dimension is less than 256, pad
-        new_image, new_image_affine = pad_nifti(image)
-        new_mask, new_mask_affine = pad_nifti(mask)
+        new_image, new_image_affine = pad_nifti(image, desired_size=256, dimensions=[2])
+        new_mask, new_mask_affine = pad_nifti(mask, desired_size=256, dimensions=[2])
+
+    mask = nib.Nifti1Image(new_mask, new_mask_affine, mask.header)
+    image = nib.Nifti1Image(new_image, new_image_affine, mask.header)
+
+    if image.shape[0] < 512:
+        new_image, new_image_affine = pad_nifti(image, desired_size=512, dimensions=[0])
+        new_mask, new_mask_affine = pad_nifti(mask, desired_size=512, dimensions=[0])
+        mask = nib.Nifti1Image(new_mask, new_mask_affine, mask.header)
+        image = nib.Nifti1Image(new_image, new_image_affine, mask.header)
+
+    if image.shape[1] < 512:
+        new_image, new_image_affine = pad_nifti(image, desired_size=512, dimensions=[1])
+        new_mask, new_mask_affine = pad_nifti(mask, desired_size=512, dimensions=[1])
 
     if new_image.shape[1] > 512:
         # Update the affine matrix for new_image

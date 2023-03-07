@@ -1,4 +1,6 @@
 # Logging
+import time
+
 import numpy as np
 from matplotlib import pyplot as plt
 from nilearn import plotting
@@ -13,8 +15,9 @@ def log_training(config, data, logger):
     print_log_interval = config['print_log_interval']
     num_iter = config['num_iter']
     img_size = config['img_size']
-    exp_name = config['exp_name']
 
+    run_start_time = data['run_start_time']
+    start_time = data['start_time']
     iteration = data['iteration']
     d_loss = data['d_loss']
     g_loss = data['g_loss']
@@ -47,12 +50,26 @@ def log_training(config, data, logger):
     # Visualization with Tensorboard
     ###############################################
     if iteration % print_log_interval == 0:
+        end = time.time()
+
+        time_diff_sec_total = end - run_start_time
+        time_diff_sec = end - start_time
+
+        time_diff_min_total, time_diff_sec_total = divmod(time_diff_sec_total, 60)
+        time_diff_hr_total, time_diff_min_total = divmod(time_diff_min_total, 60)
+
+        time_diff_min, time_diff_sec = divmod(time_diff_sec, 60)
+        time_diff_hr, time_diff_min = divmod(time_diff_min, 60)
+
         print('[{}/{}]'.format(iteration, num_iter),
-              'D_real loss: {:<8.3}'.format(d_real_loss.item()),
-              'D_fake loss: {:<8.3}'.format(d_fake_loss.item()),
-              'G_fake loss: {:<8.3}'.format(g_loss.item()),
-              'Sub_E loss: {:<8.3}'.format(sub_e_loss.item()),
-              'E loss: {:<8.3}'.format(e_loss.item()))
+              'D_real: {:<8.3}'.format(d_real_loss.item()),
+              'D_fake: {:<8.3}'.format(d_fake_loss.item()),
+              'G_fake: {:<8.3}'.format(g_loss.item()),
+              'Sub_E: {:<8.3}'.format(sub_e_loss.item()),
+              'E loss: {:<8.3}'.format(e_loss.item()),
+              'Time elapsed: {} hr, {} min'.format(int(time_diff_hr_total), int(time_diff_min_total)),
+              # '{} iterations: {} min, {} sec'.format(print_log_interval, int(time_diff_min), int(time_diff_sec)),
+              )
 
         featmask = np.squeeze((0.5 * real_images_crop[0] + 0.5).data.cpu().numpy())
         featmask = nib.Nifti1Image(featmask.transpose((2, 1, 0)), affine=np.eye(4))
