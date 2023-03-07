@@ -9,10 +9,12 @@ class Volume_Dataset(Dataset):
         self.sid_list = []
         self.data_dir = data_dir
         self.num_class = num_class
+        print(self.data_dir)
+
 
         for item in glob.glob(self.data_dir+"*.npy"):
             self.sid_list.append(item.split('\\')[-1])
-
+        print("Total number of samples:", len(self.sid_list))
         self.sid_list.sort()
         self.sid_list = np.asarray(self.sid_list)
 

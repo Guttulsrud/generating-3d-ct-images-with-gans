@@ -70,10 +70,3 @@ def batch_resize(batch_idx, img_list):
             continue
         # preprocessed images are saved in numpy arrays
         np.save(OUTPUT_DATA_DIR + imgname.split('.')[0] + ".npy", img)
-
-
-if __name__ == '__main__':
-    main()
-
-# boolean index did not match indexed array along dimension 1; dimension is 256 but corresponding boolean dimension is 512
-# Image resize error: CHUP-008.nii.gz, CHUP-020.nii.gz, CHUP-036.nii.gz,CHUP-068.nii.gz, CHUS-009.nii.gz, CHUS-086.nii.gz

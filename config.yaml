@@ -1,25 +1,22 @@
-training:
-  epochs: 10
-dataloader:
-  batch_size: 1
-  samples_per_epoch: 1
-  image_path: 'chopped/0.075'
-images:
-  shape: [ 38,38,38 ] #Shape of the concatenated images used by the network
+batch_size: 4
+workers: 8
+img_size: 128
+num_iter: 80000
+tensorboard_log_interval: 200
+print_log_interval: 5000
+continue_iter: 0  # continue from a ckeckpoint that has run for n iteration  (0 if a new run)
+latent_dim: 1024
+data_dir: 'data/processed/training'
+log_dir: 'logs'
+exp_name: 'concat_128_test'
+fold: 0  # fold number for cross validation
+num_class: 0
+lambda_class: 0.1  # 'weights for the auxiliary classifier loss')
+save_model_interval: 20000
+start_model_saving: 20000
 network:
-  architecture: 'vanilla' #wasserstein, wasserstein_gp or vanilla
-  generator:
-    optimizer:
-      learning_rate: 0.0002
-  discriminator:
-    gradient_penalty_weight: 5
-    clip_value: 0.01
-    optimizer:
-      learning_rate: 0.0001
-hpo: False
-inference:
-  enabled: False
-  architecture: 'vanilla'
-  checkpoint_path: 'checkpoints/example'
-cluster:
-  enabled: False
+  generator_learning_rate: 0.0001
+  generator_passes_per_iteration: 1  # number of generator pass per iteration
+  discriminator_learning_rate: 0.0004
+  encoder_learning_rate: 0.0001
+cluster_enabled: False
