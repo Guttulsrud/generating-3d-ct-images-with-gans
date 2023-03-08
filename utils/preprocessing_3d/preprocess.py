@@ -39,7 +39,6 @@ def resize_img(img):
 def main():
     img_list = list(glob.glob(INPUT_DATA_DIR + "*" + SUFFIX))
     processes = []
-    processes
     for i in range(NUM_JOBS):
         processes.append(mp.Process(target=batch_resize, args=(i, img_list)))
     for p in processes:

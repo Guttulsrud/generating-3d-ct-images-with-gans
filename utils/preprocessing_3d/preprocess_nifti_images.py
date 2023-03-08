@@ -11,7 +11,6 @@ import os
 from tqdm import tqdm
 from nibabel.processing import resample_to_output
 
-path = f'../../data'
 mpl.use('TkAgg')
 
 
@@ -100,18 +99,28 @@ def display_image(data):
     plt.show()
 
 
-image_paths = glob.glob(os.path.join(f'../../data/unzipped/training/images', '*CT.nii.gz'))
-# label_paths = glob.glob(os.path.join(f'../../augmentation/labels', '*.nii.gz'))
-label_paths = glob.glob(os.path.join(f'../../data/unzipped/training/labels', '*.nii.gz'))
+if not os.path.exists('../../data/3d/preprocessed/images'):
+    os.mkdir('../../data/3d/preprocessed/images')
+
+if not os.path.exists('../../data/3d/preprocessed/masks'):
+    os.mkdir('../../data/3d/preprocessed/masks')
+
+if not os.path.exists('../../data/3d/preprocessed/concatenated'):
+    os.mkdir('../../data/3d/preprocessed/concatenated')
+
+path = '../../data/original_size/training'
+image_paths = glob.glob(os.path.join(f'{path}/images', '*CT.nii.gz'))
+label_paths = glob.glob(os.path.join(f'{path}/labels', '*.nii.gz'))
 i = 0
 
-invalid_shape = 0
+invalid_images = 0
+valid_images = 0
 for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
     image = nib.load(image_path)
     mask = nib.load(mask_path)
 
     if image.shape[0] != 512 or image.shape[1] != 512 or image.shape != mask.shape:
-        invalid_shape += 1
+        invalid_images += 1
         continue
 
     # # Mask is bigger than image for some reason, chop mask
@@ -173,3 +182,8 @@ for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
     concat_img = nib.concat_images([img1, img2], axis=2)
     nib.save(concat_img, f'../../data/3d/preprocessed/concatenated/{path}')
     img = nib.load(f'../../data/3d/preprocessed/concatenated/{path}')
+    # display_image(img.get_fdata())
+    valid_images += 1
+
+print(f'Invalid images: {invalid_images}')
+print(f'Valid images: {valid_images}')
