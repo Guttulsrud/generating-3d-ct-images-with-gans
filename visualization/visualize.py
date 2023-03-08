@@ -6,6 +6,8 @@ import matplotlib as mpl
 from matplotlib import pyplot as plt
 import nibabel as nib
 
+from utils.preprocessing_3d.preprocess_nifti_images import display_image
+
 mpl.use('TkAgg')  # !IMPORTANT
 
 from model.utils import trim_state_dict_name
@@ -63,6 +65,9 @@ with torch.no_grad():
 
     x_rand = x_rand[0, 0, :, :, :]
 
+
+display_image(x_rand)
+exit()
 slice_idx = [100, 120, 25]
 slice_x = np.flip(x_rand[slice_idx[0], :, :], 0)
 slice_y = np.flip(x_rand[:, slice_idx[1], :], 0)

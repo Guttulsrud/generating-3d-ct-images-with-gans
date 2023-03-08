@@ -102,6 +102,6 @@ def log_training(config, data, logger):
         torch.save({'model': D.state_dict(), 'optimizer': d_optimizer.state_dict()},
                    f'{path}/D_iter{str(iteration + 1)}.pth')
         torch.save({'model': E.state_dict(), 'optimizer': e_optimizer.state_dict()},
-                   f'{path}/Eiter{str(iteration + 1)}.pth')
+                   f'{path}/E_iter{str(iteration + 1)}.pth')
         torch.save({'model': Sub_E.state_dict(), 'optimizer': sub_e_optimizer.state_dict()},
                    f'{path}/Sub_E_iter{str(iteration + 1)}.pth')

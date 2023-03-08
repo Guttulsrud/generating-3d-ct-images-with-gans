@@ -1,15 +1,11 @@
 import glob
-import math
-import os
-
 import numpy as np
-from matplotlib import pyplot as plt
-from scipy.ndimage import zoom
 import matplotlib as mpl
 import nibabel as nib
 import os
 from tqdm import tqdm
-from nibabel.processing import resample_to_output
+
+from visualization.display_image import display_image
 
 mpl.use('TkAgg')
 
@@ -71,34 +67,6 @@ def correct_affine_matrix(new_image, axis=1):
     return new_image, new_image_affine
 
 
-def display_image(data):
-    nslices = data.shape[2]
-
-    ncols = int(math.ceil(math.sqrt(nslices)))
-    nrows = int(math.ceil(nslices / float(ncols)))
-
-    # Calculate the number of slices to display
-    nslices = data.shape[2]
-
-    # Create a figure with the appropriate size and layout
-    fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=(10, 8))
-
-    # Loop through the slices and display each one on a subplot
-    for i, ax in enumerate(axes.flat):
-        if i < nslices:
-            ax.imshow(data[:, :, i], cmap='viridis')
-            ax.axis('off')
-        else:
-            ax.set_visible(False)
-
-    # Adjust the spacing between the subplots
-    fig.subplots_adjust(wspace=0.1, hspace=0.1)
-
-    plt.tight_layout()
-    # Show the figure
-    plt.show()
-
-
 if not os.path.exists('../../data/3d/preprocessed/images'):
     os.mkdir('../../data/3d/preprocessed/images')
 
@@ -116,6 +84,12 @@ i = 0
 invalid_images = 0
 valid_images = 0
 for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
+
+    if i == 1:
+        exit()
+
+    i+=1
+
     image = nib.load(image_path)
     mask = nib.load(mask_path)
 
@@ -184,6 +158,9 @@ for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
     img = nib.load(f'../../data/3d/preprocessed/concatenated/{path}')
     # display_image(img.get_fdata())
     valid_images += 1
+    display_image(img1.get_fdata())
+    display_image(img2.get_fdata())
+    display_image(img.get_fdata())
 
 print(f'Invalid images: {invalid_images}')
 print(f'Valid images: {valid_images}')

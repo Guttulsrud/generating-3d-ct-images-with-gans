@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import nibabel as nib
 
-image = nib.load('../data/unzipped/training/labels/CHUM-001.nii.gz')
+image = nib.load('../data/original_size/training/labels/CHUM-001.nii.gz')
 data = image.get_fdata()
 
 # Get the data for slice 57

@@ -36,7 +36,9 @@ def train(logger, config):
     run_start_time = time.time()
     gen_load = get_data_loader(config)
 
-    G, D, E, Sub_E, = get_model(config)
+    G, D, E, Sub_E, = get_model(img_size=config['img_size'],
+                                latent_dim=config['latent_dim'],
+                                num_class=config['num_class'])
     generator_learning_rate = config['network']['generator_learning_rate']
     discriminator_learning_rate = config['network']['discriminator_learning_rate']
     encoder_learning_rate = config['network']['encoder_learning_rate']
