@@ -6,7 +6,7 @@ tensorboard_log_interval: 200
 print_log_interval: 100
 continue_iter: 0  # continue from a ckeckpoint that has run for n iteration  (0 if a new run)
 latent_dim: 1024
-data_dir: 'data/processed/training'
+data_dir: 'data/processed/'
 log_dir: 'logs'
 exp_name: 'concat_128_test'
 fold: 0  # fold number for cross validation

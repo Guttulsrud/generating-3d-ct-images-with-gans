@@ -13,8 +13,9 @@ def get_data_loader(config):
     num_class = config['num_class']
     batch_size = config['batch_size']
     workers = config['workers']
+    data_dir = config['data_dir']
 
-    train_set = Volume_Dataset(data_dir='data/processed/training/', fold=fold, num_class=num_class)
+    train_set = Volume_Dataset(data_dir=data_dir, fold=fold, num_class=num_class)
     train_loader = torch.utils.data.DataLoader(train_set,
                                                batch_size=batch_size,
                                                drop_last=True,

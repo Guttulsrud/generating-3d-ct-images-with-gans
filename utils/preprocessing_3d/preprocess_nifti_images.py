@@ -75,11 +75,6 @@ image_paths = glob.glob(os.path.join(f'{path}/{dataset}/training/images', '*CT.n
 label_paths = glob.glob(os.path.join(f'{path}/{dataset}/training/labels', '*.nii.gz'))
 i = 0
 for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
-    i +=1
-
-    if i < 354:
-        continue
-
     image = nib.load(image_path)
     mask = nib.load(mask_path)
 
