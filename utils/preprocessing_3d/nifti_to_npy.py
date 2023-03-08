@@ -13,7 +13,7 @@ NUM_JOBS = 8
 #  resized output size, can be 128 or 256
 IMG_SIZE = 128
 INPUT_DATA_DIR = '../../data/3d/preprocessed/concatenated/'
-OUTPUT_DATA_DIR = '../../data/processed/'
+OUTPUT_DATA_DIR = '../../data/preprocessed/'
 # the intensity range is clipped with the two thresholds, this default is used for our CT images, please adapt to your own dataset
 LOW_THRESHOLD = -1024
 HIGH_THRESHOLD = 600
@@ -37,6 +37,8 @@ def resize_img(img):
 
 
 def main():
+    if not os.path.exists(OUTPUT_DATA_DIR):
+        os.mkdir(OUTPUT_DATA_DIR)
     img_list = list(glob.glob(INPUT_DATA_DIR + "*" + SUFFIX))
     processes = []
     for i in range(NUM_JOBS):

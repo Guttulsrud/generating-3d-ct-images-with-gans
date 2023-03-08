@@ -26,7 +26,7 @@ conda activate hagan
 ### Data Preprocessing
 The volume data need to be cropped or resized to 128<sup>3</sup> or 256<sup>3</sup>, and intensity value need to be scaled to [-1,1]. In addition, we would like to advise you to trim blank axial slices. More details can be found at
 ```bash
-python preprocess.py
+python nifti_to_npy.py
 ```
 
 ### Training
