@@ -4,7 +4,7 @@ import nibabel as nib
 import numpy as np
 from matplotlib import pyplot as plt
 
-path = f'../utils/nifti/blue_image.nii.gz'
+path = f'../data/3d/preprocessed/concatenated/CHUM-001.nii.gz'
 
 img = nib.load(path)
 data = img.get_fdata()
@@ -23,7 +23,7 @@ fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=(20, 16))
 # Loop through the slices and display each one on a subplot
 for i, ax in enumerate(axes.flat):
     if i < nslices:
-        ax.imshow(data[:, :, i], cmap='gray')
+        ax.imshow(data[:, :, i], cmap='viridis')
         ax.axis('off')
     else:
         ax.set_visible(False)

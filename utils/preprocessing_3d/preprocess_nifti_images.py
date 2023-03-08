@@ -1,7 +1,9 @@
 import glob
+import math
 import os
 
 import numpy as np
+from matplotlib import pyplot as plt
 from scipy.ndimage import zoom
 import matplotlib as mpl
 import nibabel as nib
@@ -29,7 +31,8 @@ def pad_nifti(nifti_image, desired_size, dimensions):
     new_shape = list(nifti_image.shape)
     for i, dim in enumerate(dimensions):
         new_shape[dim] += pad_size[i]
-    new_affine[:3, :3] *= np.diag([new_size / old_size for old_size, new_size in zip(nifti_image.shape[:3], new_shape[:3])])
+    new_affine[:3, :3] *= np.diag(
+        [new_size / old_size for old_size, new_size in zip(nifti_image.shape[:3], new_shape[:3])])
 
     return new_image, new_affine
 
@@ -69,27 +72,60 @@ def correct_affine_matrix(new_image, axis=1):
     return new_image, new_image_affine
 
 
-dataset = 'original_size'
+def display_image(data):
+    nslices = data.shape[2]
 
-image_paths = glob.glob(os.path.join(f'{path}/{dataset}/training/images', '*CT.nii.gz'))
-label_paths = glob.glob(os.path.join(f'{path}/{dataset}/training/labels', '*.nii.gz'))
+    ncols = int(math.ceil(math.sqrt(nslices)))
+    nrows = int(math.ceil(nslices / float(ncols)))
+
+    # Calculate the number of slices to display
+    nslices = data.shape[2]
+
+    # Create a figure with the appropriate size and layout
+    fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=(10, 8))
+
+    # Loop through the slices and display each one on a subplot
+    for i, ax in enumerate(axes.flat):
+        if i < nslices:
+            ax.imshow(data[:, :, i], cmap='viridis')
+            ax.axis('off')
+        else:
+            ax.set_visible(False)
+
+    # Adjust the spacing between the subplots
+    fig.subplots_adjust(wspace=0.1, hspace=0.1)
+
+    plt.tight_layout()
+    # Show the figure
+    plt.show()
+
+
+image_paths = glob.glob(os.path.join(f'../../data/unzipped/training/images', '*CT.nii.gz'))
+# label_paths = glob.glob(os.path.join(f'../../augmentation/labels', '*.nii.gz'))
+label_paths = glob.glob(os.path.join(f'../../data/unzipped/training/labels', '*.nii.gz'))
 i = 0
+
+invalid_shape = 0
 for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
     image = nib.load(image_path)
     mask = nib.load(mask_path)
 
-    # Mask is bigger than image for some reason, chop mask
-    if image.shape[0] == mask.shape[0] - 1:
-        mask_data = mask.get_fdata()
-        mask = nib.Nifti1Image(mask_data[:-1, :, :], np.copy(image.affine), mask.header)
+    if image.shape[0] != 512 or image.shape[1] != 512 or image.shape != mask.shape:
+        invalid_shape += 1
+        continue
 
-    if image.shape[1] == mask.shape[1] - 1:
-        mask_data = mask.get_fdata()
-        mask = nib.Nifti1Image(mask_data[:, :-1, :], np.copy(image.affine), mask.header)
-
-    if image.shape[2] == mask.shape[2] - 1:
-        mask_data = mask.get_fdata()
-        mask = nib.Nifti1Image(mask_data[:, :, :-1], np.copy(image.affine), mask.header)
+    # # Mask is bigger than image for some reason, chop mask
+    # if image.shape[0] == mask.shape[0] - 1:
+    #     mask_data = mask.get_fdata()
+    #     mask = nib.Nifti1Image(mask_data[:-1, :, :], np.copy(image.affine), mask.header)
+    #
+    # if image.shape[1] == mask.shape[1] - 1:
+    #     mask_data = mask.get_fdata()
+    #     mask = nib.Nifti1Image(mask_data[:, :-1, :], np.copy(image.affine), mask.header)
+    #
+    # if image.shape[2] == mask.shape[2] - 1:
+    #     mask_data = mask.get_fdata()
+    #     mask = nib.Nifti1Image(mask_data[:, :, :-1], np.copy(image.affine), mask.header)
 
     # Image and mask must have 256 in the last dimension, in this case the image is too big, chop center 256 slices
     if image.shape[2] > 256:
@@ -100,39 +136,28 @@ for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
         new_image, new_image_affine = pad_nifti(image, desired_size=256, dimensions=[2])
         new_mask, new_mask_affine = pad_nifti(mask, desired_size=256, dimensions=[2])
 
-    mask = nib.Nifti1Image(new_mask, new_mask_affine, mask.header)
-    image = nib.Nifti1Image(new_image, new_image_affine, mask.header)
+    mask = nib.Nifti1Image(new_mask, new_mask_affine)
+    image = nib.Nifti1Image(new_image, new_image_affine)
 
-    if image.shape[0] < 512:
-        new_image, new_image_affine = pad_nifti(image, desired_size=512, dimensions=[0])
-        new_mask, new_mask_affine = pad_nifti(mask, desired_size=512, dimensions=[0])
-        mask = nib.Nifti1Image(new_mask, new_mask_affine, mask.header)
-        image = nib.Nifti1Image(new_image, new_image_affine, mask.header)
+    #
+    # if new_image.shape[1] > 512:
+    #     # Update the affine matrix for new_image
+    #     new_image, new_imagine_affine = correct_affine_matrix(new_image)
+    #
+    #     # Use the updated affine matrix for new_mask
+    #     new_mask_affine = np.copy(new_image_affine)
+    #
+    # if new_mask.shape[1] > 512:
+    #     # Update the affine matrix for new_mask
+    #     new_mask, new_mask_affine = correct_affine_matrix(new_mask)
+    #
+    #     # Use the updated affine matrix for new_mask
+    #     new_image_affine = np.copy(new_mask_affine)
 
-    if image.shape[1] < 512:
-        new_image, new_image_affine = pad_nifti(image, desired_size=512, dimensions=[1])
-        new_mask, new_mask_affine = pad_nifti(mask, desired_size=512, dimensions=[1])
-
-    if new_image.shape[1] > 512:
-        # Update the affine matrix for new_image
-        new_image, new_imagine_affine = correct_affine_matrix(new_image)
-
-        # Use the updated affine matrix for new_mask
-        new_mask_affine = np.copy(new_image_affine)
-
-    if new_mask.shape[1] > 512:
-        # Update the affine matrix for new_mask
-        new_mask, new_mask_affine = correct_affine_matrix(new_mask)
-
-        # Use the updated affine matrix for new_mask
-        new_image_affine = np.copy(new_mask_affine)
-
+    # new_mask_affine = np.copy(new_image_affine)
     # Check if the affine matrices match
     if not np.allclose(new_image_affine, new_mask_affine):
         raise ValueError("Affine matrices for input images do not match")
-
-    image = nib.Nifti1Image(new_image, new_image_affine, image.header)
-    mask = nib.Nifti1Image(new_mask, new_mask_affine, mask.header)
 
     image_path = os.path.join("../../data/3d/preprocessed/images", image_path.split('images\\')[-1])
     mask_path = os.path.join("../../data/3d/preprocessed/masks", mask_path.split('labels\\')[-1])
@@ -142,9 +167,9 @@ for image_path, mask_path in tqdm(zip(image_paths, label_paths)):
     img1 = nib.load(image_path)
     img2 = nib.load(mask_path)
 
-    concat_img = nib.concat_images([img1, img2], axis=2)
-
     path = image_path.split('images\\')[-1]
     path = path.replace('__CT', '')
 
-    nib.save(concat_img, os.path.join("../../data/3d/preprocessed/concatenated", path))
+    concat_img = nib.concat_images([img1, img2], axis=2)
+    nib.save(concat_img, f'../../data/3d/preprocessed/concatenated/{path}')
+    img = nib.load(f'../../data/3d/preprocessed/concatenated/{path}')
