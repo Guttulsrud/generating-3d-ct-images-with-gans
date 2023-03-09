@@ -1,13 +1,13 @@
 tqdm~=4.64.1
-nibabel~=5.0.1
-matplotlib~=3.7.0
+nibabel
+matplotlib
 tensorflow~=2.10.1
 pandas
 pyyaml~=6.0
-scipy~=1.10.1
+scipy
 tensorboard
 monai
-numpy~=1.24.2
+numpy
 simpleitk~=2.2.1
 pillow~=9.4.0
 nilearn

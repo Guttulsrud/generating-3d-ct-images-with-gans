@@ -1,6 +1,0 @@
-augmentations:
-  gaussian_noise:
-    enabled: True
-    sigma: 2
-cluster:
-  enabled: False
