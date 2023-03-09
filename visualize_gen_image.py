@@ -11,7 +11,7 @@ model_path = 'saved_models/03-07 16-21_concat_128_test/checkpoint'
 
 #load nifti file
 import nibabel as nib
-path = 'test1.nii.gz'
+path = 'CHUM-001.nii.gz'
 generated_image = nib.load(path)
 print(generated_image.shape)
 display_image(generated_image.get_fdata())

@@ -1,5 +1,11 @@
-import math
+import os
 
+from tqdm import tqdm
+
+from visualization.display_image import display_image
+
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+import math
 import yaml
 from monai.data import NibabelWriter
 from monai.transforms import (
@@ -10,21 +16,25 @@ from monai.transforms import (
     RandAffined
 )
 import numpy as np
+import matplotlib as mpl
+
+mpl.use('TkAgg')
 import matplotlib.pyplot as plt
 import os
 import glob
 
+with open('augmentations.yaml', 'r') as f:
+    config = yaml.safe_load(f)
+
 
 class Augmentor:
     def __init__(self):
-        with open('../config.yaml', 'r') as f:
-            config = yaml.safe_load(f)
 
-        data_dir = config['augmentation']['input_dir']
-        self.output_dir = config['augmentation']['output_dir']
+        data_dir = config['input_dir']
+        self.output_dir = config['output_dir']
 
         train_images = sorted(
-            glob.glob(os.path.join(data_dir, "images", "*.nii.gz")))
+            glob.glob(os.path.join(data_dir, "images", "*CT.nii.gz")))
         train_labels = sorted(
             glob.glob(os.path.join(data_dir, "masks", "*.nii.gz")))
         self.data = [
@@ -56,27 +66,29 @@ class Augmentor:
         plt.tight_layout()
         plt.show()
 
-    def display_image(self, data_dict, title=None, load=False):
+    def display_image(self, data_dict, display_mask, display_image, title=None, load=False):
         if load:
             data_dict = self.loader(data_dict)
 
         if not title:
             title = "Original Image"
 
-        image, label = data_dict["image"], data_dict["label"]
+        image, mask = data_dict["image"], data_dict["label"]
 
         if len(image.shape) > 3:
             image = image[0, :, :]
-            label = label[0, :, :]
+            mask = mask[0, :, :]
 
-        self.create_plot(image, colormap='gray', title=title, mask=False)
-        self.create_plot(label, title=title)
+        if display_image:
+            self.create_plot(image, colormap='gray', title=title, mask=False)
+        if display_mask:
+            self.create_plot(mask, title=title)
 
     def add_channel(self, image):
         add_channel = EnsureChannelFirstd(keys=["image", "label"])
         return add_channel(image)
 
-    def reorient_axes(self, image, display=False):
+    def reorient_axes(self, image, display_image=False, display_mask=False):
         # Sometimes it is nice to have all the input volumes in a consistent axes orientation.
         # The default axis labels are Left (L), Right (R), Posterior (P), Anterior (A), Inferior (I), Superior (S).
         # The following transform is created to reorientate the volumes to have 'Posterior, Left,
@@ -85,11 +97,11 @@ class Augmentor:
 
         image = orientation(image)
 
-        if display:
-            self.display_image(image, title='Reoriented Axes')
+        if display_image or display_mask:
+            self.display_image(image, title='Reoriented Axes', display_image=display_image, display_mask=display_mask)
         return image
 
-    def normalize(self, image, display=False):
+    def normalize(self, image, display_image=False, display_mask=False):
         # The input volumes might have different voxel sizes.
         # The following transform is created to normalise the volumes to have (1.5, 1.5, 5.) millimetre voxel size.
 
@@ -100,11 +112,11 @@ class Augmentor:
 
         image = spacing(image)
 
-        if display:
-            self.display_image(image, title='Normalized Voxels')
+        if display_image or display_mask:
+            self.display_image(image, title='Normalized Voxels', display_image=display_image, display_mask=display_mask)
         return image
 
-    def random_affine_transformation(self, image, display=False):
+    def random_affine_transformation(self, image, spatial_size, display_image=False, display_mask=False):
         # The following affine transformation is defined to output a (300, 300, 50) image patch.
         # The patch location is randomly chosen in a range of (-40, 40), (-40, 40), (-2, 2) in
         # x, y, and z axes respectively.
@@ -120,7 +132,7 @@ class Augmentor:
             keys=["image", "label"],
             mode=("bilinear", "nearest"),
             prob=1.0,
-            spatial_size=(300, 300, 50),
+            spatial_size=spatial_size,
             translate_range=(40, 40, 2),
             rotate_range=(np.pi / 36, np.pi / 36, np.pi / 4),
             scale_range=(0.15, 0.15, 0.15),
@@ -129,8 +141,9 @@ class Augmentor:
 
         image = rand_affine(image)
 
-        if display:
-            self.display_image(image, title='Random Affine Transformation')
+        if display_image or display_mask:
+            self.display_image(image, title='Random Affine Transformation', display_mask=display_mask,
+                               display_image=display_image)
         return image
 
     def save_image_mask(self, data_dict, folder_name):
@@ -157,25 +170,39 @@ class Augmentor:
 
         writer = NibabelWriter()
         writer.set_data_array(data_dict['image'][0, :, :, :], channel_dim=None)
-        writer.set_metadata({"affine": image_affine, "original_affine": data_dict['image'].meta['original_affine']})
-        writer.write(f'{image_path}/{image_name}', verbose=True)
+        writer.set_metadata({"affine": image_affine, "original_affine": image_affine})
+        writer.write(f'{image_path}/{image_name}', verbose=False)
 
         writer = NibabelWriter()
         writer.set_data_array(data_dict['label'][0, :, :, :], channel_dim=None)
-        writer.set_metadata({"affine": mask_affine, "original_affine": data_dict['label'].meta['original_affine']})
-        writer.write(f'{mask_path}/{mask_name}', verbose=True)
+        writer.set_metadata({"affine": mask_affine, "original_affine": image_affine})
+        writer.write(f'{mask_path}/{mask_name}', verbose=False)
+
+    def load_image_mask(self, image_mask):
+        image_mask = self.loader(image_mask)
+        return self.add_channel(image_mask)
 
 
 aug = Augmentor()
-for image_mask in aug.data:
-    aug.display_image(image_mask, load=True)
-    continue
-    image_mask = aug.loader(image_mask)
-    image_mask = aug.add_channel(image_mask)
-    image_mask = aug.reorient_axes(image_mask)
-    aug.save_image_mask(image_mask, 'reoriented')
-    image_mask = aug.normalize(image_mask)
-    aug.save_image_mask(image_mask, 'normalized')
+for image_mask_path in tqdm(aug.data):
+    image_mask = aug.load_image_mask(image_mask_path)
 
-    # data_dict = aug.random_affine_transformation(data_dict, display=True)
-    #
+    if config['normalize']:
+        normalized = aug.normalize(image_mask, display_image=False, display_mask=False)
+        aug.save_image_mask(normalized, 'normalized')
+
+    if config['reorient']:
+        reoriented = aug.reorient_axes(image_mask, display_image=False, display_mask=False)
+        aug.save_image_mask(reoriented, 'reoriented')
+
+        if config['normalize_reorient']:
+            normalized_reoriented = aug.normalize(reoriented, display_image=False, display_mask=False)
+            aug.save_image_mask(normalized_reoriented, 'normalized_reoriented')
+
+    if config['random_affine']:
+        _, x, y, z = image_mask['image'].shape
+        affine_transformation = aug.random_affine_transformation(image_mask,
+                                                                 spatial_size=(x + 40, y + 40, z + 40),
+                                                                 display_image=False,
+                                                                 display_mask=False)
+        aug.save_image_mask(affine_transformation, 'affine_transformation')

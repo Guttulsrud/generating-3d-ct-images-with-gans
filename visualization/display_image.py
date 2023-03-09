@@ -1,9 +1,11 @@
 import math
 
+import matplotlib as mpl
+mpl.use('TkAgg')
 from matplotlib import pyplot as plt
 
 
-def display_image(data, colormap='viridis', n_slices=False):
+def display_image(data, colormap='gray', n_slices=False):
     if not n_slices:
         n_slices = data.shape[2]
 

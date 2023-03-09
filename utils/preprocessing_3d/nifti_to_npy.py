@@ -12,7 +12,7 @@ import multiprocessing as mp
 NUM_JOBS = 8
 #  resized output size, can be 128 or 256
 IMG_SIZE = 128
-INPUT_DATA_DIR = '../../data/3d/preprocessed/concatenated/'
+INPUT_DATA_DIR = '../../data/original_size/training/images/'
 OUTPUT_DATA_DIR = '../../data/preprocessed/'
 # the intensity range is clipped with the two thresholds, this default is used for our CT images, please adapt to your own dataset
 LOW_THRESHOLD = -1024

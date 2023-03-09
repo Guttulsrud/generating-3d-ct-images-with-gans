@@ -1,0 +1,6 @@
+input_dir: '../data/original_size/training'
+output_dir: '../data/augmented'
+normalize: True
+reorient: True
+normalize_reorient: True
+random_affine: False
