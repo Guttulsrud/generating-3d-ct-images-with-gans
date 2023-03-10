@@ -19,14 +19,14 @@ Generative Adversarial Networks (GAN) have many potential medical imaging applic
 - SimpleITK
 
 ```bash
-conda env create --name amor -f environment.yml
+conda env create --name hagan -f environment.yml
 conda activate hagan
 ```
 
 ### Data Preprocessing
 The volume data need to be cropped or resized to 128<sup>3</sup> or 256<sup>3</sup>, and intensity value need to be scaled to [-1,1]. In addition, we would like to advise you to trim blank axial slices. More details can be found at
 ```bash
-python nifti_to_npy.py
+python preprocess.py
 ```
 
 ### Training
