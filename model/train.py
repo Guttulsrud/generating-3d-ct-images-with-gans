@@ -3,6 +3,7 @@
 # train HA-GAN
 # Hierarchical Amortized GAN for 3D High Resolution Medical Image Synthesis
 # https://ieeexplore.ieee.org/abstract/document/9770375
+import time
 
 import numpy as np
 import torch
@@ -10,6 +11,7 @@ import os
 import json
 import argparse
 
+import yaml
 from torch import nn
 from torch import optim
 from torch.nn import functional as F
@@ -19,7 +21,8 @@ from nilearn import plotting
 
 from utils import trim_state_dict_name, inf_train_gen
 from volume_dataset import Volume_Dataset
-
+import matplotlib as mpl
+mpl.use('TkAgg')
 import matplotlib.pyplot as plt
 
 torch.manual_seed(0)
@@ -28,22 +31,26 @@ torch.backends.cudnn.benchmark = True
 
 
 def main():
-    batch_size = 4
-    workers = 8
-    img_size = 128
-    num_iter = 80000
-    log_iter = 20
-    continue_iter = 0
-    latent_dim = 1024
-    g_iter = 1
-    lr_g = 0.0001
-    lr_d = 0.0004
-    lr_e = 0.0001
-    data_dir = '../data/original_size/images/'
-    exp_name = 'code_test_original_size_images'
-    fold = 0
-    num_class = 0
-    lambda_class = 0.1
+
+    with open('config.yaml', 'r') as f:
+        config = yaml.safe_load(f)
+
+    batch_size = config['batch_size']
+    workers = config['workers']
+    img_size = config['img_size']
+    num_iter = config['iterations']
+    log_iter = config['log_iter']
+    continue_iter = config['continue_iter']
+    latent_dim = config['latent_dim']
+    g_iter = config['network']['generator_passes_per_iteration']
+    lr_g = config['network']['generator_learning_rate']
+    lr_d = config['network']['discriminator_learning_rate']
+    lr_e = config['network']['encoder_learning_rate']
+    data_dir = config['data_dir']
+    exp_name = config['experiment_name']
+    fold = config['fold']
+    num_class = config['num_class']
+    lambda_class = config['lambda_class']
 
     trainset = Volume_Dataset(data_dir=data_dir, fold=fold, num_class=num_class)
     train_loader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, drop_last=True,
@@ -128,6 +135,7 @@ def main():
     for p in Sub_E.parameters():
         p.requires_grad = False
 
+    start_time = time.time()
     for iteration in range(continue_iter, num_iter):
 
         ###############################################
@@ -266,12 +274,17 @@ def main():
         # Visualization with Tensorboard
         ###############################################
         if iteration % 200 == 0:
+            end_time = time.time()
+            runtime_seconds = end_time - start_time
+            runtime_minutes, runtime_seconds = divmod(runtime_seconds, 60)
+            runtime_hours, runtime_minutes = divmod(runtime_minutes, 60)
             print('[{}/{}]'.format(iteration, num_iter),
                   'D_real: {:<8.3}'.format(d_real_loss.item()),
                   'D_fake: {:<8.3}'.format(d_fake_loss.item()),
                   'G_fake: {:<8.3}'.format(g_loss.item()),
                   'Sub_E: {:<8.3}'.format(sub_e_loss.item()),
-                  'E: {:<8.3}'.format(e_loss.item()))
+                  'E: {:<8.3}'.format(e_loss.item()),
+            f"Runtime: {int(runtime_hours)} hours, {int(runtime_minutes)} minutes, {int(runtime_seconds)} seconds")
 
             featmask = np.squeeze((0.5 * real_images_crop[0] + 0.5).data.cpu().numpy())
             featmask = nib.Nifti1Image(featmask.transpose((2, 1, 0)), affine=np.eye(4))

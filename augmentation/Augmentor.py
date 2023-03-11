@@ -37,6 +37,10 @@ class Augmentor:
             glob.glob(os.path.join(data_dir, "images", "*CT.nii.gz")))
         train_labels = sorted(
             glob.glob(os.path.join(data_dir, "masks", "*.nii.gz")))
+
+        if len(train_images) == 0:
+            train_images = sorted(
+                glob.glob(os.path.join(data_dir, "images", "*.nii.gz")))
         self.data = [
             {"image": image_name, "label": label_name}
             for image_name, label_name in zip(train_images, train_labels)
@@ -186,6 +190,9 @@ class Augmentor:
 aug = Augmentor()
 for image_mask_path in tqdm(aug.data):
     image_mask = aug.load_image_mask(image_mask_path)
+    aug.display_image(image_mask, title='Original', display_image=True, display_mask=False)
+    print(image_mask['image'].shape, image_mask['label'].shape)
+    continue
 
     if config['normalize']:
         normalized = aug.normalize(image_mask, display_image=False, display_mask=False)

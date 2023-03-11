@@ -12,13 +12,13 @@ import multiprocessing as mp
 NUM_JOBS = 8
 #  resized output size, can be 128 or 256
 IMG_SIZE = 128
-INPUT_DATA_DIR = '../data/original_size/training/images/'
-OUTPUT_DATA_DIR = '../data/preprocessed/'
+INPUT_DATA_DIR = '../data/complete_dataset/'
+OUTPUT_DATA_DIR = '../data/complete_dataset_ppy/'
 # the intensity range is clipped with the two thresholds, this default is used for our CT images, please adapt to your own dataset
 LOW_THRESHOLD = -1024
 HIGH_THRESHOLD = 600
 # suffix (ext.) of input images
-SUFFIX = 'CT.nii.gz'
+SUFFIX = '.nii.gz'
 # whether or not to trim blank axial slices, recommend to set as True
 TRIM_BLANK_SLICES = True
 
@@ -65,7 +65,7 @@ def batch_resize(batch_idx, img_list):
             print("Image resize error:", imgname)
             continue
         # preprocessed images are saved in numpy arrays
-        np.save(OUTPUT_DATA_DIR+imgname.split('.')[0]+".npy", img)
+        np.save(OUTPUT_DATA_DIR+imgname.split('\\')[-1]+".npy", img)
 
 if __name__ == '__main__':
     main()

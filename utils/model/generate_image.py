@@ -19,7 +19,7 @@ def generate_image(model_path, rescale_intensity=True):
     ckpt = trim_state_dict_name(ckpt)
     generator.load_state_dict(ckpt)
 
-    ckpt_path = f"{model_path}/Eiter{str(save_step)}.pth"
+    ckpt_path = f"{model_path}/E_iter{str(save_step)}.pth"
     ckpt = torch.load(ckpt_path)['model']
     ckpt = trim_state_dict_name(ckpt)
     encoder.load_state_dict(ckpt)
