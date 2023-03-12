@@ -14,7 +14,7 @@ from visualization.display_image import display_image
 NUM_JOBS = 8
 #  resized output size, can be 128 or 256
 IMG_SIZE = 128
-INPUT_DATA_DIR = '../data/original/image/'
+INPUT_DATA_DIR = '../data/complete_dataset/'
 OUTPUT_DATA_DIR = '../data/complete_dataset_ppy/'
 # the intensity range is clipped with the two thresholds, this default is used for our CT images, please adapt to your own dataset
 LOW_THRESHOLD = -1024
@@ -67,18 +67,20 @@ def batch_resize(batch_idx, img_list):
 
         img = nifti_img1.get_fdata()
         # img = sitk.GetArrayFromImage(img)
-
         try:
             img = resize_img(img)
         except Exception as e:  # Some images are corrupted
             print(e)
             print("Image resize error:", imgname)
             continue
+
         # preprocessed images are saved in numpy arrays
         np.save(OUTPUT_DATA_DIR + imgname.split('\\')[-1] + ".npy", img)
 
 
 if __name__ == '__main__':
+    if not os.path.exists(OUTPUT_DATA_DIR):
+        os.makedirs(OUTPUT_DATA_DIR)
     main()
 
 #

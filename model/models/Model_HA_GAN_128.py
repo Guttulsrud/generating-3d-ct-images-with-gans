@@ -4,7 +4,7 @@ import os
 from torch import nn
 from torch import optim
 from torch.nn import functional as F
-from models.layers import SNConv3d, SNLinear
+from model.models.layers import SNConv3d, SNLinear
 
 class Code_Discriminator(nn.Module):
     def __init__(self, code_size, num_units=256):

@@ -246,29 +246,25 @@ aug = Augmentor()
 for image_mask_path in tqdm(aug.data):
     image_mask = aug.load_image_mask(image_mask_path)
 
-    if config['rotate']:
-        rotated = aug.random_rotation(image_mask, display_image=False, display_mask=False)
-        aug.save_image_mask(rotated, 'rotated')
-
-    if config['translate']:
-        translated = aug.random_translation(image_mask, display_image=False, display_mask=False)
-        aug.save_image_mask(translated, 'translated')
-
     if config['normalize']:
         normalized = aug.normalize(image_mask, display_image=False, display_mask=False, voxels=(1.5, 1.5, 1.5))
         aug.save_image_mask(normalized, 'normalized_1.5x1.5x1.5')
 
+    if config['rotate']:
+        rotated = aug.random_rotation(image_mask, display_image=False, display_mask=False)
+        aug.save_image_mask(rotated, 'norm_rotated')
+
+    if config['translate']:
+        translated = aug.random_translation(image_mask, display_image=False, display_mask=False)
+        aug.save_image_mask(translated, 'norm_translated')
+
     if config['elastic_deform']:
-        elastic_deformed = aug.random_elastic_deformation(image_mask, display_image=True, display_mask=False)
-        aug.save_image_mask(elastic_deformed, 'elastic_deformed')
+        elastic_deformed = aug.random_elastic_deformation(image_mask, display_image=False, display_mask=False)
+        aug.save_image_mask(elastic_deformed, 'norm_elastic_deformed')
 
     if config['reorient']:
         reoriented = aug.reorient_axes(image_mask, display_image=False, display_mask=False)
         aug.save_image_mask(reoriented, 'reoriented')
-
-        if config['normalize_reorient']:
-            normalized_reoriented = aug.normalize(reoriented, display_image=False, display_mask=False)
-            aug.save_image_mask(normalized_reoriented, 'normalized_reoriented')
 
     if config['random_affine']:
         _, x, y, z = image_mask['image'].shape

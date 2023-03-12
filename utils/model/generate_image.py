@@ -1,6 +1,6 @@
 import torch
-from model.get_model import get_model
 from model.utils import trim_state_dict_name
+from utils.get_model import get_model
 
 
 def generate_image(model_path, rescale_intensity=True):

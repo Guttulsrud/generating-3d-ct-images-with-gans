@@ -40,7 +40,10 @@ def main():
     img_size = config['img_size']
     num_iter = config['iterations']
     log_iter = config['log_iter']
+    log_iter_print = config['log_iter_print']
     continue_iter = config['continue_iter']
+    start_model_saving = config['start_model_saving']
+    save_model_interval = config['save_model_interval']
     latent_dim = config['latent_dim']
     g_iter = config['network']['generator_passes_per_iteration']
     lr_g = config['network']['generator_learning_rate']
@@ -74,7 +77,8 @@ def main():
     e_optimizer = optim.Adam(E.parameters(), lr=lr_e, betas=(0.0, 0.999), eps=1e-8)
     sub_e_optimizer = optim.Adam(Sub_E.parameters(), lr=lr_e, betas=(0.0, 0.999), eps=1e-8)
 
-    path = f'../logs/{exp_name}/checkpoint'
+    base_path = f'../logs/{exp_name}'
+    path = f'{base_path}/checkpoint'
 
     # Resume from a previous checkpoint
     if continue_iter != 0:
@@ -122,9 +126,9 @@ def main():
 
     summary_writer = SummaryWriter(path)
 
-    # # save configurations to a dictionary
-    # with open(os.path.join("ha_gan/checkpoint/" + exp_name, 'configs.json'), 'w') as f:
-    #     json.dump(vars(args), f, indent=2)
+    # save configurations to a dictionary
+    with open(os.path.join(base_path, 'config.json'), 'w') as f:
+        json.dump(config, f, indent=2)
 
     for p in D.parameters():
         p.requires_grad = False
@@ -273,7 +277,7 @@ def main():
         ###############################################
         # Visualization with Tensorboard
         ###############################################
-        if iteration % 200 == 0:
+        if iteration % log_iter_print == 0:
             end_time = time.time()
             runtime_seconds = end_time - start_time
             runtime_minutes, runtime_seconds = divmod(runtime_seconds, 60)
@@ -284,7 +288,7 @@ def main():
                   'G_fake: {:<8.3}'.format(g_loss.item()),
                   'Sub_E: {:<8.3}'.format(sub_e_loss.item()),
                   'E: {:<8.3}'.format(e_loss.item()),
-            f"Runtime: {int(runtime_hours)} hours, {int(runtime_minutes)} minutes, {int(runtime_seconds)} seconds")
+            f"Elapsed: {int(runtime_hours)}h {int(runtime_minutes)}m {int(runtime_seconds)}s")
 
             featmask = np.squeeze((0.5 * real_images_crop[0] + 0.5).data.cpu().numpy())
             featmask = nib.Nifti1Image(featmask.transpose((2, 1, 0)), affine=np.eye(4))
@@ -310,7 +314,7 @@ def main():
                               draw_cross=False, cmap="gray")
             summary_writer.add_figure('Fake', fig, iteration, close=True)
 
-        if iteration > 30000 and (iteration + 1) % 500 == 0:
+        if iteration > start_model_saving and (iteration + 1) % save_model_interval == 0:
             torch.save({'model': G.state_dict(), 'optimizer': g_optimizer.state_dict()},
                        f'{path}/G_iter{str(iteration + 1)}.pth')
             torch.save({'model': D.state_dict(), 'optimizer': d_optimizer.state_dict()},
