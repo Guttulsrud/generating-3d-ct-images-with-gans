@@ -1,6 +1,9 @@
-input_dir: '../data/original_size'
+input_dir: '../data/original'
 output_dir: '../data/augmented'
 normalize: True
-reorient: True
-normalize_reorient: True
+reorient: False
+normalize_reorient: False
 random_affine: False
+rotate: False
+translate: False
+elastic_deform: False

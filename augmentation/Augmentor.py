@@ -13,7 +13,7 @@ from monai.transforms import (
     LoadImaged,
     Orientationd,
     Spacingd,
-    RandAffined
+    RandAffined, Rand3DElasticd
 )
 import numpy as np
 import matplotlib as mpl
@@ -33,6 +33,9 @@ class Augmentor:
         data_dir = config['input_dir']
         self.output_dir = config['output_dir']
 
+        if not os.path.exists(self.output_dir):
+            os.mkdir(self.output_dir)
+
         train_images = sorted(
             glob.glob(os.path.join(data_dir, "images", "*CT.nii.gz")))
         train_labels = sorted(
@@ -42,10 +45,10 @@ class Augmentor:
             train_images = sorted(
                 glob.glob(os.path.join(data_dir, "images", "*.nii.gz")))
         self.data = [
-            {"image": image_name, "label": label_name}
+            {"image": image_name, "mask": label_name}
             for image_name, label_name in zip(train_images, train_labels)
         ]
-        self.loader = LoadImaged(keys=("image", "label"), image_only=False)
+        self.loader = LoadImaged(keys=("image", "mask"), image_only=False)
 
     @staticmethod
     def create_plot(image, title, mask=True, colormap=None):
@@ -77,7 +80,7 @@ class Augmentor:
         if not title:
             title = "Original Image"
 
-        image, mask = data_dict["image"], data_dict["label"]
+        image, mask = data_dict["image"], data_dict["mask"]
 
         if len(image.shape) > 3:
             image = image[0, :, :]
@@ -89,7 +92,7 @@ class Augmentor:
             self.create_plot(mask, title=title)
 
     def add_channel(self, image):
-        add_channel = EnsureChannelFirstd(keys=["image", "label"])
+        add_channel = EnsureChannelFirstd(keys=["image", "mask"])
         return add_channel(image)
 
     def reorient_axes(self, image, display_image=False, display_mask=False):
@@ -97,7 +100,7 @@ class Augmentor:
         # The default axis labels are Left (L), Right (R), Posterior (P), Anterior (A), Inferior (I), Superior (S).
         # The following transform is created to reorientate the volumes to have 'Posterior, Left,
         # Inferior' (PLI) orientation:
-        orientation = Orientationd(keys=["image", "label"], axcodes="PLI")
+        orientation = Orientationd(keys=["image", "mask"], axcodes="PLI")
 
         image = orientation(image)
 
@@ -105,19 +108,50 @@ class Augmentor:
             self.display_image(image, title='Reoriented Axes', display_image=display_image, display_mask=display_mask)
         return image
 
-    def normalize(self, image, display_image=False, display_mask=False):
+    def normalize(self, image, voxels, display_image=False, display_mask=False):
         # The input volumes might have different voxel sizes.
         # The following transform is created to normalise the volumes to have (1.5, 1.5, 5.) millimetre voxel size.
 
         # The transform is set to read the original voxel size information from `data_dict['image.affine']`,
         # which is from the corresponding NIfTI file, loaded earlier by `LoadImaged`.
-        spacing = Spacingd(keys=["image", "label"], pixdim=(
-            1.5, 1.5, 5.0), mode=("bilinear", "nearest"))
+        spacing = Spacingd(keys=["image", "mask"], pixdim=voxels, mode=("bilinear", "nearest"))
 
         image = spacing(image)
 
         if display_image or display_mask:
             self.display_image(image, title='Normalized Voxels', display_image=display_image, display_mask=display_mask)
+        return image
+
+    def random_rotation(self, image, display_image=False, display_mask=False):
+        rand_affine = RandAffined(
+            keys=["image", "mask"],
+            mode=("bilinear", "nearest"),
+            spatial_size=image_mask['image'].shape[1:],
+            rotate_range=(np.pi / 36, np.pi / 36, np.pi / 4),
+            padding_mode="border",
+        )
+
+        image = rand_affine(image)
+
+        if display_image or display_mask:
+            self.display_image(image, title='Random rotation', display_mask=display_mask,
+                               display_image=display_image)
+        return image
+
+    def random_translation(self, image, display_image=False, display_mask=False):
+        rand_affine = RandAffined(
+            keys=["image", "mask"],
+            mode=("bilinear", "nearest"),
+            spatial_size=image_mask['image'].shape[1:],
+            translate_range=(40, 40, 10),
+            padding_mode="border",
+        )
+
+        image = rand_affine(image)
+
+        if display_image or display_mask:
+            self.display_image(image, title='Random rotation', display_mask=display_mask,
+                               display_image=display_image)
         return image
 
     def random_affine_transformation(self, image, spatial_size, display_image=False, display_mask=False):
@@ -150,6 +184,27 @@ class Augmentor:
                                display_image=display_image)
         return image
 
+    def random_elastic_deformation(self, image, display_image=False, display_mask=False):
+        rand_elastic = Rand3DElasticd(
+            keys=["image", "mask"],
+            mode=("bilinear", "nearest"),
+            prob=1.0,
+            sigma_range=(5, 8),
+            magnitude_range=(100, 200),
+            spatial_size=image_mask['image'].shape[1:],
+            translate_range=(50, 50, 2),
+            rotate_range=(np.pi / 36, np.pi / 36, np.pi),
+            scale_range=(0.15, 0.15, 0.15),
+            padding_mode="border",
+        )
+        rand_elastic.set_random_state(seed=123)
+        image = rand_elastic(image)
+
+        if display_image or display_mask:
+            self.display_image(image, title='Random Elastic Deformation', display_mask=display_mask,
+                               display_image=display_image)
+        return image
+
     def save_image_mask(self, data_dict, folder_name):
         path = f'{self.output_dir}/{folder_name}'
         image_path = path + '/images'
@@ -165,10 +220,10 @@ class Augmentor:
             os.makedirs(mask_path)
 
         image_affine = data_dict['image'].affine
-        mask_affine = data_dict['label'].affine
+        mask_affine = data_dict['mask'].affine
 
         image_name = data_dict['image'].meta['filename_or_obj'].split('\\')[-1]
-        mask_name = data_dict['label'].meta['filename_or_obj'].split('\\')[-1]
+        mask_name = data_dict['mask'].meta['filename_or_obj'].split('\\')[-1]
 
         image_name = image_name.replace('__CT', '')
 
@@ -178,7 +233,7 @@ class Augmentor:
         writer.write(f'{image_path}/{image_name}', verbose=False)
 
         writer = NibabelWriter()
-        writer.set_data_array(data_dict['label'][0, :, :, :], channel_dim=None)
+        writer.set_data_array(data_dict['mask'][0, :, :, :], channel_dim=None)
         writer.set_metadata({"affine": mask_affine, "original_affine": image_affine})
         writer.write(f'{mask_path}/{mask_name}', verbose=False)
 
@@ -190,13 +245,22 @@ class Augmentor:
 aug = Augmentor()
 for image_mask_path in tqdm(aug.data):
     image_mask = aug.load_image_mask(image_mask_path)
-    aug.display_image(image_mask, title='Original', display_image=True, display_mask=False)
-    print(image_mask['image'].shape, image_mask['label'].shape)
-    continue
+
+    if config['rotate']:
+        rotated = aug.random_rotation(image_mask, display_image=False, display_mask=False)
+        aug.save_image_mask(rotated, 'rotated')
+
+    if config['translate']:
+        translated = aug.random_translation(image_mask, display_image=False, display_mask=False)
+        aug.save_image_mask(translated, 'translated')
 
     if config['normalize']:
-        normalized = aug.normalize(image_mask, display_image=False, display_mask=False)
-        aug.save_image_mask(normalized, 'normalized')
+        normalized = aug.normalize(image_mask, display_image=False, display_mask=False, voxels=(1.5, 1.5, 1.5))
+        aug.save_image_mask(normalized, 'normalized_1.5x1.5x1.5')
+
+    if config['elastic_deform']:
+        elastic_deformed = aug.random_elastic_deformation(image_mask, display_image=True, display_mask=False)
+        aug.save_image_mask(elastic_deformed, 'elastic_deformed')
 
     if config['reorient']:
         reoriented = aug.reorient_axes(image_mask, display_image=False, display_mask=False)
