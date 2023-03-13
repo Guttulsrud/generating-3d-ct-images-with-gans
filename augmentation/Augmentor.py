@@ -13,7 +13,7 @@ from monai.transforms import (
     LoadImaged,
     Orientationd,
     Spacingd,
-    RandAffined, Rand3DElasticd
+    RandAffined, Rand3DElasticd, LoadImage
 )
 import numpy as np
 import matplotlib as mpl
@@ -28,7 +28,7 @@ with open('augmentations.yaml', 'r') as f:
 
 
 class Augmentor:
-    def __init__(self):
+    def __init__(self, images_only=False):
 
         data_dir = config['input_dir']
         self.output_dir = config['output_dir']
@@ -38,12 +38,22 @@ class Augmentor:
 
         train_images = sorted(
             glob.glob(os.path.join(data_dir, "images", "*CT.nii.gz")))
-        train_labels = sorted(
-            glob.glob(os.path.join(data_dir, "masks", "*.nii.gz")))
 
         if len(train_images) == 0:
             train_images = sorted(
                 glob.glob(os.path.join(data_dir, "images", "*.nii.gz")))
+
+        if images_only:
+            self.data = [
+                {"image": image_name}
+                for image_name in train_images
+            ]
+            self.loader = LoadImaged(keys="image", image_only=True, allow_missing_keys=True)
+            return
+
+        train_labels = sorted(
+            glob.glob(os.path.join(data_dir, "masks", "*.nii.gz")))
+
         self.data = [
             {"image": image_name, "mask": label_name}
             for image_name, label_name in zip(train_images, train_labels)
@@ -154,7 +164,7 @@ class Augmentor:
                                display_image=display_image)
         return image
 
-    def random_affine_transformation(self, image, spatial_size, display_image=False, display_mask=False):
+    def random_affine_transformation(self, image, display_image=False, display_mask=False):
         # The following affine transformation is defined to output a (300, 300, 50) image patch.
         # The patch location is randomly chosen in a range of (-40, 40), (-40, 40), (-2, 2) in
         # x, y, and z axes respectively.
@@ -167,10 +177,10 @@ class Augmentor:
         # The random scaling factor is randomly chosen from (1.0 - 0.15, 1.0 + 0.15) along each axis.
 
         rand_affine = RandAffined(
-            keys=["image", "label"],
+            keys=["image", "mask"],
             mode=("bilinear", "nearest"),
             prob=1.0,
-            spatial_size=spatial_size,
+            spatial_size=image_mask['image'].shape[1:],
             translate_range=(40, 40, 2),
             rotate_range=(np.pi / 36, np.pi / 36, np.pi / 4),
             scale_range=(0.15, 0.15, 0.15),
@@ -242,7 +252,7 @@ class Augmentor:
         return self.add_channel(image_mask)
 
 
-aug = Augmentor()
+aug = Augmentor(images_only=False)
 for image_mask_path in tqdm(aug.data):
     image_mask = aug.load_image_mask(image_mask_path)
 
@@ -251,25 +261,21 @@ for image_mask_path in tqdm(aug.data):
         aug.save_image_mask(normalized, 'normalized_1.5x1.5x1.5')
 
     if config['rotate']:
-        rotated = aug.random_rotation(image_mask, display_image=False, display_mask=False)
+        rotated = aug.random_rotation(image_mask)
         aug.save_image_mask(rotated, 'norm_rotated')
 
     if config['translate']:
-        translated = aug.random_translation(image_mask, display_image=False, display_mask=False)
+        translated = aug.random_translation(image_mask)
         aug.save_image_mask(translated, 'norm_translated')
 
     if config['elastic_deform']:
-        elastic_deformed = aug.random_elastic_deformation(image_mask, display_image=False, display_mask=False)
+        elastic_deformed = aug.random_elastic_deformation(image_mask)
         aug.save_image_mask(elastic_deformed, 'norm_elastic_deformed')
 
     if config['reorient']:
-        reoriented = aug.reorient_axes(image_mask, display_image=False, display_mask=False)
-        aug.save_image_mask(reoriented, 'reoriented')
+        reoriented = aug.reorient_axes(image_mask)
+        aug.save_image_mask(reoriented, 'norm_reoriented')
 
     if config['random_affine']:
-        _, x, y, z = image_mask['image'].shape
-        affine_transformation = aug.random_affine_transformation(image_mask,
-                                                                 spatial_size=(x + 40, y + 40, z + 40),
-                                                                 display_image=False,
-                                                                 display_mask=False)
-        aug.save_image_mask(affine_transformation, 'affine_transformation')
+        affine_transformation = aug.random_affine_transformation(image_mask)
+        aug.save_image_mask(affine_transformation, 'norm_affine_transformation')

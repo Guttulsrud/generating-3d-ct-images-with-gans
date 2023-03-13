@@ -54,10 +54,11 @@ def main():
     fold = config['fold']
     num_class = config['num_class']
     lambda_class = config['lambda_class']
+    shuffle = config['shuffle']
 
     trainset = Volume_Dataset(data_dir=data_dir, fold=fold, num_class=num_class)
     train_loader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, drop_last=True,
-                                               shuffle=False, num_workers=workers)
+                                               shuffle=shuffle, num_workers=workers)
     gen_load = inf_train_gen(train_loader)
 
     if img_size == 256:
@@ -141,7 +142,8 @@ def main():
 
     start_time = time.time()
     for iteration in range(continue_iter, num_iter):
-
+        print("Iteration: ", iteration)
+        exit()
         ###############################################
         # Train Discriminator (D^H and D^L)
         ###############################################

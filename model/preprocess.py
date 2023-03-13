@@ -77,6 +77,9 @@ def batch_resize(batch_idx, img_list):
         # preprocessed images are saved in numpy arrays
         np.save(OUTPUT_DATA_DIR + imgname.split('\\')[-1] + ".npy", img)
 
+        # delete nii file after saving npy file
+        os.remove(INPUT_DATA_DIR + imgname.split('\\')[-1])
+
 
 if __name__ == '__main__':
     if not os.path.exists(OUTPUT_DATA_DIR):
