@@ -1,9 +1,11 @@
 input_dir: '../data/augmented/normalized_1.5x1.5x1.5'
 output_dir: '../data/augmented'
+images_only: True
 normalize: False
-reorient: True
-normalize_reorient: False
-random_affine: True
-rotate: True
-translate: True
-elastic_deform: True
+reorient: False
+random_affine: False
+rotate: False
+translate: False
+elastic_deform: False
+flip: False
+additive_gaussian_noise: True
