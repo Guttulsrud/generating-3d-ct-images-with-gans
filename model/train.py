@@ -4,14 +4,8 @@
 # Hierarchical Amortized GAN for 3D High Resolution Medical Image Synthesis
 # https://ieeexplore.ieee.org/abstract/document/9770375
 import time
-
 import numpy as np
 import torch
-import os
-import json
-import argparse
-
-import yaml
 from torch import nn
 from torch import optim
 from torch.nn import functional as F
@@ -19,9 +13,11 @@ from tensorboardX import SummaryWriter
 import nibabel as nib
 from nilearn import plotting
 
-from utils import trim_state_dict_name, inf_train_gen
-from volume_dataset import Volume_Dataset
+from model.utils import inf_train_gen, trim_state_dict_name
+from model.volume_dataset import Volume_Dataset
+from utils.get_model import get_model
 import matplotlib as mpl
+
 mpl.use('TkAgg')
 import matplotlib.pyplot as plt
 
@@ -30,11 +26,21 @@ torch.cuda.manual_seed_all(0)
 torch.backends.cudnn.benchmark = True
 
 
-def main():
+def print_progress(start_time, iteration, num_iter, d_real_loss, d_fake_loss, g_loss, sub_e_loss, e_loss):
+    end_time = time.time()
+    runtime_seconds = end_time - start_time
+    runtime_minutes, runtime_seconds = divmod(runtime_seconds, 60)
+    runtime_hours, runtime_minutes = divmod(runtime_minutes, 60)
+    print('[{}/{}]'.format(iteration, num_iter),
+          'D_real: {:<8.3}'.format(d_real_loss.item()),
+          'D_fake: {:<8.3}'.format(d_fake_loss.item()),
+          'G_fake: {:<8.3}'.format(g_loss.item()),
+          'Sub_E: {:<8.3}'.format(sub_e_loss.item()),
+          'E: {:<8.3}'.format(e_loss.item()),
+          f"Elapsed: {int(runtime_hours)}h {int(runtime_minutes)}m {int(runtime_seconds)}s")
 
-    with open('config.yaml', 'r') as f:
-        config = yaml.safe_load(f)
 
+def train_network(config, logger):
     batch_size = config['batch_size']
     workers = config['workers']
     img_size = config['img_size']
@@ -61,25 +67,16 @@ def main():
                                                shuffle=shuffle, num_workers=workers)
     gen_load = inf_train_gen(train_loader)
 
-    if img_size == 256:
-        from models.Model_HA_GAN_256 import Discriminator, Generator, Encoder, Sub_Encoder
-    elif img_size == 128:
-        from models.Model_HA_GAN_128 import Discriminator, Generator, Encoder, Sub_Encoder
-    else:
-        raise NotImplmentedError
-
-    G = Generator(mode='train', latent_dim=latent_dim, num_class=num_class).cuda()
-    D = Discriminator(num_class=num_class).cuda()
-    E = Encoder().cuda()
-    Sub_E = Sub_Encoder(latent_dim=latent_dim).cuda()
+    G, D, E, Sub_E, = get_model(img_size=img_size,
+                                latent_dim=latent_dim,
+                                num_class=num_class)
 
     g_optimizer = optim.Adam(G.parameters(), lr=lr_g, betas=(0.0, 0.999), eps=1e-8)
     d_optimizer = optim.Adam(D.parameters(), lr=lr_d, betas=(0.0, 0.999), eps=1e-8)
     e_optimizer = optim.Adam(E.parameters(), lr=lr_e, betas=(0.0, 0.999), eps=1e-8)
     sub_e_optimizer = optim.Adam(Sub_E.parameters(), lr=lr_e, betas=(0.0, 0.999), eps=1e-8)
 
-    base_path = f'../logs/{exp_name}'
-    path = f'{base_path}/checkpoint'
+    path = f'{logger.path}/checkpoint'
 
     # Resume from a previous checkpoint
     if continue_iter != 0:
@@ -116,8 +113,8 @@ def main():
     E.train()
     Sub_E.train()
 
-    real_y = torch.ones((batch_size, 1)).cuda()
-    fake_y = torch.zeros((batch_size, 1)).cuda()
+    # real_y = torch.ones((batch_size, 1)).cuda()
+    # fake_y = torch.zeros((batch_size, 1)).cuda()
 
     loss_f = nn.BCEWithLogitsLoss()
     loss_mse = nn.L1Loss()
@@ -126,10 +123,6 @@ def main():
     real_labels = torch.ones((batch_size, 1)).cuda()
 
     summary_writer = SummaryWriter(path)
-
-    # save configurations to a dictionary
-    with open(os.path.join(base_path, 'config.json'), 'w') as f:
-        json.dump(config, f, indent=2)
 
     for p in D.parameters():
         p.requires_grad = False
@@ -142,8 +135,7 @@ def main():
 
     start_time = time.time()
     for iteration in range(continue_iter, num_iter):
-        print("Iteration: ", iteration)
-        exit()
+
         ###############################################
         # Train Discriminator (D^H and D^L)
         ###############################################
@@ -276,21 +268,8 @@ def main():
             summary_writer.add_scalar('E', e_loss.item(), iteration)
             summary_writer.add_scalar('Sub_E', sub_e_loss.item(), iteration)
 
-        ###############################################
-        # Visualization with Tensorboard
-        ###############################################
         if iteration % log_iter_print == 0:
-            end_time = time.time()
-            runtime_seconds = end_time - start_time
-            runtime_minutes, runtime_seconds = divmod(runtime_seconds, 60)
-            runtime_hours, runtime_minutes = divmod(runtime_minutes, 60)
-            print('[{}/{}]'.format(iteration, num_iter),
-                  'D_real: {:<8.3}'.format(d_real_loss.item()),
-                  'D_fake: {:<8.3}'.format(d_fake_loss.item()),
-                  'G_fake: {:<8.3}'.format(g_loss.item()),
-                  'Sub_E: {:<8.3}'.format(sub_e_loss.item()),
-                  'E: {:<8.3}'.format(e_loss.item()),
-            f"Elapsed: {int(runtime_hours)}h {int(runtime_minutes)}m {int(runtime_seconds)}s")
+            print_progress(start_time, iteration, num_iter, d_real_loss, d_fake_loss, g_loss, sub_e_loss, e_loss)
 
             featmask = np.squeeze((0.5 * real_images_crop[0] + 0.5).data.cpu().numpy())
             featmask = nib.Nifti1Image(featmask.transpose((2, 1, 0)), affine=np.eye(4))
@@ -325,7 +304,3 @@ def main():
                        f'{path}/E_iter{str(iteration + 1)}.pth')
             torch.save({'model': Sub_E.state_dict(), 'optimizer': sub_e_optimizer.state_dict()},
                        f'{path}/Sub_E_iter{str(iteration + 1)}.pth')
-
-
-if __name__ == '__main__':
-    main()

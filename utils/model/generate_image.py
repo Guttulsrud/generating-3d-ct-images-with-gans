@@ -3,9 +3,8 @@ from model.utils import trim_state_dict_name
 from utils.get_model import get_model
 
 
-def generate_image(model_path, rescale_intensity=True):
+def generate_image(model_path, save_step, rescale_intensity=True):
     batch_size = 1
-    save_step = 80000
     latent_dim = 1024
     img_size = 128
 
