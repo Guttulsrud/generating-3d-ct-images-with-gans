@@ -45,8 +45,8 @@ def train_network(config, logger):
     workers = config['workers']
     img_size = config['img_size']
     num_iter = config['iterations']
-    log_iter = config['log_iter']
-    log_iter_print = config['log_iter_print']
+    tensorboard_log_interval = config['tensorboard_log_interval']
+    print_log_interval = config['print_log_interval']
     continue_iter = config['continue_iter']
     start_model_saving = config['start_model_saving']
     save_model_interval = config['save_model_interval']
@@ -259,17 +259,14 @@ def train_network(config, logger):
         sub_e_loss.backward()
         sub_e_optimizer.step()
 
-        # Logging
-        if iteration % log_iter == 0:
+        # Tensorboard logging
+        if iteration % tensorboard_log_interval == 0:
             summary_writer.add_scalar('D', d_loss.item(), iteration)
             summary_writer.add_scalar('D_real', d_real_loss.item(), iteration)
             summary_writer.add_scalar('D_fake', d_fake_loss.item(), iteration)
             summary_writer.add_scalar('G_fake', g_loss.item(), iteration)
             summary_writer.add_scalar('E', e_loss.item(), iteration)
             summary_writer.add_scalar('Sub_E', sub_e_loss.item(), iteration)
-
-        if iteration % log_iter_print == 0:
-            print_progress(start_time, iteration, num_iter, d_real_loss, d_fake_loss, g_loss, sub_e_loss, e_loss)
 
             featmask = np.squeeze((0.5 * real_images_crop[0] + 0.5).data.cpu().numpy())
             featmask = nib.Nifti1Image(featmask.transpose((2, 1, 0)), affine=np.eye(4))
@@ -294,6 +291,9 @@ def train_network(config, logger):
                               cut_coords=(img_size // 2, img_size // 2, img_size // 16), figure=fig,
                               draw_cross=False, cmap="gray")
             summary_writer.add_figure('Fake', fig, iteration, close=True)
+
+        if iteration % print_log_interval == 0:
+            print_progress(start_time, iteration, num_iter, d_real_loss, d_fake_loss, g_loss, sub_e_loss, e_loss)
 
         if iteration > start_model_saving and (iteration + 1) % save_model_interval == 0:
             torch.save({'model': G.state_dict(), 'optimizer': g_optimizer.state_dict()},
