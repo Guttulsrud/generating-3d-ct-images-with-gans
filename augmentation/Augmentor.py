@@ -14,7 +14,7 @@ from monai.transforms import (
     LoadImaged,
     Orientationd,
     Spacingd,
-    RandAffined, Rand3DElasticd, LoadImage, FlipD
+    RandAffined, Rand3DElasticd, LoadImage, FlipD, SignalRandAddGaussianNoise, GaussianSmoothd
 )
 import numpy as np
 import matplotlib as mpl
@@ -175,6 +175,15 @@ class Augmentor:
             self.display_image(image, title='Normalized Voxels', display_image=display_image, display_mask=display_mask)
         return image
 
+    def additive_gaussian_noise(self, image, display_image=False, display_mask=False):
+        noise_transform = GaussianSmoothd(keys=self.keys, sigma=(2, 2, 2))
+        image = noise_transform(image)
+
+        if display_image or display_mask:
+            self.display_image(image, title='Additive Gaussian Noise', display_image=display_image,
+                               display_mask=display_mask)
+        return image
+
     def rotate(self, image, display_image=False, display_mask=False):
         # Define the rotation range
         min_angle = -20  # degrees
@@ -311,7 +320,11 @@ for index, image_mask_path in enumerate(aug.data):
     data = aug.load_image_mask(image_mask_path)
 
     remainder = len(aug.data) - index
-    aug.display_image(data, display_image=True, display_mask=False)
+
+    if config['additive_gaussian_noise']:
+        normalized = aug.additive_gaussian_noise(data, display_image=True)
+        aug.save_image_mask(normalized, 'additive_gaussian_noise')
+        exit()
 
     if config['flip']:
         normalized = aug.flip(data, spatial_axis=1, display_image=True)
