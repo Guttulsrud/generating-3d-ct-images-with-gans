@@ -1,4 +1,5 @@
 import os
+import time
 
 from tqdm import tqdm
 
@@ -13,7 +14,7 @@ from monai.transforms import (
     LoadImaged,
     Orientationd,
     Spacingd,
-    RandAffined, Rand3DElasticd, LoadImage
+    RandAffined, Rand3DElasticd, LoadImage, FlipD
 )
 import numpy as np
 import matplotlib as mpl
@@ -27,11 +28,26 @@ with open('augmentations.yaml', 'r') as f:
     config = yaml.safe_load(f)
 
 
+def init():
+    start_time_total = time.time()
+
+    print('Augmenting images with: ', end='')
+    for key, value in config.items():
+        if key in ['images_only', 'input_dir', 'output_dir'] or value is False:
+            continue
+        print(f'{key.capitalize()}, ', end='')
+    print('')
+    return start_time_total
+
+
 class Augmentor:
-    def __init__(self, images_only=False):
+    def __init__(self):
 
         data_dir = config['input_dir']
         self.output_dir = config['output_dir']
+        self.images_only = config['images_only']
+        self.keys = ['image'] if self.images_only else ['image', 'mask']
+        self.mode = 'bilinear' if self.images_only else ['bilinear', 'nearest']
 
         if not os.path.exists(self.output_dir):
             os.mkdir(self.output_dir)
@@ -43,12 +59,12 @@ class Augmentor:
             train_images = sorted(
                 glob.glob(os.path.join(data_dir, "images", "*.nii.gz")))
 
-        if images_only:
+        if self.images_only:
             self.data = [
                 {"image": image_name}
                 for image_name in train_images
             ]
-            self.loader = LoadImaged(keys="image", image_only=True, allow_missing_keys=True)
+            self.loader = LoadImaged(keys="image", image_only=True)
             return
 
         train_labels = sorted(
@@ -90,19 +106,23 @@ class Augmentor:
         if not title:
             title = "Original Image"
 
-        image, mask = data_dict["image"], data_dict["mask"]
-
-        if len(image.shape) > 3:
-            image = image[0, :, :]
-            mask = mask[0, :, :]
+        if self.images_only:
+            image = data_dict["image"]
+            if len(image.shape) > 3:
+                image = image[0, :, :]
+        else:
+            image, mask = data_dict["image"], data_dict["mask"]
+            if len(image.shape) > 3:
+                image = image[0, :, :]
+                mask = mask[0, :, :]
 
         if display_image:
             self.create_plot(image, colormap='gray', title=title, mask=False)
-        if display_mask:
+        if display_mask and not self.images_only:
             self.create_plot(mask, title=title)
 
     def add_channel(self, image):
-        add_channel = EnsureChannelFirstd(keys=["image", "mask"])
+        add_channel = EnsureChannelFirstd(keys=self.keys)
         return add_channel(image)
 
     def reorient_axes(self, image, display_image=False, display_mask=False):
@@ -110,12 +130,34 @@ class Augmentor:
         # The default axis labels are Left (L), Right (R), Posterior (P), Anterior (A), Inferior (I), Superior (S).
         # The following transform is created to reorientate the volumes to have 'Posterior, Left,
         # Inferior' (PLI) orientation:
-        orientation = Orientationd(keys=["image", "mask"], axcodes="PLI")
+        orientation = Orientationd(keys=self.keys, axcodes="PLI")
 
         image = orientation(image)
 
         if display_image or display_mask:
             self.display_image(image, title='Reoriented Axes', display_image=display_image, display_mask=display_mask)
+        return image
+
+    def flip(self, image, spatial_axis, display_image=False, display_mask=False):
+        # For CT images of the neck and head, flipping along the x-axis
+        # (left-right flipping) may not be the best choice because the
+        # orientation of the brain and other structures in the head is
+        # generally consistent and flipping the image could result in
+        # anatomically incorrect images.
+
+        # Instead, flipping along the y-axis (anterior-posterior flipping)
+        # or z-axis (head-foot flipping) may be more appropriate, depending
+        # on the orientation of the neck and head in the CT images. If the
+        # images are acquired with the head in a supine position, flipping
+        # along the z-axis (head-foot flipping) may be a good choice to
+        # simulate the prone position, which could result in different
+        # views of the neck and head structures.
+        spacing = FlipD(keys=self.keys, spatial_axis=spatial_axis)
+
+        image = spacing(image)
+
+        if display_image or display_mask:
+            self.display_image(image, title='Flipped', display_image=display_image, display_mask=display_mask)
         return image
 
     def normalize(self, image, voxels, display_image=False, display_mask=False):
@@ -124,7 +166,8 @@ class Augmentor:
 
         # The transform is set to read the original voxel size information from `data_dict['image.affine']`,
         # which is from the corresponding NIfTI file, loaded earlier by `LoadImaged`.
-        spacing = Spacingd(keys=["image", "mask"], pixdim=voxels, mode=("bilinear", "nearest"))
+
+        spacing = Spacingd(keys=self.keys, pixdim=voxels, mode=self.mode)
 
         image = spacing(image)
 
@@ -132,15 +175,23 @@ class Augmentor:
             self.display_image(image, title='Normalized Voxels', display_image=display_image, display_mask=display_mask)
         return image
 
-    def random_rotation(self, image, display_image=False, display_mask=False):
+    def rotate(self, image, display_image=False, display_mask=False):
+        # Define the rotation range
+        min_angle = -20  # degrees
+        max_angle = 20  # degrees
+        rotate_range = (min_angle * np.pi / 180, max_angle * np.pi / 180, None)
+
+        # Create the RandAffined transform with rotation only
         rand_affine = RandAffined(
-            keys=["image", "mask"],
-            mode=("bilinear", "nearest"),
-            spatial_size=image_mask['image'].shape[1:],
-            rotate_range=(np.pi / 36, np.pi / 36, np.pi / 4),
+            keys=self.keys,
+            mode=self.mode,
+            prob=1.0,
+            spatial_size=image['image'].shape[1:],
+            translate_range=None,
+            rotate_range=rotate_range,
+            scale_range=None,
             padding_mode="border",
         )
-
         image = rand_affine(image)
 
         if display_image or display_mask:
@@ -148,12 +199,12 @@ class Augmentor:
                                display_image=display_image)
         return image
 
-    def random_translation(self, image, display_image=False, display_mask=False):
+    def random_translation(self, image, translate_range, display_image=False, display_mask=False):
         rand_affine = RandAffined(
-            keys=["image", "mask"],
-            mode=("bilinear", "nearest"),
-            spatial_size=image_mask['image'].shape[1:],
-            translate_range=(40, 40, 10),
+            keys=self.keys,
+            mode=self.mode,
+            spatial_size=image['image'].shape[1:],
+            translate_range=translate_range,
             padding_mode="border",
         )
 
@@ -177,10 +228,10 @@ class Augmentor:
         # The random scaling factor is randomly chosen from (1.0 - 0.15, 1.0 + 0.15) along each axis.
 
         rand_affine = RandAffined(
-            keys=["image", "mask"],
-            mode=("bilinear", "nearest"),
+            keys=self.keys,
+            mode=self.mode,
             prob=1.0,
-            spatial_size=image_mask['image'].shape[1:],
+            spatial_size=image['image'].shape[1:],
             translate_range=(40, 40, 2),
             rotate_range=(np.pi / 36, np.pi / 36, np.pi / 4),
             scale_range=(0.15, 0.15, 0.15),
@@ -196,12 +247,12 @@ class Augmentor:
 
     def random_elastic_deformation(self, image, display_image=False, display_mask=False):
         rand_elastic = Rand3DElasticd(
-            keys=["image", "mask"],
-            mode=("bilinear", "nearest"),
+            keys=self.keys,
+            mode=self.mode,
             prob=1.0,
             sigma_range=(5, 8),
             magnitude_range=(100, 200),
-            spatial_size=image_mask['image'].shape[1:],
+            spatial_size=image['image'].shape[1:],
             translate_range=(50, 50, 2),
             rotate_range=(np.pi / 36, np.pi / 36, np.pi),
             scale_range=(0.15, 0.15, 0.15),
@@ -226,15 +277,8 @@ class Augmentor:
         if not os.path.exists(image_path):
             os.makedirs(image_path)
 
-        if not os.path.exists(mask_path):
-            os.makedirs(mask_path)
-
         image_affine = data_dict['image'].affine
-        mask_affine = data_dict['mask'].affine
-
         image_name = data_dict['image'].meta['filename_or_obj'].split('\\')[-1]
-        mask_name = data_dict['mask'].meta['filename_or_obj'].split('\\')[-1]
-
         image_name = image_name.replace('__CT', '')
 
         writer = NibabelWriter()
@@ -242,40 +286,68 @@ class Augmentor:
         writer.set_metadata({"affine": image_affine, "original_affine": image_affine})
         writer.write(f'{image_path}/{image_name}', verbose=False)
 
-        writer = NibabelWriter()
-        writer.set_data_array(data_dict['mask'][0, :, :, :], channel_dim=None)
-        writer.set_metadata({"affine": mask_affine, "original_affine": image_affine})
-        writer.write(f'{mask_path}/{mask_name}', verbose=False)
+        if not self.images_only:
+            if not os.path.exists(mask_path):
+                os.makedirs(mask_path)
+
+            mask_affine = data_dict['mask'].affine
+            mask_name = data_dict['mask'].meta['filename_or_obj'].split('\\')[-1]
+            writer = NibabelWriter()
+            writer.set_data_array(data_dict['mask'][0, :, :, :], channel_dim=None)
+            writer.set_metadata({"affine": mask_affine, "original_affine": image_affine})
+            writer.write(f'{mask_path}/{mask_name}', verbose=False)
 
     def load_image_mask(self, image_mask):
         image_mask = self.loader(image_mask)
         return self.add_channel(image_mask)
 
 
-aug = Augmentor(images_only=False)
-for image_mask_path in tqdm(aug.data):
-    image_mask = aug.load_image_mask(image_mask_path)
+aug = Augmentor()
+start_time_total = init()
 
+for index, image_mask_path in enumerate(aug.data):
+    print(f'[{index + 1}/{len(aug.data)}]', end='')
+    start_time = time.time()
+    data = aug.load_image_mask(image_mask_path)
+
+    remainder = len(aug.data) - index
+    aug.display_image(data, display_image=True, display_mask=False)
+
+    if config['flip']:
+        normalized = aug.flip(data, spatial_axis=1, display_image=True)
+        aug.save_image_mask(normalized, 'flipped_1')
+        exit()
     if config['normalize']:
-        normalized = aug.normalize(image_mask, display_image=False, display_mask=False, voxels=(1.5, 1.5, 1.5))
+        normalized = aug.normalize(data, voxels=(1.5, 1.5, 1.5))
         aug.save_image_mask(normalized, 'normalized_1.5x1.5x1.5')
 
     if config['rotate']:
-        rotated = aug.random_rotation(image_mask)
+        rotated = aug.rotate(data, display_image=True)
         aug.save_image_mask(rotated, 'norm_rotated')
 
     if config['translate']:
-        translated = aug.random_translation(image_mask)
+        translated = aug.random_translation(data, translate_range=(40, 40, 2), display_image=True)
         aug.save_image_mask(translated, 'norm_translated')
 
     if config['elastic_deform']:
-        elastic_deformed = aug.random_elastic_deformation(image_mask)
+        elastic_deformed = aug.random_elastic_deformation(data)
         aug.save_image_mask(elastic_deformed, 'norm_elastic_deformed')
 
     if config['reorient']:
-        reoriented = aug.reorient_axes(image_mask)
+        reoriented = aug.reorient_axes(data)
         aug.save_image_mask(reoriented, 'norm_reoriented')
 
     if config['random_affine']:
-        affine_transformation = aug.random_affine_transformation(image_mask)
+        affine_transformation = aug.random_affine_transformation(data)
         aug.save_image_mask(affine_transformation, 'norm_affine_transformation')
+
+    end_time = time.time()
+    runtime_seconds = end_time - start_time_total
+    runtime_minutes, runtime_seconds = divmod(runtime_seconds, 60)
+    runtime_hours, runtime_minutes = divmod(runtime_minutes, 60)
+    print(
+        f' [It: {int(end_time - start_time)}s]'
+        f' [Total: {float(runtime_hours)}h,'
+        f' {int(runtime_minutes)}m,'
+        f' {int(runtime_seconds)}s]'
+        f' [Remaining: {float(runtime_minutes * remainder / 60)}h]')
