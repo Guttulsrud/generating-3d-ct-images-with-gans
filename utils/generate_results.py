@@ -14,7 +14,7 @@ import pandas as pd
 import seaborn as sns
 from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
 
-experiment_name = '2.5k dataset reoriented'
+experiment_name = 'OG_normalized_3x3x3'
 try:
     file_path = glob.glob(f'../saved_models/{experiment_name}/checkpoint/*events*')[0]
 except Exception:

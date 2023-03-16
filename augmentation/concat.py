@@ -58,3 +58,14 @@ for image, mask in tqdm(zip(train_images, train_labels)):
 
     concat_path = mask.split('\masks\\')[-1].replace('__CT', '')
     nib.save(new_nifti_img, f'{output_dir}/{concat_path}')
+
+# broken images:
+# CHUP-008__CT,
+# CHUP-020__CT,
+# CHUP-036__CT
+# CHUP-068__CT
+# CHUS-009__CT
+# CHUS-086__CT
+# MDA-031__CT
+# MDA-108__CT
+# MDA-125__CT

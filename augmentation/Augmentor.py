@@ -15,7 +15,7 @@ from monai.transforms import (
     LoadImaged,
     Orientationd,
     Spacingd,
-    RandAffined, Rand3DElasticd, LoadImage, FlipD, SignalRandAddGaussianNoise, GaussianSmoothd, RandRotate90d
+    RandAffined, Rand3DElasticd, FlipD, GaussianSmoothd, RandRotate90d
 )
 import numpy as np
 import matplotlib as mpl
@@ -25,25 +25,10 @@ import matplotlib.pyplot as plt
 import os
 import glob
 
-with open('augmentations.yaml', 'r') as f:
-    config = yaml.safe_load(f)
-
-
-def init():
-    start_time_total = time.time()
-
-    print('Augmenting images with: ', end='')
-    for key, value in config.items():
-        if key in ['images_only', 'input_dir', 'output_dir'] or value is False:
-            continue
-        print(f'{key.capitalize()}, ', end='')
-    print('')
-    return start_time_total
-
 
 class Augmentor:
-    def __init__(self):
-
+    def __init__(self, config):
+        self.config = config
         data_dir = config['input_dir']
         self.output_dir = config['output_dir']
         self.images_only = config['images_only']
@@ -76,6 +61,17 @@ class Augmentor:
             for image_name, label_name in zip(train_images, train_labels)
         ]
         self.loader = LoadImaged(keys=("image", "mask"), image_only=False)
+
+    def init(self):
+        start_time_total = time.time()
+
+        print('Augmenting images with: ', end='')
+        for key, value in self.config.items():
+            if key in ['images_only', 'input_dir', 'output_dir'] or value is False:
+                continue
+            print(f'{key.capitalize()}, ', end='')
+        print('')
+        return start_time_total
 
     @staticmethod
     def create_plot(image, title, mask=True, colormap=None):
@@ -323,58 +319,3 @@ class Augmentor:
     def load_image_mask(self, image_mask):
         image_mask = self.loader(image_mask)
         return self.add_channel(image_mask)
-
-
-aug = Augmentor()
-start_time_total = init()
-
-for index, image_mask_path in enumerate(aug.data):
-    print(f'[{index + 1}/{len(aug.data)}]', end='')
-    start_time = time.time()
-    data = aug.load_image_mask(image_mask_path)
-
-    if config['normalize']:
-        normalized = aug.normalize(data, voxels=(1.5, 1.5, 1.5))
-        # aug.save_image_mask(normalized, 'normalized_1.5x1.5x1.5')
-
-    if config['smooth_gaussian']:
-        smoothed = aug.smooth_gaussian(normalized)
-        aug.save_image_mask(smoothed, 'norm_smooth_gaussian')
-
-    if config['rotate90']:
-        rotated = aug.rotate90(normalized)
-        aug.save_image_mask(rotated, 'norm_rotate90')
-
-    if config['flip']:
-        flipped = aug.flip(normalized, spatial_axis=1)
-        aug.save_image_mask(flipped, 'norm_flipped_y')
-
-    if config['rotate']:
-        rotated = aug.rotate(data, display_image=True)
-        aug.save_image_mask(rotated, 'norm_rotated')
-
-    if config['translate']:
-        translated = aug.random_translation(data, translate_range=(40, 40, 2), display_image=True)
-        aug.save_image_mask(translated, 'norm_translated')
-
-    if config['elastic_deform']:
-        elastic_deformed = aug.random_elastic_deformation(data)
-        aug.save_image_mask(elastic_deformed, 'norm_elastic_deformed')
-
-    if config['reorient']:
-        reoriented = aug.reorient_axes(data)
-        aug.save_image_mask(reoriented, 'norm_reoriented')
-
-    if config['random_affine']:
-        affine_transformation = aug.random_affine_transformation(data)
-        aug.save_image_mask(affine_transformation, 'norm_affine_transformation')
-
-    end_time = time.time()
-    runtime_seconds = end_time - start_time_total
-    runtime_minutes, runtime_seconds = divmod(runtime_seconds, 60)
-    runtime_hours, runtime_minutes = divmod(runtime_minutes, 60)
-    print(
-        f' [It: {int(end_time - start_time)}s]'
-        f' [Total: {float(runtime_hours)}h,'
-        f' {int(runtime_minutes)}m,'
-        f' {int(runtime_seconds)}s]')

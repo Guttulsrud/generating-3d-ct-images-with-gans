@@ -1,4 +1,4 @@
-input_dir: '../data/original'
+input_dir: '../data/concatenated'
 output_dir: '../data/augmented'
 images_only: True
 normalize: True
@@ -7,6 +7,6 @@ random_affine: False
 rotate: False
 translate: False
 elastic_deform: False
-flip: True
-smooth_gaussian: True
-rotate90: True
+flip: False
+smooth_gaussian: False
+rotate90: False

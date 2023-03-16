@@ -14,15 +14,15 @@ from visualization.display_image import display_image
 NUM_JOBS = 8
 #  resized output size, can be 128 or 256
 IMG_SIZE = 128
-INPUT_DATA_DIR = '../data/augmented/normalized_1.5x1.5x1.5/images/'
-OUTPUT_DATA_DIR = '../data/OG_normalized1.5/'
+INPUT_DATA_DIR = '../data/augmented/concat_normalized2.5/images/'
+OUTPUT_DATA_DIR = '../data/npy/concatenated/'
 # the intensity range is clipped with the two thresholds, this default is used for our CT images, please adapt to your own dataset
 LOW_THRESHOLD = -1024
 HIGH_THRESHOLD = 600
 # suffix (ext.) of input images
 SUFFIX = '.nii.gz'
 # whether or not to trim blank axial slices, recommend to set as True
-TRIM_BLANK_SLICES = True
+TRIM_BLANK_SLICES = False
 
 
 def resize_img(img):
