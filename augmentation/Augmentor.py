@@ -4,6 +4,7 @@ import time
 from tqdm import tqdm
 
 from visualization.display_image import display_image
+import random
 
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 import math
@@ -14,7 +15,7 @@ from monai.transforms import (
     LoadImaged,
     Orientationd,
     Spacingd,
-    RandAffined, Rand3DElasticd, LoadImage, FlipD, SignalRandAddGaussianNoise, GaussianSmoothd
+    RandAffined, Rand3DElasticd, LoadImage, FlipD, SignalRandAddGaussianNoise, GaussianSmoothd, RandRotate90d
 )
 import numpy as np
 import matplotlib as mpl
@@ -175,12 +176,25 @@ class Augmentor:
             self.display_image(image, title='Normalized Voxels', display_image=display_image, display_mask=display_mask)
         return image
 
-    def additive_gaussian_noise(self, image, display_image=False, display_mask=False):
-        noise_transform = GaussianSmoothd(keys=self.keys, sigma=(2, 2, 2))
+    def smooth_gaussian(self, image, display_image=False, display_mask=False):
+
+        sigma = random.choice([1.5, 2.5, 3.5])
+
+        noise_transform = GaussianSmoothd(keys=self.keys, sigma=(sigma, sigma, sigma))
         image = noise_transform(image)
 
         if display_image or display_mask:
-            self.display_image(image, title='Additive Gaussian Noise', display_image=display_image,
+            self.display_image(image, title=f'Additive Gaussian Noise sigma {sigma}', display_image=display_image,
+                               display_mask=display_mask)
+        return image
+
+    def rotate90(self, image, display_image=False, display_mask=False):
+
+        noise_transform = RandRotate90d(keys=self.keys, prob=1.0, spatial_axes=(0, 1))
+        image = noise_transform(image)
+
+        if display_image or display_mask:
+            self.display_image(image, title=f'Random rotate 90', display_image=display_image,
                                display_mask=display_mask)
         return image
 
@@ -319,20 +333,21 @@ for index, image_mask_path in enumerate(aug.data):
     start_time = time.time()
     data = aug.load_image_mask(image_mask_path)
 
-    remainder = len(aug.data) - index
-
-    if config['additive_gaussian_noise']:
-        normalized = aug.additive_gaussian_noise(data, display_image=True)
-        aug.save_image_mask(normalized, 'additive_gaussian_noise')
-        exit()
-
-    if config['flip']:
-        normalized = aug.flip(data, spatial_axis=1, display_image=True)
-        aug.save_image_mask(normalized, 'flipped_1')
-        exit()
     if config['normalize']:
         normalized = aug.normalize(data, voxels=(1.5, 1.5, 1.5))
-        aug.save_image_mask(normalized, 'normalized_1.5x1.5x1.5')
+        # aug.save_image_mask(normalized, 'normalized_1.5x1.5x1.5')
+
+    if config['smooth_gaussian']:
+        smoothed = aug.smooth_gaussian(normalized)
+        aug.save_image_mask(smoothed, 'norm_smooth_gaussian')
+
+    if config['rotate90']:
+        rotated = aug.rotate90(normalized)
+        aug.save_image_mask(rotated, 'norm_rotate90')
+
+    if config['flip']:
+        flipped = aug.flip(normalized, spatial_axis=1)
+        aug.save_image_mask(flipped, 'norm_flipped_y')
 
     if config['rotate']:
         rotated = aug.rotate(data, display_image=True)
@@ -362,5 +377,4 @@ for index, image_mask_path in enumerate(aug.data):
         f' [It: {int(end_time - start_time)}s]'
         f' [Total: {float(runtime_hours)}h,'
         f' {int(runtime_minutes)}m,'
-        f' {int(runtime_seconds)}s]'
-        f' [Remaining: {float(runtime_minutes * remainder / 60)}h]')
+        f' {int(runtime_seconds)}s]')

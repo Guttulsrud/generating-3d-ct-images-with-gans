@@ -7,5 +7,6 @@ random_affine: False
 rotate: False
 translate: False
 elastic_deform: False
-flip: False
-additive_gaussian_noise: False
+flip: True
+smooth_gaussian: True
+rotate90: True

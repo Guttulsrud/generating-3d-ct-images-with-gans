@@ -1,11 +1,12 @@
 import math
 
 import matplotlib as mpl
+
 mpl.use('TkAgg')
 from matplotlib import pyplot as plt
 
 
-def display_image(data, colormap='gray', n_slices=False):
+def display_image(data, colormap='gray', n_slices=False, show=True, return_figure=False):
     if not n_slices:
         n_slices = data.shape[2]
 
@@ -22,4 +23,7 @@ def display_image(data, colormap='gray', n_slices=False):
             ax.set_visible(False)
 
     plt.tight_layout()
-    plt.show()
+    if show:
+        plt.show()
+    if return_figure:
+        return fig
