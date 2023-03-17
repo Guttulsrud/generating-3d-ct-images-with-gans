@@ -1,0 +1,70 @@
+import glob
+import os
+
+import numpy as np
+import pandas as pd
+from tqdm import tqdm
+from utils.model.generate_image import generate_image
+
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+from visualization.display_image import display_image
+import nibabel as nib
+import matplotlib.pyplot as plt
+
+run_search = False
+
+if run_search:
+    numpy_image = False
+    image_paths = glob.glob('data/original/images/*CT.nii.gz')
+    mask_paths = glob.glob('data/original/masks/*.nii.gz')
+    data = []
+    for image_path, mask_path in tqdm(zip(image_paths, mask_paths)):
+        image = nib.load(image_path)
+        image = image.get_fdata()
+        image_min_pixel_value = min([min(x) for x in np.min(image, axis=0)])
+        image_max_pixel_value = max([max(x) for x in np.max(image, axis=0)])
+
+        mask = nib.load(image_path)
+        mask = mask.get_fdata()
+        mask_min_pixel_value = min([min(x) for x in np.min(mask, axis=0)])
+        mask_max_pixel_value = max([max(x) for x in np.max(mask, axis=0)])
+
+        if image_min_pixel_value != mask_min_pixel_value or image_max_pixel_value != mask_max_pixel_value:
+            print('Error')
+            print(image_min_pixel_value, image_max_pixel_value)
+            print(mask_min_pixel_value, mask_max_pixel_value)
+            exit()
+        data.append({'low': image_min_pixel_value, 'high': image_max_pixel_value})
+
+    df = pd.DataFrame(data)
+    df.to_csv('low_high.csv', index=False)
+
+df = pd.read_csv('low_high.csv')
+
+below_5000 = df[df['high'] <= 5000]
+above_5000 = df[df['high'] > 5000]
+
+# print(below_5000['high'].value_counts())
+# print(df['high'].value_counts())
+
+plt.hist(below_5000['high'], bins=10)
+plt.title('Maximum value')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+# plt.show()
+plt.savefig('results/distribution_high.png')
+
+# 28 of 524 images have a max value above 5000
+# 340 of 524 images have max value of 3071, making it most common, next is 2976 with 114 images
+
+# print(df['low'].value_counts())
+plt.hist(df['low'], bins=10)
+plt.title('Minimum value')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+# plt.show()
+plt.savefig('results/distribution_low.png')
+
+# Most common is -2048 with 175, next is -1024 with 152, -3024 with 130
+
+# Conclusion: Use 3071 as max value and -2048 as min value
