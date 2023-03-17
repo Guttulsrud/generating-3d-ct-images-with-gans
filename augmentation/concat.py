@@ -74,7 +74,13 @@ for image, mask in tqdm(zip(train_images, train_labels)):
 
     # Assign the slices from data1 and data2 to concatenated_data using indexing
     concatenated_data[:, :shape1[1], :shape1[2]] = data1
-    concatenated_data[:, :shape2[1], shape1[2]:] = data2
+    try:
+        concatenated_data[:, :shape2[1], shape1[2]:] = data2
+
+    except Exception as e:
+        print(e)
+        print(image)
+        continue
 
     # Update the affine matrix to reflect the concatenation
     new_affine = affine1.copy()
