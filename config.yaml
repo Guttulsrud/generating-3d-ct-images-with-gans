@@ -21,3 +21,16 @@ network:
   encoder_learning_rate: 0.0001
 cluster_enabled: False
 shuffle: True
+augmentation:
+  input_dir: '../data/original'
+  output_dir: '../data/augmented'
+  images_only: False
+  normalize: True
+  reorient: False
+  random_affine: False
+  rotate: False
+  translate: False
+  elastic_deform: False
+  flip: False
+  smooth_gaussian: False
+  rotate90: False

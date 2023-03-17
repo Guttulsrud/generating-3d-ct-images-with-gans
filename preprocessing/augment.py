@@ -4,8 +4,8 @@ import yaml
 
 from augmentation.Augmentor import Augmentor
 
-with open('augmentations.yaml', 'r') as f:
-    config = yaml.safe_load(f)
+with open('../config.yaml', 'r') as f:
+    config = yaml.safe_load(f)['augmentation']
 
 
 aug = Augmentor(config)
@@ -17,7 +17,7 @@ for index, image_mask_path in enumerate(aug.data):
 
     if config['normalize']:
         normalized = aug.normalize(data, voxels=(2, 2, 2))
-        aug.save_image_mask(normalized, 'normalized')
+        aug.save_image_mask(normalized, 'normalized2mm')
 
     if config['smooth_gaussian']:
         smoothed = aug.smooth_gaussian(normalized)
