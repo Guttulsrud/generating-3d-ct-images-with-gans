@@ -6,10 +6,10 @@ import multiprocessing as mp
 import nibabel as nib
 from visualization.display_image import display_image
 
-NUM_JOBS = 1
+NUM_JOBS = 8
 IMG_SIZE = 128
-IMG_INPUT_DATA_DIR = '../data/augmented/normalized/images/'
-MASK_INPUT_DATA_DIR = '../data/augmented/normalized/masks/'
+IMG_INPUT_DATA_DIR = '../data/augmented/normalized2mm/images/'
+MASK_INPUT_DATA_DIR = '../data/augmented/normalized2mm/masks/'
 OUTPUT_DATA_DIR = '../data/npy/concatenated/'
 LOW_THRESHOLD = -1024
 HIGH_THRESHOLD = 600
@@ -26,7 +26,7 @@ def resize_img(img, mask=False):
         valid_plane_i = np.mean(img, (0, 1)) != -1  # Remove blank axial planes
         img = img[:, :, valid_plane_i]
 
-    img = resize(img, (IMG_SIZE / 2, IMG_SIZE / 2, IMG_SIZE / 2), mode='constant', cval=1 if mask else -1)
+    img = resize(img, (IMG_SIZE, IMG_SIZE, IMG_SIZE / 2), mode='constant', cval=1 if mask else -1)
 
     return img
 
@@ -95,8 +95,8 @@ def preprocess(batch_idx, img_list):
             continue
 
         np.save(OUTPUT_DATA_DIR + img_name.split('\\')[-1].replace('.nii.gz', '') + ".npy", concat)
-        os.remove(IMG_INPUT_DATA_DIR + img_name.split('\\')[-1])
-        os.remove(MASK_INPUT_DATA_DIR + mask_name.split('\\')[-1])
+        # os.remove(IMG_INPUT_DATA_DIR + img_name.split('\\')[-1])
+        # os.remove(MASK_INPUT_DATA_DIR + mask_name.split('\\')[-1])
 
 
 if __name__ == '__main__':
