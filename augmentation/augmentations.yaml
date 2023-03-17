@@ -1,6 +1,6 @@
-input_dir: '../data/concatenated'
+input_dir: '../data/original'
 output_dir: '../data/augmented'
-images_only: True
+images_only: False
 normalize: True
 reorient: False
 random_affine: False
