@@ -3,6 +3,7 @@
 import os
 import time
 from argparse import ArgumentParser
+from collections import OrderedDict
 
 import numpy as np
 from scipy import linalg
@@ -193,7 +194,7 @@ def calculate_fid_real(args):
 
     model = get_feature_extractor()
     #dataset = COPD_dataset(img_size=args.img_size, stage="train", fold=args.fold, threshold=600)
-    dataset = Brain_dataset(img_size=args.img_size, stage="train", fold=args.fold)
+    # dataset = Brain_dataset(img_size=args.img_size, stage="train", fold=args.fold)
     args.num_samples = len(dataset)
     print("Number of samples:", args.num_samples)
     data_loader = torch.utils.data.DataLoader(dataset,batch_size=args.batch_size,drop_last=False,
@@ -214,10 +215,10 @@ def calculate_fid_real(args):
     #np.save("./results/fid/m_real_train_size_"+str(args.img_size)+"_resnet50_GSP_fold"+str(args.fold)+".npy", m)
     #np.save("./results/fid/s_real_train_size_"+str(args.img_size)+"_resnet50_GSP_fold"+str(args.fold)+".npy", s)
 
-def calculate_mmd_fake(args):
-    assert os.path.exists("./results/fid/pred_arr_real_"+args.real_suffix+str(args.fold)+".npy")
-    act = generate_samples(args)
-    calculate_mmd(args, act)
+# def calculate_mmd_fake(args):
+#     assert os.path.exists("./results/fid/pred_arr_real_"+args.real_suffix+str(args.fold)+".npy")
+#     act = generate_samples(args)
+#     calculate_mmd(args, act)
 
 def calculate_fid_fake(args):
     #assert os.path.exists("./results/fid/m_real_"+args.real_suffix+str(args.fold)+".npy")
@@ -231,18 +232,18 @@ def calculate_fid_fake(args):
     print('FID: ', fid_value)
 
 
-def calculate_mmd(args, act):
-    from torch_two_sample.statistics_diff import MMDStatistic
-
-    act_real = np.load("./results/fid/pred_arr_real_"+args.real_suffix+str(args.fold)+".npz")['arr_0']
-    mmd = MMDStatistic(act_real.shape[0], act.shape[0])
-    sample_1 = torch.from_numpy(act_real)
-    sample_2 = torch.from_numpy(act)
-
-    test_statistics, ret_matrix = mmd(sample_1, sample_2, alphas='median', ret_matrix=True)
-    #p = mmd.pval(ret_matrix.float(), n_permutations=1000)
-
-    print("\nMMD test statistics:", test_statistics.item())
+# def calculate_mmd(args, act):
+#     from torch_two_sample.statistics_diff import MMDStatistic
+#
+#     act_real = np.load("./results/fid/pred_arr_real_"+args.real_suffix+str(args.fold)+".npz")['arr_0']
+#     mmd = MMDStatistic(act_real.shape[0], act.shape[0])
+#     sample_1 = torch.from_numpy(act_real)
+#     sample_2 = torch.from_numpy(act)
+#
+#     test_statistics, ret_matrix = mmd(sample_1, sample_2, alphas='median', ret_matrix=True)
+#     #p = mmd.pval(ret_matrix.float(), n_permutations=1000)
+#
+#     print("\nMMD test statistics:", test_statistics.item())
 
 if __name__ == '__main__':
     args = parser.parse_args()

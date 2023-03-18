@@ -1,20 +1,25 @@
+import os
+
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 import glob
 import os
 
 import matplotlib as mpl
+
+mpl.use('TkAgg')
+
 import numpy as np
 from tqdm import tqdm
-
+import nibabel as nib
 from utils.model.generate_image import generate_image
 from visualization.display_image import display_image
 
-mpl.use('TkAgg')
-from matplotlib import pyplot as plt
 import pandas as pd
 import seaborn as sns
 from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
+import matplotlib.pyplot as plt
 
-experiment_name = 'OG_normalized_3x3x3'
+experiment_name = 'flip_rotate_gaus'
 try:
     file_path = glob.glob(f'../saved_models/{experiment_name}/checkpoint/*events*')[0]
 except Exception:
@@ -211,11 +216,19 @@ def display_combined_stats(data, experiment_name, show=False, save=False, genera
         if not os.path.exists(out_folder):
             os.makedirs(out_folder)
 
+        if not os.path.exists(f'{out_folder}/generated_images/png'):
+            os.makedirs(f'{out_folder}/generated_images/png')
+
+        if not os.path.exists(f'{out_folder}/generated_images/nifti'):
+            os.makedirs(f'{out_folder}/generated_images/nifti')
+
         print('Generating images...')
         for x in tqdm(range(0, 5)):
             gen_image = generate_image(model_path=model_path, save_step=80000)
             fig = display_image(gen_image, show=False, return_figure=True)
-            fig.savefig(f'{out_folder}/gen_image_{x + 1}.png')
+            fig.savefig(f'{out_folder}/generated_images/png/image_{x + 1}.png')
+            nifti = nib.Nifti1Image(gen_image, np.eye(4))
+            nib.save(nifti, f'{out_folder}/generated_images/nifti/image_{x + 1}.nii.gz')
 
 
 # plot_results(scalar_data, experiment_name, 'Generator', save_plot=True, smooth_only=True, print_stats=True)
