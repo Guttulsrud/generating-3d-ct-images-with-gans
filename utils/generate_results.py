@@ -1,5 +1,7 @@
 import os
 
+from utils.storage.upload_results import download_results, list_folders
+
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 import glob
 import os
@@ -19,7 +21,34 @@ import seaborn as sns
 from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
 import matplotlib.pyplot as plt
 
-experiment_name = 'flip_rotate_gaus'
+folders = [f for f in os.listdir('../saved_models') if os.path.isdir(os.path.join('../saved_models', f))]
+folder_names = [f for f in folders]
+
+experiments = []
+for idx, file_name in enumerate(folder_names):
+    file_name = file_name.split('saved_models\\')[-1]
+
+    if 'saved_models' in file_name:
+        continue
+
+    print(f'[{idx}] {file_name}')
+    experiments.append(file_name)
+
+mode = input('Choose experiment, or press enter to download from Cloud')
+mode = int(mode) if mode != '' else mode
+
+if mode == '':
+    experiments = []
+    for idx, experiment in enumerate(list_folders()):
+        print(f'[{idx}] {experiment}')
+        experiments.append(experiment)
+
+    mode = input('Choose experiment')
+    download_results(experiments[int(mode)])
+    experiment_name = experiments[int(mode)].replace('/', '')
+else:
+    experiment_name = experiments[int(mode)]
+
 try:
     file_path = glob.glob(f'../saved_models/{experiment_name}/checkpoint/*events*')[0]
 except Exception:
@@ -35,6 +64,7 @@ event_acc = EventAccumulator(file_path)
 # Load the events
 event_acc.Reload()
 
+print('Generating scalar events')
 # Loop over the scalar names and extract the data for each scalar
 scalar_data = {}
 for scalar_name in scalar_names:
@@ -131,6 +161,7 @@ def plot_results(data, experiment_name, network, smooth_only=False, save_plot=Fa
 
 
 def display_combined_stats(data, experiment_name, show=False, save=False, generate_images=False):
+    print('Creating plots...')
     networks = {
         'Generator': ['G_fake'],
         'Discriminator': ['D', 'D_real', 'D_fake'],
