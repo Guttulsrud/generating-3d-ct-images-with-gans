@@ -1,6 +1,6 @@
 import os
 
-from utils.storage.upload_results import download_results, list_folders
+from storage.upload_results import download_results, list_folders
 
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 import glob
@@ -18,7 +18,7 @@ from visualization.display_image import display_image
 
 import pandas as pd
 import seaborn as sns
-from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
+#from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
 import matplotlib.pyplot as plt
 
 folders = [f for f in os.listdir('../saved_models') if os.path.isdir(os.path.join('../saved_models', f))]
