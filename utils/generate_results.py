@@ -64,7 +64,7 @@ event_acc = EventAccumulator(file_path)
 # Load the events
 event_acc.Reload()
 
-print('Generating scalar events')
+print('Generating scalar events...')
 # Loop over the scalar names and extract the data for each scalar
 scalar_data = {}
 for scalar_name in scalar_names:

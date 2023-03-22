@@ -16,7 +16,7 @@ save_model_interval: 20000
 start_model_saving: 20000
 network:
   generator_learning_rate: 0.0001
-  generator_passes_per_iteration: 1  # number of generator pass per iteration
+  generator_passes_per_iteration: 3  # number of generator pass per iteration
   discriminator_learning_rate: 0.0004
   encoder_learning_rate: 0.0001
 cluster_enabled: False

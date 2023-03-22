@@ -8,9 +8,9 @@ from visualization.display_image import display_image
 
 NUM_JOBS = 8
 IMG_SIZE = 128
-IMG_INPUT_DATA_DIR = '../data/augmented/normalized2mm/images/'
-MASK_INPUT_DATA_DIR = '../data/augmented/normalized2mm/masks/'
-OUTPUT_DATA_DIR = '../data/npy/concatenated/'
+IMG_INPUT_DATA_DIR = '../data/cropped/images/'
+MASK_INPUT_DATA_DIR = '../data/cropped/masks/'
+OUTPUT_DATA_DIR = '../data/npy/cropped_non_normalized/'
 LOW_THRESHOLD = -1024
 HIGH_THRESHOLD = 600
 SUFFIX = '.nii.gz'
@@ -26,7 +26,7 @@ def resize_img(img, mask=False):
         valid_plane_i = np.mean(img, (0, 1)) != -1  # Remove blank axial planes
         img = img[:, :, valid_plane_i]
 
-    img = resize(img, (IMG_SIZE, IMG_SIZE, IMG_SIZE / 2), mode='constant', cval=1 if mask else -1)
+    img = resize(img, (IMG_SIZE, IMG_SIZE, IMG_SIZE), mode='constant', cval=1 if mask else -1)
 
     return img
 
@@ -86,9 +86,19 @@ def preprocess(batch_idx, img_list):
         img = nifti_img1.get_fdata()
         mask = nifti_img2.get_fdata()
         try:
-            img = resize_img(img)
-            mask = resize_img(mask, mask=True)
-            concat = concat_images(img, mask)
+            # img = resize_img(img)
+            # mask = resize_img(mask, mask=True)
+            # print(concat.shape)
+            # display_image(img)
+
+            img[img > 0] = 1
+            img[img < 0] = -1
+            mask[mask > 0] = 1
+            mask[mask < 0] = -1
+            concat = np.concatenate((img, mask), axis=2)
+            concat = resize(concat, (IMG_SIZE, IMG_SIZE, IMG_SIZE))
+            display_image(concat)
+
         except Exception as e:
             print(e)
             print("Image resize error:", img_name, mask_name)

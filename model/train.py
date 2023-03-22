@@ -18,6 +18,8 @@ from model.volume_dataset import Volume_Dataset
 from utils.get_model import get_model
 import matplotlib as mpl
 
+from visualization.display_image import display_image
+
 mpl.use('TkAgg')
 import matplotlib.pyplot as plt
 
@@ -32,11 +34,11 @@ def print_progress(start_time, iteration, num_iter, d_real_loss, d_fake_loss, g_
     runtime_minutes, runtime_seconds = divmod(runtime_seconds, 60)
     runtime_hours, runtime_minutes = divmod(runtime_minutes, 60)
     print('[{}/{}]'.format(iteration, num_iter),
-          'D_real: {:<8.3}'.format(d_real_loss.item()),
-          'D_fake: {:<8.3}'.format(d_fake_loss.item()),
-          'G_fake: {:<8.3}'.format(g_loss.item()),
-          'Sub_E: {:<8.3}'.format(sub_e_loss.item()),
-          'E: {:<8.3}'.format(e_loss.item()),
+          # 'D_real: {:<8.3}'.format(d_real_loss.item()),
+          'Disc: {:<8.3}'.format(d_fake_loss.item()),
+          'Gen: {:<8.3}'.format(g_loss.item()),
+          # 'Sub_E: {:<8.3}'.format(sub_e_loss.item()),
+          # 'E: {:<8.3}'.format(e_loss.item()),
           f"Elapsed: {int(runtime_hours)}h {int(runtime_minutes)}m {int(runtime_seconds)}s")
 
 
@@ -268,11 +270,31 @@ def train_network(config, logger):
             summary_writer.add_scalar('E', e_loss.item(), iteration)
             summary_writer.add_scalar('Sub_E', sub_e_loss.item(), iteration)
 
+
+            featmask = np.squeeze((0.5 * real_images_crop[0] + 0.5).data.cpu().numpy())
+            featmask = nib.Nifti1Image(featmask, affine=np.eye(4))
+            fig = plt.figure()
+            plotting.plot_img(featmask, title="TEST",
+                              # cut_coords=(img_size // 2, img_size // 2, img_size // 16),
+                              figure=fig,
+                              draw_cross=False, cmap="gray")
+            summary_writer.add_figure('TEST1', fig, iteration, close=True)
+
+            featmask = np.squeeze((real_images_crop[0]).data.cpu().numpy())
+            featmask = nib.Nifti1Image(featmask, affine=np.eye(4))
+            fig = plt.figure()
+            plotting.plot_img(featmask, title="TEST2",
+                              # cut_coords=(img_size // 2, img_size // 2, img_size // 16),
+                              figure=fig,
+                              draw_cross=False, cmap="gray")
+            summary_writer.add_figure('TEST2', fig, iteration, close=True)
+
             featmask = np.squeeze((0.5 * real_images_crop[0] + 0.5).data.cpu().numpy())
             featmask = nib.Nifti1Image(featmask.transpose((2, 1, 0)), affine=np.eye(4))
             fig = plt.figure()
             plotting.plot_img(featmask, title="REAL",
-                              cut_coords=(img_size // 2, img_size // 2, img_size // 16), figure=fig,
+                              # cut_coords=(img_size // 2, img_size // 2, img_size // 16),
+                              figure=fig,
                               draw_cross=False, cmap="gray")
             summary_writer.add_figure('Real', fig, iteration, close=True)
 
@@ -288,7 +310,8 @@ def train_network(config, logger):
             featmask = nib.Nifti1Image(featmask.transpose((2, 1, 0)), affine=np.eye(4))
             fig = plt.figure()
             plotting.plot_img(featmask, title="FAKE",
-                              cut_coords=(img_size // 2, img_size // 2, img_size // 16), figure=fig,
+                              # cut_coords=(img_size // 2, img_size // 2, img_size // 16),
+                              figure=fig,
                               draw_cross=False, cmap="gray")
             summary_writer.add_figure('Fake', fig, iteration, close=True)
 
