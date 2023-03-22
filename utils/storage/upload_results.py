@@ -4,8 +4,7 @@ from google.cloud import storage
 from google.oauth2.service_account import Credentials
 
 
-def upload_results(experiment_name):
-    credentials = Credentials.from_service_account_file('storage/thesis-377808-d22079a18bb5.json')
+def upload_results(experiment_name, credentials):
     client = storage.Client(project='thesis-377808', credentials=credentials)
     bucket = client.bucket('thesis-tensorboard')
 

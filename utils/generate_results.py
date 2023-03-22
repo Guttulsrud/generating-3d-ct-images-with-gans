@@ -254,7 +254,7 @@ def display_combined_stats(data, experiment_name, show=False, save=False, genera
             os.makedirs(f'{out_folder}/generated_images/nifti')
 
         print('Generating images...')
-        for x in tqdm(range(0, 5)):
+        for x in tqdm(range(0, 20)):
             gen_image = generate_image(model_path=model_path, save_step=80000)
             fig = display_image(gen_image, show=False, return_figure=True)
             fig.savefig(f'{out_folder}/generated_images/png/image_{x + 1}.png')
