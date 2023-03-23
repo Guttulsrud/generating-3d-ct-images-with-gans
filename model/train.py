@@ -271,6 +271,11 @@ def train_network(config, logger):
             summary_writer.add_scalar('Sub_E', sub_e_loss.item(), iteration)
 
             fig = plot_center_sagittal_slice(name=f'Iteration {iteration}',
+                                             data=np.squeeze((fake_images[0] + 0.5).data.cpu().numpy()),
+                                             return_fig=True, show=False)
+            summary_writer.add_figure('Fake', fig, iteration, close=True)
+
+            fig = plot_center_sagittal_slice(name=f'Iteration {iteration}',
                                              data=np.squeeze((real_images_crop[0] + 0.5).data.cpu().numpy()),
                                              return_fig=True, show=False)
             summary_writer.add_figure('Real', fig, iteration, close=True)
