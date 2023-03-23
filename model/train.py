@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-
-# train HA-GAN
-# Hierarchical Amortized GAN for 3D High Resolution Medical Image Synthesis
-# https://ieeexplore.ieee.org/abstract/document/9770375
 import time
 import numpy as np
 import torch
@@ -12,11 +7,11 @@ from torch.nn import functional as F
 from tensorboardX import SummaryWriter
 import nibabel as nib
 from nilearn import plotting
-
-from model.utils import inf_train_gen, trim_state_dict_name
-from model.volume_dataset import Volume_Dataset
-from utils.get_model import get_model
 import matplotlib as mpl
+
+from utils.Dataset import Dataset
+from utils.get_model import get_model
+from utils.ha_gan_utils import inf_train_gen, trim_state_dict_name
 
 mpl.use('TkAgg')
 import matplotlib.pyplot as plt
@@ -62,7 +57,7 @@ def train_network(config, logger):
     lambda_class = config['lambda_class']
     shuffle = config['shuffle']
 
-    trainset = Volume_Dataset(data_dir=data_dir, fold=fold, num_class=num_class)
+    trainset = Dataset(data_dir=data_dir, fold=fold, num_class=num_class)
     train_loader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, drop_last=True,
                                                shuffle=shuffle, num_workers=workers)
     gen_load = inf_train_gen(train_loader)

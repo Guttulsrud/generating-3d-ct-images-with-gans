@@ -8,8 +8,8 @@ from visualization.display_image import display_image
 
 NUM_JOBS = 8
 IMG_SIZE = 128
-IMG_INPUT_DATA_DIR = '../data/augmented/normalized2mm/images/'
-MASK_INPUT_DATA_DIR = '../data/augmented/normalized2mm/masks/'
+IMG_INPUT_DATA_DIR = '../data/original/images/'
+MASK_INPUT_DATA_DIR = '../data/original/masks/'
 OUTPUT_DATA_DIR = '../data/npy/concatenated/'
 LOW_THRESHOLD = -1024
 HIGH_THRESHOLD = 600

@@ -4,7 +4,7 @@ import os
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
-from utils.model.generate_image import generate_image
+from utils.inference.generate_image import generate_image
 
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 from visualization.display_image import display_image

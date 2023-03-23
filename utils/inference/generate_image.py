@@ -1,5 +1,5 @@
 import torch
-from model.utils import trim_state_dict_name
+from model.ha_gan_utils import trim_state_dict_name
 from utils.get_model import get_model
 
 
