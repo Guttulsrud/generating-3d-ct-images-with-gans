@@ -13,7 +13,7 @@ mpl.use('TkAgg')
 import numpy as np
 from tqdm import tqdm
 import nibabel as nib
-from utils.model.generate_image import generate_image
+from utils.inference.generate_image import generate_image
 from visualization.display_image import display_image
 
 import pandas as pd

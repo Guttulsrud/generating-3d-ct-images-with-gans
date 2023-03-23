@@ -1,23 +1,17 @@
 import os
+
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 from scipy.linalg import sqrtm
-
 from evaluation.res_net.resnet3D import resnet50
-from torchvision.datasets import ImageFolder
 from torch.utils.data import DataLoader
 import os
-import time
-from argparse import ArgumentParser
 from collections import OrderedDict
 from torchvision import transforms
 from torch.utils.data import Dataset
-
 import numpy as np
-from scipy import linalg
 import nibabel as nib
 import torch
 import torch.nn as nn
-from torch.nn import functional as F
 
 
 class Flatten(torch.nn.Module):
@@ -38,9 +32,9 @@ def get_feature_extractor():
     model.conv_seg = nn.Sequential(nn.AdaptiveAvgPool3d((1, 1, 1)),
                                    Flatten())  # (N, 512)
     # ckpt from https://drive.google.com/file/d/1399AsrYpQDi1vq6ciKRQkfknLsQQyigM/view?usp=sharing
-    ckpt = torch.load("res_net/weights.pth")
+    ckpt = torch.load("res_net/weights.pth", map_location=torch.device('cpu'))
     ckpt = trim_state_dict_name(ckpt["state_dict"])
-    model.load_state_dict(ckpt)  # No conv_seg module in ckpt
+    model.load_state_dict(ckpt)
     model = nn.DataParallel(model).cuda()
     model.eval()
     print("Feature extractor weights loaded")
@@ -71,9 +65,8 @@ def calculate_activation_statistics(model, dataloader, device):
     for batch in dataloader:
         # Add a singleton dimension to the input tensor to represent depth
         # batch = batch.unsqueeze(2).to(device)
-        batch = batch.unsqueeze(0)
+        batch = batch.unsqueeze(0).to(device)
 
-        print(batch.shape)
         with torch.no_grad():
             features.append(model(batch.float()).cpu().numpy())
     features = np.concatenate(features, axis=0)
@@ -96,15 +89,23 @@ def calculate_fid(mu_real, sigma_real, mu_gen, sigma_gen):
 dataset = CustomDataset('data/real', transform=transforms.ToTensor())
 real_loader = DataLoader(dataset, batch_size=1, shuffle=True, num_workers=0)
 
-dataset = CustomDataset('data/fake', transform=transforms.ToTensor())
+dataset = CustomDataset('data/real', transform=transforms.ToTensor())
 fake_loader = DataLoader(dataset, batch_size=1, shuffle=True, num_workers=0)
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+torch.cuda.is_available = lambda: False
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+# device = torch.device("cpu" if torch.cuda.is_available() else "cpu")
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = get_feature_extractor().to(device)
+# model = get_feature_extractor().to(device)
 
 
+print('Calculating real statistics...')
 mu_real, sigma_real = calculate_activation_statistics(model, real_loader, device)
-# mu_gen, sigma_gen = calculate_activation_statistics(model, fake_loader, device)
+print('Calculating generated statistics...')
+mu_gen, sigma_gen = calculate_activation_statistics(model, fake_loader, device)
 
-# fid = calculate_fid(mu_real, sigma_real, mu_gen, sigma_gen)
-# print("FID:", fid)
+print('Calculating FID...')
+fid = calculate_fid(mu_real, sigma_real, mu_gen, sigma_gen)
+print("FID:", fid)

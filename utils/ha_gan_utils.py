@@ -6,41 +6,47 @@ from skimage.transform import resize
 
 import torch
 
+
 def post_process_brain(x_pred):
-    x_pred = resize(x_pred, (256-90,256-40,256-40), mode='constant', cval=0.)
-    x_canvas = np.zeros((256,256,256))
-    x_canvas[50:-40,20:-20,20:-20] = x_pred
-    x_canvas = np.flip(x_canvas,0)
+    x_pred = resize(x_pred, (256 - 90, 256 - 40, 256 - 40), mode='constant', cval=0.)
+    x_canvas = np.zeros((256, 256, 256))
+    x_canvas[50:-40, 20:-20, 20:-20] = x_pred
+    x_canvas = np.flip(x_canvas, 0)
     return x_canvas
 
-def _itensity_normalize(volume):       
+
+def _itensity_normalize(volume):
     pixels = volume[volume > 0]
     mean = pixels.mean()
-    std  = pixels.std()
-    out = (volume - mean)/std
+    std = pixels.std()
+    out = (volume - mean) / std
     return out
-    
+
+
 class Flatten(torch.nn.Module):
     def forward(self, inp):
         return inp.view(inp.size(0), -1)
 
+
 def calculate_nmse(img1, img2):
     img1 = img1.astype(np.float64)
     img2 = img2.astype(np.float64)
-    mse = np.mean((img1 - img2)**2)
-    mse0 = np.mean(img1**2)
+    mse = np.mean((img1 - img2) ** 2)
+    mse0 = np.mean(img1 ** 2)
     if mse == 0:
         return float('inf')
     return mse / mse0 * 100.
+
 
 def calculate_psnr(img1, img2):
     # img1 and img2 have range [0, 1]
     img1 = img1.astype(np.float64)
     img2 = img2.astype(np.float64)
-    mse = np.mean((img1 - img2)**2)
+    mse = np.mean((img1 - img2) ** 2)
     if mse == 0:
         return float('inf')
     return 20 * math.log10(1.0 / math.sqrt(mse))
+
 
 class KLN01Loss(torch.nn.Module):
 
@@ -83,6 +89,7 @@ class KLN01Loss(torch.nn.Module):
 
         return KL
 
+
 def trim_state_dict_name(state_dict):
     for k in list(state_dict.keys()):
         if k.startswith('module.'):
@@ -91,7 +98,8 @@ def trim_state_dict_name(state_dict):
             del state_dict[k]
     return state_dict
 
+
 def inf_train_gen(data_loader):
     while True:
-        for _,batch in enumerate(data_loader):
+        for _, batch in enumerate(data_loader):
             yield batch
