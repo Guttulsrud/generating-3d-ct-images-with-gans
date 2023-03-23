@@ -15,6 +15,7 @@ from utils.Dataset import Dataset
 from utils.get_model import get_model
 from utils.ha_gan_utils import inf_train_gen, trim_state_dict_name
 from utils.inference.generate_image import generate_image
+from utils.plots import plot_center_sagittal_slice
 from visualization.display_image import display_image
 
 mpl.use('TkAgg')
@@ -269,29 +270,40 @@ def train_network(config, logger):
             summary_writer.add_scalar('E', e_loss.item(), iteration)
             summary_writer.add_scalar('Sub_E', sub_e_loss.item(), iteration)
 
-            featmask = np.squeeze((0.5 * real_images_crop[0] + 0.5).data.cpu().numpy())
-            featmask = nib.Nifti1Image(featmask.transpose((2, 1, 0)), affine=np.eye(4))
-            fig = plt.figure()
-            plotting.plot_img(featmask, title="REAL",
-                              cut_coords=(img_size // 2, img_size // 2, img_size // 16), figure=fig,
-                              draw_cross=False, cmap="gray")
+            fig = plot_center_sagittal_slice(name=f'Iteration {iteration}',
+                                             data=np.squeeze((real_images_crop[0] + 0.5).data.cpu().numpy()),
+                                             return_fig=True, show=False)
             summary_writer.add_figure('Real', fig, iteration, close=True)
 
-            featmask = np.squeeze((0.5 * sub_x_hat_rec[0] + 0.5).data.cpu().numpy())
-            featmask = nib.Nifti1Image(featmask.transpose((2, 1, 0)), affine=np.eye(4))
-            fig = plt.figure()
-            plotting.plot_img(featmask, title="REC",
-                              cut_coords=(img_size // 2, img_size // 2, img_size // 16), figure=fig,
-                              draw_cross=False, cmap="gray")
-            summary_writer.add_figure('Rec', fig, iteration, close=True)
-
-            featmask = np.squeeze((0.5 * fake_images[0] + 0.5).data.cpu().numpy())
-            featmask = nib.Nifti1Image(featmask.transpose((2, 1, 0)), affine=np.eye(4))
-            fig = plt.figure()
-            plotting.plot_img(featmask, title="FAKE",
-                              cut_coords=(img_size // 2, img_size // 2, img_size // 16), figure=fig,
-                              draw_cross=False, cmap="gray")
+            fig = plot_center_sagittal_slice(name=f'Iteration {iteration}',
+                                             data=np.squeeze((fake_images[0] + 0.5).data.cpu().numpy()),
+                                             return_fig=True, show=False)
             summary_writer.add_figure('Fake', fig, iteration, close=True)
+
+            # featmask = np.squeeze((0.5 * real_images_crop[0] + 0.5).data.cpu().numpy())
+            # featmask = nib.Nifti1Image(featmask.transpose((2, 1, 0)), affine=np.eye(4))
+            # fig = plt.figure()
+            #
+            # plotting.plot_img(featmask, title="REAL",
+            #                   cut_coords=(img_size // 2, img_size // 2, img_size // 16), figure=fig,
+            #                   draw_cross=False, cmap="gray")
+            # summary_writer.add_figure('Real', fig, iteration, close=True)
+
+            # featmask = np.squeeze((0.5 * sub_x_hat_rec[0] + 0.5).data.cpu().numpy())
+            # featmask = nib.Nifti1Image(featmask.transpose((2, 1, 0)), affine=np.eye(4))
+            # fig = plt.figure()
+            # plotting.plot_img(featmask, title="REC",
+            #                   cut_coords=(img_size // 2, img_size // 2, img_size // 16), figure=fig,
+            #                   draw_cross=False, cmap="gray")
+            # summary_writer.add_figure('Rec', fig, iteration, close=True)
+
+            # featmask = np.squeeze((0.5 * fake_images[0] + 0.5).data.cpu().numpy())
+            # featmask = nib.Nifti1Image(featmask.transpose((2, 1, 0)), affine=np.eye(4))
+            # fig = plt.figure()
+            # plotting.plot_img(featmask, title="FAKE",
+            #                   cut_coords=(img_size // 2, img_size // 2, img_size // 16), figure=fig,
+            #                   draw_cross=False, cmap="gray")
+            # summary_writer.add_figure('Fake', fig, iteration, close=True)
 
         if iteration % print_log_interval == 0:
             print_progress(start_time, iteration, num_iter, d_real_loss, d_fake_loss, g_loss, sub_e_loss, e_loss)
