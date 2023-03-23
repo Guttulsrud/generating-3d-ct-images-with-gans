@@ -1,6 +1,8 @@
 import os
 
-from storage.upload_results import download_results, list_folders
+from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
+
+from utils.storage.Storage import Storage
 
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 import glob
@@ -18,9 +20,10 @@ from visualization.display_image import display_image
 
 import pandas as pd
 import seaborn as sns
-#from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
+# from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
 import matplotlib.pyplot as plt
 
+storage = Storage(experiment_name=None)
 folders = [f for f in os.listdir('../saved_models') if os.path.isdir(os.path.join('../saved_models', f))]
 folder_names = [f for f in folders]
 
@@ -34,23 +37,23 @@ for idx, file_name in enumerate(folder_names):
     print(f'[{idx}] {file_name}')
     experiments.append(file_name)
 
-mode = input('Choose experiment, or press enter to download from Cloud')
-mode = int(mode) if mode != '' else mode
+mode = input('Choose experiment, or press d to download from Cloud')
+mode = int(mode) if mode != 'd' else mode
 
-if mode == '':
+if mode == 'd':
     experiments = []
-    for idx, experiment in enumerate(list_folders()):
+    for idx, experiment in enumerate(storage.list_folders()):
         print(f'[{idx}] {experiment}')
         experiments.append(experiment)
 
     mode = input('Choose experiment')
-    download_results(experiments[int(mode)])
-    experiment_name = experiments[int(mode)].replace('/', '')
+    storage.download_results(experiments[int(mode)])
+    experiment_name = experiments[int(mode)]
 else:
     experiment_name = experiments[int(mode)]
 
 try:
-    file_path = glob.glob(f'../saved_models/{experiment_name}/checkpoint/*events*')[0]
+    file_path = glob.glob(f'../saved_models/{experiment_name}/*events*')[0]
 except Exception:
     print('No events file found')
     exit()
@@ -240,7 +243,7 @@ def display_combined_stats(data, experiment_name, show=False, save=False, genera
         plt.savefig(f'{stats_folder}/stats.png')
 
     if generate_images:
-        model_path = f'../saved_models/{experiment_name}/checkpoint'
+        model_path = f'../saved_models/{experiment_name}/saved_model'
 
         out_folder = f'../results/{experiment_name}/generated_images'
 

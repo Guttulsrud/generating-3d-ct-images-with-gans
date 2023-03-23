@@ -1,12 +1,11 @@
 import torch
-from model.ha_gan_utils import trim_state_dict_name
 from utils.get_model import get_model
+from utils.ha_gan_utils import trim_state_dict_name
 
 
-def generate_image(model_path, save_step, rescale_intensity=True):
+def generate_image(model_path, save_step, rescale_intensity=True, img_size=128):
     batch_size = 1
     latent_dim = 1024
-    img_size = 128
 
     generator, _, encoder, sub_encoder, = get_model(img_size=img_size,
                                                     latent_dim=latent_dim,

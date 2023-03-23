@@ -16,7 +16,7 @@ class Logger:
         self.path = path
         if not os.path.exists(path):
             os.mkdir(self.path)
-            os.mkdir(f'{self.path}/checkpoint')
+            os.mkdir(f'{self.path}/saved_model')
             with open(f'{self.path}/config.yml', 'w') as outfile:
                 yaml.dump(config, outfile, default_flow_style=False)
 

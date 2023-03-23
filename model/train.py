@@ -1,3 +1,4 @@
+import os
 import time
 import numpy as np
 import torch
@@ -8,10 +9,13 @@ from tensorboardX import SummaryWriter
 import nibabel as nib
 from nilearn import plotting
 import matplotlib as mpl
+from tqdm import tqdm
 
 from utils.Dataset import Dataset
 from utils.get_model import get_model
 from utils.ha_gan_utils import inf_train_gen, trim_state_dict_name
+from utils.inference.generate_image import generate_image
+from visualization.display_image import display_image
 
 mpl.use('TkAgg')
 import matplotlib.pyplot as plt
@@ -27,11 +31,11 @@ def print_progress(start_time, iteration, num_iter, d_real_loss, d_fake_loss, g_
     runtime_minutes, runtime_seconds = divmod(runtime_seconds, 60)
     runtime_hours, runtime_minutes = divmod(runtime_minutes, 60)
     print('[{}/{}]'.format(iteration, num_iter),
-          'D_real: {:<8.3}'.format(d_real_loss.item()),
-          'D_fake: {:<8.3}'.format(d_fake_loss.item()),
-          'G_fake: {:<8.3}'.format(g_loss.item()),
-          'Sub_E: {:<8.3}'.format(sub_e_loss.item()),
-          'E: {:<8.3}'.format(e_loss.item()),
+          'D: {:<8.3}'.format(d_real_loss.item()),
+          # 'D_fake: {:<8.3}'.format(d_fake_loss.item()),
+          'G: {:<8.3}'.format(g_loss.item()),
+          # 'Sub_E: {:<8.3}'.format(sub_e_loss.item()),
+          # 'E: {:<8.3}'.format(e_loss.item()),
           f"Elapsed: {int(runtime_hours)}h {int(runtime_minutes)}m {int(runtime_seconds)}s")
 
 
@@ -56,6 +60,8 @@ def train_network(config, logger):
     num_class = config['num_class']
     lambda_class = config['lambda_class']
     shuffle = config['shuffle']
+    generate_results_on_completion = config['generate_results_on_completion']
+    generate_n_samples = config['generate_n_samples']
 
     trainset = Dataset(data_dir=data_dir, fold=fold, num_class=num_class)
     train_loader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, drop_last=True,
@@ -71,7 +77,7 @@ def train_network(config, logger):
     e_optimizer = optim.Adam(E.parameters(), lr=lr_e, betas=(0.0, 0.999), eps=1e-8)
     sub_e_optimizer = optim.Adam(Sub_E.parameters(), lr=lr_e, betas=(0.0, 0.999), eps=1e-8)
 
-    path = f'{logger.path}/checkpoint'
+    path = f'{logger.path}'
 
     # Resume from a previous checkpoint
     if continue_iter != 0:
@@ -292,10 +298,25 @@ def train_network(config, logger):
 
         if iteration > start_model_saving and (iteration + 1) % save_model_interval == 0:
             torch.save({'model': G.state_dict(), 'optimizer': g_optimizer.state_dict()},
-                       f'{path}/G_iter{str(iteration + 1)}.pth')
+                       f'{path}/saved_model/G_iter{str(iteration + 1)}.pth')
             torch.save({'model': D.state_dict(), 'optimizer': d_optimizer.state_dict()},
-                       f'{path}/D_iter{str(iteration + 1)}.pth')
+                       f'{path}/saved_model/D_iter{str(iteration + 1)}.pth')
             torch.save({'model': E.state_dict(), 'optimizer': e_optimizer.state_dict()},
-                       f'{path}/E_iter{str(iteration + 1)}.pth')
+                       f'{path}/saved_model/E_iter{str(iteration + 1)}.pth')
             torch.save({'model': Sub_E.state_dict(), 'optimizer': sub_e_optimizer.state_dict()},
-                       f'{path}/Sub_E_iter{str(iteration + 1)}.pth')
+                       f'{path}/saved_model/Sub_E_iter{str(iteration + 1)}.pth')
+
+    print('Training complete...\n')
+    if generate_results_on_completion:
+        print('Generating images...')
+        if not os.path.exists(f'{path}/generated_images/png'):
+            os.makedirs(f'{path}/generated_images/png')
+        if not os.path.exists(f'{path}/generated_images/nifti'):
+            os.makedirs(f'{path}/generated_images/nifti')
+
+        for x in tqdm(range(0, generate_n_samples)):
+            gen_image = generate_image(model_path=f'{path}/saved_model', save_step=num_iter - 1, img_size=img_size)
+            fig = display_image(gen_image, show=False, return_figure=True)
+            fig.savefig(f'{path}/generated_images/png/image_{x + 1}.png')
+            nifti = nib.Nifti1Image(gen_image, np.eye(4))
+            nib.save(nifti, f'{path}/generated_images/nifti/image_{x + 1}.nii.gz')
