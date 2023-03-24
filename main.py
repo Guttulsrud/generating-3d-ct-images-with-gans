@@ -21,10 +21,14 @@ if __name__ == '__main__':
         itertools.product(hpo_config["generator_learning_rate"], hpo_config["generator_passes_per_iteration"],
                           hpo_config["discriminator_learning_rate"], hpo_config["encoder_learning_rate"]))
 
+    total_configurations = len(param_grid)
+
     # Print the total number of configurations
     print(f"Total configurations: {len(param_grid)}")
 
     for i, config_values in enumerate(param_grid):
+        print(f'Running HPO configuration {i + 1}/{total_configurations}')
+
         for j, key in enumerate(hpo_config.keys()):
             config['network'][key] = config_values[j]
 
