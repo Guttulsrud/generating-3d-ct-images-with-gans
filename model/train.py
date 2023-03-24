@@ -332,7 +332,7 @@ def train_network(config, logger):
             os.makedirs(f'{path}/generated_images/nifti')
 
         for x in tqdm(range(0, generate_n_samples)):
-            gen_image = generate_image(model_path=f'{path}/saved_model', save_step=num_iter - 1, img_size=img_size)
+            gen_image = generate_image(model_path=f'{path}/saved_model', save_step=num_iter, img_size=img_size)
             fig = display_image(gen_image, show=False, return_figure=True)
             fig.savefig(f'{path}/generated_images/png/image_{x + 1}.png')
             nifti = nib.Nifti1Image(gen_image, np.eye(4))

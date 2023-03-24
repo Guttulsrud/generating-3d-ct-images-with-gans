@@ -96,11 +96,11 @@ def preprocess(batch_idx, img_list, num_jobs, output_dir, low_threshold, high_th
 
         mask = np.interp(mask, [0, 2], [-1, 1])
 
-        img = resize(img, (img_size, img_size, img_size / 2), mode='constant', cval=-1)
-        mask = resize(mask, (img_size, img_size, img_size / 2), mode='constant', cval=-1)
+        #img = resize(img, (img_size, img_size, img_size / 2), mode='constant', cval=-1)
+        #mask = resize(mask, (img_size, img_size, img_size / 2), mode='constant', cval=-1)
 
-        concat = concat_images(img, mask)
-        # concat = resize(concat, (img_size, img_size, img_size), mode='constant', cval=-1)
+        concat = alt_concat(img, mask)
+        concat = resize(concat, (img_size, img_size, img_size), mode='constant', cval=-1)
         # display_image(concat)
 
         np.save(output_dir + img_name.split('\\')[-1].replace('.nii.gz', '') + ".npy", concat)
