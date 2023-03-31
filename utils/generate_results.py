@@ -55,8 +55,11 @@ else:
 try:
     file_path = glob.glob(f'../saved_models/{experiment_name}/*events*')[0]
 except Exception:
-    print('No events file found')
-    exit()
+    try:
+        file_path = glob.glob(f'../saved_models/{experiment_name}/saved_model/*events*')[0]
+    except Exception:
+        print('No events file found')
+        exit()
 
 # List of scalar names to extract
 scalar_names = ['D', 'D_real', 'D_fake', 'G_fake', 'E', 'Sub_E']
@@ -163,7 +166,7 @@ def plot_results(data, experiment_name, network, smooth_only=False, save_plot=Fa
         plt.savefig(f'{loss_folder}/{network}.png')
 
 
-def display_combined_stats(data, experiment_name, show=False, save=False, generate_images=False):
+def display_combined_stats(data, experiment_name, show=False, save=False, generate_images=False, n_images=10):
     print('Creating plots...')
     networks = {
         'Generator': ['G_fake'],
@@ -257,10 +260,10 @@ def display_combined_stats(data, experiment_name, show=False, save=False, genera
             os.makedirs(f'{out_folder}/generated_images/nifti')
 
         print('Generating images...')
-        for x in tqdm(range(0, 20)):
+        for x in tqdm(range(0, n_images)):
             gen_image = generate_image(model_path=model_path, save_step=80000)
-            fig = display_image(gen_image, show=False, return_figure=True)
-            fig.savefig(f'{out_folder}/generated_images/png/image_{x + 1}.png')
+            # fig = display_image(gen_image, show=False, return_figure=True)
+            # fig.savefig(f'{out_folder}/generated_images/png/image_{x + 1}.png')
             nifti = nib.Nifti1Image(gen_image, np.eye(4))
             nib.save(nifti, f'{out_folder}/generated_images/nifti/image_{x + 1}.nii.gz')
 
@@ -268,4 +271,4 @@ def display_combined_stats(data, experiment_name, show=False, save=False, genera
 # plot_results(scalar_data, experiment_name, 'Generator', save_plot=True, smooth_only=True, print_stats=True)
 # plot_results(scalar_data,experiment_name,  'Discriminator', save_plot=True, smooth_only=True, print_stats=True)
 # plot_results(scalar_data,experiment_name,  'Encoder', save_plot=True, smooth_only=True, print_stats=True)
-display_combined_stats(data=scalar_data, experiment_name=experiment_name, save=True, generate_images=True)
+display_combined_stats(data=scalar_data, experiment_name=experiment_name, save=True, generate_images=True, n_images=10)

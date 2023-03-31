@@ -1,15 +1,15 @@
-experiment_name: 'concat2ax'
+experiment_name: 'd4e2g1'
 data_dir: 'data/npy/concat2ax/'
 img_size: 128
 iterations: 80000
-upload_results: True
-generate_results_on_completion: True
+upload_results: False
+generate_results_on_completion: False
 generate_n_samples: 3
 tensorboard_log_interval: 100
 print_log_interval: 100
 latent_dim: 1024
-save_model_interval: 80000
-start_model_saving: 80000
+save_model_interval: 20000
+start_model_saving: 60000
 workers: 8
 continue_iter: 0
 batch_size: 4
@@ -20,8 +20,8 @@ log_dir: 'logs'
 hpo: True
 preprocessing:
   enabled: False
-  img_input_dir: 'data/cropped_original/images/'
-  mask_input_dir: 'data/cropped_original/masks/'
+  img_input_dir: '../data/cropped_original/images/'
+  mask_input_dir: '../data/cropped_original/masks/'
   output_dir: 'data/npy/concat2ax/'
   num_jobs: 4
   low_threshold: -1024
@@ -32,7 +32,7 @@ network:
   generator_learning_rate: 0.0001
   generator_passes_per_iteration: 1
   discriminator_learning_rate: 0.0004
-  encoder_learning_rate: 0.0001
+  encoder_learning_rate: 0.0002
 cluster_enabled: False
 shuffle: True
 augmentation:

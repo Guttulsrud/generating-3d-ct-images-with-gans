@@ -42,9 +42,10 @@ class Storage:
         blob = self.bucket.blob(f'{experiment_name}/config.yml')
         blob.download_to_filename(f'{path}/config.yml')
 
-        for blob in self.bucket.list_blobs():
+        for blob in self.bucket.list_blobs(prefix=f"{experiment_name}/"):
             if "event" in blob.name:
-                blob.download_to_filename(blob.name.replace(experiment_name, path))
+                f = blob.name.replace(experiment_name, path)
+                blob.download_to_filename(f'../saved_models/{f}')
 
         # Download checkpoint files
         checkpoint_dir = f'{path}/saved_model'
