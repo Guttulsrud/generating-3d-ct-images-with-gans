@@ -1,0 +1,4 @@
+generator_learning_rate: [0.0001, 0.0002, 0.0003]
+generator_passes_per_iteration: [1, 2, 3]
+discriminator_learning_rate: [0.0002, 0.0003, 0.0004]
+encoder_learning_rate: [0.0001, 0.0002, 0.0003]

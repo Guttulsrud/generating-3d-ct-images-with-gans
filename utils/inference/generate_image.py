@@ -3,7 +3,7 @@ from utils.get_model import get_model
 from utils.ha_gan_utils import trim_state_dict_name
 
 
-def generate_image(model_path, save_step, rescale_intensity=True, img_size=128):
+def generate_image(model_path, save_step=80000, rescale_intensity=True, img_size=128):
     batch_size = 1
     latent_dim = 1024
 
