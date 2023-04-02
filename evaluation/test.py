@@ -133,7 +133,6 @@ def evaluate(real_images_path, generated_images_path):
 
     fid_score = calculate_fid(act1, act2)
     is_score = calculate_inception_score(act2)
-    kid_mean_score, kid_std_score = calculate_kernel_distance_score(act1, act2)
     # print('FID:', round(fid_score, 5))
     # print('IS:', round(is_score, 5))
-    return round(fid_score, 5), round(is_score, 5), kid_mean_score, kid_std_score
+    return round(fid_score, 5), round(is_score, 5)

@@ -5,13 +5,7 @@ from tqdm import tqdm
 
 from evaluation.test import evaluate
 
-fid_score, is_score, mean, std = evaluate(real_images_path='../data/original/images',
-                                          generated_images_path=f'../data/original/masks')
-
-print(mean, std)
-exit()
-
-filename = 'saved_models_fid_is.csv'
+filename = 'hpo_part2.csv'
 
 results = []
 
