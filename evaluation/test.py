@@ -1,10 +1,7 @@
 import os
-from random import random
+from torchmetrics.image.kid import KernelInceptionDistance
 
 from numpy import trace, iscomplexobj, cov
-from tqdm import tqdm
-
-from visualization.display_image import display_image
 
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 from scipy.linalg import sqrtm
@@ -110,6 +107,15 @@ def calculate_inception_score(p_yx, eps=1E-16):
     return is_score
 
 
+def calculate_kernel_distance_score(act1, act2):
+    kid = KernelInceptionDistance()
+
+    kid.update(act1, real=True)
+    kid.update(act2, real=False)
+    kid_mean, kid_std = kid.compute()
+    return kid_mean, kid_std
+
+
 def evaluate(real_images_path, generated_images_path):
     dataset = CustomDataset(real_images_path, transform=transforms.ToTensor())
     real_loader = DataLoader(dataset, batch_size=32, shuffle=False)
@@ -127,6 +133,7 @@ def evaluate(real_images_path, generated_images_path):
 
     fid_score = calculate_fid(act1, act2)
     is_score = calculate_inception_score(act2)
+    kid_mean_score, kid_std_score = calculate_kernel_distance_score(act1, act2)
     # print('FID:', round(fid_score, 5))
     # print('IS:', round(is_score, 5))
-    return round(fid_score, 5), round(is_score, 5)
+    return round(fid_score, 5), round(is_score, 5), kid_mean_score, kid_std_score
