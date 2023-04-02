@@ -1,4 +1,5 @@
 import os
+
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 # Copyright (c) MONAI Consortium
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,9 +13,9 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 # limitations under the License.
 
 from monai.apps.auto3dseg import AutoRunner
+import torch
 
 if __name__ == "__main__":
-
     # the minimum required code is to create an AutoRunner() and call runner.run()
     # the algos must be set to 'segresnet' (since currently it's the only algo with support of multi-resolution input images, such as CT and PET)
     # here we also set ensemble=False (optional) to prevent inference on the testing set (since we do not use any testing sets, only the 5-fold cross validation)
@@ -22,7 +23,7 @@ if __name__ == "__main__":
     runner = AutoRunner(input="input.yaml", algos="segresnet", work_dir="./work_dir", ensemble=False)
 
     ## optionally, we can use just 1-fold (for a quick training of a single model, instead of training 5 folds)
-    # runner.set_num_fold(1)
+    runner.set_num_fold(1)
 
     ## optionally, we can define the path to the dataset here, instead of the one in input.yaml
     # runner.set_training_params({"dataroot" : '/data/hecktor22'})
