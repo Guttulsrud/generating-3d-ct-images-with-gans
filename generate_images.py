@@ -1,4 +1,5 @@
 import os
+
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 import numpy as np
@@ -45,7 +46,14 @@ if __name__ == '__main__':
 
     folders = [f for f in os.listdir('saved_models') if os.path.isdir(os.path.join('saved_models', f))]
     folder_names = [f for f in folders]
+
     for experiment in tqdm(folder_names):
+
+        if os.path.exists(f'data/generated_images/{experiment}'):
+            continue
+
+        if 'HPO' not in experiment:
+            continue
         try:
             print(experiment)
             generate_images(experiment=experiment, n_images=images, png=png, nifti=nifti)

@@ -2,6 +2,7 @@ import itertools
 
 import yaml
 from model.train import train_network
+# from preprocessing.prepare_images import preprocess_images
 from preprocessing.prepare_images import preprocess_images
 from utils.Logger import Logger
 from utils.storage.Storage import Storage
@@ -13,26 +14,27 @@ if __name__ == '__main__':
     if config['preprocessing']['enabled']:
         preprocess_images(config=config)
 
+
+    if not config['hpo']:
+        storage = Storage(experiment_name=config['experiment_name'])
+        logger = Logger(config=config)
+        train_network(config=config, logger=logger)
+
+        if config['upload_results']:
+            storage.upload_results()
+
+        exit()
+    exit()
     with open('hpo.yaml', 'r') as f:
         hpo_config = yaml.safe_load(f)
 
-    # Generate all combinations of hyperparameter values
-    param_grid = list(
-        itertools.product(hpo_config["generator_learning_rate"], hpo_config["generator_passes_per_iteration"],
-                          hpo_config["discriminator_learning_rate"], hpo_config["encoder_learning_rate"]))
 
-    total_configurations = len(param_grid)
+    for i, size in enumerate([1280, 1536, 1792, 2048]):
+        print(f'Running HPO configuration {i + 1}/3')
 
-    # Print the total number of configurations
-    print(f"Total configurations: {len(param_grid)}")
 
-    for i, config_values in enumerate(param_grid):
-        print(f'Running HPO configuration {i + 1}/{total_configurations}')
-
-        for j, key in enumerate(hpo_config.keys()):
-            config['network'][key] = config_values[j]
-
-        config['experiment_name'] = f"HPO_run_{i + 1}"
+        config['experiment_name'] = f"Latent_dim{size}"
+        config['latent_dim'] = size
 
         storage = Storage(experiment_name=config['experiment_name'])
         logger = Logger(config=config)

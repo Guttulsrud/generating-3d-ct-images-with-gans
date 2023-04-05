@@ -16,8 +16,8 @@ for index, image_mask_path in enumerate(aug.data):
     data = aug.load_image_mask(image_mask_path)
 
     if config['normalize']:
-        normalized = aug.normalize(data, voxels=(2, 2, 2))
-        aug.save_image_mask(normalized, 'normalized2mm')
+        normalized = aug.normalize(data, voxels=(1, 1, 1))
+        aug.save_image_mask(normalized, 'scaled_normalized1mm', scale_intensity=True)
 
     if config['smooth_gaussian']:
         smoothed = aug.smooth_gaussian(normalized)

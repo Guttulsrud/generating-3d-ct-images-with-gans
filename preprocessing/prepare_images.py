@@ -61,6 +61,7 @@ def preprocess_images(config):
 
     img_list = zip(img_list, mask_list)
     processes = []
+
     for i in range(num_jobs):
         processes.append(
             mp.Process(target=preprocess,
@@ -105,15 +106,8 @@ def preprocess(batch_idx, img_list, num_jobs, output_dir, low_threshold, high_th
         concat = alt_concat(img, mask)
         concat = resize(concat, (img_size, img_size, img_size), mode='constant', cval=-1)
         # display_image(concat)
-        new_nifti_img = nib.Nifti1Image(concat, np.eye(4))
-        nib.save(new_nifti_img, '../data/concat/' + img_name.split('.')[0].replace('images\\', '') + ".nii.gz")
+        #new_nifti_img = nib.Nifti1Image(concat, np.eye(4))
+        #nib.save(new_nifti_img, '../data/concat/' + img_name.split('.')[0].replace('images\\', '') + ".nii.gz")
         np.save(output_dir + img_name.split('\\')[-1].replace('.nii.gz', '') + ".npy", concat)
         # os.remove(IMG_INPUT_DATA_DIR + img_name.split('\\')[-1])
         # os.remove(MASK_INPUT_DATA_DIR + mask_name.split('\\')[-1])
-
-
-with open('../config.yaml', 'r') as f:
-    config = yaml.safe_load(f)
-
-if __name__ == '__main__':
-    preprocess_images(config)

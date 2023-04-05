@@ -285,7 +285,7 @@ class Augmentor:
                                display_image=display_image)
         return image
 
-    def save_image_mask(self, data_dict, folder_name):
+    def save_image_mask(self, data_dict, folder_name, scale_intensity=False):
         path = f'{self.output_dir}/{folder_name}'
         image_path = path + '/images'
         mask_path = path + '/masks'
@@ -301,7 +301,15 @@ class Augmentor:
         image_name = image_name.replace('__CT', '')
 
         writer = NibabelWriter()
-        writer.set_data_array(data_dict['image'][0, :, :, :], channel_dim=None)
+
+        image_data = data_dict['image'][0, :, :, :]
+        mask_data = data_dict['mask'][0, :, :, :]
+
+        if scale_intensity:
+            image_data = np.interp(image_data, [-1024, 600], [-1, 1])
+            mask_data = np.interp(mask_data, [0, 2], [-1, 1])
+
+        writer.set_data_array(image_data, channel_dim=None)
         writer.set_metadata({"affine": image_affine, "original_affine": image_affine})
         writer.write(f'{image_path}/{image_name}', verbose=False)
 
@@ -312,7 +320,7 @@ class Augmentor:
             mask_affine = data_dict['mask'].affine
             mask_name = data_dict['mask'].meta['filename_or_obj'].split('\\')[-1]
             writer = NibabelWriter()
-            writer.set_data_array(data_dict['mask'][0, :, :, :], channel_dim=None)
+            writer.set_data_array(mask_data, channel_dim=None)
             writer.set_metadata({"affine": mask_affine, "original_affine": image_affine})
             writer.write(f'{mask_path}/{mask_name}', verbose=False)
 

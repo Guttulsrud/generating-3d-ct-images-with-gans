@@ -1,8 +1,8 @@
-experiment_name: 'd4e2g1'
+experiment_name: 'modified_network'
 data_dir: 'data/npy/concat2ax/'
 img_size: 128
 iterations: 80000
-upload_results: False
+upload_results: True
 generate_results_on_completion: False
 generate_n_samples: 3
 tensorboard_log_interval: 100
@@ -17,22 +17,22 @@ lambda_class: 0.1  # 'weights for the auxiliary classifier loss')
 num_class: 0
 fold: 0
 log_dir: 'logs'
-hpo: True
+hpo: False
 preprocessing:
   enabled: False
-  img_input_dir: '../data/cropped_original/images/'
-  mask_input_dir: '../data/cropped_original/masks/'
+  img_input_dir: 'data/cropped_original/images/'
+  mask_input_dir: 'data/cropped_original/masks/'
   output_dir: 'data/npy/concat2ax/'
-  num_jobs: 4
+  num_jobs: 8
   low_threshold: -1024
   high_threshold: 600
   img_size: 128
 
 network:
-  generator_learning_rate: 0.0001
+  generator_learning_rate: 0.0002
   generator_passes_per_iteration: 1
-  discriminator_learning_rate: 0.0004
-  encoder_learning_rate: 0.0002
+  discriminator_learning_rate: 0.0002
+  encoder_learning_rate: 0.0001
 cluster_enabled: False
 shuffle: True
 augmentation:
