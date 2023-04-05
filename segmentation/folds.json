@@ -1,0 +1,2625 @@
+{
+    "training": [
+        {
+            "image": "images/CHUP-049.nii.gz",
+            "label": "masks/CHUP-049.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUP-034.nii.gz",
+            "label": "masks/CHUP-034.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUS-089.nii.gz",
+            "label": "masks/CHUS-089.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUP-061.nii.gz",
+            "label": "masks/CHUP-061.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUP-010.nii.gz",
+            "label": "masks/CHUP-010.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-013.nii.gz",
+            "label": "masks/HGJ-013.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUM-040.nii.gz",
+            "label": "masks/CHUM-040.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-062.nii.gz",
+            "label": "masks/HGJ-062.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUV-009.nii.gz",
+            "label": "masks/CHUV-009.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUS-015.nii.gz",
+            "label": "masks/CHUS-015.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-029.nii.gz",
+            "label": "masks/HGJ-029.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-025.nii.gz",
+            "label": "masks/HGJ-025.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUV-050.nii.gz",
+            "label": "masks/CHUV-050.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-058.nii.gz",
+            "label": "masks/HGJ-058.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUM-007.nii.gz",
+            "label": "masks/CHUM-007.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUS-005.nii.gz",
+            "label": "masks/CHUS-005.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-142.nii.gz",
+            "label": "masks/MDA-142.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-105.nii.gz",
+            "label": "masks/MDA-105.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-078.nii.gz",
+            "label": "masks/MDA-078.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUV-040.nii.gz",
+            "label": "masks/CHUV-040.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUP-028.nii.gz",
+            "label": "masks/CHUP-028.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HMR-012.nii.gz",
+            "label": "masks/HMR-012.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HMR-028.nii.gz",
+            "label": "masks/HMR-028.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUP-063.nii.gz",
+            "label": "masks/CHUP-063.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-099.nii.gz",
+            "label": "masks/MDA-099.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-031.nii.gz",
+            "label": "masks/HGJ-031.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUS-101.nii.gz",
+            "label": "masks/CHUS-101.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-158.nii.gz",
+            "label": "masks/MDA-158.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-025.nii.gz",
+            "label": "masks/MDA-025.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-146.nii.gz",
+            "label": "masks/MDA-146.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-007.nii.gz",
+            "label": "masks/HGJ-007.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-137.nii.gz",
+            "label": "masks/MDA-137.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUM-046.nii.gz",
+            "label": "masks/CHUM-046.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-091.nii.gz",
+            "label": "masks/MDA-091.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUP-043.nii.gz",
+            "label": "masks/CHUP-043.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-085.nii.gz",
+            "label": "masks/HGJ-085.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-193.nii.gz",
+            "label": "masks/MDA-193.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-087.nii.gz",
+            "label": "masks/HGJ-087.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUM-060.nii.gz",
+            "label": "masks/CHUM-060.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUV-029.nii.gz",
+            "label": "masks/CHUV-029.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-003.nii.gz",
+            "label": "masks/MDA-003.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-066.nii.gz",
+            "label": "masks/HGJ-066.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUM-044.nii.gz",
+            "label": "masks/CHUM-044.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-148.nii.gz",
+            "label": "masks/MDA-148.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUM-027.nii.gz",
+            "label": "masks/CHUM-027.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUS-060.nii.gz",
+            "label": "masks/CHUS-060.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-039.nii.gz",
+            "label": "masks/MDA-039.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-027.nii.gz",
+            "label": "masks/MDA-027.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-036.nii.gz",
+            "label": "masks/HGJ-036.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-065.nii.gz",
+            "label": "masks/MDA-065.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-055.nii.gz",
+            "label": "masks/HGJ-055.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUS-041.nii.gz",
+            "label": "masks/CHUS-041.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-028.nii.gz",
+            "label": "masks/HGJ-028.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUM-065.nii.gz",
+            "label": "masks/CHUM-065.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUV-032.nii.gz",
+            "label": "masks/CHUV-032.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUS-006.nii.gz",
+            "label": "masks/CHUS-006.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-122.nii.gz",
+            "label": "masks/MDA-122.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUV-004.nii.gz",
+            "label": "masks/CHUV-004.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUS-065.nii.gz",
+            "label": "masks/CHUS-065.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUV-008.nii.gz",
+            "label": "masks/CHUV-008.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-053.nii.gz",
+            "label": "masks/MDA-053.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-153.nii.gz",
+            "label": "masks/MDA-153.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUP-072.nii.gz",
+            "label": "masks/CHUP-072.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUP-011.nii.gz",
+            "label": "masks/CHUP-011.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-088.nii.gz",
+            "label": "masks/MDA-088.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-082.nii.gz",
+            "label": "masks/HGJ-082.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-098.nii.gz",
+            "label": "masks/MDA-098.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-086.nii.gz",
+            "label": "masks/MDA-086.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-186.nii.gz",
+            "label": "masks/MDA-186.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUP-062.nii.gz",
+            "label": "masks/CHUP-062.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUP-029.nii.gz",
+            "label": "masks/CHUP-029.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUS-098.nii.gz",
+            "label": "masks/CHUS-098.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUP-025.nii.gz",
+            "label": "masks/CHUP-025.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUP-046.nii.gz",
+            "label": "masks/CHUP-046.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-075.nii.gz",
+            "label": "masks/MDA-075.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUS-051.nii.gz",
+            "label": "masks/CHUS-051.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-116.nii.gz",
+            "label": "masks/MDA-116.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-016.nii.gz",
+            "label": "masks/MDA-016.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-079.nii.gz",
+            "label": "masks/MDA-079.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUV-014.nii.gz",
+            "label": "masks/CHUV-014.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-143.nii.gz",
+            "label": "masks/MDA-143.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUS-004.nii.gz",
+            "label": "masks/CHUS-004.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HMR-005.nii.gz",
+            "label": "masks/HMR-005.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUP-042.nii.gz",
+            "label": "masks/CHUP-042.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HMR-021.nii.gz",
+            "label": "masks/HMR-021.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-069.nii.gz",
+            "label": "masks/HGJ-069.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUM-036.nii.gz",
+            "label": "masks/CHUM-036.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUM-024.nii.gz",
+            "label": "masks/CHUM-024.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUV-026.nii.gz",
+            "label": "masks/CHUV-026.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-063.nii.gz",
+            "label": "masks/MDA-063.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-163.nii.gz",
+            "label": "masks/MDA-163.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-030.nii.gz",
+            "label": "masks/HGJ-030.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUV-045.nii.gz",
+            "label": "masks/CHUV-045.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUM-026.nii.gz",
+            "label": "masks/CHUM-026.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/HGJ-067.nii.gz",
+            "label": "masks/HGJ-067.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUS-057.nii.gz",
+            "label": "masks/CHUS-057.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUM-061.nii.gz",
+            "label": "masks/CHUM-061.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUS-026.nii.gz",
+            "label": "masks/CHUS-026.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUS-038.nii.gz",
+            "label": "masks/CHUS-038.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-201.nii.gz",
+            "label": "masks/MDA-201.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUP-052.nii.gz",
+            "label": "masks/CHUP-052.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUP-040.nii.gz",
+            "label": "masks/CHUP-040.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/CHUP-023.nii.gz",
+            "label": "masks/CHUP-023.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-192.nii.gz",
+            "label": "masks/MDA-192.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-180.nii.gz",
+            "label": "masks/MDA-180.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/MDA-185.nii.gz",
+            "label": "masks/MDA-185.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-085.nii.gz",
+            "label": "masks/MDA-085.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUP-073.nii.gz",
+            "label": "masks/CHUP-073.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/HGJ-070.nii.gz",
+            "label": "masks/HGJ-070.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-023.nii.gz",
+            "label": "masks/MDA-023.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUS-068.nii.gz",
+            "label": "masks/CHUS-068.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUM-023.nii.gz",
+            "label": "masks/CHUM-023.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUV-021.nii.gz",
+            "label": "masks/CHUV-021.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-076.nii.gz",
+            "label": "masks/MDA-076.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-176.nii.gz",
+            "label": "masks/MDA-176.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/HGJ-046.nii.gz",
+            "label": "masks/HGJ-046.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUS-031.nii.gz",
+            "label": "masks/CHUS-031.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUM-021.nii.gz",
+            "label": "masks/CHUM-021.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-050.nii.gz",
+            "label": "masks/MDA-050.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUV-019.nii.gz",
+            "label": "masks/CHUV-019.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUS-078.nii.gz",
+            "label": "masks/CHUS-078.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-021.nii.gz",
+            "label": "masks/MDA-021.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-042.nii.gz",
+            "label": "masks/MDA-042.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/HGJ-072.nii.gz",
+            "label": "masks/HGJ-072.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-017.nii.gz",
+            "label": "masks/MDA-017.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-117.nii.gz",
+            "label": "masks/MDA-117.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUV-052.nii.gz",
+            "label": "masks/CHUV-052.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUS-050.nii.gz",
+            "label": "masks/CHUS-050.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-174.nii.gz",
+            "label": "masks/MDA-174.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUS-021.nii.gz",
+            "label": "masks/CHUS-021.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUP-036.nii.gz",
+            "label": "masks/CHUP-036.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUS-087.nii.gz",
+            "label": "masks/CHUS-087.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-095.nii.gz",
+            "label": "masks/MDA-095.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUP-071.nii.gz",
+            "label": "masks/CHUP-071.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/HMR-024.nii.gz",
+            "label": "masks/HMR-024.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-101.nii.gz",
+            "label": "masks/MDA-101.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-062.nii.gz",
+            "label": "masks/MDA-062.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUV-027.nii.gz",
+            "label": "masks/CHUV-027.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUM-037.nii.gz",
+            "label": "masks/CHUM-037.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/HGJ-015.nii.gz",
+            "label": "masks/HGJ-015.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-046.nii.gz",
+            "label": "masks/MDA-046.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUV-003.nii.gz",
+            "label": "masks/CHUV-003.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUM-058.nii.gz",
+            "label": "masks/CHUM-058.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUV-011.nii.gz",
+            "label": "masks/CHUV-011.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/HMR-020.nii.gz",
+            "label": "masks/HMR-020.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUP-008.nii.gz",
+            "label": "masks/CHUP-008.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUP-075.nii.gz",
+            "label": "masks/CHUP-075.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUP-069.nii.gz",
+            "label": "masks/CHUP-069.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUP-053.nii.gz",
+            "label": "masks/CHUP-053.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-072.nii.gz",
+            "label": "masks/MDA-072.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUS-035.nii.gz",
+            "label": "masks/CHUS-035.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUV-025.nii.gz",
+            "label": "masks/CHUV-025.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUM-011.nii.gz",
+            "label": "masks/CHUM-011.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-103.nii.gz",
+            "label": "masks/MDA-103.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-048.nii.gz",
+            "label": "masks/MDA-048.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/HGJ-078.nii.gz",
+            "label": "masks/HGJ-078.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/HGJ-074.nii.gz",
+            "label": "masks/HGJ-074.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-139.nii.gz",
+            "label": "masks/MDA-139.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUS-003.nii.gz",
+            "label": "masks/CHUS-003.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-006.nii.gz",
+            "label": "masks/MDA-006.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-018.nii.gz",
+            "label": "masks/MDA-018.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-114.nii.gz",
+            "label": "masks/MDA-114.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-014.nii.gz",
+            "label": "masks/MDA-014.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-177.nii.gz",
+            "label": "masks/MDA-177.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-130.nii.gz",
+            "label": "masks/MDA-130.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUP-003.nii.gz",
+            "label": "masks/CHUP-003.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUP-027.nii.gz",
+            "label": "masks/CHUP-027.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUS-088.nii.gz",
+            "label": "masks/CHUS-088.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUP-048.nii.gz",
+            "label": "masks/CHUP-048.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/HMR-011.nii.gz",
+            "label": "masks/HMR-011.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/HMR-013.nii.gz",
+            "label": "masks/HMR-013.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-108.nii.gz",
+            "label": "masks/MDA-108.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/HGJ-026.nii.gz",
+            "label": "masks/HGJ-026.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-167.nii.gz",
+            "label": "masks/MDA-167.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUM-016.nii.gz",
+            "label": "masks/CHUM-016.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-104.nii.gz",
+            "label": "masks/MDA-104.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUS-016.nii.gz",
+            "label": "masks/CHUS-016.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUM-051.nii.gz",
+            "label": "masks/CHUM-051.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/HGJ-010.nii.gz",
+            "label": "masks/HGJ-010.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-020.nii.gz",
+            "label": "masks/MDA-020.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUS-090.nii.gz",
+            "label": "masks/CHUS-090.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUP-005.nii.gz",
+            "label": "masks/CHUP-005.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-082.nii.gz",
+            "label": "masks/MDA-082.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-182.nii.gz",
+            "label": "masks/MDA-182.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUP-066.nii.gz",
+            "label": "masks/CHUP-066.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-090.nii.gz",
+            "label": "masks/MDA-090.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUP-074.nii.gz",
+            "label": "masks/CHUP-074.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUV-002.nii.gz",
+            "label": "masks/CHUV-002.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-028.nii.gz",
+            "label": "masks/MDA-028.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-036.nii.gz",
+            "label": "masks/MDA-036.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-136.nii.gz",
+            "label": "masks/MDA-136.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUS-047.nii.gz",
+            "label": "masks/CHUS-047.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-100.nii.gz",
+            "label": "masks/MDA-100.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUV-038.nii.gz",
+            "label": "masks/CHUV-038.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-171.nii.gz",
+            "label": "masks/MDA-171.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-112.nii.gz",
+            "label": "masks/MDA-112.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUS-010.nii.gz",
+            "label": "masks/CHUS-010.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-157.nii.gz",
+            "label": "masks/MDA-157.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/HGJ-016.nii.gz",
+            "label": "masks/HGJ-016.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUM-049.nii.gz",
+            "label": "masks/CHUM-049.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUM-057.nii.gz",
+            "label": "masks/CHUM-057.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-038.nii.gz",
+            "label": "masks/MDA-038.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-145.nii.gz",
+            "label": "masks/MDA-145.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUV-028.nii.gz",
+            "label": "masks/CHUV-028.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-102.nii.gz",
+            "label": "masks/MDA-102.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-061.nii.gz",
+            "label": "masks/MDA-061.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUS-080.nii.gz",
+            "label": "masks/CHUS-080.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/MDA-080.nii.gz",
+            "label": "masks/MDA-080.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/HMR-040.nii.gz",
+            "label": "masks/HMR-040.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUP-007.nii.gz",
+            "label": "masks/CHUP-007.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/CHUP-026.nii.gz",
+            "label": "masks/CHUP-026.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUP-057.nii.gz",
+            "label": "masks/CHUP-057.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-097.nii.gz",
+            "label": "masks/CHUS-097.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-089.nii.gz",
+            "label": "masks/MDA-089.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/HMR-034.nii.gz",
+            "label": "masks/HMR-034.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-097.nii.gz",
+            "label": "masks/MDA-097.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-123.nii.gz",
+            "label": "masks/MDA-123.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUV-017.nii.gz",
+            "label": "masks/CHUV-017.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-031.nii.gz",
+            "label": "masks/MDA-031.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-040.nii.gz",
+            "label": "masks/CHUS-040.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-164.nii.gz",
+            "label": "masks/MDA-164.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-107.nii.gz",
+            "label": "masks/MDA-107.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUM-015.nii.gz",
+            "label": "masks/CHUM-015.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-052.nii.gz",
+            "label": "masks/CHUS-052.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-168.nii.gz",
+            "label": "masks/MDA-168.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-009.nii.gz",
+            "label": "masks/CHUS-009.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUM-033.nii.gz",
+            "label": "masks/CHUM-033.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUM-050.nii.gz",
+            "label": "masks/CHUM-050.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-109.nii.gz",
+            "label": "masks/MDA-109.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-074.nii.gz",
+            "label": "masks/MDA-074.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-178.nii.gz",
+            "label": "masks/MDA-178.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUM-017.nii.gz",
+            "label": "masks/CHUM-017.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUV-023.nii.gz",
+            "label": "masks/CHUV-023.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-042.nii.gz",
+            "label": "masks/CHUS-042.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-166.nii.gz",
+            "label": "masks/MDA-166.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUP-059.nii.gz",
+            "label": "masks/CHUP-059.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUP-024.nii.gz",
+            "label": "masks/CHUP-024.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-087.nii.gz",
+            "label": "masks/MDA-087.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUV-044.nii.gz",
+            "label": "masks/CHUV-044.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-162.nii.gz",
+            "label": "masks/MDA-162.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-013.nii.gz",
+            "label": "masks/MDA-013.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-170.nii.gz",
+            "label": "masks/MDA-170.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-058.nii.gz",
+            "label": "masks/MDA-058.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-125.nii.gz",
+            "label": "masks/MDA-125.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/HGJ-076.nii.gz",
+            "label": "masks/HGJ-076.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUM-054.nii.gz",
+            "label": "masks/CHUM-054.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-037.nii.gz",
+            "label": "masks/MDA-037.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-154.nii.gz",
+            "label": "masks/MDA-154.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-191.nii.gz",
+            "label": "masks/MDA-191.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-083.nii.gz",
+            "label": "masks/CHUS-083.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUP-018.nii.gz",
+            "label": "masks/CHUP-018.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUP-065.nii.gz",
+            "label": "masks/CHUP-065.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-181.nii.gz",
+            "label": "masks/MDA-181.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/HMR-014.nii.gz",
+            "label": "masks/HMR-014.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUV-037.nii.gz",
+            "label": "masks/CHUV-037.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-011.nii.gz",
+            "label": "masks/MDA-011.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-111.nii.gz",
+            "label": "masks/MDA-111.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-160.nii.gz",
+            "label": "masks/MDA-160.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-039.nii.gz",
+            "label": "masks/CHUS-039.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-060.nii.gz",
+            "label": "masks/MDA-060.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-035.nii.gz",
+            "label": "masks/MDA-035.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-044.nii.gz",
+            "label": "masks/MDA-044.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-127.nii.gz",
+            "label": "masks/MDA-127.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-165.nii.gz",
+            "label": "masks/MDA-165.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-118.nii.gz",
+            "label": "masks/MDA-118.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-077.nii.gz",
+            "label": "masks/MDA-077.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUM-018.nii.gz",
+            "label": "masks/CHUM-018.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUM-030.nii.gz",
+            "label": "masks/CHUM-030.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-022.nii.gz",
+            "label": "masks/MDA-022.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/HGJ-071.nii.gz",
+            "label": "masks/HGJ-071.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-077.nii.gz",
+            "label": "masks/CHUS-077.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUP-060.nii.gz",
+            "label": "masks/CHUP-060.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-084.nii.gz",
+            "label": "masks/MDA-084.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/HGJ-090.nii.gz",
+            "label": "masks/HGJ-090.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUP-035.nii.gz",
+            "label": "masks/CHUP-035.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-094.nii.gz",
+            "label": "masks/MDA-094.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/HMR-029.nii.gz",
+            "label": "masks/HMR-029.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUP-037.nii.gz",
+            "label": "masks/CHUP-037.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-094.nii.gz",
+            "label": "masks/CHUS-094.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUV-030.nii.gz",
+            "label": "masks/CHUV-030.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUV-053.nii.gz",
+            "label": "masks/CHUV-053.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUM-008.nii.gz",
+            "label": "masks/CHUM-008.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-043.nii.gz",
+            "label": "masks/CHUS-043.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-020.nii.gz",
+            "label": "masks/CHUS-020.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-004.nii.gz",
+            "label": "masks/MDA-004.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-051.nii.gz",
+            "label": "masks/MDA-051.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-067.nii.gz",
+            "label": "masks/CHUS-067.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUP-017.nii.gz",
+            "label": "masks/CHUP-017.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-147.nii.gz",
+            "label": "masks/MDA-147.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-047.nii.gz",
+            "label": "masks/MDA-047.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-024.nii.gz",
+            "label": "masks/MDA-024.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-159.nii.gz",
+            "label": "masks/MDA-159.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-100.nii.gz",
+            "label": "masks/CHUS-100.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-059.nii.gz",
+            "label": "masks/MDA-059.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-128.nii.gz",
+            "label": "masks/MDA-128.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-055.nii.gz",
+            "label": "masks/MDA-055.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-155.nii.gz",
+            "label": "masks/MDA-155.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/HGJ-065.nii.gz",
+            "label": "masks/HGJ-065.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUM-059.nii.gz",
+            "label": "masks/CHUM-059.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUM-012.nii.gz",
+            "label": "masks/CHUM-012.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUM-063.nii.gz",
+            "label": "masks/CHUM-063.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-055.nii.gz",
+            "label": "masks/CHUS-055.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-036.nii.gz",
+            "label": "masks/CHUS-036.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-034.nii.gz",
+            "label": "masks/MDA-034.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-134.nii.gz",
+            "label": "masks/MDA-134.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUM-045.nii.gz",
+            "label": "masks/CHUM-045.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-126.nii.gz",
+            "label": "masks/MDA-126.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-061.nii.gz",
+            "label": "masks/CHUS-061.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-073.nii.gz",
+            "label": "masks/MDA-073.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-045.nii.gz",
+            "label": "masks/CHUS-045.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUV-024.nii.gz",
+            "label": "masks/CHUV-024.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-161.nii.gz",
+            "label": "masks/MDA-161.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/MDA-092.nii.gz",
+            "label": "masks/MDA-092.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUP-068.nii.gz",
+            "label": "masks/CHUP-068.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/HMR-023.nii.gz",
+            "label": "masks/HMR-023.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/CHUS-085.nii.gz",
+            "label": "masks/CHUS-085.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-002.nii.gz",
+            "label": "masks/CHUP-002.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-197.nii.gz",
+            "label": "masks/MDA-197.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUV-005.nii.gz",
+            "label": "masks/CHUV-005.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUS-019.nii.gz",
+            "label": "masks/CHUS-019.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUS-076.nii.gz",
+            "label": "masks/CHUS-076.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-152.nii.gz",
+            "label": "masks/MDA-152.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-052.nii.gz",
+            "label": "masks/MDA-052.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-019.nii.gz",
+            "label": "masks/MDA-019.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-007.nii.gz",
+            "label": "masks/MDA-007.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUV-042.nii.gz",
+            "label": "masks/CHUV-042.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUM-064.nii.gz",
+            "label": "masks/CHUM-064.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUV-033.nii.gz",
+            "label": "masks/CHUV-033.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUM-019.nii.gz",
+            "label": "masks/CHUM-019.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-015.nii.gz",
+            "label": "masks/MDA-015.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUM-042.nii.gz",
+            "label": "masks/CHUM-042.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-150.nii.gz",
+            "label": "masks/MDA-150.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUS-033.nii.gz",
+            "label": "masks/CHUS-033.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/HGJ-039.nii.gz",
+            "label": "masks/HGJ-039.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUV-031.nii.gz",
+            "label": "masks/CHUV-031.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-005.nii.gz",
+            "label": "masks/MDA-005.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-066.nii.gz",
+            "label": "masks/MDA-066.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-055.nii.gz",
+            "label": "masks/CHUP-055.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUS-095.nii.gz",
+            "label": "masks/CHUS-095.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-187.nii.gz",
+            "label": "masks/MDA-187.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-199.nii.gz",
+            "label": "masks/MDA-199.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUM-013.nii.gz",
+            "label": "masks/CHUM-013.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUS-058.nii.gz",
+            "label": "masks/CHUS-058.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUS-046.nii.gz",
+            "label": "masks/CHUS-046.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUM-001.nii.gz",
+            "label": "masks/CHUM-001.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-113.nii.gz",
+            "label": "masks/MDA-113.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUV-048.nii.gz",
+            "label": "masks/CHUV-048.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUS-013.nii.gz",
+            "label": "masks/CHUS-013.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-054.nii.gz",
+            "label": "masks/MDA-054.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-129.nii.gz",
+            "label": "masks/MDA-129.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-183.nii.gz",
+            "label": "masks/MDA-183.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-083.nii.gz",
+            "label": "masks/MDA-083.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-067.nii.gz",
+            "label": "masks/CHUP-067.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-004.nii.gz",
+            "label": "masks/CHUP-004.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-020.nii.gz",
+            "label": "masks/CHUP-020.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/HGJ-089.nii.gz",
+            "label": "masks/HGJ-089.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-051.nii.gz",
+            "label": "masks/CHUP-051.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-032.nii.gz",
+            "label": "masks/CHUP-032.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/HMR-016.nii.gz",
+            "label": "masks/HMR-016.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/HMR-030.nii.gz",
+            "label": "masks/HMR-030.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-093.nii.gz",
+            "label": "masks/MDA-093.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-006.nii.gz",
+            "label": "masks/CHUP-006.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-030.nii.gz",
+            "label": "masks/CHUP-030.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-200.nii.gz",
+            "label": "masks/MDA-200.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-041.nii.gz",
+            "label": "masks/CHUP-041.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-172.nii.gz",
+            "label": "masks/MDA-172.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUS-056.nii.gz",
+            "label": "masks/CHUS-056.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/HGJ-050.nii.gz",
+            "label": "masks/HGJ-050.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUV-046.nii.gz",
+            "label": "masks/CHUV-046.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-156.nii.gz",
+            "label": "masks/MDA-156.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-135.nii.gz",
+            "label": "masks/MDA-135.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUV-001.nii.gz",
+            "label": "masks/CHUV-001.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUM-035.nii.gz",
+            "label": "masks/CHUM-035.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/HGJ-017.nii.gz",
+            "label": "masks/HGJ-017.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUM-048.nii.gz",
+            "label": "masks/CHUM-048.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-106.nii.gz",
+            "label": "masks/MDA-106.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUV-051.nii.gz",
+            "label": "masks/CHUV-051.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-141.nii.gz",
+            "label": "masks/MDA-141.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUM-053.nii.gz",
+            "label": "masks/CHUM-053.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUM-022.nii.gz",
+            "label": "masks/CHUM-022.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-030.nii.gz",
+            "label": "masks/MDA-030.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUV-016.nii.gz",
+            "label": "masks/CHUV-016.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-039.nii.gz",
+            "label": "masks/CHUP-039.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-044.nii.gz",
+            "label": "masks/CHUP-044.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUS-096.nii.gz",
+            "label": "masks/CHUS-096.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-056.nii.gz",
+            "label": "masks/CHUP-056.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-013.nii.gz",
+            "label": "masks/CHUP-013.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-194.nii.gz",
+            "label": "masks/MDA-194.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-001.nii.gz",
+            "label": "masks/CHUP-001.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/HMR-025.nii.gz",
+            "label": "masks/HMR-025.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-198.nii.gz",
+            "label": "masks/MDA-198.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-054.nii.gz",
+            "label": "masks/CHUP-054.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-058.nii.gz",
+            "label": "masks/CHUP-058.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUS-086.nii.gz",
+            "label": "masks/CHUS-086.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/HGJ-038.nii.gz",
+            "label": "masks/HGJ-038.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-067.nii.gz",
+            "label": "masks/MDA-067.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-179.nii.gz",
+            "label": "masks/MDA-179.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUV-041.nii.gz",
+            "label": "masks/CHUV-041.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/HGJ-034.nii.gz",
+            "label": "masks/HGJ-034.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-151.nii.gz",
+            "label": "masks/MDA-151.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-132.nii.gz",
+            "label": "masks/MDA-132.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-120.nii.gz",
+            "label": "masks/MDA-120.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-033.nii.gz",
+            "label": "masks/CHUP-033.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-124.nii.gz",
+            "label": "masks/MDA-124.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUM-047.nii.gz",
+            "label": "masks/CHUM-047.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUV-010.nii.gz",
+            "label": "masks/CHUV-010.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-071.nii.gz",
+            "label": "masks/MDA-071.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-012.nii.gz",
+            "label": "masks/MDA-012.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-049.nii.gz",
+            "label": "masks/MDA-049.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-149.nii.gz",
+            "label": "masks/MDA-149.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-057.nii.gz",
+            "label": "masks/MDA-057.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-026.nii.gz",
+            "label": "masks/MDA-026.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/HGJ-008.nii.gz",
+            "label": "masks/HGJ-008.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/MDA-045.nii.gz",
+            "label": "masks/MDA-045.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUV-036.nii.gz",
+            "label": "masks/CHUV-036.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/HGJ-043.nii.gz",
+            "label": "masks/HGJ-043.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/HGJ-032.nii.gz",
+            "label": "masks/HGJ-032.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUV-047.nii.gz",
+            "label": "masks/CHUV-047.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-064.nii.gz",
+            "label": "masks/CHUP-064.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/CHUP-019.nii.gz",
+            "label": "masks/CHUP-019.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/HGJ-091.nii.gz",
+            "label": "masks/HGJ-091.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUP-038.nii.gz",
+            "label": "masks/CHUP-038.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HGJ-083.nii.gz",
+            "label": "masks/HGJ-083.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-189.nii.gz",
+            "label": "masks/MDA-189.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUS-064.nii.gz",
+            "label": "masks/CHUS-064.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-040.nii.gz",
+            "label": "masks/MDA-040.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-140.nii.gz",
+            "label": "masks/MDA-140.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUS-007.nii.gz",
+            "label": "masks/CHUS-007.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-131.nii.gz",
+            "label": "masks/MDA-131.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-119.nii.gz",
+            "label": "masks/MDA-119.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-064.nii.gz",
+            "label": "masks/MDA-064.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HGJ-037.nii.gz",
+            "label": "masks/HGJ-037.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-115.nii.gz",
+            "label": "masks/MDA-115.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-068.nii.gz",
+            "label": "masks/MDA-068.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-133.nii.gz",
+            "label": "masks/MDA-133.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-033.nii.gz",
+            "label": "masks/MDA-033.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUS-074.nii.gz",
+            "label": "masks/CHUS-074.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUV-015.nii.gz",
+            "label": "masks/CHUV-015.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-121.nii.gz",
+            "label": "masks/MDA-121.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUS-066.nii.gz",
+            "label": "masks/CHUS-066.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUV-007.nii.gz",
+            "label": "masks/CHUV-007.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HGJ-035.nii.gz",
+            "label": "masks/HGJ-035.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HGJ-048.nii.gz",
+            "label": "masks/HGJ-048.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HGJ-081.nii.gz",
+            "label": "masks/HGJ-081.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUP-047.nii.gz",
+            "label": "masks/CHUP-047.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-195.nii.gz",
+            "label": "masks/MDA-195.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUP-012.nii.gz",
+            "label": "masks/CHUP-012.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUP-000.nii.gz",
+            "label": "masks/CHUP-000.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-001.nii.gz",
+            "label": "masks/MDA-001.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUV-039.nii.gz",
+            "label": "masks/CHUV-039.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HGJ-052.nii.gz",
+            "label": "masks/HGJ-052.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-070.nii.gz",
+            "label": "masks/MDA-070.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUM-062.nii.gz",
+            "label": "masks/CHUM-062.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUV-035.nii.gz",
+            "label": "masks/CHUV-035.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUM-029.nii.gz",
+            "label": "masks/CHUM-029.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-029.nii.gz",
+            "label": "masks/MDA-029.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUP-016.nii.gz",
+            "label": "masks/CHUP-016.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HMR-004.nii.gz",
+            "label": "masks/HMR-004.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUS-091.nii.gz",
+            "label": "masks/CHUS-091.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-081.nii.gz",
+            "label": "masks/MDA-081.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUP-022.nii.gz",
+            "label": "masks/CHUP-022.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUS-081.nii.gz",
+            "label": "masks/CHUS-081.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUS-048.nii.gz",
+            "label": "masks/CHUS-048.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUS-027.nii.gz",
+            "label": "masks/CHUS-027.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUM-039.nii.gz",
+            "label": "masks/CHUM-039.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-056.nii.gz",
+            "label": "masks/MDA-056.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUV-013.nii.gz",
+            "label": "masks/CHUV-013.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-144.nii.gz",
+            "label": "masks/MDA-144.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUM-056.nii.gz",
+            "label": "masks/CHUM-056.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUM-014.nii.gz",
+            "label": "masks/CHUM-014.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUV-043.nii.gz",
+            "label": "masks/CHUV-043.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUS-022.nii.gz",
+            "label": "masks/CHUS-022.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUV-020.nii.gz",
+            "label": "masks/CHUV-020.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUM-006.nii.gz",
+            "label": "masks/CHUM-006.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-169.nii.gz",
+            "label": "masks/MDA-169.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUS-030.nii.gz",
+            "label": "masks/CHUS-030.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-069.nii.gz",
+            "label": "masks/MDA-069.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUS-053.nii.gz",
+            "label": "masks/CHUS-053.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-041.nii.gz",
+            "label": "masks/MDA-041.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUS-069.nii.gz",
+            "label": "masks/CHUS-069.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUM-041.nii.gz",
+            "label": "masks/CHUM-041.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-184.nii.gz",
+            "label": "masks/MDA-184.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-196.nii.gz",
+            "label": "masks/MDA-196.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-096.nii.gz",
+            "label": "masks/MDA-096.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-188.nii.gz",
+            "label": "masks/MDA-188.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUP-070.nii.gz",
+            "label": "masks/CHUP-070.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HGJ-080.nii.gz",
+            "label": "masks/HGJ-080.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HMR-001.nii.gz",
+            "label": "masks/HMR-001.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HGJ-092.nii.gz",
+            "label": "masks/HGJ-092.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-175.nii.gz",
+            "label": "masks/MDA-175.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HGJ-057.nii.gz",
+            "label": "masks/HGJ-057.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUV-022.nii.gz",
+            "label": "masks/CHUV-022.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUS-008.nii.gz",
+            "label": "masks/CHUS-008.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUM-043.nii.gz",
+            "label": "masks/CHUM-043.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-032.nii.gz",
+            "label": "masks/MDA-032.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-043.nii.gz",
+            "label": "masks/MDA-043.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HGJ-073.nii.gz",
+            "label": "masks/HGJ-073.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUV-006.nii.gz",
+            "label": "masks/CHUV-006.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUM-032.nii.gz",
+            "label": "masks/CHUM-032.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUV-018.nii.gz",
+            "label": "masks/CHUV-018.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HGJ-088.nii.gz",
+            "label": "masks/HGJ-088.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUP-050.nii.gz",
+            "label": "masks/CHUP-050.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-190.nii.gz",
+            "label": "masks/MDA-190.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUP-009.nii.gz",
+            "label": "masks/CHUP-009.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUM-055.nii.gz",
+            "label": "masks/CHUM-055.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HGJ-077.nii.gz",
+            "label": "masks/HGJ-077.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HGJ-018.nii.gz",
+            "label": "masks/HGJ-018.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HGJ-053.nii.gz",
+            "label": "masks/HGJ-053.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUV-034.nii.gz",
+            "label": "masks/CHUV-034.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUV-049.nii.gz",
+            "label": "masks/CHUV-049.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUS-028.nii.gz",
+            "label": "masks/CHUS-028.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUV-012.nii.gz",
+            "label": "masks/CHUV-012.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUS-073.nii.gz",
+            "label": "masks/CHUS-073.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUM-038.nii.gz",
+            "label": "masks/CHUM-038.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUM-034.nii.gz",
+            "label": "masks/CHUM-034.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-138.nii.gz",
+            "label": "masks/MDA-138.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-110.nii.gz",
+            "label": "masks/MDA-110.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUS-049.nii.gz",
+            "label": "masks/CHUS-049.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-010.nii.gz",
+            "label": "masks/MDA-010.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUM-002.nii.gz",
+            "label": "masks/CHUM-002.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/MDA-173.nii.gz",
+            "label": "masks/MDA-173.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUM-010.nii.gz",
+            "label": "masks/CHUM-010.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/HGJ-086.nii.gz",
+            "label": "masks/HGJ-086.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/CHUP-015.nii.gz",
+            "label": "masks/CHUP-015.nii.gz",
+            "fold": 4
+        }
+    ],
+    "testing": []
+}
