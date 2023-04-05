@@ -24,7 +24,7 @@ def image_3d_to_2d(path, mask=True):
         combined_image[z * image.GetSize()[1]:(z + 1) * image.GetSize()[1], :] = slice_array
 
     combined_image = ((combined_image - np.min(combined_image)) / np.ptp(combined_image) * 255).astype(np.uint8)
-    image_path = '../data/2d_resampled/'
+    image_path = '2d/'
     image_path += 'images/' if not mask else 'masks/'
     image_path = image_path + path.split('\\')[1].split('.nii.gz')[0] + '.png'
     image_path = image_path.replace('CT', '')
@@ -35,8 +35,8 @@ def image_3d_to_2d(path, mask=True):
     pil_image.save(image_path)
 
 
-images = glob.glob(os.path.join(f'../data/resampled/0.5/images', '*CT.nii.gz'))
-labels = glob.glob(os.path.join(f'../data/resampled/0.5/labels', '*.nii.gz'))
+images = glob.glob(os.path.join(f'../../../data/original/images', '*CT.nii.gz'))
+labels = glob.glob(os.path.join(f'../../../data/original/masks', '*.nii.gz'))
 
 for image_path, label_path in tqdm(zip(images, labels)):
     image_3d_to_2d(image_path, mask=False)

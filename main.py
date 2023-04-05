@@ -14,7 +14,6 @@ if __name__ == '__main__':
     if config['preprocessing']['enabled']:
         preprocess_images(config=config)
 
-
     if not config['hpo']:
         storage = Storage(experiment_name=config['experiment_name'])
         logger = Logger(config=config)
@@ -24,14 +23,23 @@ if __name__ == '__main__':
             storage.upload_results()
 
         exit()
-    exit()
+
     with open('hpo.yaml', 'r') as f:
         hpo_config = yaml.safe_load(f)
 
+    # param_grid = list(itertools.product(hpo_config.values()))
+
+    # total_configurations = len(param_grid)
+
+    # Print the total number of configurations
+    # print(f"Total configurations: {len(param_grid)}")
 
     for i, size in enumerate([1280, 1536, 1792, 2048]):
         print(f'Running HPO configuration {i + 1}/3')
 
+        # For LR
+        # for j, key in enumerate(hpo_config.keys()):
+        #     config['network'][key] = config_values[j]
 
         config['experiment_name'] = f"Latent_dim{size}"
         config['latent_dim'] = size

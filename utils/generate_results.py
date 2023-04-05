@@ -23,34 +23,40 @@ import seaborn as sns
 # from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
 import matplotlib.pyplot as plt
 
-storage = Storage(experiment_name=None)
-folders = [f for f in os.listdir('../saved_models') if os.path.isdir(os.path.join('../saved_models', f))]
-folder_names = [f for f in folders]
 
-experiments = []
-for idx, file_name in enumerate(folder_names):
-    file_name = file_name.split('saved_models\\')[-1]
+show_all = False
 
-    if 'saved_models' in file_name:
-        continue
+experiment_name = 'normalized2mm'
 
-    print(f'[{idx}] {file_name}')
-    experiments.append(file_name)
+if show_all:
+    storage = Storage(experiment_name=None)
+    folders = [f for f in os.listdir('../saved_models') if os.path.isdir(os.path.join('../saved_models', f))]
+    folder_names = [f for f in folders]
 
-mode = input('Choose experiment, or press d to download from Cloud')
-mode = int(mode) if mode != 'd' else mode
-
-if mode == 'd':
     experiments = []
-    for idx, experiment in enumerate(storage.list_folders()):
-        print(f'[{idx}] {experiment}')
-        experiments.append(experiment)
+    for idx, file_name in enumerate(folder_names):
+        file_name = file_name.split('saved_models\\')[-1]
 
-    mode = input('Choose experiment')
-    storage.download_results(experiments[int(mode)])
-    experiment_name = experiments[int(mode)]
-else:
-    experiment_name = experiments[int(mode)]
+        if 'saved_models' in file_name:
+            continue
+
+        print(f'[{idx}] {file_name}')
+        experiments.append(file_name)
+
+    mode = input('Choose experiment, or press d to download from Cloud')
+    mode = int(mode) if mode != 'd' else mode
+
+    if mode == 'd':
+        experiments = []
+        for idx, experiment in enumerate(storage.list_folders()):
+            print(f'[{idx}] {experiment}')
+            experiments.append(experiment)
+
+        mode = input('Choose experiment')
+        storage.download_results(experiments[int(mode)])
+        experiment_name = experiments[int(mode)]
+    else:
+        experiment_name = experiments[int(mode)]
 
 try:
     file_path = glob.glob(f'../saved_models/{experiment_name}/*events*')[0]
@@ -107,25 +113,23 @@ def plot_results(data, experiment_name, network, smooth_only=False, save_plot=Fa
     stats_data = {label: [] for label in stats_labels}
     scalar_labels = []
 
-    plt.figure(figsize=(10, 6))
-    ax = plt.gca()
-
     for scalar, scalar_values in scalar_data.items():
         scalar = scalar_name_mapping[scalar]
         scalar_labels.append(scalar)
 
+        alpha = 0.001
         data = pd.DataFrame(scalar_values, columns=['Iteration', 'Loss'])
+        data['Smoothed Loss'] = data['Loss'].ewm(alpha=alpha).mean()
 
-        # Smooth the data using a rolling window
-        window_size = 500  # Choose an appropriate window size based on the number of data points
-        data['SmoothedValue'] = data['Loss'].rolling(window=window_size, center=True).mean()
+        fig, ax = plt.subplots()
+        ax.grid(color='gray', linestyle='-', linewidth=0.3, alpha=0.8)
 
-        if smooth_only:
-            sns.lineplot(x='Iteration', y='SmoothedValue', data=data, linewidth=2.5, ax=ax,
-                         label=f'{scalar} Rolling average {window_size}')
-        else:
-            sns.lineplot(x='Iteration', y='Loss', data=data, linewidth=2.5, ax=ax, label=f'{scalar} Loss')
+        ax.plot(data['Iteration'], data['Loss'], alpha=0.2, label='Loss')
+        ax.plot(data['Iteration'], data['Smoothed Loss'], label='Loss (EMA)')
+        # Add lines along the x and y axes
 
+        plt.legend()
+        plt.show()
         if print_stats:
             avg = np.mean(data['Loss'])
             minimum = np.min(data['Loss'])
@@ -142,6 +146,8 @@ def plot_results(data, experiment_name, network, smooth_only=False, save_plot=Fa
 
     stats_df = pd.DataFrame(stats_data, index=scalar_labels)
 
+    print(stats_df.head())
+
     fig, ax = plt.subplots(figsize=(10, 6))
     stats_df.plot(kind='bar', ax=ax)
     plt.title(f'{network} Statistics')
@@ -150,7 +156,7 @@ def plot_results(data, experiment_name, network, smooth_only=False, save_plot=Fa
     plt.xticks(rotation=45)
     plt.legend(title='Statistics', bbox_to_anchor=(1.05, 1), loc='upper left')
     plt.tight_layout()
-    plt.show()
+    #plt.show()
 
     # Show the plot
     if save_plot:
@@ -268,7 +274,8 @@ def display_combined_stats(data, experiment_name, show=False, save=False, genera
             nib.save(nifti, f'{out_folder}/generated_images/nifti/image_{x + 1}.nii.gz')
 
 
+plot_results(scalar_data, experiment_name, 'Generator', save_plot=True, smooth_only=True, print_stats=True)
 # plot_results(scalar_data, experiment_name, 'Generator', save_plot=True, smooth_only=True, print_stats=True)
 # plot_results(scalar_data,experiment_name,  'Discriminator', save_plot=True, smooth_only=True, print_stats=True)
 # plot_results(scalar_data,experiment_name,  'Encoder', save_plot=True, smooth_only=True, print_stats=True)
-display_combined_stats(data=scalar_data, experiment_name=experiment_name, save=True, generate_images=True, n_images=10)
+# display_combined_stats(data=scalar_data, experiment_name=experiment_name, save=True, generate_images=False, n_images=10)

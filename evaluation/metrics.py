@@ -6,7 +6,7 @@ from numpy import trace, iscomplexobj, cov
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 from scipy.linalg import sqrtm
 from evaluation.res_net.resnet3D import resnet50
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, SubsetRandomSampler
 import os
 from collections import OrderedDict
 from torchvision import transforms
@@ -116,12 +116,22 @@ def calculate_kernel_distance_score(act1, act2):
     return kid_mean, kid_std
 
 
-def evaluate(real_images_path, generated_images_path):
+def evaluate(real_images_path, generated_images_path, limit=None):
+    # Load real samples
     dataset = CustomDataset(real_images_path, transform=transforms.ToTensor())
-    real_loader = DataLoader(dataset, batch_size=32, shuffle=False)
+    if limit is not None:
+        real_sampler = SubsetRandomSampler(range(limit))
+        real_loader = DataLoader(dataset, batch_size=32, sampler=real_sampler)
+    else:
+        real_loader = DataLoader(dataset, batch_size=32, shuffle=True)
 
+    # Load generated samples
     dataset = CustomDataset(generated_images_path, transform=transforms.ToTensor())
-    fake_loader = DataLoader(dataset, batch_size=32, shuffle=False)
+    if limit is not None:
+        fake_sampler = SubsetRandomSampler(range(limit))
+        fake_loader = DataLoader(dataset, batch_size=32, sampler=fake_sampler)
+    else:
+        fake_loader = DataLoader(dataset, batch_size=32, shuffle=True)
 
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model = get_feature_extractor().to(device)
@@ -133,6 +143,8 @@ def evaluate(real_images_path, generated_images_path):
 
     fid_score = calculate_fid(act1, act2)
     is_score = calculate_inception_score(act2)
+
+    # kid_mean_score, kid_std_score = calculate_kernel_distance_score(act1, act2)
     # print('FID:', round(fid_score, 5))
     # print('IS:', round(is_score, 5))
     return round(fid_score, 5), round(is_score, 5)

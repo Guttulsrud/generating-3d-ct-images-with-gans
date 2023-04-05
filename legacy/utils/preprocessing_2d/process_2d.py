@@ -7,7 +7,7 @@ from tqdm import tqdm
 
 
 def stack():
-    images = glob.glob(os.path.join(f'../data/2d', '*.png'))
+    images = glob.glob(os.path.join(f'../preprocessing_3d/2d/images', '*.png'))
 
     for image_path in tqdm(images):
         try:
@@ -31,7 +31,7 @@ def stack():
 
         final_image = np.hstack(np.split(image, 12, axis=0))
         result_image = Image.fromarray(final_image)
-        result_image.save('../data/2d_full_size_stacked/' + image_path.split('\\')[1])
+        result_image.save('../stacked/' + image_path.split('\\')[1])
 
         # array1 = np.array(image)
         # array2 = np.array(mask)

@@ -6,7 +6,6 @@ from utils.ha_gan_utils import trim_state_dict_name
 def generate_image(model_path, save_step=80000, rescale_intensity=True, img_size=128):
     batch_size = 1
     latent_dim = 1024
-
     generator, _, encoder, sub_encoder, = get_model(img_size=img_size,
                                                     latent_dim=latent_dim,
                                                     num_class=0,
