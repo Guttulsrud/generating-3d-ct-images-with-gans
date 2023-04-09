@@ -12,7 +12,7 @@ results = []
 folders = [f for f in os.listdir('../data/generated_images')]
 folder_names = [f for f in folders]
 
-exps = ['normalized2mm']
+exps = ['normalized15x15x3']
 for experiment in tqdm(folder_names):
     if experiment not in exps:
         continue

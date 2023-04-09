@@ -23,11 +23,10 @@ import seaborn as sns
 # from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
 import matplotlib.pyplot as plt
 
+show_all = True
 
-show_all = False
-
-experiment_name = 'normalized2mm'
-
+experiment_name = 'normalized15x15x3'
+print(f'Experiment name: {experiment_name}')
 if show_all:
     storage = Storage(experiment_name=None)
     folders = [f for f in os.listdir('../saved_models') if os.path.isdir(os.path.join('../saved_models', f))]
@@ -97,79 +96,6 @@ scalar_name_mapping = {
     'E': 'Encoder',
     'Sub_E': 'Sub-encoder'
 }
-
-
-def plot_results(data, experiment_name, network, smooth_only=False, save_plot=False, print_stats=False):
-    if network == 'Generator':
-        scalars = ['G_fake']
-    elif network == 'Discriminator':
-        scalars = ['D', 'D_real', 'D_fake']
-    else:
-        scalars = ['E', 'Sub_E']
-
-    scalar_data = {key: data[key] for key in scalars if key in data}
-
-    stats_labels = ['Average', 'Min', 'Median', 'Max']
-    stats_data = {label: [] for label in stats_labels}
-    scalar_labels = []
-
-    for scalar, scalar_values in scalar_data.items():
-        scalar = scalar_name_mapping[scalar]
-        scalar_labels.append(scalar)
-
-        alpha = 0.001
-        data = pd.DataFrame(scalar_values, columns=['Iteration', 'Loss'])
-        data['Smoothed Loss'] = data['Loss'].ewm(alpha=alpha).mean()
-
-        fig, ax = plt.subplots()
-        ax.grid(color='gray', linestyle='-', linewidth=0.3, alpha=0.8)
-
-        ax.plot(data['Iteration'], data['Loss'], alpha=0.2, label='Loss')
-        ax.plot(data['Iteration'], data['Smoothed Loss'], label='Loss (EMA)')
-        # Add lines along the x and y axes
-
-        plt.legend()
-        plt.show()
-        if print_stats:
-            avg = np.mean(data['Loss'])
-            minimum = np.min(data['Loss'])
-            median = np.median(data['Loss'])
-            maximum = np.max(data['Loss'])
-
-            stats_data['Average'].append(avg)
-            stats_data['Min'].append(minimum)
-            stats_data['Median'].append(median)
-            stats_data['Max'].append(maximum)
-
-            print(
-                f"{scalar} - Min: {minimum}, Max: {maximum}, Mean: {avg}, Median: {median}, STD: {np.std(data['Loss'])}")
-
-    stats_df = pd.DataFrame(stats_data, index=scalar_labels)
-
-    print(stats_df.head())
-
-    fig, ax = plt.subplots(figsize=(10, 6))
-    stats_df.plot(kind='bar', ax=ax)
-    plt.title(f'{network} Statistics')
-    plt.xlabel('Scalars')
-    plt.ylabel('Value')
-    plt.xticks(rotation=45)
-    plt.legend(title='Statistics', bbox_to_anchor=(1.05, 1), loc='upper left')
-    plt.tight_layout()
-    #plt.show()
-
-    # Show the plot
-    if save_plot:
-        directory = f'../results/{experiment_name}'
-        if not os.path.exists(directory):
-            os.mkdir(directory)
-
-        loss_folder = f'{directory}/loss'
-
-        if not os.path.exists(loss_folder):
-            os.mkdir(loss_folder)
-
-        plt.savefig(f'{loss_folder}/{network}.png')
 
 
 def display_combined_stats(data, experiment_name, show=False, save=False, generate_images=False, n_images=10):
@@ -274,7 +200,68 @@ def display_combined_stats(data, experiment_name, show=False, save=False, genera
             nib.save(nifti, f'{out_folder}/generated_images/nifti/image_{x + 1}.nii.gz')
 
 
-plot_results(scalar_data, experiment_name, 'Generator', save_plot=True, smooth_only=True, print_stats=True)
+def plot_results(data, experiment_name, network, save_plot=False, print_stats=False):
+    if network == 'Generator':
+        scalars = ['G_fake']
+    elif network == 'Discriminator':
+        scalars = ['D', 'D_real', 'D_fake']
+    else:
+        scalars = ['E', 'Sub_E']
+
+    scalar_data = {key: data[key] for key in scalars if key in data}
+
+    stats_labels = ['Average', 'Min', 'Median', 'Max']
+    stats_data = {label: [] for label in stats_labels}
+    scalar_labels = []
+
+    for scalar, scalar_values in scalar_data.items():
+        scalar = scalar_name_mapping[scalar]
+        scalar_labels.append(scalar)
+
+        alpha = 0.001
+        data = pd.DataFrame(scalar_values, columns=['Iteration', 'Loss'])
+        data['Smoothed Loss'] = data['Loss'].ewm(alpha=alpha).mean()
+
+        fig, ax = plt.subplots()
+        ax.grid(color='gray', linestyle='-', linewidth=0.3, alpha=0.8)
+
+        ax.plot(data['Iteration'], data['Loss'], alpha=0.2, label='Loss')
+        ax.plot(data['Iteration'], data['Smoothed Loss'], label='Loss (EMA)')
+        # Add lines along the x and y axes
+
+        plt.legend()
+        if save_plot:
+            directory = f'../results/{experiment_name}'
+            if not os.path.exists(directory):
+                os.mkdir(directory)
+
+            plt.savefig(f'{directory}/{network}.png')
+        plt.close()
+        avg = np.mean(data['Loss'])
+        minimum = np.min(data['Loss'])
+        median = np.median(data['Loss'])
+        maximum = np.max(data['Loss'])
+
+        stats_data['Average'].append(avg)
+        stats_data['Min'].append(minimum)
+        stats_data['Median'].append(median)
+        stats_data['Max'].append(maximum)
+
+        if print_stats:
+            print(
+                f"{scalar} - Min: {minimum}, Max: {maximum}, Mean: {avg}, Median: {median}, STD: {np.std(data['Loss'])}")
+    return pd.DataFrame(stats_data, index=scalar_labels)
+
+
+g_data = plot_results(scalar_data, experiment_name, 'Generator', save_plot=True, print_stats=False)
+d_data = plot_results(scalar_data, experiment_name, 'Discriminator', save_plot=True, print_stats=False)
+e_data = plot_results(scalar_data, experiment_name, 'Encoder', save_plot=True, print_stats=False)
+
+
+df = pd.concat([g_data, d_data, e_data], axis=0)
+df = df.reset_index()
+df = df.rename(columns={'index': 'Network'})
+df.to_csv(f'../results/{experiment_name}/stats.csv', index=False)
 # plot_results(scalar_data, experiment_name, 'Generator', save_plot=True, smooth_only=True, print_stats=True)
 # plot_results(scalar_data,experiment_name,  'Discriminator', save_plot=True, smooth_only=True, print_stats=True)
 # plot_results(scalar_data,experiment_name,  'Encoder', save_plot=True, smooth_only=True, print_stats=True)

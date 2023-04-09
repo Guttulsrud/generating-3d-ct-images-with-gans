@@ -1,4 +1,6 @@
+import os
 
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 if __name__ == "__main__":
     import os
     from monai.apps.auto3dseg import AutoRunner

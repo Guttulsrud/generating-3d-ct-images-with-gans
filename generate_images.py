@@ -11,9 +11,10 @@ from visualization.display_image import display_image
 import nibabel as nib
 
 
-def generate_images(experiment, n_png, n_nifti, png, nifti):
+def generate_images(experiment, n_png, n_nifti, png, nifti, im_size):
+
     model_path = f'saved_models/{experiment}/saved_model'
-    _ = generate_image(model_path=model_path)
+    _ = generate_image(model_path=model_path, img_size=im_size)
 
     out_folder = f'data/generated_images/{experiment}'
 
@@ -28,7 +29,7 @@ def generate_images(experiment, n_png, n_nifti, png, nifti):
 
     generated_png = 0
     for x in range(0, n_nifti):
-        gen_image = generate_image(model_path=model_path)
+        gen_image = generate_image(model_path=model_path, img_size=im_size)
         if png and generated_png < n_png:
             fig = display_image(gen_image, show=False, return_figure=True)
             fig.savefig(f'{out_folder}/png/image_{x + 1}.png')
@@ -44,9 +45,10 @@ if __name__ == '__main__':
         os.makedirs('data/generated_images')
     n_png = 30
     n_nifti = 1000
-    png = False
+    png = True
     nifti = True
     latent_dim = 1024
+    im_size = 256
 
     folders = [f for f in os.listdir('saved_models') if os.path.isdir(os.path.join('saved_models', f))]
     folder_names = [f for f in folders]
@@ -54,7 +56,7 @@ if __name__ == '__main__':
     models_to_test = [
         # 'Latent_dim1280',
         # 'Latent_dim1536',
-        'normalized2mm',
+        '256_normalized15mm',
         # 'modified_network',
     ]
 
@@ -67,7 +69,7 @@ if __name__ == '__main__':
 
         try:
             print(experiment)
-            generate_images(experiment=experiment, n_png=n_png, n_nifti=n_nifti, png=png, nifti=nifti)
+            generate_images(experiment=experiment, n_png=n_png, n_nifti=n_nifti, png=png, nifti=nifti, im_size=im_size)
         except Exception as e:
             print(f'Failed for {experiment}')
             print(e)
