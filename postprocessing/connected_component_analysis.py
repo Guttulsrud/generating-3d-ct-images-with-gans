@@ -27,18 +27,20 @@ def connected_component_analysis(image, threshold=0.5, size_threshold=200):
     # Apply the filtered mask to the original image to remove noise
     return image * filtered_mask
 
-experiment = 'normalized15mm'
+experiment = '256_normalized15mm'
 i = 0
 samples = 524
-if not os.path.exists(f'../data/combined/{experiment}'):
-    os.makedirs(f'../data/combined/{experiment}')
+if not os.path.exists(f'../data/post_processed/{experiment}'):
+    os.makedirs(f'../data/post_processed/{experiment}')
 
-if not os.path.exists(f'../data/combined/{experiment}/images'):
-    os.makedirs(f'../data/combined/{experiment}/images')
+if not os.path.exists(f'../data/post_processed/{experiment}/images'):
+    os.makedirs(f'../data/post_processed/{experiment}/images')
 
-if not os.path.exists(f'../data/combined/{experiment}/masks'):
-    os.makedirs(f'../data/combined/{experiment}/masks')
+if not os.path.exists(f'../data/post_processed/{experiment}/masks'):
+    os.makedirs(f'../data/post_processed/{experiment}/masks')
 
+if not os.path.exists(f'../data/post_processed/{experiment}/concat'):
+    os.makedirs(f'../data/post_processed/{experiment}/concat')
 
 for x in glob.glob(f'../data/generated_images/{experiment}/nifti/*.nii.gz'):
     im1 = nib.load(x)
@@ -53,12 +55,16 @@ for x in glob.glob(f'../data/generated_images/{experiment}/nifti/*.nii.gz'):
         # Discount images that don't have any masks
         continue
 
+    concat = np.concatenate((image, mask), axis=2)
+
     i += 1
     nifti_image = nib.Nifti1Image(image, affine=np.eye(4))
     nifti_mask = nib.Nifti1Image(mask, affine=np.eye(4))
+    nifti_concat = nib.Nifti1Image(concat, affine=np.eye(4))
 
-    nib.save(nifti_image, f'../data/combined/{experiment}/images/gen_image_{i}.nii.gz')
-    nib.save(nifti_mask, f'../data/combined/{experiment}/masks/gen_mask_{i}.nii.gz')
+    nib.save(nifti_image, f'../data/post_processed/{experiment}/images/gen_image_{i}.nii.gz')
+    nib.save(nifti_mask, f'../data/post_processed/{experiment}/masks/gen_mask_{i}.nii.gz')
+    nib.save(nifti_concat, f'../data/post_processed/{experiment}/concat/gen_image_{i}.nii.gz')
 
     if i >= samples:
         break
