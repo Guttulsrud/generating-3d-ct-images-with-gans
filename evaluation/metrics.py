@@ -121,17 +121,17 @@ def evaluate(real_images_path, generated_images_path, limit=None):
     dataset = CustomDataset(real_images_path, transform=transforms.ToTensor())
     if limit is not None:
         real_sampler = SubsetRandomSampler(range(limit))
-        real_loader = DataLoader(dataset, batch_size=32, sampler=real_sampler)
+        real_loader = DataLoader(dataset, batch_size=16, sampler=real_sampler)
     else:
-        real_loader = DataLoader(dataset, batch_size=32, shuffle=True)
+        real_loader = DataLoader(dataset, batch_size=16, shuffle=True)
 
     # Load generated samples
     dataset = CustomDataset(generated_images_path, transform=transforms.ToTensor())
     if limit is not None:
         fake_sampler = SubsetRandomSampler(range(limit))
-        fake_loader = DataLoader(dataset, batch_size=32, sampler=fake_sampler)
+        fake_loader = DataLoader(dataset, batch_size=16, sampler=fake_sampler)
     else:
-        fake_loader = DataLoader(dataset, batch_size=32, shuffle=True)
+        fake_loader = DataLoader(dataset, batch_size=16, shuffle=True)
 
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model = get_feature_extractor().to(device)

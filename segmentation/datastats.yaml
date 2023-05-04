@@ -1,0 +1,156 @@
+stats_summary:
+  image_stats:
+    shape:
+      max: [256, 256, 128]
+      mean: [256.0, 256.0, 128.0]
+      median: [256.0, 256.0, 128.0]
+      min: [256, 256, 128]
+      stdev: [0.0, 0.0, 0.0]
+      percentile:
+      - [256, 256, 128]
+      - [256, 256, 128]
+      - [256, 256, 128]
+      - [256, 256, 128]
+      percentile_00_5: [256, 256, 128]
+      percentile_10_0: [256, 256, 128]
+      percentile_90_0: [256, 256, 128]
+      percentile_99_5: [256, 256, 128]
+    channels:
+      max: 1
+      mean: 1.0
+      median: 1.0
+      min: 1
+      stdev: 0.0
+      percentile: [1, 1, 1, 1]
+      percentile_00_5: 1
+      percentile_10_0: 1
+      percentile_90_0: 1
+      percentile_99_5: 1
+    cropped_shape:
+      max: [256, 256, 128]
+      mean: [256.0, 209.68702290076337, 127.96374045801527]
+      median: [256.0, 205.0, 128.0]
+      min: [256, 162, 122]
+      stdev: [0.0, 23.60758513422549, 0.3963359587268635]
+      percentile:
+      - [256, 168, 125]
+      - [256, 183, 128]
+      - [256, 254, 128]
+      - [256, 256, 128]
+      percentile_00_5: [256, 168, 125]
+      percentile_10_0: [256, 183, 128]
+      percentile_90_0: [256, 254, 128]
+      percentile_99_5: [256, 256, 128]
+    spacing:
+      max: [1.0, 1.0, 1.0]
+      mean: [1.0, 1.0, 1.0]
+      median: [1.0, 1.0, 1.0]
+      min: [1.0, 1.0, 1.0]
+      stdev: [0.0, 0.0, 0.0]
+      percentile:
+      - [1.0, 1.0, 1.0]
+      - [1.0, 1.0, 1.0]
+      - [1.0, 1.0, 1.0]
+      - [1.0, 1.0, 1.0]
+      percentile_00_5: [1.0, 1.0, 1.0]
+      percentile_10_0: [1.0, 1.0, 1.0]
+      percentile_90_0: [1.0, 1.0, 1.0]
+      percentile_99_5: [1.0, 1.0, 1.0]
+    sizemm:
+      max: [256, 256, 128]
+      mean: [256.0, 256.0, 128.0]
+      median: [256.0, 256.0, 128.0]
+      min: [256, 256, 128]
+      stdev: [0.0, 0.0, 0.0]
+      percentile:
+      - [256, 256, 128]
+      - [256, 256, 128]
+      - [256, 256, 128]
+      - [256, 256, 128]
+      percentile_00_5: [256, 256, 128]
+      percentile_10_0: [256, 256, 128]
+      percentile_90_0: [256, 256, 128]
+      percentile_99_5: [256, 256, 128]
+    intensity: {max: 600.0, mean: -800.3867190994379, median: -983.3568702290077,
+      min: -1024.0, stdev: 377.14308504293894, percentile_00_5: -1023.5954198473282,
+      percentile_10_0: -1017.2461832061068, percentile_90_0: -102.07824427480917,
+      percentile_99_5: 499.2228434322445}
+  image_foreground_stats:
+    intensity: {max: 599.0, mean: -293.09122785049993, median: -279.92748091603056,
+      min: -1024.0, stdev: 219.12714943767503, percentile_00_5: -787.2195908097366,
+      percentile_10_0: -507.683395243783, percentile_90_0: -95.33684966764378, percentile_99_5: 151.77468432360934}
+  label_stats:
+    labels: [0, 1]
+    image_intensity: {max: 599.0, mean: -293.09122785049993, median: -279.92748091603056,
+      min: -1024.0, stdev: 219.12714943767503, percentile_00_5: -787.2195908097366,
+      percentile_10_0: -507.683395243783, percentile_90_0: -95.33684966764378, percentile_99_5: 151.77468432360934}
+    label:
+    - foreground_percentage:
+        max: 0.9999998807907104
+        mean: 0.9995619270182748
+        median: 0.9998067617416382
+        min: 0.9870296716690063
+        stdev: 0.000998973825456999
+        percentile: [0.9932685148715973, 0.9991222023963928, 0.9999627709388733, 0.9999993032217026]
+        percentile_00_5: 0.9932685148715973
+        percentile_10_0: 0.9991222023963928
+        percentile_90_0: 0.9999627709388733
+        percentile_99_5: 0.9999993032217026
+      image_intensity: {max: 600.0, mean: -837.770531807237, median: -988.1717557251908,
+        min: -1024.0, stdev: 348.7834384714374, percentile_00_5: -1023.5935114503817,
+        percentile_10_0: -1019.7404580152672, percentile_90_0: -242.94847328244273,
+        percentile_99_5: 471.82544853851084}
+    - foreground_percentage:
+        max: 0.012970328330993652
+        mean: 0.00043807298172521226
+        median: 0.0001932382583618164
+        min: 1.1920928955078125e-07
+        stdev: 0.000998973825456999
+        percentile: [6.967782974243165e-07, 3.7229061126708986e-05, 0.0008777976036071777,
+          0.0067314851284027005]
+        percentile_00_5: 6.967782974243165e-07
+        percentile_10_0: 3.7229061126708986e-05
+        percentile_90_0: 0.0008777976036071777
+        percentile_99_5: 0.0067314851284027005
+      image_intensity: {max: 599.0, mean: -293.09122785049993, median: -279.92748091603056,
+        min: -1024.0, stdev: 219.12714943767503, percentile_00_5: -787.2195908097366,
+        percentile_10_0: -507.683395243783, percentile_90_0: -95.33684966764378, percentile_99_5: 151.77468432360934}
+  n_cases: 524
+stats_by_cases: [null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  null, null, null, null, null, null, null, null, null]

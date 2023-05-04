@@ -5,7 +5,7 @@ if __name__ == "__main__":
     import os
     from monai.apps.auto3dseg import AutoRunner
 
-    work_dir = "./kek2"
+    work_dir = "./256_524F_testing_ensemble"
     if not os.path.isdir(work_dir):
         os.makedirs(work_dir)
 

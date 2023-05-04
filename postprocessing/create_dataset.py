@@ -3,16 +3,16 @@ import os
 import random
 
 real_images_path = '../data/cropped_original'
-generated_images_path = '../data/post_processed/256_normalized15mm'
+generated_images_path = '../data/post_processed/scaled'
 
 real_images = os.path.join(real_images_path, "images/")
 fake_images = os.path.join(generated_images_path, "images/")
 
 datalist_json = {"testing": [], "training": []}
 
-for file in os.listdir(real_images) + os.listdir(fake_images):
+for file in os.listdir(fake_images):
     datalist_json["training"].append(
-        {"image": "images/" + file, "label": "labels/" + file, "fold": 0})  # Initialize as single fold
+        {"image": "images/" + file, "label": "masks/" + file, "fold": 0})  # Initialize as single fold
 
 
 random.seed(42)

@@ -29,7 +29,7 @@ def generate_images(experiment, n_png, n_nifti, png, nifti, im_size):
 
     generated_png = 0
     for x in range(0, n_nifti):
-        gen_image = generate_image(model_path=model_path, img_size=im_size)
+        gen_image = generate_image(model_path=model_path, img_size=im_size, rescale_intensity=False)
         if png and generated_png < n_png:
             fig = display_image(gen_image, show=False, return_figure=True)
             fig.savefig(f'{out_folder}/png/image_{x + 1}.png')
@@ -44,9 +44,9 @@ if __name__ == '__main__':
     if not os.path.exists('data/generated_images'):
         os.makedirs('data/generated_images')
     n_png = 30
-    n_nifti = 1000
+    n_nifti = 100
     png = True
-    nifti = True
+    nifti = False
     latent_dim = 1024
     im_size = 256
 
@@ -56,7 +56,7 @@ if __name__ == '__main__':
     models_to_test = [
         # 'Latent_dim1280',
         # 'Latent_dim1536',
-        '256_normalized15mm',
+        '256_hpo_17_non_norm',
         # 'modified_network',
     ]
 

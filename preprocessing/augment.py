@@ -16,11 +16,11 @@ for index, image_mask_path in enumerate(aug.data):
     data = aug.load_image_mask(image_mask_path)
 
     if config['normalize']:
-        normalized = aug.normalize(data, voxels=(2, 2, 2))
-        aug.save_image_mask(normalized, 'normalized2mm', scale_intensity=True)
+        normalized = aug.normalize(data, voxels=(1.5, 1.5, 1.5))
+        aug.save_image_mask(normalized, '128_normalized15mm', scale_intensity=True)
 
     if config['smooth_gaussian']:
-        smoothed = aug.smooth_gaussian(normalized)
+        smoothed = aug.smooth_gaussian(data)
         aug.save_image_mask(smoothed, 'norm_smooth_gaussian')
 
     if config['rotate90']:
@@ -48,7 +48,7 @@ for index, image_mask_path in enumerate(aug.data):
         aug.save_image_mask(reoriented, 'norm_reoriented')
 
     if config['random_affine']:
-        affine_transformation = aug.random_affine_transformation(data)
+        affine_transformation = aug.random_affine_transformation(normalized)
         aug.save_image_mask(affine_transformation, 'norm_affine_transformation')
 
     end_time = time.time()

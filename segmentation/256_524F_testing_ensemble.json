@@ -1,0 +1,4722 @@
+{
+    "testing": [
+        {
+            "image": "images/CHUM-001.nii.gz",
+            "label": "masks/CHUM-001.nii.gz"
+        },
+        {
+            "image": "images/CHUM-002.nii.gz",
+            "label": "masks/CHUM-002.nii.gz"
+        },
+        {
+            "image": "images/CHUM-006.nii.gz",
+            "label": "masks/CHUM-006.nii.gz"
+        },
+        {
+            "image": "images/CHUM-007.nii.gz",
+            "label": "masks/CHUM-007.nii.gz"
+        },
+        {
+            "image": "images/CHUM-008.nii.gz",
+            "label": "masks/CHUM-008.nii.gz"
+        },
+        {
+            "image": "images/CHUM-010.nii.gz",
+            "label": "masks/CHUM-010.nii.gz"
+        },
+        {
+            "image": "images/CHUM-011.nii.gz",
+            "label": "masks/CHUM-011.nii.gz"
+        },
+        {
+            "image": "images/CHUM-012.nii.gz",
+            "label": "masks/CHUM-012.nii.gz"
+        },
+        {
+            "image": "images/CHUM-013.nii.gz",
+            "label": "masks/CHUM-013.nii.gz"
+        },
+        {
+            "image": "images/CHUM-014.nii.gz",
+            "label": "masks/CHUM-014.nii.gz"
+        },
+        {
+            "image": "images/CHUM-015.nii.gz",
+            "label": "masks/CHUM-015.nii.gz"
+        },
+        {
+            "image": "images/CHUM-016.nii.gz",
+            "label": "masks/CHUM-016.nii.gz"
+        },
+        {
+            "image": "images/CHUM-017.nii.gz",
+            "label": "masks/CHUM-017.nii.gz"
+        },
+        {
+            "image": "images/CHUM-018.nii.gz",
+            "label": "masks/CHUM-018.nii.gz"
+        },
+        {
+            "image": "images/CHUM-019.nii.gz",
+            "label": "masks/CHUM-019.nii.gz"
+        },
+        {
+            "image": "images/CHUM-021.nii.gz",
+            "label": "masks/CHUM-021.nii.gz"
+        },
+        {
+            "image": "images/CHUM-022.nii.gz",
+            "label": "masks/CHUM-022.nii.gz"
+        },
+        {
+            "image": "images/CHUM-023.nii.gz",
+            "label": "masks/CHUM-023.nii.gz"
+        },
+        {
+            "image": "images/CHUM-024.nii.gz",
+            "label": "masks/CHUM-024.nii.gz"
+        },
+        {
+            "image": "images/CHUM-026.nii.gz",
+            "label": "masks/CHUM-026.nii.gz"
+        },
+        {
+            "image": "images/CHUM-027.nii.gz",
+            "label": "masks/CHUM-027.nii.gz"
+        },
+        {
+            "image": "images/CHUM-029.nii.gz",
+            "label": "masks/CHUM-029.nii.gz"
+        },
+        {
+            "image": "images/CHUM-030.nii.gz",
+            "label": "masks/CHUM-030.nii.gz"
+        },
+        {
+            "image": "images/CHUM-032.nii.gz",
+            "label": "masks/CHUM-032.nii.gz"
+        },
+        {
+            "image": "images/CHUM-033.nii.gz",
+            "label": "masks/CHUM-033.nii.gz"
+        },
+        {
+            "image": "images/CHUM-034.nii.gz",
+            "label": "masks/CHUM-034.nii.gz"
+        },
+        {
+            "image": "images/CHUM-035.nii.gz",
+            "label": "masks/CHUM-035.nii.gz"
+        },
+        {
+            "image": "images/CHUM-036.nii.gz",
+            "label": "masks/CHUM-036.nii.gz"
+        },
+        {
+            "image": "images/CHUM-037.nii.gz",
+            "label": "masks/CHUM-037.nii.gz"
+        },
+        {
+            "image": "images/CHUM-038.nii.gz",
+            "label": "masks/CHUM-038.nii.gz"
+        },
+        {
+            "image": "images/CHUM-039.nii.gz",
+            "label": "masks/CHUM-039.nii.gz"
+        },
+        {
+            "image": "images/CHUM-040.nii.gz",
+            "label": "masks/CHUM-040.nii.gz"
+        },
+        {
+            "image": "images/CHUM-041.nii.gz",
+            "label": "masks/CHUM-041.nii.gz"
+        },
+        {
+            "image": "images/CHUM-042.nii.gz",
+            "label": "masks/CHUM-042.nii.gz"
+        },
+        {
+            "image": "images/CHUM-043.nii.gz",
+            "label": "masks/CHUM-043.nii.gz"
+        },
+        {
+            "image": "images/CHUM-044.nii.gz",
+            "label": "masks/CHUM-044.nii.gz"
+        },
+        {
+            "image": "images/CHUM-045.nii.gz",
+            "label": "masks/CHUM-045.nii.gz"
+        },
+        {
+            "image": "images/CHUM-046.nii.gz",
+            "label": "masks/CHUM-046.nii.gz"
+        },
+        {
+            "image": "images/CHUM-047.nii.gz",
+            "label": "masks/CHUM-047.nii.gz"
+        },
+        {
+            "image": "images/CHUM-048.nii.gz",
+            "label": "masks/CHUM-048.nii.gz"
+        },
+        {
+            "image": "images/CHUM-049.nii.gz",
+            "label": "masks/CHUM-049.nii.gz"
+        },
+        {
+            "image": "images/CHUM-050.nii.gz",
+            "label": "masks/CHUM-050.nii.gz"
+        },
+        {
+            "image": "images/CHUM-051.nii.gz",
+            "label": "masks/CHUM-051.nii.gz"
+        },
+        {
+            "image": "images/CHUM-053.nii.gz",
+            "label": "masks/CHUM-053.nii.gz"
+        },
+        {
+            "image": "images/CHUM-054.nii.gz",
+            "label": "masks/CHUM-054.nii.gz"
+        },
+        {
+            "image": "images/CHUM-055.nii.gz",
+            "label": "masks/CHUM-055.nii.gz"
+        },
+        {
+            "image": "images/CHUM-056.nii.gz",
+            "label": "masks/CHUM-056.nii.gz"
+        },
+        {
+            "image": "images/CHUM-057.nii.gz",
+            "label": "masks/CHUM-057.nii.gz"
+        },
+        {
+            "image": "images/CHUM-058.nii.gz",
+            "label": "masks/CHUM-058.nii.gz"
+        },
+        {
+            "image": "images/CHUM-059.nii.gz",
+            "label": "masks/CHUM-059.nii.gz"
+        },
+        {
+            "image": "images/CHUM-060.nii.gz",
+            "label": "masks/CHUM-060.nii.gz"
+        },
+        {
+            "image": "images/CHUM-061.nii.gz",
+            "label": "masks/CHUM-061.nii.gz"
+        },
+        {
+            "image": "images/CHUM-062.nii.gz",
+            "label": "masks/CHUM-062.nii.gz"
+        },
+        {
+            "image": "images/CHUM-063.nii.gz",
+            "label": "masks/CHUM-063.nii.gz"
+        },
+        {
+            "image": "images/CHUM-064.nii.gz",
+            "label": "masks/CHUM-064.nii.gz"
+        },
+        {
+            "image": "images/CHUM-065.nii.gz",
+            "label": "masks/CHUM-065.nii.gz"
+        },
+        {
+            "image": "images/CHUP-000.nii.gz",
+            "label": "masks/CHUP-000.nii.gz"
+        },
+        {
+            "image": "images/CHUP-001.nii.gz",
+            "label": "masks/CHUP-001.nii.gz"
+        },
+        {
+            "image": "images/CHUP-002.nii.gz",
+            "label": "masks/CHUP-002.nii.gz"
+        },
+        {
+            "image": "images/CHUP-003.nii.gz",
+            "label": "masks/CHUP-003.nii.gz"
+        },
+        {
+            "image": "images/CHUP-004.nii.gz",
+            "label": "masks/CHUP-004.nii.gz"
+        },
+        {
+            "image": "images/CHUP-005.nii.gz",
+            "label": "masks/CHUP-005.nii.gz"
+        },
+        {
+            "image": "images/CHUP-006.nii.gz",
+            "label": "masks/CHUP-006.nii.gz"
+        },
+        {
+            "image": "images/CHUP-007.nii.gz",
+            "label": "masks/CHUP-007.nii.gz"
+        },
+        {
+            "image": "images/CHUP-008.nii.gz",
+            "label": "masks/CHUP-008.nii.gz"
+        },
+        {
+            "image": "images/CHUP-009.nii.gz",
+            "label": "masks/CHUP-009.nii.gz"
+        },
+        {
+            "image": "images/CHUP-010.nii.gz",
+            "label": "masks/CHUP-010.nii.gz"
+        },
+        {
+            "image": "images/CHUP-011.nii.gz",
+            "label": "masks/CHUP-011.nii.gz"
+        },
+        {
+            "image": "images/CHUP-012.nii.gz",
+            "label": "masks/CHUP-012.nii.gz"
+        },
+        {
+            "image": "images/CHUP-013.nii.gz",
+            "label": "masks/CHUP-013.nii.gz"
+        },
+        {
+            "image": "images/CHUP-015.nii.gz",
+            "label": "masks/CHUP-015.nii.gz"
+        },
+        {
+            "image": "images/CHUP-016.nii.gz",
+            "label": "masks/CHUP-016.nii.gz"
+        },
+        {
+            "image": "images/CHUP-017.nii.gz",
+            "label": "masks/CHUP-017.nii.gz"
+        },
+        {
+            "image": "images/CHUP-018.nii.gz",
+            "label": "masks/CHUP-018.nii.gz"
+        },
+        {
+            "image": "images/CHUP-019.nii.gz",
+            "label": "masks/CHUP-019.nii.gz"
+        },
+        {
+            "image": "images/CHUP-020.nii.gz",
+            "label": "masks/CHUP-020.nii.gz"
+        },
+        {
+            "image": "images/CHUP-022.nii.gz",
+            "label": "masks/CHUP-022.nii.gz"
+        },
+        {
+            "image": "images/CHUP-023.nii.gz",
+            "label": "masks/CHUP-023.nii.gz"
+        },
+        {
+            "image": "images/CHUP-024.nii.gz",
+            "label": "masks/CHUP-024.nii.gz"
+        },
+        {
+            "image": "images/CHUP-025.nii.gz",
+            "label": "masks/CHUP-025.nii.gz"
+        },
+        {
+            "image": "images/CHUP-026.nii.gz",
+            "label": "masks/CHUP-026.nii.gz"
+        },
+        {
+            "image": "images/CHUP-027.nii.gz",
+            "label": "masks/CHUP-027.nii.gz"
+        },
+        {
+            "image": "images/CHUP-028.nii.gz",
+            "label": "masks/CHUP-028.nii.gz"
+        },
+        {
+            "image": "images/CHUP-029.nii.gz",
+            "label": "masks/CHUP-029.nii.gz"
+        },
+        {
+            "image": "images/CHUP-030.nii.gz",
+            "label": "masks/CHUP-030.nii.gz"
+        },
+        {
+            "image": "images/CHUP-032.nii.gz",
+            "label": "masks/CHUP-032.nii.gz"
+        },
+        {
+            "image": "images/CHUP-033.nii.gz",
+            "label": "masks/CHUP-033.nii.gz"
+        },
+        {
+            "image": "images/CHUP-034.nii.gz",
+            "label": "masks/CHUP-034.nii.gz"
+        },
+        {
+            "image": "images/CHUP-035.nii.gz",
+            "label": "masks/CHUP-035.nii.gz"
+        },
+        {
+            "image": "images/CHUP-036.nii.gz",
+            "label": "masks/CHUP-036.nii.gz"
+        },
+        {
+            "image": "images/CHUP-037.nii.gz",
+            "label": "masks/CHUP-037.nii.gz"
+        },
+        {
+            "image": "images/CHUP-038.nii.gz",
+            "label": "masks/CHUP-038.nii.gz"
+        },
+        {
+            "image": "images/CHUP-039.nii.gz",
+            "label": "masks/CHUP-039.nii.gz"
+        },
+        {
+            "image": "images/CHUP-040.nii.gz",
+            "label": "masks/CHUP-040.nii.gz"
+        },
+        {
+            "image": "images/CHUP-041.nii.gz",
+            "label": "masks/CHUP-041.nii.gz"
+        },
+        {
+            "image": "images/CHUP-042.nii.gz",
+            "label": "masks/CHUP-042.nii.gz"
+        },
+        {
+            "image": "images/CHUP-043.nii.gz",
+            "label": "masks/CHUP-043.nii.gz"
+        },
+        {
+            "image": "images/CHUP-044.nii.gz",
+            "label": "masks/CHUP-044.nii.gz"
+        },
+        {
+            "image": "images/CHUP-046.nii.gz",
+            "label": "masks/CHUP-046.nii.gz"
+        },
+        {
+            "image": "images/CHUP-047.nii.gz",
+            "label": "masks/CHUP-047.nii.gz"
+        },
+        {
+            "image": "images/CHUP-048.nii.gz",
+            "label": "masks/CHUP-048.nii.gz"
+        },
+        {
+            "image": "images/CHUP-049.nii.gz",
+            "label": "masks/CHUP-049.nii.gz"
+        },
+        {
+            "image": "images/CHUP-050.nii.gz",
+            "label": "masks/CHUP-050.nii.gz"
+        },
+        {
+            "image": "images/CHUP-051.nii.gz",
+            "label": "masks/CHUP-051.nii.gz"
+        },
+        {
+            "image": "images/CHUP-052.nii.gz",
+            "label": "masks/CHUP-052.nii.gz"
+        },
+        {
+            "image": "images/CHUP-053.nii.gz",
+            "label": "masks/CHUP-053.nii.gz"
+        },
+        {
+            "image": "images/CHUP-054.nii.gz",
+            "label": "masks/CHUP-054.nii.gz"
+        },
+        {
+            "image": "images/CHUP-055.nii.gz",
+            "label": "masks/CHUP-055.nii.gz"
+        },
+        {
+            "image": "images/CHUP-056.nii.gz",
+            "label": "masks/CHUP-056.nii.gz"
+        },
+        {
+            "image": "images/CHUP-057.nii.gz",
+            "label": "masks/CHUP-057.nii.gz"
+        },
+        {
+            "image": "images/CHUP-058.nii.gz",
+            "label": "masks/CHUP-058.nii.gz"
+        },
+        {
+            "image": "images/CHUP-059.nii.gz",
+            "label": "masks/CHUP-059.nii.gz"
+        },
+        {
+            "image": "images/CHUP-060.nii.gz",
+            "label": "masks/CHUP-060.nii.gz"
+        },
+        {
+            "image": "images/CHUP-061.nii.gz",
+            "label": "masks/CHUP-061.nii.gz"
+        },
+        {
+            "image": "images/CHUP-062.nii.gz",
+            "label": "masks/CHUP-062.nii.gz"
+        },
+        {
+            "image": "images/CHUP-063.nii.gz",
+            "label": "masks/CHUP-063.nii.gz"
+        },
+        {
+            "image": "images/CHUP-064.nii.gz",
+            "label": "masks/CHUP-064.nii.gz"
+        },
+        {
+            "image": "images/CHUP-065.nii.gz",
+            "label": "masks/CHUP-065.nii.gz"
+        },
+        {
+            "image": "images/CHUP-066.nii.gz",
+            "label": "masks/CHUP-066.nii.gz"
+        },
+        {
+            "image": "images/CHUP-067.nii.gz",
+            "label": "masks/CHUP-067.nii.gz"
+        },
+        {
+            "image": "images/CHUP-068.nii.gz",
+            "label": "masks/CHUP-068.nii.gz"
+        },
+        {
+            "image": "images/CHUP-069.nii.gz",
+            "label": "masks/CHUP-069.nii.gz"
+        },
+        {
+            "image": "images/CHUP-070.nii.gz",
+            "label": "masks/CHUP-070.nii.gz"
+        },
+        {
+            "image": "images/CHUP-071.nii.gz",
+            "label": "masks/CHUP-071.nii.gz"
+        },
+        {
+            "image": "images/CHUP-072.nii.gz",
+            "label": "masks/CHUP-072.nii.gz"
+        },
+        {
+            "image": "images/CHUP-073.nii.gz",
+            "label": "masks/CHUP-073.nii.gz"
+        },
+        {
+            "image": "images/CHUP-074.nii.gz",
+            "label": "masks/CHUP-074.nii.gz"
+        },
+        {
+            "image": "images/CHUP-075.nii.gz",
+            "label": "masks/CHUP-075.nii.gz"
+        },
+        {
+            "image": "images/CHUS-003.nii.gz",
+            "label": "masks/CHUS-003.nii.gz"
+        },
+        {
+            "image": "images/CHUS-004.nii.gz",
+            "label": "masks/CHUS-004.nii.gz"
+        },
+        {
+            "image": "images/CHUS-005.nii.gz",
+            "label": "masks/CHUS-005.nii.gz"
+        },
+        {
+            "image": "images/CHUS-006.nii.gz",
+            "label": "masks/CHUS-006.nii.gz"
+        },
+        {
+            "image": "images/CHUS-007.nii.gz",
+            "label": "masks/CHUS-007.nii.gz"
+        },
+        {
+            "image": "images/CHUS-008.nii.gz",
+            "label": "masks/CHUS-008.nii.gz"
+        },
+        {
+            "image": "images/CHUS-009.nii.gz",
+            "label": "masks/CHUS-009.nii.gz"
+        },
+        {
+            "image": "images/CHUS-010.nii.gz",
+            "label": "masks/CHUS-010.nii.gz"
+        },
+        {
+            "image": "images/CHUS-013.nii.gz",
+            "label": "masks/CHUS-013.nii.gz"
+        },
+        {
+            "image": "images/CHUS-015.nii.gz",
+            "label": "masks/CHUS-015.nii.gz"
+        },
+        {
+            "image": "images/CHUS-016.nii.gz",
+            "label": "masks/CHUS-016.nii.gz"
+        },
+        {
+            "image": "images/CHUS-019.nii.gz",
+            "label": "masks/CHUS-019.nii.gz"
+        },
+        {
+            "image": "images/CHUS-020.nii.gz",
+            "label": "masks/CHUS-020.nii.gz"
+        },
+        {
+            "image": "images/CHUS-021.nii.gz",
+            "label": "masks/CHUS-021.nii.gz"
+        },
+        {
+            "image": "images/CHUS-022.nii.gz",
+            "label": "masks/CHUS-022.nii.gz"
+        },
+        {
+            "image": "images/CHUS-026.nii.gz",
+            "label": "masks/CHUS-026.nii.gz"
+        },
+        {
+            "image": "images/CHUS-027.nii.gz",
+            "label": "masks/CHUS-027.nii.gz"
+        },
+        {
+            "image": "images/CHUS-028.nii.gz",
+            "label": "masks/CHUS-028.nii.gz"
+        },
+        {
+            "image": "images/CHUS-030.nii.gz",
+            "label": "masks/CHUS-030.nii.gz"
+        },
+        {
+            "image": "images/CHUS-031.nii.gz",
+            "label": "masks/CHUS-031.nii.gz"
+        },
+        {
+            "image": "images/CHUS-033.nii.gz",
+            "label": "masks/CHUS-033.nii.gz"
+        },
+        {
+            "image": "images/CHUS-035.nii.gz",
+            "label": "masks/CHUS-035.nii.gz"
+        },
+        {
+            "image": "images/CHUS-036.nii.gz",
+            "label": "masks/CHUS-036.nii.gz"
+        },
+        {
+            "image": "images/CHUS-038.nii.gz",
+            "label": "masks/CHUS-038.nii.gz"
+        },
+        {
+            "image": "images/CHUS-039.nii.gz",
+            "label": "masks/CHUS-039.nii.gz"
+        },
+        {
+            "image": "images/CHUS-040.nii.gz",
+            "label": "masks/CHUS-040.nii.gz"
+        },
+        {
+            "image": "images/CHUS-041.nii.gz",
+            "label": "masks/CHUS-041.nii.gz"
+        },
+        {
+            "image": "images/CHUS-042.nii.gz",
+            "label": "masks/CHUS-042.nii.gz"
+        },
+        {
+            "image": "images/CHUS-043.nii.gz",
+            "label": "masks/CHUS-043.nii.gz"
+        },
+        {
+            "image": "images/CHUS-045.nii.gz",
+            "label": "masks/CHUS-045.nii.gz"
+        },
+        {
+            "image": "images/CHUS-046.nii.gz",
+            "label": "masks/CHUS-046.nii.gz"
+        },
+        {
+            "image": "images/CHUS-047.nii.gz",
+            "label": "masks/CHUS-047.nii.gz"
+        },
+        {
+            "image": "images/CHUS-048.nii.gz",
+            "label": "masks/CHUS-048.nii.gz"
+        },
+        {
+            "image": "images/CHUS-049.nii.gz",
+            "label": "masks/CHUS-049.nii.gz"
+        },
+        {
+            "image": "images/CHUS-050.nii.gz",
+            "label": "masks/CHUS-050.nii.gz"
+        },
+        {
+            "image": "images/CHUS-051.nii.gz",
+            "label": "masks/CHUS-051.nii.gz"
+        },
+        {
+            "image": "images/CHUS-052.nii.gz",
+            "label": "masks/CHUS-052.nii.gz"
+        },
+        {
+            "image": "images/CHUS-053.nii.gz",
+            "label": "masks/CHUS-053.nii.gz"
+        },
+        {
+            "image": "images/CHUS-055.nii.gz",
+            "label": "masks/CHUS-055.nii.gz"
+        },
+        {
+            "image": "images/CHUS-056.nii.gz",
+            "label": "masks/CHUS-056.nii.gz"
+        },
+        {
+            "image": "images/CHUS-057.nii.gz",
+            "label": "masks/CHUS-057.nii.gz"
+        },
+        {
+            "image": "images/CHUS-058.nii.gz",
+            "label": "masks/CHUS-058.nii.gz"
+        },
+        {
+            "image": "images/CHUS-060.nii.gz",
+            "label": "masks/CHUS-060.nii.gz"
+        },
+        {
+            "image": "images/CHUS-061.nii.gz",
+            "label": "masks/CHUS-061.nii.gz"
+        },
+        {
+            "image": "images/CHUS-064.nii.gz",
+            "label": "masks/CHUS-064.nii.gz"
+        },
+        {
+            "image": "images/CHUS-065.nii.gz",
+            "label": "masks/CHUS-065.nii.gz"
+        },
+        {
+            "image": "images/CHUS-066.nii.gz",
+            "label": "masks/CHUS-066.nii.gz"
+        },
+        {
+            "image": "images/CHUS-067.nii.gz",
+            "label": "masks/CHUS-067.nii.gz"
+        },
+        {
+            "image": "images/CHUS-068.nii.gz",
+            "label": "masks/CHUS-068.nii.gz"
+        },
+        {
+            "image": "images/CHUS-069.nii.gz",
+            "label": "masks/CHUS-069.nii.gz"
+        },
+        {
+            "image": "images/CHUS-073.nii.gz",
+            "label": "masks/CHUS-073.nii.gz"
+        },
+        {
+            "image": "images/CHUS-074.nii.gz",
+            "label": "masks/CHUS-074.nii.gz"
+        },
+        {
+            "image": "images/CHUS-076.nii.gz",
+            "label": "masks/CHUS-076.nii.gz"
+        },
+        {
+            "image": "images/CHUS-077.nii.gz",
+            "label": "masks/CHUS-077.nii.gz"
+        },
+        {
+            "image": "images/CHUS-078.nii.gz",
+            "label": "masks/CHUS-078.nii.gz"
+        },
+        {
+            "image": "images/CHUS-080.nii.gz",
+            "label": "masks/CHUS-080.nii.gz"
+        },
+        {
+            "image": "images/CHUS-081.nii.gz",
+            "label": "masks/CHUS-081.nii.gz"
+        },
+        {
+            "image": "images/CHUS-083.nii.gz",
+            "label": "masks/CHUS-083.nii.gz"
+        },
+        {
+            "image": "images/CHUS-085.nii.gz",
+            "label": "masks/CHUS-085.nii.gz"
+        },
+        {
+            "image": "images/CHUS-086.nii.gz",
+            "label": "masks/CHUS-086.nii.gz"
+        },
+        {
+            "image": "images/CHUS-087.nii.gz",
+            "label": "masks/CHUS-087.nii.gz"
+        },
+        {
+            "image": "images/CHUS-088.nii.gz",
+            "label": "masks/CHUS-088.nii.gz"
+        },
+        {
+            "image": "images/CHUS-089.nii.gz",
+            "label": "masks/CHUS-089.nii.gz"
+        },
+        {
+            "image": "images/CHUS-090.nii.gz",
+            "label": "masks/CHUS-090.nii.gz"
+        },
+        {
+            "image": "images/CHUS-091.nii.gz",
+            "label": "masks/CHUS-091.nii.gz"
+        },
+        {
+            "image": "images/CHUS-094.nii.gz",
+            "label": "masks/CHUS-094.nii.gz"
+        },
+        {
+            "image": "images/CHUS-095.nii.gz",
+            "label": "masks/CHUS-095.nii.gz"
+        },
+        {
+            "image": "images/CHUS-096.nii.gz",
+            "label": "masks/CHUS-096.nii.gz"
+        },
+        {
+            "image": "images/CHUS-097.nii.gz",
+            "label": "masks/CHUS-097.nii.gz"
+        },
+        {
+            "image": "images/CHUS-098.nii.gz",
+            "label": "masks/CHUS-098.nii.gz"
+        },
+        {
+            "image": "images/CHUS-100.nii.gz",
+            "label": "masks/CHUS-100.nii.gz"
+        },
+        {
+            "image": "images/CHUS-101.nii.gz",
+            "label": "masks/CHUS-101.nii.gz"
+        },
+        {
+            "image": "images/CHUV-001.nii.gz",
+            "label": "masks/CHUV-001.nii.gz"
+        },
+        {
+            "image": "images/CHUV-002.nii.gz",
+            "label": "masks/CHUV-002.nii.gz"
+        },
+        {
+            "image": "images/CHUV-003.nii.gz",
+            "label": "masks/CHUV-003.nii.gz"
+        },
+        {
+            "image": "images/CHUV-004.nii.gz",
+            "label": "masks/CHUV-004.nii.gz"
+        },
+        {
+            "image": "images/CHUV-005.nii.gz",
+            "label": "masks/CHUV-005.nii.gz"
+        },
+        {
+            "image": "images/CHUV-006.nii.gz",
+            "label": "masks/CHUV-006.nii.gz"
+        },
+        {
+            "image": "images/CHUV-007.nii.gz",
+            "label": "masks/CHUV-007.nii.gz"
+        },
+        {
+            "image": "images/CHUV-008.nii.gz",
+            "label": "masks/CHUV-008.nii.gz"
+        },
+        {
+            "image": "images/CHUV-009.nii.gz",
+            "label": "masks/CHUV-009.nii.gz"
+        },
+        {
+            "image": "images/CHUV-010.nii.gz",
+            "label": "masks/CHUV-010.nii.gz"
+        },
+        {
+            "image": "images/CHUV-011.nii.gz",
+            "label": "masks/CHUV-011.nii.gz"
+        },
+        {
+            "image": "images/CHUV-012.nii.gz",
+            "label": "masks/CHUV-012.nii.gz"
+        },
+        {
+            "image": "images/CHUV-013.nii.gz",
+            "label": "masks/CHUV-013.nii.gz"
+        },
+        {
+            "image": "images/CHUV-014.nii.gz",
+            "label": "masks/CHUV-014.nii.gz"
+        },
+        {
+            "image": "images/CHUV-015.nii.gz",
+            "label": "masks/CHUV-015.nii.gz"
+        },
+        {
+            "image": "images/CHUV-016.nii.gz",
+            "label": "masks/CHUV-016.nii.gz"
+        },
+        {
+            "image": "images/CHUV-017.nii.gz",
+            "label": "masks/CHUV-017.nii.gz"
+        },
+        {
+            "image": "images/CHUV-018.nii.gz",
+            "label": "masks/CHUV-018.nii.gz"
+        },
+        {
+            "image": "images/CHUV-019.nii.gz",
+            "label": "masks/CHUV-019.nii.gz"
+        },
+        {
+            "image": "images/CHUV-020.nii.gz",
+            "label": "masks/CHUV-020.nii.gz"
+        },
+        {
+            "image": "images/CHUV-021.nii.gz",
+            "label": "masks/CHUV-021.nii.gz"
+        },
+        {
+            "image": "images/CHUV-022.nii.gz",
+            "label": "masks/CHUV-022.nii.gz"
+        },
+        {
+            "image": "images/CHUV-023.nii.gz",
+            "label": "masks/CHUV-023.nii.gz"
+        },
+        {
+            "image": "images/CHUV-024.nii.gz",
+            "label": "masks/CHUV-024.nii.gz"
+        },
+        {
+            "image": "images/CHUV-025.nii.gz",
+            "label": "masks/CHUV-025.nii.gz"
+        },
+        {
+            "image": "images/CHUV-026.nii.gz",
+            "label": "masks/CHUV-026.nii.gz"
+        },
+        {
+            "image": "images/CHUV-027.nii.gz",
+            "label": "masks/CHUV-027.nii.gz"
+        },
+        {
+            "image": "images/CHUV-028.nii.gz",
+            "label": "masks/CHUV-028.nii.gz"
+        },
+        {
+            "image": "images/CHUV-029.nii.gz",
+            "label": "masks/CHUV-029.nii.gz"
+        },
+        {
+            "image": "images/CHUV-030.nii.gz",
+            "label": "masks/CHUV-030.nii.gz"
+        },
+        {
+            "image": "images/CHUV-031.nii.gz",
+            "label": "masks/CHUV-031.nii.gz"
+        },
+        {
+            "image": "images/CHUV-032.nii.gz",
+            "label": "masks/CHUV-032.nii.gz"
+        },
+        {
+            "image": "images/CHUV-033.nii.gz",
+            "label": "masks/CHUV-033.nii.gz"
+        },
+        {
+            "image": "images/CHUV-034.nii.gz",
+            "label": "masks/CHUV-034.nii.gz"
+        },
+        {
+            "image": "images/CHUV-035.nii.gz",
+            "label": "masks/CHUV-035.nii.gz"
+        },
+        {
+            "image": "images/CHUV-036.nii.gz",
+            "label": "masks/CHUV-036.nii.gz"
+        },
+        {
+            "image": "images/CHUV-037.nii.gz",
+            "label": "masks/CHUV-037.nii.gz"
+        },
+        {
+            "image": "images/CHUV-038.nii.gz",
+            "label": "masks/CHUV-038.nii.gz"
+        },
+        {
+            "image": "images/CHUV-039.nii.gz",
+            "label": "masks/CHUV-039.nii.gz"
+        },
+        {
+            "image": "images/CHUV-040.nii.gz",
+            "label": "masks/CHUV-040.nii.gz"
+        },
+        {
+            "image": "images/CHUV-041.nii.gz",
+            "label": "masks/CHUV-041.nii.gz"
+        },
+        {
+            "image": "images/CHUV-042.nii.gz",
+            "label": "masks/CHUV-042.nii.gz"
+        },
+        {
+            "image": "images/CHUV-043.nii.gz",
+            "label": "masks/CHUV-043.nii.gz"
+        },
+        {
+            "image": "images/CHUV-044.nii.gz",
+            "label": "masks/CHUV-044.nii.gz"
+        },
+        {
+            "image": "images/CHUV-045.nii.gz",
+            "label": "masks/CHUV-045.nii.gz"
+        },
+        {
+            "image": "images/CHUV-046.nii.gz",
+            "label": "masks/CHUV-046.nii.gz"
+        },
+        {
+            "image": "images/CHUV-047.nii.gz",
+            "label": "masks/CHUV-047.nii.gz"
+        },
+        {
+            "image": "images/CHUV-048.nii.gz",
+            "label": "masks/CHUV-048.nii.gz"
+        },
+        {
+            "image": "images/CHUV-049.nii.gz",
+            "label": "masks/CHUV-049.nii.gz"
+        },
+        {
+            "image": "images/CHUV-050.nii.gz",
+            "label": "masks/CHUV-050.nii.gz"
+        },
+        {
+            "image": "images/CHUV-051.nii.gz",
+            "label": "masks/CHUV-051.nii.gz"
+        },
+        {
+            "image": "images/CHUV-052.nii.gz",
+            "label": "masks/CHUV-052.nii.gz"
+        },
+        {
+            "image": "images/CHUV-053.nii.gz",
+            "label": "masks/CHUV-053.nii.gz"
+        },
+        {
+            "image": "images/HGJ-007.nii.gz",
+            "label": "masks/HGJ-007.nii.gz"
+        },
+        {
+            "image": "images/HGJ-008.nii.gz",
+            "label": "masks/HGJ-008.nii.gz"
+        },
+        {
+            "image": "images/HGJ-010.nii.gz",
+            "label": "masks/HGJ-010.nii.gz"
+        },
+        {
+            "image": "images/HGJ-013.nii.gz",
+            "label": "masks/HGJ-013.nii.gz"
+        },
+        {
+            "image": "images/HGJ-015.nii.gz",
+            "label": "masks/HGJ-015.nii.gz"
+        },
+        {
+            "image": "images/HGJ-016.nii.gz",
+            "label": "masks/HGJ-016.nii.gz"
+        },
+        {
+            "image": "images/HGJ-017.nii.gz",
+            "label": "masks/HGJ-017.nii.gz"
+        },
+        {
+            "image": "images/HGJ-018.nii.gz",
+            "label": "masks/HGJ-018.nii.gz"
+        },
+        {
+            "image": "images/HGJ-025.nii.gz",
+            "label": "masks/HGJ-025.nii.gz"
+        },
+        {
+            "image": "images/HGJ-026.nii.gz",
+            "label": "masks/HGJ-026.nii.gz"
+        },
+        {
+            "image": "images/HGJ-028.nii.gz",
+            "label": "masks/HGJ-028.nii.gz"
+        },
+        {
+            "image": "images/HGJ-029.nii.gz",
+            "label": "masks/HGJ-029.nii.gz"
+        },
+        {
+            "image": "images/HGJ-030.nii.gz",
+            "label": "masks/HGJ-030.nii.gz"
+        },
+        {
+            "image": "images/HGJ-031.nii.gz",
+            "label": "masks/HGJ-031.nii.gz"
+        },
+        {
+            "image": "images/HGJ-032.nii.gz",
+            "label": "masks/HGJ-032.nii.gz"
+        },
+        {
+            "image": "images/HGJ-034.nii.gz",
+            "label": "masks/HGJ-034.nii.gz"
+        },
+        {
+            "image": "images/HGJ-035.nii.gz",
+            "label": "masks/HGJ-035.nii.gz"
+        },
+        {
+            "image": "images/HGJ-036.nii.gz",
+            "label": "masks/HGJ-036.nii.gz"
+        },
+        {
+            "image": "images/HGJ-037.nii.gz",
+            "label": "masks/HGJ-037.nii.gz"
+        },
+        {
+            "image": "images/HGJ-038.nii.gz",
+            "label": "masks/HGJ-038.nii.gz"
+        },
+        {
+            "image": "images/HGJ-039.nii.gz",
+            "label": "masks/HGJ-039.nii.gz"
+        },
+        {
+            "image": "images/HGJ-043.nii.gz",
+            "label": "masks/HGJ-043.nii.gz"
+        },
+        {
+            "image": "images/HGJ-046.nii.gz",
+            "label": "masks/HGJ-046.nii.gz"
+        },
+        {
+            "image": "images/HGJ-048.nii.gz",
+            "label": "masks/HGJ-048.nii.gz"
+        },
+        {
+            "image": "images/HGJ-050.nii.gz",
+            "label": "masks/HGJ-050.nii.gz"
+        },
+        {
+            "image": "images/HGJ-052.nii.gz",
+            "label": "masks/HGJ-052.nii.gz"
+        },
+        {
+            "image": "images/HGJ-053.nii.gz",
+            "label": "masks/HGJ-053.nii.gz"
+        },
+        {
+            "image": "images/HGJ-055.nii.gz",
+            "label": "masks/HGJ-055.nii.gz"
+        },
+        {
+            "image": "images/HGJ-057.nii.gz",
+            "label": "masks/HGJ-057.nii.gz"
+        },
+        {
+            "image": "images/HGJ-058.nii.gz",
+            "label": "masks/HGJ-058.nii.gz"
+        },
+        {
+            "image": "images/HGJ-062.nii.gz",
+            "label": "masks/HGJ-062.nii.gz"
+        },
+        {
+            "image": "images/HGJ-065.nii.gz",
+            "label": "masks/HGJ-065.nii.gz"
+        },
+        {
+            "image": "images/HGJ-066.nii.gz",
+            "label": "masks/HGJ-066.nii.gz"
+        },
+        {
+            "image": "images/HGJ-067.nii.gz",
+            "label": "masks/HGJ-067.nii.gz"
+        },
+        {
+            "image": "images/HGJ-069.nii.gz",
+            "label": "masks/HGJ-069.nii.gz"
+        },
+        {
+            "image": "images/HGJ-070.nii.gz",
+            "label": "masks/HGJ-070.nii.gz"
+        },
+        {
+            "image": "images/HGJ-071.nii.gz",
+            "label": "masks/HGJ-071.nii.gz"
+        },
+        {
+            "image": "images/HGJ-072.nii.gz",
+            "label": "masks/HGJ-072.nii.gz"
+        },
+        {
+            "image": "images/HGJ-073.nii.gz",
+            "label": "masks/HGJ-073.nii.gz"
+        },
+        {
+            "image": "images/HGJ-074.nii.gz",
+            "label": "masks/HGJ-074.nii.gz"
+        },
+        {
+            "image": "images/HGJ-076.nii.gz",
+            "label": "masks/HGJ-076.nii.gz"
+        },
+        {
+            "image": "images/HGJ-077.nii.gz",
+            "label": "masks/HGJ-077.nii.gz"
+        },
+        {
+            "image": "images/HGJ-078.nii.gz",
+            "label": "masks/HGJ-078.nii.gz"
+        },
+        {
+            "image": "images/HGJ-080.nii.gz",
+            "label": "masks/HGJ-080.nii.gz"
+        },
+        {
+            "image": "images/HGJ-081.nii.gz",
+            "label": "masks/HGJ-081.nii.gz"
+        },
+        {
+            "image": "images/HGJ-082.nii.gz",
+            "label": "masks/HGJ-082.nii.gz"
+        },
+        {
+            "image": "images/HGJ-083.nii.gz",
+            "label": "masks/HGJ-083.nii.gz"
+        },
+        {
+            "image": "images/HGJ-085.nii.gz",
+            "label": "masks/HGJ-085.nii.gz"
+        },
+        {
+            "image": "images/HGJ-086.nii.gz",
+            "label": "masks/HGJ-086.nii.gz"
+        },
+        {
+            "image": "images/HGJ-087.nii.gz",
+            "label": "masks/HGJ-087.nii.gz"
+        },
+        {
+            "image": "images/HGJ-088.nii.gz",
+            "label": "masks/HGJ-088.nii.gz"
+        },
+        {
+            "image": "images/HGJ-089.nii.gz",
+            "label": "masks/HGJ-089.nii.gz"
+        },
+        {
+            "image": "images/HGJ-090.nii.gz",
+            "label": "masks/HGJ-090.nii.gz"
+        },
+        {
+            "image": "images/HGJ-091.nii.gz",
+            "label": "masks/HGJ-091.nii.gz"
+        },
+        {
+            "image": "images/HGJ-092.nii.gz",
+            "label": "masks/HGJ-092.nii.gz"
+        },
+        {
+            "image": "images/HMR-001.nii.gz",
+            "label": "masks/HMR-001.nii.gz"
+        },
+        {
+            "image": "images/HMR-004.nii.gz",
+            "label": "masks/HMR-004.nii.gz"
+        },
+        {
+            "image": "images/HMR-005.nii.gz",
+            "label": "masks/HMR-005.nii.gz"
+        },
+        {
+            "image": "images/HMR-011.nii.gz",
+            "label": "masks/HMR-011.nii.gz"
+        },
+        {
+            "image": "images/HMR-012.nii.gz",
+            "label": "masks/HMR-012.nii.gz"
+        },
+        {
+            "image": "images/HMR-013.nii.gz",
+            "label": "masks/HMR-013.nii.gz"
+        },
+        {
+            "image": "images/HMR-014.nii.gz",
+            "label": "masks/HMR-014.nii.gz"
+        },
+        {
+            "image": "images/HMR-016.nii.gz",
+            "label": "masks/HMR-016.nii.gz"
+        },
+        {
+            "image": "images/HMR-020.nii.gz",
+            "label": "masks/HMR-020.nii.gz"
+        },
+        {
+            "image": "images/HMR-021.nii.gz",
+            "label": "masks/HMR-021.nii.gz"
+        },
+        {
+            "image": "images/HMR-023.nii.gz",
+            "label": "masks/HMR-023.nii.gz"
+        },
+        {
+            "image": "images/HMR-024.nii.gz",
+            "label": "masks/HMR-024.nii.gz"
+        },
+        {
+            "image": "images/HMR-025.nii.gz",
+            "label": "masks/HMR-025.nii.gz"
+        },
+        {
+            "image": "images/HMR-028.nii.gz",
+            "label": "masks/HMR-028.nii.gz"
+        },
+        {
+            "image": "images/HMR-029.nii.gz",
+            "label": "masks/HMR-029.nii.gz"
+        },
+        {
+            "image": "images/HMR-030.nii.gz",
+            "label": "masks/HMR-030.nii.gz"
+        },
+        {
+            "image": "images/HMR-034.nii.gz",
+            "label": "masks/HMR-034.nii.gz"
+        },
+        {
+            "image": "images/HMR-040.nii.gz",
+            "label": "masks/HMR-040.nii.gz"
+        },
+        {
+            "image": "images/MDA-001.nii.gz",
+            "label": "masks/MDA-001.nii.gz"
+        },
+        {
+            "image": "images/MDA-003.nii.gz",
+            "label": "masks/MDA-003.nii.gz"
+        },
+        {
+            "image": "images/MDA-004.nii.gz",
+            "label": "masks/MDA-004.nii.gz"
+        },
+        {
+            "image": "images/MDA-005.nii.gz",
+            "label": "masks/MDA-005.nii.gz"
+        },
+        {
+            "image": "images/MDA-006.nii.gz",
+            "label": "masks/MDA-006.nii.gz"
+        },
+        {
+            "image": "images/MDA-007.nii.gz",
+            "label": "masks/MDA-007.nii.gz"
+        },
+        {
+            "image": "images/MDA-010.nii.gz",
+            "label": "masks/MDA-010.nii.gz"
+        },
+        {
+            "image": "images/MDA-011.nii.gz",
+            "label": "masks/MDA-011.nii.gz"
+        },
+        {
+            "image": "images/MDA-012.nii.gz",
+            "label": "masks/MDA-012.nii.gz"
+        },
+        {
+            "image": "images/MDA-013.nii.gz",
+            "label": "masks/MDA-013.nii.gz"
+        },
+        {
+            "image": "images/MDA-014.nii.gz",
+            "label": "masks/MDA-014.nii.gz"
+        },
+        {
+            "image": "images/MDA-015.nii.gz",
+            "label": "masks/MDA-015.nii.gz"
+        },
+        {
+            "image": "images/MDA-016.nii.gz",
+            "label": "masks/MDA-016.nii.gz"
+        },
+        {
+            "image": "images/MDA-017.nii.gz",
+            "label": "masks/MDA-017.nii.gz"
+        },
+        {
+            "image": "images/MDA-018.nii.gz",
+            "label": "masks/MDA-018.nii.gz"
+        },
+        {
+            "image": "images/MDA-019.nii.gz",
+            "label": "masks/MDA-019.nii.gz"
+        },
+        {
+            "image": "images/MDA-020.nii.gz",
+            "label": "masks/MDA-020.nii.gz"
+        },
+        {
+            "image": "images/MDA-021.nii.gz",
+            "label": "masks/MDA-021.nii.gz"
+        },
+        {
+            "image": "images/MDA-022.nii.gz",
+            "label": "masks/MDA-022.nii.gz"
+        },
+        {
+            "image": "images/MDA-023.nii.gz",
+            "label": "masks/MDA-023.nii.gz"
+        },
+        {
+            "image": "images/MDA-024.nii.gz",
+            "label": "masks/MDA-024.nii.gz"
+        },
+        {
+            "image": "images/MDA-025.nii.gz",
+            "label": "masks/MDA-025.nii.gz"
+        },
+        {
+            "image": "images/MDA-026.nii.gz",
+            "label": "masks/MDA-026.nii.gz"
+        },
+        {
+            "image": "images/MDA-027.nii.gz",
+            "label": "masks/MDA-027.nii.gz"
+        },
+        {
+            "image": "images/MDA-028.nii.gz",
+            "label": "masks/MDA-028.nii.gz"
+        },
+        {
+            "image": "images/MDA-029.nii.gz",
+            "label": "masks/MDA-029.nii.gz"
+        },
+        {
+            "image": "images/MDA-030.nii.gz",
+            "label": "masks/MDA-030.nii.gz"
+        },
+        {
+            "image": "images/MDA-031.nii.gz",
+            "label": "masks/MDA-031.nii.gz"
+        },
+        {
+            "image": "images/MDA-032.nii.gz",
+            "label": "masks/MDA-032.nii.gz"
+        },
+        {
+            "image": "images/MDA-033.nii.gz",
+            "label": "masks/MDA-033.nii.gz"
+        },
+        {
+            "image": "images/MDA-034.nii.gz",
+            "label": "masks/MDA-034.nii.gz"
+        },
+        {
+            "image": "images/MDA-035.nii.gz",
+            "label": "masks/MDA-035.nii.gz"
+        },
+        {
+            "image": "images/MDA-036.nii.gz",
+            "label": "masks/MDA-036.nii.gz"
+        },
+        {
+            "image": "images/MDA-037.nii.gz",
+            "label": "masks/MDA-037.nii.gz"
+        },
+        {
+            "image": "images/MDA-038.nii.gz",
+            "label": "masks/MDA-038.nii.gz"
+        },
+        {
+            "image": "images/MDA-039.nii.gz",
+            "label": "masks/MDA-039.nii.gz"
+        },
+        {
+            "image": "images/MDA-040.nii.gz",
+            "label": "masks/MDA-040.nii.gz"
+        },
+        {
+            "image": "images/MDA-041.nii.gz",
+            "label": "masks/MDA-041.nii.gz"
+        },
+        {
+            "image": "images/MDA-042.nii.gz",
+            "label": "masks/MDA-042.nii.gz"
+        },
+        {
+            "image": "images/MDA-043.nii.gz",
+            "label": "masks/MDA-043.nii.gz"
+        },
+        {
+            "image": "images/MDA-044.nii.gz",
+            "label": "masks/MDA-044.nii.gz"
+        },
+        {
+            "image": "images/MDA-045.nii.gz",
+            "label": "masks/MDA-045.nii.gz"
+        },
+        {
+            "image": "images/MDA-046.nii.gz",
+            "label": "masks/MDA-046.nii.gz"
+        },
+        {
+            "image": "images/MDA-047.nii.gz",
+            "label": "masks/MDA-047.nii.gz"
+        },
+        {
+            "image": "images/MDA-048.nii.gz",
+            "label": "masks/MDA-048.nii.gz"
+        },
+        {
+            "image": "images/MDA-049.nii.gz",
+            "label": "masks/MDA-049.nii.gz"
+        },
+        {
+            "image": "images/MDA-050.nii.gz",
+            "label": "masks/MDA-050.nii.gz"
+        },
+        {
+            "image": "images/MDA-051.nii.gz",
+            "label": "masks/MDA-051.nii.gz"
+        },
+        {
+            "image": "images/MDA-052.nii.gz",
+            "label": "masks/MDA-052.nii.gz"
+        },
+        {
+            "image": "images/MDA-053.nii.gz",
+            "label": "masks/MDA-053.nii.gz"
+        },
+        {
+            "image": "images/MDA-054.nii.gz",
+            "label": "masks/MDA-054.nii.gz"
+        },
+        {
+            "image": "images/MDA-055.nii.gz",
+            "label": "masks/MDA-055.nii.gz"
+        },
+        {
+            "image": "images/MDA-056.nii.gz",
+            "label": "masks/MDA-056.nii.gz"
+        },
+        {
+            "image": "images/MDA-057.nii.gz",
+            "label": "masks/MDA-057.nii.gz"
+        },
+        {
+            "image": "images/MDA-058.nii.gz",
+            "label": "masks/MDA-058.nii.gz"
+        },
+        {
+            "image": "images/MDA-059.nii.gz",
+            "label": "masks/MDA-059.nii.gz"
+        },
+        {
+            "image": "images/MDA-060.nii.gz",
+            "label": "masks/MDA-060.nii.gz"
+        },
+        {
+            "image": "images/MDA-061.nii.gz",
+            "label": "masks/MDA-061.nii.gz"
+        },
+        {
+            "image": "images/MDA-062.nii.gz",
+            "label": "masks/MDA-062.nii.gz"
+        },
+        {
+            "image": "images/MDA-063.nii.gz",
+            "label": "masks/MDA-063.nii.gz"
+        },
+        {
+            "image": "images/MDA-064.nii.gz",
+            "label": "masks/MDA-064.nii.gz"
+        },
+        {
+            "image": "images/MDA-065.nii.gz",
+            "label": "masks/MDA-065.nii.gz"
+        },
+        {
+            "image": "images/MDA-066.nii.gz",
+            "label": "masks/MDA-066.nii.gz"
+        },
+        {
+            "image": "images/MDA-067.nii.gz",
+            "label": "masks/MDA-067.nii.gz"
+        },
+        {
+            "image": "images/MDA-068.nii.gz",
+            "label": "masks/MDA-068.nii.gz"
+        },
+        {
+            "image": "images/MDA-069.nii.gz",
+            "label": "masks/MDA-069.nii.gz"
+        },
+        {
+            "image": "images/MDA-070.nii.gz",
+            "label": "masks/MDA-070.nii.gz"
+        },
+        {
+            "image": "images/MDA-071.nii.gz",
+            "label": "masks/MDA-071.nii.gz"
+        },
+        {
+            "image": "images/MDA-072.nii.gz",
+            "label": "masks/MDA-072.nii.gz"
+        },
+        {
+            "image": "images/MDA-073.nii.gz",
+            "label": "masks/MDA-073.nii.gz"
+        },
+        {
+            "image": "images/MDA-074.nii.gz",
+            "label": "masks/MDA-074.nii.gz"
+        },
+        {
+            "image": "images/MDA-075.nii.gz",
+            "label": "masks/MDA-075.nii.gz"
+        },
+        {
+            "image": "images/MDA-076.nii.gz",
+            "label": "masks/MDA-076.nii.gz"
+        },
+        {
+            "image": "images/MDA-077.nii.gz",
+            "label": "masks/MDA-077.nii.gz"
+        },
+        {
+            "image": "images/MDA-078.nii.gz",
+            "label": "masks/MDA-078.nii.gz"
+        },
+        {
+            "image": "images/MDA-079.nii.gz",
+            "label": "masks/MDA-079.nii.gz"
+        },
+        {
+            "image": "images/MDA-080.nii.gz",
+            "label": "masks/MDA-080.nii.gz"
+        },
+        {
+            "image": "images/MDA-081.nii.gz",
+            "label": "masks/MDA-081.nii.gz"
+        },
+        {
+            "image": "images/MDA-082.nii.gz",
+            "label": "masks/MDA-082.nii.gz"
+        },
+        {
+            "image": "images/MDA-083.nii.gz",
+            "label": "masks/MDA-083.nii.gz"
+        },
+        {
+            "image": "images/MDA-084.nii.gz",
+            "label": "masks/MDA-084.nii.gz"
+        },
+        {
+            "image": "images/MDA-085.nii.gz",
+            "label": "masks/MDA-085.nii.gz"
+        },
+        {
+            "image": "images/MDA-086.nii.gz",
+            "label": "masks/MDA-086.nii.gz"
+        },
+        {
+            "image": "images/MDA-087.nii.gz",
+            "label": "masks/MDA-087.nii.gz"
+        },
+        {
+            "image": "images/MDA-088.nii.gz",
+            "label": "masks/MDA-088.nii.gz"
+        },
+        {
+            "image": "images/MDA-089.nii.gz",
+            "label": "masks/MDA-089.nii.gz"
+        },
+        {
+            "image": "images/MDA-090.nii.gz",
+            "label": "masks/MDA-090.nii.gz"
+        },
+        {
+            "image": "images/MDA-091.nii.gz",
+            "label": "masks/MDA-091.nii.gz"
+        },
+        {
+            "image": "images/MDA-092.nii.gz",
+            "label": "masks/MDA-092.nii.gz"
+        },
+        {
+            "image": "images/MDA-093.nii.gz",
+            "label": "masks/MDA-093.nii.gz"
+        },
+        {
+            "image": "images/MDA-094.nii.gz",
+            "label": "masks/MDA-094.nii.gz"
+        },
+        {
+            "image": "images/MDA-095.nii.gz",
+            "label": "masks/MDA-095.nii.gz"
+        },
+        {
+            "image": "images/MDA-096.nii.gz",
+            "label": "masks/MDA-096.nii.gz"
+        },
+        {
+            "image": "images/MDA-097.nii.gz",
+            "label": "masks/MDA-097.nii.gz"
+        },
+        {
+            "image": "images/MDA-098.nii.gz",
+            "label": "masks/MDA-098.nii.gz"
+        },
+        {
+            "image": "images/MDA-099.nii.gz",
+            "label": "masks/MDA-099.nii.gz"
+        },
+        {
+            "image": "images/MDA-100.nii.gz",
+            "label": "masks/MDA-100.nii.gz"
+        },
+        {
+            "image": "images/MDA-101.nii.gz",
+            "label": "masks/MDA-101.nii.gz"
+        },
+        {
+            "image": "images/MDA-102.nii.gz",
+            "label": "masks/MDA-102.nii.gz"
+        },
+        {
+            "image": "images/MDA-103.nii.gz",
+            "label": "masks/MDA-103.nii.gz"
+        },
+        {
+            "image": "images/MDA-104.nii.gz",
+            "label": "masks/MDA-104.nii.gz"
+        },
+        {
+            "image": "images/MDA-105.nii.gz",
+            "label": "masks/MDA-105.nii.gz"
+        },
+        {
+            "image": "images/MDA-106.nii.gz",
+            "label": "masks/MDA-106.nii.gz"
+        },
+        {
+            "image": "images/MDA-107.nii.gz",
+            "label": "masks/MDA-107.nii.gz"
+        },
+        {
+            "image": "images/MDA-108.nii.gz",
+            "label": "masks/MDA-108.nii.gz"
+        },
+        {
+            "image": "images/MDA-109.nii.gz",
+            "label": "masks/MDA-109.nii.gz"
+        },
+        {
+            "image": "images/MDA-110.nii.gz",
+            "label": "masks/MDA-110.nii.gz"
+        },
+        {
+            "image": "images/MDA-111.nii.gz",
+            "label": "masks/MDA-111.nii.gz"
+        },
+        {
+            "image": "images/MDA-112.nii.gz",
+            "label": "masks/MDA-112.nii.gz"
+        },
+        {
+            "image": "images/MDA-113.nii.gz",
+            "label": "masks/MDA-113.nii.gz"
+        },
+        {
+            "image": "images/MDA-114.nii.gz",
+            "label": "masks/MDA-114.nii.gz"
+        },
+        {
+            "image": "images/MDA-115.nii.gz",
+            "label": "masks/MDA-115.nii.gz"
+        },
+        {
+            "image": "images/MDA-116.nii.gz",
+            "label": "masks/MDA-116.nii.gz"
+        },
+        {
+            "image": "images/MDA-117.nii.gz",
+            "label": "masks/MDA-117.nii.gz"
+        },
+        {
+            "image": "images/MDA-118.nii.gz",
+            "label": "masks/MDA-118.nii.gz"
+        },
+        {
+            "image": "images/MDA-119.nii.gz",
+            "label": "masks/MDA-119.nii.gz"
+        },
+        {
+            "image": "images/MDA-120.nii.gz",
+            "label": "masks/MDA-120.nii.gz"
+        },
+        {
+            "image": "images/MDA-121.nii.gz",
+            "label": "masks/MDA-121.nii.gz"
+        },
+        {
+            "image": "images/MDA-122.nii.gz",
+            "label": "masks/MDA-122.nii.gz"
+        },
+        {
+            "image": "images/MDA-123.nii.gz",
+            "label": "masks/MDA-123.nii.gz"
+        },
+        {
+            "image": "images/MDA-124.nii.gz",
+            "label": "masks/MDA-124.nii.gz"
+        },
+        {
+            "image": "images/MDA-125.nii.gz",
+            "label": "masks/MDA-125.nii.gz"
+        },
+        {
+            "image": "images/MDA-126.nii.gz",
+            "label": "masks/MDA-126.nii.gz"
+        },
+        {
+            "image": "images/MDA-127.nii.gz",
+            "label": "masks/MDA-127.nii.gz"
+        },
+        {
+            "image": "images/MDA-128.nii.gz",
+            "label": "masks/MDA-128.nii.gz"
+        },
+        {
+            "image": "images/MDA-129.nii.gz",
+            "label": "masks/MDA-129.nii.gz"
+        },
+        {
+            "image": "images/MDA-130.nii.gz",
+            "label": "masks/MDA-130.nii.gz"
+        },
+        {
+            "image": "images/MDA-131.nii.gz",
+            "label": "masks/MDA-131.nii.gz"
+        },
+        {
+            "image": "images/MDA-132.nii.gz",
+            "label": "masks/MDA-132.nii.gz"
+        },
+        {
+            "image": "images/MDA-133.nii.gz",
+            "label": "masks/MDA-133.nii.gz"
+        },
+        {
+            "image": "images/MDA-134.nii.gz",
+            "label": "masks/MDA-134.nii.gz"
+        },
+        {
+            "image": "images/MDA-135.nii.gz",
+            "label": "masks/MDA-135.nii.gz"
+        },
+        {
+            "image": "images/MDA-136.nii.gz",
+            "label": "masks/MDA-136.nii.gz"
+        },
+        {
+            "image": "images/MDA-137.nii.gz",
+            "label": "masks/MDA-137.nii.gz"
+        },
+        {
+            "image": "images/MDA-138.nii.gz",
+            "label": "masks/MDA-138.nii.gz"
+        },
+        {
+            "image": "images/MDA-139.nii.gz",
+            "label": "masks/MDA-139.nii.gz"
+        },
+        {
+            "image": "images/MDA-140.nii.gz",
+            "label": "masks/MDA-140.nii.gz"
+        },
+        {
+            "image": "images/MDA-141.nii.gz",
+            "label": "masks/MDA-141.nii.gz"
+        },
+        {
+            "image": "images/MDA-142.nii.gz",
+            "label": "masks/MDA-142.nii.gz"
+        },
+        {
+            "image": "images/MDA-143.nii.gz",
+            "label": "masks/MDA-143.nii.gz"
+        },
+        {
+            "image": "images/MDA-144.nii.gz",
+            "label": "masks/MDA-144.nii.gz"
+        },
+        {
+            "image": "images/MDA-145.nii.gz",
+            "label": "masks/MDA-145.nii.gz"
+        },
+        {
+            "image": "images/MDA-146.nii.gz",
+            "label": "masks/MDA-146.nii.gz"
+        },
+        {
+            "image": "images/MDA-147.nii.gz",
+            "label": "masks/MDA-147.nii.gz"
+        },
+        {
+            "image": "images/MDA-148.nii.gz",
+            "label": "masks/MDA-148.nii.gz"
+        },
+        {
+            "image": "images/MDA-149.nii.gz",
+            "label": "masks/MDA-149.nii.gz"
+        },
+        {
+            "image": "images/MDA-150.nii.gz",
+            "label": "masks/MDA-150.nii.gz"
+        },
+        {
+            "image": "images/MDA-151.nii.gz",
+            "label": "masks/MDA-151.nii.gz"
+        },
+        {
+            "image": "images/MDA-152.nii.gz",
+            "label": "masks/MDA-152.nii.gz"
+        },
+        {
+            "image": "images/MDA-153.nii.gz",
+            "label": "masks/MDA-153.nii.gz"
+        },
+        {
+            "image": "images/MDA-154.nii.gz",
+            "label": "masks/MDA-154.nii.gz"
+        },
+        {
+            "image": "images/MDA-155.nii.gz",
+            "label": "masks/MDA-155.nii.gz"
+        },
+        {
+            "image": "images/MDA-156.nii.gz",
+            "label": "masks/MDA-156.nii.gz"
+        },
+        {
+            "image": "images/MDA-157.nii.gz",
+            "label": "masks/MDA-157.nii.gz"
+        },
+        {
+            "image": "images/MDA-158.nii.gz",
+            "label": "masks/MDA-158.nii.gz"
+        },
+        {
+            "image": "images/MDA-159.nii.gz",
+            "label": "masks/MDA-159.nii.gz"
+        },
+        {
+            "image": "images/MDA-160.nii.gz",
+            "label": "masks/MDA-160.nii.gz"
+        },
+        {
+            "image": "images/MDA-161.nii.gz",
+            "label": "masks/MDA-161.nii.gz"
+        },
+        {
+            "image": "images/MDA-162.nii.gz",
+            "label": "masks/MDA-162.nii.gz"
+        },
+        {
+            "image": "images/MDA-163.nii.gz",
+            "label": "masks/MDA-163.nii.gz"
+        },
+        {
+            "image": "images/MDA-164.nii.gz",
+            "label": "masks/MDA-164.nii.gz"
+        },
+        {
+            "image": "images/MDA-165.nii.gz",
+            "label": "masks/MDA-165.nii.gz"
+        },
+        {
+            "image": "images/MDA-166.nii.gz",
+            "label": "masks/MDA-166.nii.gz"
+        },
+        {
+            "image": "images/MDA-167.nii.gz",
+            "label": "masks/MDA-167.nii.gz"
+        },
+        {
+            "image": "images/MDA-168.nii.gz",
+            "label": "masks/MDA-168.nii.gz"
+        },
+        {
+            "image": "images/MDA-169.nii.gz",
+            "label": "masks/MDA-169.nii.gz"
+        },
+        {
+            "image": "images/MDA-170.nii.gz",
+            "label": "masks/MDA-170.nii.gz"
+        },
+        {
+            "image": "images/MDA-171.nii.gz",
+            "label": "masks/MDA-171.nii.gz"
+        },
+        {
+            "image": "images/MDA-172.nii.gz",
+            "label": "masks/MDA-172.nii.gz"
+        },
+        {
+            "image": "images/MDA-173.nii.gz",
+            "label": "masks/MDA-173.nii.gz"
+        },
+        {
+            "image": "images/MDA-174.nii.gz",
+            "label": "masks/MDA-174.nii.gz"
+        },
+        {
+            "image": "images/MDA-175.nii.gz",
+            "label": "masks/MDA-175.nii.gz"
+        },
+        {
+            "image": "images/MDA-176.nii.gz",
+            "label": "masks/MDA-176.nii.gz"
+        },
+        {
+            "image": "images/MDA-177.nii.gz",
+            "label": "masks/MDA-177.nii.gz"
+        },
+        {
+            "image": "images/MDA-178.nii.gz",
+            "label": "masks/MDA-178.nii.gz"
+        },
+        {
+            "image": "images/MDA-179.nii.gz",
+            "label": "masks/MDA-179.nii.gz"
+        },
+        {
+            "image": "images/MDA-180.nii.gz",
+            "label": "masks/MDA-180.nii.gz"
+        },
+        {
+            "image": "images/MDA-181.nii.gz",
+            "label": "masks/MDA-181.nii.gz"
+        },
+        {
+            "image": "images/MDA-182.nii.gz",
+            "label": "masks/MDA-182.nii.gz"
+        },
+        {
+            "image": "images/MDA-183.nii.gz",
+            "label": "masks/MDA-183.nii.gz"
+        },
+        {
+            "image": "images/MDA-184.nii.gz",
+            "label": "masks/MDA-184.nii.gz"
+        },
+        {
+            "image": "images/MDA-185.nii.gz",
+            "label": "masks/MDA-185.nii.gz"
+        },
+        {
+            "image": "images/MDA-186.nii.gz",
+            "label": "masks/MDA-186.nii.gz"
+        },
+        {
+            "image": "images/MDA-187.nii.gz",
+            "label": "masks/MDA-187.nii.gz"
+        },
+        {
+            "image": "images/MDA-188.nii.gz",
+            "label": "masks/MDA-188.nii.gz"
+        },
+        {
+            "image": "images/MDA-189.nii.gz",
+            "label": "masks/MDA-189.nii.gz"
+        },
+        {
+            "image": "images/MDA-190.nii.gz",
+            "label": "masks/MDA-190.nii.gz"
+        },
+        {
+            "image": "images/MDA-191.nii.gz",
+            "label": "masks/MDA-191.nii.gz"
+        },
+        {
+            "image": "images/MDA-192.nii.gz",
+            "label": "masks/MDA-192.nii.gz"
+        },
+        {
+            "image": "images/MDA-193.nii.gz",
+            "label": "masks/MDA-193.nii.gz"
+        },
+        {
+            "image": "images/MDA-194.nii.gz",
+            "label": "masks/MDA-194.nii.gz"
+        },
+        {
+            "image": "images/MDA-195.nii.gz",
+            "label": "masks/MDA-195.nii.gz"
+        },
+        {
+            "image": "images/MDA-196.nii.gz",
+            "label": "masks/MDA-196.nii.gz"
+        },
+        {
+            "image": "images/MDA-197.nii.gz",
+            "label": "masks/MDA-197.nii.gz"
+        },
+        {
+            "image": "images/MDA-198.nii.gz",
+            "label": "masks/MDA-198.nii.gz"
+        },
+        {
+            "image": "images/MDA-199.nii.gz",
+            "label": "masks/MDA-199.nii.gz"
+        },
+        {
+            "image": "images/MDA-200.nii.gz",
+            "label": "masks/MDA-200.nii.gz"
+        },
+        {
+            "image": "images/MDA-201.nii.gz",
+            "label": "masks/MDA-201.nii.gz"
+        }
+    ],
+    "training": [
+        {
+            "image": "images/gen_1815.nii.gz",
+            "label": "masks/gen_1815.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1821.nii.gz",
+            "label": "masks/gen_1821.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1720.nii.gz",
+            "label": "masks/gen_1720.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_210.nii.gz",
+            "label": "masks/gen_210.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_98.nii.gz",
+            "label": "masks/gen_98.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1871.nii.gz",
+            "label": "masks/gen_1871.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_920.nii.gz",
+            "label": "masks/gen_920.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_322.nii.gz",
+            "label": "masks/gen_322.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_245.nii.gz",
+            "label": "masks/gen_245.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1162.nii.gz",
+            "label": "masks/gen_1162.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1177.nii.gz",
+            "label": "masks/gen_1177.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1753.nii.gz",
+            "label": "masks/gen_1753.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1490.nii.gz",
+            "label": "masks/gen_1490.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1694.nii.gz",
+            "label": "masks/gen_1694.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_953.nii.gz",
+            "label": "masks/gen_953.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_62.nii.gz",
+            "label": "masks/gen_62.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1191.nii.gz",
+            "label": "masks/gen_1191.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_648.nii.gz",
+            "label": "masks/gen_648.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1085.nii.gz",
+            "label": "masks/gen_1085.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1883.nii.gz",
+            "label": "masks/gen_1883.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1963.nii.gz",
+            "label": "masks/gen_1963.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_485.nii.gz",
+            "label": "masks/gen_485.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_314.nii.gz",
+            "label": "masks/gen_314.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1378.nii.gz",
+            "label": "masks/gen_1378.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1481.nii.gz",
+            "label": "masks/gen_1481.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1906.nii.gz",
+            "label": "masks/gen_1906.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1225.nii.gz",
+            "label": "masks/gen_1225.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1644.nii.gz",
+            "label": "masks/gen_1644.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1174.nii.gz",
+            "label": "masks/gen_1174.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1635.nii.gz",
+            "label": "masks/gen_1635.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_419.nii.gz",
+            "label": "masks/gen_419.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1459.nii.gz",
+            "label": "masks/gen_1459.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_922.nii.gz",
+            "label": "masks/gen_922.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_446.nii.gz",
+            "label": "masks/gen_446.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_546.nii.gz",
+            "label": "masks/gen_546.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1021.nii.gz",
+            "label": "masks/gen_1021.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_206.nii.gz",
+            "label": "masks/gen_206.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1236.nii.gz",
+            "label": "masks/gen_1236.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1344.nii.gz",
+            "label": "masks/gen_1344.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_175.nii.gz",
+            "label": "masks/gen_175.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_226.nii.gz",
+            "label": "masks/gen_226.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1851.nii.gz",
+            "label": "masks/gen_1851.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_404.nii.gz",
+            "label": "masks/gen_404.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_422.nii.gz",
+            "label": "masks/gen_422.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1563.nii.gz",
+            "label": "masks/gen_1563.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_602.nii.gz",
+            "label": "masks/gen_602.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_745.nii.gz",
+            "label": "masks/gen_745.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_888.nii.gz",
+            "label": "masks/gen_888.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1659.nii.gz",
+            "label": "masks/gen_1659.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_168.nii.gz",
+            "label": "masks/gen_168.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_424.nii.gz",
+            "label": "masks/gen_424.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_106.nii.gz",
+            "label": "masks/gen_106.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_520.nii.gz",
+            "label": "masks/gen_520.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_2043.nii.gz",
+            "label": "masks/gen_2043.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_705.nii.gz",
+            "label": "masks/gen_705.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1501.nii.gz",
+            "label": "masks/gen_1501.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_914.nii.gz",
+            "label": "masks/gen_914.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1806.nii.gz",
+            "label": "masks/gen_1806.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1629.nii.gz",
+            "label": "masks/gen_1629.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1382.nii.gz",
+            "label": "masks/gen_1382.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1794.nii.gz",
+            "label": "masks/gen_1794.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_668.nii.gz",
+            "label": "masks/gen_668.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1175.nii.gz",
+            "label": "masks/gen_1175.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_285.nii.gz",
+            "label": "masks/gen_285.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_227.nii.gz",
+            "label": "masks/gen_227.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1469.nii.gz",
+            "label": "masks/gen_1469.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_108.nii.gz",
+            "label": "masks/gen_108.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1489.nii.gz",
+            "label": "masks/gen_1489.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1853.nii.gz",
+            "label": "masks/gen_1853.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_555.nii.gz",
+            "label": "masks/gen_555.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1322.nii.gz",
+            "label": "masks/gen_1322.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_536.nii.gz",
+            "label": "masks/gen_536.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1630.nii.gz",
+            "label": "masks/gen_1630.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1896.nii.gz",
+            "label": "masks/gen_1896.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_574.nii.gz",
+            "label": "masks/gen_574.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1848.nii.gz",
+            "label": "masks/gen_1848.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1706.nii.gz",
+            "label": "masks/gen_1706.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1072.nii.gz",
+            "label": "masks/gen_1072.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1237.nii.gz",
+            "label": "masks/gen_1237.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1116.nii.gz",
+            "label": "masks/gen_1116.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_309.nii.gz",
+            "label": "masks/gen_309.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1013.nii.gz",
+            "label": "masks/gen_1013.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1996.nii.gz",
+            "label": "masks/gen_1996.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1958.nii.gz",
+            "label": "masks/gen_1958.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_300.nii.gz",
+            "label": "masks/gen_300.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1866.nii.gz",
+            "label": "masks/gen_1866.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1763.nii.gz",
+            "label": "masks/gen_1763.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_545.nii.gz",
+            "label": "masks/gen_545.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1201.nii.gz",
+            "label": "masks/gen_1201.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1739.nii.gz",
+            "label": "masks/gen_1739.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_2033.nii.gz",
+            "label": "masks/gen_2033.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1787.nii.gz",
+            "label": "masks/gen_1787.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_737.nii.gz",
+            "label": "masks/gen_737.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1307.nii.gz",
+            "label": "masks/gen_1307.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_292.nii.gz",
+            "label": "masks/gen_292.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_811.nii.gz",
+            "label": "masks/gen_811.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_847.nii.gz",
+            "label": "masks/gen_847.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1012.nii.gz",
+            "label": "masks/gen_1012.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_434.nii.gz",
+            "label": "masks/gen_434.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_472.nii.gz",
+            "label": "masks/gen_472.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1412.nii.gz",
+            "label": "masks/gen_1412.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_141.nii.gz",
+            "label": "masks/gen_141.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_661.nii.gz",
+            "label": "masks/gen_661.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1166.nii.gz",
+            "label": "masks/gen_1166.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_517.nii.gz",
+            "label": "masks/gen_517.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_561.nii.gz",
+            "label": "masks/gen_561.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1927.nii.gz",
+            "label": "masks/gen_1927.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_936.nii.gz",
+            "label": "masks/gen_936.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_305.nii.gz",
+            "label": "masks/gen_305.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_276.nii.gz",
+            "label": "masks/gen_276.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1369.nii.gz",
+            "label": "masks/gen_1369.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_672.nii.gz",
+            "label": "masks/gen_672.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_87.nii.gz",
+            "label": "masks/gen_87.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1357.nii.gz",
+            "label": "masks/gen_1357.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_275.nii.gz",
+            "label": "masks/gen_275.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1981.nii.gz",
+            "label": "masks/gen_1981.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1590.nii.gz",
+            "label": "masks/gen_1590.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_294.nii.gz",
+            "label": "masks/gen_294.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_677.nii.gz",
+            "label": "masks/gen_677.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1120.nii.gz",
+            "label": "masks/gen_1120.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1938.nii.gz",
+            "label": "masks/gen_1938.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1059.nii.gz",
+            "label": "masks/gen_1059.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_702.nii.gz",
+            "label": "masks/gen_702.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_592.nii.gz",
+            "label": "masks/gen_592.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1573.nii.gz",
+            "label": "masks/gen_1573.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_918.nii.gz",
+            "label": "masks/gen_918.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_846.nii.gz",
+            "label": "masks/gen_846.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_767.nii.gz",
+            "label": "masks/gen_767.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1267.nii.gz",
+            "label": "masks/gen_1267.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1051.nii.gz",
+            "label": "masks/gen_1051.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_817.nii.gz",
+            "label": "masks/gen_817.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_769.nii.gz",
+            "label": "masks/gen_769.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_532.nii.gz",
+            "label": "masks/gen_532.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_97.nii.gz",
+            "label": "masks/gen_97.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1035.nii.gz",
+            "label": "masks/gen_1035.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1271.nii.gz",
+            "label": "masks/gen_1271.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1751.nii.gz",
+            "label": "masks/gen_1751.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_176.nii.gz",
+            "label": "masks/gen_176.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_2038.nii.gz",
+            "label": "masks/gen_2038.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1152.nii.gz",
+            "label": "masks/gen_1152.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_698.nii.gz",
+            "label": "masks/gen_698.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_2032.nii.gz",
+            "label": "masks/gen_2032.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_921.nii.gz",
+            "label": "masks/gen_921.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1910.nii.gz",
+            "label": "masks/gen_1910.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_582.nii.gz",
+            "label": "masks/gen_582.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_795.nii.gz",
+            "label": "masks/gen_795.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1257.nii.gz",
+            "label": "masks/gen_1257.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1235.nii.gz",
+            "label": "masks/gen_1235.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_442.nii.gz",
+            "label": "masks/gen_442.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_269.nii.gz",
+            "label": "masks/gen_269.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_25.nii.gz",
+            "label": "masks/gen_25.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1434.nii.gz",
+            "label": "masks/gen_1434.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_808.nii.gz",
+            "label": "masks/gen_808.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1540.nii.gz",
+            "label": "masks/gen_1540.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1565.nii.gz",
+            "label": "masks/gen_1565.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_450.nii.gz",
+            "label": "masks/gen_450.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1354.nii.gz",
+            "label": "masks/gen_1354.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1756.nii.gz",
+            "label": "masks/gen_1756.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_662.nii.gz",
+            "label": "masks/gen_662.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1393.nii.gz",
+            "label": "masks/gen_1393.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1324.nii.gz",
+            "label": "masks/gen_1324.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1311.nii.gz",
+            "label": "masks/gen_1311.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1248.nii.gz",
+            "label": "masks/gen_1248.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_699.nii.gz",
+            "label": "masks/gen_699.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1026.nii.gz",
+            "label": "masks/gen_1026.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_388.nii.gz",
+            "label": "masks/gen_388.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1872.nii.gz",
+            "label": "masks/gen_1872.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_844.nii.gz",
+            "label": "masks/gen_844.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_820.nii.gz",
+            "label": "masks/gen_820.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1329.nii.gz",
+            "label": "masks/gen_1329.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1822.nii.gz",
+            "label": "masks/gen_1822.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_912.nii.gz",
+            "label": "masks/gen_912.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_435.nii.gz",
+            "label": "masks/gen_435.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_170.nii.gz",
+            "label": "masks/gen_170.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_473.nii.gz",
+            "label": "masks/gen_473.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_136.nii.gz",
+            "label": "masks/gen_136.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_327.nii.gz",
+            "label": "masks/gen_327.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_73.nii.gz",
+            "label": "masks/gen_73.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1468.nii.gz",
+            "label": "masks/gen_1468.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_115.nii.gz",
+            "label": "masks/gen_115.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1685.nii.gz",
+            "label": "masks/gen_1685.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_241.nii.gz",
+            "label": "masks/gen_241.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_212.nii.gz",
+            "label": "masks/gen_212.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_816.nii.gz",
+            "label": "masks/gen_816.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1666.nii.gz",
+            "label": "masks/gen_1666.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1942.nii.gz",
+            "label": "masks/gen_1942.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_866.nii.gz",
+            "label": "masks/gen_866.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1709.nii.gz",
+            "label": "masks/gen_1709.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_387.nii.gz",
+            "label": "masks/gen_387.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1656.nii.gz",
+            "label": "masks/gen_1656.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_678.nii.gz",
+            "label": "masks/gen_678.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1913.nii.gz",
+            "label": "masks/gen_1913.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1019.nii.gz",
+            "label": "masks/gen_1019.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_969.nii.gz",
+            "label": "masks/gen_969.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_308.nii.gz",
+            "label": "masks/gen_308.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_566.nii.gz",
+            "label": "masks/gen_566.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1223.nii.gz",
+            "label": "masks/gen_1223.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1244.nii.gz",
+            "label": "masks/gen_1244.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1383.nii.gz",
+            "label": "masks/gen_1383.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_195.nii.gz",
+            "label": "masks/gen_195.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1427.nii.gz",
+            "label": "masks/gen_1427.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1265.nii.gz",
+            "label": "masks/gen_1265.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_708.nii.gz",
+            "label": "masks/gen_708.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_809.nii.gz",
+            "label": "masks/gen_809.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_235.nii.gz",
+            "label": "masks/gen_235.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1610.nii.gz",
+            "label": "masks/gen_1610.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_1816.nii.gz",
+            "label": "masks/gen_1816.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_164.nii.gz",
+            "label": "masks/gen_164.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "images/gen_508.nii.gz",
+            "label": "masks/gen_508.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1138.nii.gz",
+            "label": "masks/gen_1138.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_908.nii.gz",
+            "label": "masks/gen_908.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1984.nii.gz",
+            "label": "masks/gen_1984.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1949.nii.gz",
+            "label": "masks/gen_1949.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1978.nii.gz",
+            "label": "masks/gen_1978.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_911.nii.gz",
+            "label": "masks/gen_911.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_270.nii.gz",
+            "label": "masks/gen_270.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_184.nii.gz",
+            "label": "masks/gen_184.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_650.nii.gz",
+            "label": "masks/gen_650.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1305.nii.gz",
+            "label": "masks/gen_1305.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_2010.nii.gz",
+            "label": "masks/gen_2010.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1911.nii.gz",
+            "label": "masks/gen_1911.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1161.nii.gz",
+            "label": "masks/gen_1161.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_410.nii.gz",
+            "label": "masks/gen_410.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_385.nii.gz",
+            "label": "masks/gen_385.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_863.nii.gz",
+            "label": "masks/gen_863.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1346.nii.gz",
+            "label": "masks/gen_1346.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1515.nii.gz",
+            "label": "masks/gen_1515.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1585.nii.gz",
+            "label": "masks/gen_1585.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_125.nii.gz",
+            "label": "masks/gen_125.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1985.nii.gz",
+            "label": "masks/gen_1985.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1106.nii.gz",
+            "label": "masks/gen_1106.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_90.nii.gz",
+            "label": "masks/gen_90.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1473.nii.gz",
+            "label": "masks/gen_1473.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1881.nii.gz",
+            "label": "masks/gen_1881.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1281.nii.gz",
+            "label": "masks/gen_1281.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1713.nii.gz",
+            "label": "masks/gen_1713.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_649.nii.gz",
+            "label": "masks/gen_649.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_986.nii.gz",
+            "label": "masks/gen_986.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_437.nii.gz",
+            "label": "masks/gen_437.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1649.nii.gz",
+            "label": "masks/gen_1649.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1246.nii.gz",
+            "label": "masks/gen_1246.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_763.nii.gz",
+            "label": "masks/gen_763.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1810.nii.gz",
+            "label": "masks/gen_1810.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_236.nii.gz",
+            "label": "masks/gen_236.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1285.nii.gz",
+            "label": "masks/gen_1285.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1922.nii.gz",
+            "label": "masks/gen_1922.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1086.nii.gz",
+            "label": "masks/gen_1086.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_26.nii.gz",
+            "label": "masks/gen_26.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_94.nii.gz",
+            "label": "masks/gen_94.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_132.nii.gz",
+            "label": "masks/gen_132.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1319.nii.gz",
+            "label": "masks/gen_1319.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1960.nii.gz",
+            "label": "masks/gen_1960.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1752.nii.gz",
+            "label": "masks/gen_1752.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1435.nii.gz",
+            "label": "masks/gen_1435.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_211.nii.gz",
+            "label": "masks/gen_211.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1264.nii.gz",
+            "label": "masks/gen_1264.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_599.nii.gz",
+            "label": "masks/gen_599.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_646.nii.gz",
+            "label": "masks/gen_646.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1692.nii.gz",
+            "label": "masks/gen_1692.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_535.nii.gz",
+            "label": "masks/gen_535.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_159.nii.gz",
+            "label": "masks/gen_159.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_461.nii.gz",
+            "label": "masks/gen_461.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1316.nii.gz",
+            "label": "masks/gen_1316.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1742.nii.gz",
+            "label": "masks/gen_1742.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_49.nii.gz",
+            "label": "masks/gen_49.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_878.nii.gz",
+            "label": "masks/gen_878.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1655.nii.gz",
+            "label": "masks/gen_1655.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1726.nii.gz",
+            "label": "masks/gen_1726.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1744.nii.gz",
+            "label": "masks/gen_1744.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_91.nii.gz",
+            "label": "masks/gen_91.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_202.nii.gz",
+            "label": "masks/gen_202.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_746.nii.gz",
+            "label": "masks/gen_746.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_120.nii.gz",
+            "label": "masks/gen_120.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_415.nii.gz",
+            "label": "masks/gen_415.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1925.nii.gz",
+            "label": "masks/gen_1925.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_339.nii.gz",
+            "label": "masks/gen_339.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_534.nii.gz",
+            "label": "masks/gen_534.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_45.nii.gz",
+            "label": "masks/gen_45.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1224.nii.gz",
+            "label": "masks/gen_1224.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_831.nii.gz",
+            "label": "masks/gen_831.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_350.nii.gz",
+            "label": "masks/gen_350.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_960.nii.gz",
+            "label": "masks/gen_960.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_944.nii.gz",
+            "label": "masks/gen_944.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_28.nii.gz",
+            "label": "masks/gen_28.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_8.nii.gz",
+            "label": "masks/gen_8.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1064.nii.gz",
+            "label": "masks/gen_1064.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_722.nii.gz",
+            "label": "masks/gen_722.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_413.nii.gz",
+            "label": "masks/gen_413.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_2045.nii.gz",
+            "label": "masks/gen_2045.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_188.nii.gz",
+            "label": "masks/gen_188.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1944.nii.gz",
+            "label": "masks/gen_1944.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_237.nii.gz",
+            "label": "masks/gen_237.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_971.nii.gz",
+            "label": "masks/gen_971.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1359.nii.gz",
+            "label": "masks/gen_1359.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_666.nii.gz",
+            "label": "masks/gen_666.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_930.nii.gz",
+            "label": "masks/gen_930.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_755.nii.gz",
+            "label": "masks/gen_755.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1075.nii.gz",
+            "label": "masks/gen_1075.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1841.nii.gz",
+            "label": "masks/gen_1841.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_11.nii.gz",
+            "label": "masks/gen_11.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_558.nii.gz",
+            "label": "masks/gen_558.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_967.nii.gz",
+            "label": "masks/gen_967.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_348.nii.gz",
+            "label": "masks/gen_348.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1614.nii.gz",
+            "label": "masks/gen_1614.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1826.nii.gz",
+            "label": "masks/gen_1826.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1366.nii.gz",
+            "label": "masks/gen_1366.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_906.nii.gz",
+            "label": "masks/gen_906.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_685.nii.gz",
+            "label": "masks/gen_685.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1946.nii.gz",
+            "label": "masks/gen_1946.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_978.nii.gz",
+            "label": "masks/gen_978.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_42.nii.gz",
+            "label": "masks/gen_42.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1038.nii.gz",
+            "label": "masks/gen_1038.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "images/gen_1886.nii.gz",
+            "label": "masks/gen_1886.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_84.nii.gz",
+            "label": "masks/gen_84.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1076.nii.gz",
+            "label": "masks/gen_1076.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1912.nii.gz",
+            "label": "masks/gen_1912.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1006.nii.gz",
+            "label": "masks/gen_1006.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_925.nii.gz",
+            "label": "masks/gen_925.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_870.nii.gz",
+            "label": "masks/gen_870.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1594.nii.gz",
+            "label": "masks/gen_1594.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_119.nii.gz",
+            "label": "masks/gen_119.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1184.nii.gz",
+            "label": "masks/gen_1184.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_19.nii.gz",
+            "label": "masks/gen_19.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_333.nii.gz",
+            "label": "masks/gen_333.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1660.nii.gz",
+            "label": "masks/gen_1660.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_585.nii.gz",
+            "label": "masks/gen_585.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_277.nii.gz",
+            "label": "masks/gen_277.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1673.nii.gz",
+            "label": "masks/gen_1673.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1662.nii.gz",
+            "label": "masks/gen_1662.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_692.nii.gz",
+            "label": "masks/gen_692.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1525.nii.gz",
+            "label": "masks/gen_1525.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1647.nii.gz",
+            "label": "masks/gen_1647.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_356.nii.gz",
+            "label": "masks/gen_356.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_229.nii.gz",
+            "label": "masks/gen_229.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_923.nii.gz",
+            "label": "masks/gen_923.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_405.nii.gz",
+            "label": "masks/gen_405.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_416.nii.gz",
+            "label": "masks/gen_416.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1242.nii.gz",
+            "label": "masks/gen_1242.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1926.nii.gz",
+            "label": "masks/gen_1926.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_604.nii.gz",
+            "label": "masks/gen_604.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1078.nii.gz",
+            "label": "masks/gen_1078.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1533.nii.gz",
+            "label": "masks/gen_1533.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_635.nii.gz",
+            "label": "masks/gen_635.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1314.nii.gz",
+            "label": "masks/gen_1314.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_983.nii.gz",
+            "label": "masks/gen_983.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_279.nii.gz",
+            "label": "masks/gen_279.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1588.nii.gz",
+            "label": "masks/gen_1588.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_2025.nii.gz",
+            "label": "masks/gen_2025.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1632.nii.gz",
+            "label": "masks/gen_1632.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1916.nii.gz",
+            "label": "masks/gen_1916.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_963.nii.gz",
+            "label": "masks/gen_963.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_551.nii.gz",
+            "label": "masks/gen_551.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1370.nii.gz",
+            "label": "masks/gen_1370.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_675.nii.gz",
+            "label": "masks/gen_675.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1653.nii.gz",
+            "label": "masks/gen_1653.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_118.nii.gz",
+            "label": "masks/gen_118.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_538.nii.gz",
+            "label": "masks/gen_538.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_827.nii.gz",
+            "label": "masks/gen_827.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1830.nii.gz",
+            "label": "masks/gen_1830.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_657.nii.gz",
+            "label": "masks/gen_657.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_124.nii.gz",
+            "label": "masks/gen_124.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_583.nii.gz",
+            "label": "masks/gen_583.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_526.nii.gz",
+            "label": "masks/gen_526.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1325.nii.gz",
+            "label": "masks/gen_1325.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_408.nii.gz",
+            "label": "masks/gen_408.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1939.nii.gz",
+            "label": "masks/gen_1939.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_608.nii.gz",
+            "label": "masks/gen_608.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1740.nii.gz",
+            "label": "masks/gen_1740.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1156.nii.gz",
+            "label": "masks/gen_1156.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_821.nii.gz",
+            "label": "masks/gen_821.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_766.nii.gz",
+            "label": "masks/gen_766.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1358.nii.gz",
+            "label": "masks/gen_1358.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_341.nii.gz",
+            "label": "masks/gen_341.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_860.nii.gz",
+            "label": "masks/gen_860.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1589.nii.gz",
+            "label": "masks/gen_1589.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1971.nii.gz",
+            "label": "masks/gen_1971.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_806.nii.gz",
+            "label": "masks/gen_806.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_452.nii.gz",
+            "label": "masks/gen_452.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_301.nii.gz",
+            "label": "masks/gen_301.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_761.nii.gz",
+            "label": "masks/gen_761.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_349.nii.gz",
+            "label": "masks/gen_349.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_65.nii.gz",
+            "label": "masks/gen_65.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1509.nii.gz",
+            "label": "masks/gen_1509.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_7.nii.gz",
+            "label": "masks/gen_7.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1613.nii.gz",
+            "label": "masks/gen_1613.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_798.nii.gz",
+            "label": "masks/gen_798.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_942.nii.gz",
+            "label": "masks/gen_942.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1414.nii.gz",
+            "label": "masks/gen_1414.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_214.nii.gz",
+            "label": "masks/gen_214.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_656.nii.gz",
+            "label": "masks/gen_656.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1259.nii.gz",
+            "label": "masks/gen_1259.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1953.nii.gz",
+            "label": "masks/gen_1953.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1783.nii.gz",
+            "label": "masks/gen_1783.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_799.nii.gz",
+            "label": "masks/gen_799.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_550.nii.gz",
+            "label": "masks/gen_550.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1677.nii.gz",
+            "label": "masks/gen_1677.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_529.nii.gz",
+            "label": "masks/gen_529.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_2026.nii.gz",
+            "label": "masks/gen_2026.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1190.nii.gz",
+            "label": "masks/gen_1190.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_86.nii.gz",
+            "label": "masks/gen_86.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_289.nii.gz",
+            "label": "masks/gen_289.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_865.nii.gz",
+            "label": "masks/gen_865.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1341.nii.gz",
+            "label": "masks/gen_1341.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_148.nii.gz",
+            "label": "masks/gen_148.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_41.nii.gz",
+            "label": "masks/gen_41.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_556.nii.gz",
+            "label": "masks/gen_556.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1921.nii.gz",
+            "label": "masks/gen_1921.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1062.nii.gz",
+            "label": "masks/gen_1062.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_203.nii.gz",
+            "label": "masks/gen_203.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_683.nii.gz",
+            "label": "masks/gen_683.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1381.nii.gz",
+            "label": "masks/gen_1381.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_178.nii.gz",
+            "label": "masks/gen_178.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_53.nii.gz",
+            "label": "masks/gen_53.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1682.nii.gz",
+            "label": "masks/gen_1682.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_455.nii.gz",
+            "label": "masks/gen_455.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1831.nii.gz",
+            "label": "masks/gen_1831.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "images/gen_1671.nii.gz",
+            "label": "masks/gen_1671.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_316.nii.gz",
+            "label": "masks/gen_316.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_2004.nii.gz",
+            "label": "masks/gen_2004.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1320.nii.gz",
+            "label": "masks/gen_1320.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1903.nii.gz",
+            "label": "masks/gen_1903.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_549.nii.gz",
+            "label": "masks/gen_549.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1623.nii.gz",
+            "label": "masks/gen_1623.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_112.nii.gz",
+            "label": "masks/gen_112.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_204.nii.gz",
+            "label": "masks/gen_204.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1547.nii.gz",
+            "label": "masks/gen_1547.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_365.nii.gz",
+            "label": "masks/gen_365.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1888.nii.gz",
+            "label": "masks/gen_1888.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_965.nii.gz",
+            "label": "masks/gen_965.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_893.nii.gz",
+            "label": "masks/gen_893.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1472.nii.gz",
+            "label": "masks/gen_1472.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1308.nii.gz",
+            "label": "masks/gen_1308.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1280.nii.gz",
+            "label": "masks/gen_1280.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1820.nii.gz",
+            "label": "masks/gen_1820.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1730.nii.gz",
+            "label": "masks/gen_1730.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1852.nii.gz",
+            "label": "masks/gen_1852.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_522.nii.gz",
+            "label": "masks/gen_522.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1601.nii.gz",
+            "label": "masks/gen_1601.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_768.nii.gz",
+            "label": "masks/gen_768.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_220.nii.gz",
+            "label": "masks/gen_220.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1100.nii.gz",
+            "label": "masks/gen_1100.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_655.nii.gz",
+            "label": "masks/gen_655.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_483.nii.gz",
+            "label": "masks/gen_483.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_581.nii.gz",
+            "label": "masks/gen_581.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_209.nii.gz",
+            "label": "masks/gen_209.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1167.nii.gz",
+            "label": "masks/gen_1167.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_218.nii.gz",
+            "label": "masks/gen_218.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1955.nii.gz",
+            "label": "masks/gen_1955.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1722.nii.gz",
+            "label": "masks/gen_1722.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_493.nii.gz",
+            "label": "masks/gen_493.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_286.nii.gz",
+            "label": "masks/gen_286.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_884.nii.gz",
+            "label": "masks/gen_884.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1672.nii.gz",
+            "label": "masks/gen_1672.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1570.nii.gz",
+            "label": "masks/gen_1570.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_497.nii.gz",
+            "label": "masks/gen_497.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1095.nii.gz",
+            "label": "masks/gen_1095.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1993.nii.gz",
+            "label": "masks/gen_1993.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1868.nii.gz",
+            "label": "masks/gen_1868.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_291.nii.gz",
+            "label": "masks/gen_291.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_116.nii.gz",
+            "label": "masks/gen_116.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1140.nii.gz",
+            "label": "masks/gen_1140.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1274.nii.gz",
+            "label": "masks/gen_1274.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1731.nii.gz",
+            "label": "masks/gen_1731.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1798.nii.gz",
+            "label": "masks/gen_1798.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_133.nii.gz",
+            "label": "masks/gen_133.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1766.nii.gz",
+            "label": "masks/gen_1766.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_614.nii.gz",
+            "label": "masks/gen_614.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1343.nii.gz",
+            "label": "masks/gen_1343.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1711.nii.gz",
+            "label": "masks/gen_1711.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_981.nii.gz",
+            "label": "masks/gen_981.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1160.nii.gz",
+            "label": "masks/gen_1160.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_152.nii.gz",
+            "label": "masks/gen_152.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_542.nii.gz",
+            "label": "masks/gen_542.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_258.nii.gz",
+            "label": "masks/gen_258.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1598.nii.gz",
+            "label": "masks/gen_1598.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1661.nii.gz",
+            "label": "masks/gen_1661.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_687.nii.gz",
+            "label": "masks/gen_687.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1689.nii.gz",
+            "label": "masks/gen_1689.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_674.nii.gz",
+            "label": "masks/gen_674.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1887.nii.gz",
+            "label": "masks/gen_1887.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1943.nii.gz",
+            "label": "masks/gen_1943.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1371.nii.gz",
+            "label": "masks/gen_1371.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_513.nii.gz",
+            "label": "masks/gen_513.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1338.nii.gz",
+            "label": "masks/gen_1338.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1340.nii.gz",
+            "label": "masks/gen_1340.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1041.nii.gz",
+            "label": "masks/gen_1041.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1516.nii.gz",
+            "label": "masks/gen_1516.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1691.nii.gz",
+            "label": "masks/gen_1691.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_74.nii.gz",
+            "label": "masks/gen_74.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_283.nii.gz",
+            "label": "masks/gen_283.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1561.nii.gz",
+            "label": "masks/gen_1561.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_810.nii.gz",
+            "label": "masks/gen_810.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1643.nii.gz",
+            "label": "masks/gen_1643.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1668.nii.gz",
+            "label": "masks/gen_1668.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1313.nii.gz",
+            "label": "masks/gen_1313.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_919.nii.gz",
+            "label": "masks/gen_919.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_266.nii.gz",
+            "label": "masks/gen_266.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_518.nii.gz",
+            "label": "masks/gen_518.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_835.nii.gz",
+            "label": "masks/gen_835.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1768.nii.gz",
+            "label": "masks/gen_1768.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_312.nii.gz",
+            "label": "masks/gen_312.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_443.nii.gz",
+            "label": "masks/gen_443.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1141.nii.gz",
+            "label": "masks/gen_1141.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_718.nii.gz",
+            "label": "masks/gen_718.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_504.nii.gz",
+            "label": "masks/gen_504.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_955.nii.gz",
+            "label": "masks/gen_955.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_593.nii.gz",
+            "label": "masks/gen_593.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_335.nii.gz",
+            "label": "masks/gen_335.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1847.nii.gz",
+            "label": "masks/gen_1847.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_406.nii.gz",
+            "label": "masks/gen_406.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1188.nii.gz",
+            "label": "masks/gen_1188.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_2034.nii.gz",
+            "label": "masks/gen_2034.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1931.nii.gz",
+            "label": "masks/gen_1931.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1464.nii.gz",
+            "label": "masks/gen_1464.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1196.nii.gz",
+            "label": "masks/gen_1196.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1875.nii.gz",
+            "label": "masks/gen_1875.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_871.nii.gz",
+            "label": "masks/gen_871.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_957.nii.gz",
+            "label": "masks/gen_957.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_1979.nii.gz",
+            "label": "masks/gen_1979.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_425.nii.gz",
+            "label": "masks/gen_425.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "images/gen_399.nii.gz",
+            "label": "masks/gen_399.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_954.nii.gz",
+            "label": "masks/gen_954.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_1690.nii.gz",
+            "label": "masks/gen_1690.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "images/gen_466.nii.gz",
+            "label": "masks/gen_466.nii.gz",
+            "fold": 0
+        }
+    ]
+}

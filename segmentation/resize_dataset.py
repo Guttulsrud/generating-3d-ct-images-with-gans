@@ -49,18 +49,16 @@ def preprocess(batch_idx, img_list, num_jobs, output_dir, low_threshold, high_th
         if idx % num_jobs != batch_idx:
             continue
         img_name = image.split('/')[-1]
-
-        if os.path.exists(output_dir + img_name.split('.')[0] + ".npy"):
-            # skip images that already finished pre-processing
-            continue
+        mask_name = mask.split('/')[-1]
 
         nifti_img1 = nib.load(image)
         nifti_img2 = nib.load(mask)
 
         image_data = nifti_img1.get_fdata()
         label_data = nifti_img2.get_fdata()
+        label_data = np.where((label_data == 1) | (label_data == 2), 1, 0)
 
-        desired_shape = np.array([35, 35, 35])
+        desired_shape = np.array([256, 256, 128])
 
         # Calculate the zoom factors for the image and label data
         zoom_factors_image = desired_shape / np.array(image_data.shape)
@@ -76,7 +74,7 @@ def preprocess(batch_idx, img_list, num_jobs, output_dir, low_threshold, high_th
         nib.save(nifti_image,
                  '../data/resized/images/' + img_name.split('\\')[-1].replace('__CT', ''))
         nib.save(nifti_label,
-                 '../data/resized/masks/' + img_name.split('\\')[-1].replace('__CT', ''))
+                 '../data/resized/masks/' + mask_name.split('\\')[-1].replace('__CT', ''))
 
 
 if __name__ == '__main__':
@@ -92,11 +90,11 @@ if __name__ == '__main__':
 
     config = {
         'preprocessing': {
-            'img_input_dir': '../data/augmented/normalized15mm/images/',
-            'mask_input_dir': '../data/augmented/normalized15mm/masks/',
+            'img_input_dir': '../data/256/normalized15mm/images/',
+            'mask_input_dir': '../data/256/normalized15mm/masks/',
             'output_dir': '../data/resized/',
             'num_jobs': 4,
-            'img_size': 32,
+            'img_size': 256,
             'low_threshold': -1000,
             'high_threshold': 1000
         }
