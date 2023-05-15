@@ -17,14 +17,9 @@ if __name__ == "__main__":
     )
 
     train_param = {
-        "CUDA_VISIBLE_DEVICES": [0],  # use only 1 gpu
-
-        #     "num_epochs_per_validation": 1,
+        "CUDA_VISIBLE_DEVICES": [0],
         "num_images_per_batch": 1,
-        #     "num_epochs": 1,
-        #     "num_warmup_epochs": 1,
+
     }
     runner.set_training_params(train_param)
-    runner.set_num_fold(num_fold=1)
-
     runner.run()

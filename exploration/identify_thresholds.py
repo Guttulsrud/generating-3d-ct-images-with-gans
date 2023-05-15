@@ -11,18 +11,37 @@ from visualization.display_image import display_image
 import nibabel as nib
 import matplotlib.pyplot as plt
 
-run_search = False
+run_search = True
 
 if run_search:
     numpy_image = False
-    image_paths = glob.glob('data/original/images/*CT.nii.gz')
-    mask_paths = glob.glob('data/original/masks/*.nii.gz')
+    image_paths = glob.glob('../data/cropped_original/images/*CT.nii.gz')
+    mask_paths = glob.glob('../data/cropped_original/masks/*.nii.gz')
     data = []
     for image_path, mask_path in tqdm(zip(image_paths, mask_paths)):
         image = nib.load(image_path)
-        image = image.get_fdata()
-        image_min_pixel_value = min([min(x) for x in np.min(image, axis=0)])
-        image_max_pixel_value = max([max(x) for x in np.max(image, axis=0)])
+        image_data = image.get_fdata()
+        # Get the header information
+        header = image.header
+
+        # Get the slope and intercept values
+        slope = header.get('scl_slope', 1.0)
+        intercept = header.get('scl_inter', 0.0)
+
+        # Print the slope and intercept values
+        print('Slope:', slope)
+        print('Intercept:', intercept)
+        exit()
+
+        for x in image:
+            for y in x:
+                for z in y:
+                    print(z)
+                    exit()
+
+        exit()
+        image_min_pixel_value = min([min(x) for x in np.min(image_data, axis=0)])
+        image_max_pixel_value = max([max(x) for x in np.max(image_data, axis=0)])
 
         mask = nib.load(image_path)
         mask = mask.get_fdata()
@@ -35,7 +54,7 @@ if run_search:
             print(mask_min_pixel_value, mask_max_pixel_value)
             exit()
         data.append({'low': image_min_pixel_value, 'high': image_max_pixel_value})
-
+    exit()
     df = pd.DataFrame(data)
     df.to_csv('low_high.csv', index=False)
 

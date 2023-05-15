@@ -23,6 +23,8 @@ import seaborn as sns
 # from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
 import matplotlib.pyplot as plt
 
+
+
 show_all = True
 
 experiment_name = 'normalized15x15x3'
@@ -226,7 +228,7 @@ def plot_results(data, experiment_name, network, save_plot=False, print_stats=Fa
         ax.grid(color='gray', linestyle='-', linewidth=0.3, alpha=0.8)
 
         ax.plot(data['Iteration'], data['Loss'], alpha=0.2, label='Loss')
-        ax.plot(data['Iteration'], data['Smoothed Loss'], label='Loss (EMA)')
+        # ax.plot(data['Iteration'], data['Smoothed Loss'], label='Loss (EMA)')
         # Add lines along the x and y axes
 
         plt.legend()
@@ -256,7 +258,6 @@ def plot_results(data, experiment_name, network, save_plot=False, print_stats=Fa
 g_data = plot_results(scalar_data, experiment_name, 'Generator', save_plot=True, print_stats=False)
 d_data = plot_results(scalar_data, experiment_name, 'Discriminator', save_plot=True, print_stats=False)
 e_data = plot_results(scalar_data, experiment_name, 'Encoder', save_plot=True, print_stats=False)
-
 
 df = pd.concat([g_data, d_data, e_data], axis=0)
 df = df.reset_index()

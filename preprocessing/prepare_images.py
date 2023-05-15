@@ -10,6 +10,8 @@ from visualization.display_image import display_image
 SUFFIX = '.nii.gz'
 TRIM_BLANK_SLICES = True
 
+# with open('train_data.json', 'r') as f:
+#     train_data = yaml.safe_load(f)
 
 def concat_images(data1, data2):
     if data1.shape[1] != data2.shape[1] and data2.shape[1] == 513:
@@ -103,6 +105,9 @@ def preprocess(batch_idx, img_list, num_jobs, output_dir, low_threshold, high_th
             continue
         img_name = image.split('/')[-1]
 
+        if not img_name.split('\\')[-1].replace('.gz', '') in train_data:
+            continue
+
         if os.path.exists(output_dir + img_name.split('.')[0] + ".npy"):
             # skip images that already finished pre-processing
             continue
@@ -118,22 +123,30 @@ def preprocess(batch_idx, img_list, num_jobs, output_dir, low_threshold, high_th
             valid_plane_i = np.mean(img, (0, 1)) != -1  # Remove blank axial planes
             img = img[:, :, valid_plane_i]
 
-        mask = np.interp(mask, [0, 2], [-1, 1])
+        # mask = np.interp(mask, [0, 2], [-1, 1])
+        mask = np.where((mask == 1) | (mask == 2), 1, -1)
 
-        # img = resize(img, (img_size, img_size, img_size / 2), mode='constant', cval=-1)
-        # mask = resize(mask, (img_size, img_size, img_size / 2), mode='constant', cval=-1)
+
+
 
         concat = alt_concat(img, mask)
         concat = resize(concat, (img_size, img_size, img_size), mode='constant', cval=1)
-        # display_image(concat)
-        new_nifti_img = nib.Nifti1Image(concat, np.eye(4))
-        new_nifti_image = nib.Nifti1Image(img, np.eye(4))
-        new_nifti_mask = nib.Nifti1Image(mask, np.eye(4))
+        # img = resize(img, (img_size, img_size, img_size // 2), mode='constant', cval=1)
+        # mask = resize(mask, (img_size, img_size, img_size // 2), mode='constant', cval=1)
 
-        nib.save(new_nifti_img, f'../data/{img_size}/resampled_resized/concat/' + img_name.split('.')[0].replace('images\\', '').replace('__CT', '') + ".nii.gz")
-        nib.save(new_nifti_image, f'../data/{img_size}/resampled_resized/images/' + img_name.split('.')[0].replace('images\\', '').replace('__CT', '') + ".nii.gz")
-        nib.save(new_nifti_mask, f'../data/{img_size}/resampled_resized/masks/' + img_name.split('.')[0].replace('images\\', '').replace('__CT', '') + ".nii.gz")
-        #np.save(output_dir + img_name.split('\\')[-1].replace('.nii.gz', '') + ".npy", concat)
+        #interpolated_resized_binary_2
+        #img = concat[:, :, :img_size // 2]
+        #mask = concat[:, :, img_size // 2:]
+
+
+        # new_nifti_img = nib.Nifti1Image(concat, np.eye(4))
+        # new_nifti_image = nib.Nifti1Image(img, np.eye(4))
+        # new_nifti_mask = nib.Nifti1Image(mask, np.eye(4))
+
+        # nib.save(new_nifti_img, f'../data/{img_size}/interpolated_resized/concat/' + img_name.split('.')[0].replace('images\\', '').replace('__CT', '') + ".nii.gz")
+        # nib.save(new_nifti_image, f'../data/{img_size}/interpolated_resized/images/' + img_name.split('.')[0].replace('images\\', '').replace('__CT', '') + ".nii.gz")
+        # nib.save(new_nifti_mask, f'../data/{img_size}/interpolated_resized/masks/' + img_name.split('.')[0].replace('images\\', '').replace('__CT', '') + ".nii.gz")
+        np.save(output_dir + img_name.split('\\')[-1].replace('.nii.gz', '') + ".npy", concat)
 
         # os.remove(IMG_INPUT_DATA_DIR + img_name.split('\\')[-1])
         # os.remove(MASK_INPUT_DATA_DIR + mask_name.split('\\')[-1])

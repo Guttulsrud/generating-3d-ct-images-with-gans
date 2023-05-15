@@ -1,7 +1,6 @@
-# HECKTOR22 Auto3dseg minimal user input
 
-modality: MRI                        # primary modality
-dataroot: ../data/augmented/normalized2mm           # dataset location
-datalist: folds.json      # a list of filenames
-class_names: [tumor, lymph_node]    # names for tensorboard
+modality: CT
+dataroot: ../data/post_processed/normalized15mm
+datalist: fake.json      # a list of filenames
+class_names: [tumor]    # names for tensorboard
 

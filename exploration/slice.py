@@ -6,23 +6,6 @@ import numpy as np
 from matplotlib import pyplot as plt
 from tqdm import tqdm
 
-from visualization.display_image import display_image
-
-
-#
-
-
-# image_paths = glob.glob('../data/original/images/*CT.nii.gz')
-# mask_paths = glob.glob('../data/original/masks/*.nii.gz')
-# data = []
-# for image_path, mask_path in tqdm(zip(image_paths, mask_paths)):
-#     image = nib.load(image_path)
-#
-#     if 'CHUM' not in image_path:
-#         continue
-#
-#     print(image_path,'   ' , image.shape)
-#     # img_data = image.get_fdata()
 def plot_center_sagittal_slice(name, data):
     data = np.transpose(data, axes=(1, 0, 2))
     center_sagittal_index = data.shape[1] // 2

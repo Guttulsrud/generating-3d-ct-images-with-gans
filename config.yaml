@@ -1,12 +1,12 @@
-experiment_name: 'normalized2mm'
-data_dir: 'data/npy/concat2ax/'
+experiment_name: '471'
+data_dir: 'data/npy/471/'
 img_size: 128
 iterations: 80000
 upload_results: False
 generate_results_on_completion: False
 generate_n_samples: 3
 tensorboard_log_interval: 100
-print_log_interval: 100
+print_log_interval: 5000
 latent_dim: 1024
 save_model_interval: 20000
 start_model_saving: 60000
@@ -17,12 +17,12 @@ lambda_class: 0.1  # 'weights for the auxiliary classifier loss')
 num_class: 0
 fold: 0
 log_dir: 'logs'
-hpo: True
+hpo: False
 preprocessing:
   enabled: False
   img_input_dir: '../data/cropped_original/images/'
   mask_input_dir: '../data/cropped_original/masks/'
-  output_dir: 'data/npy/concat2ax/'
+  output_dir: '../data/npy/471/'
   num_jobs: 4
   low_threshold: -1024
   high_threshold: 600
@@ -30,8 +30,8 @@ preprocessing:
 network:
   generator_learning_rate: 0.0002
   generator_passes_per_iteration: 1
-  discriminator_learning_rate: 0.0002
-  encoder_learning_rate: 0.0001
+  discriminator_learning_rate: 0.0004
+  encoder_learning_rate: 0.0002
 cluster_enabled: False
 shuffle: True
 augmentation:

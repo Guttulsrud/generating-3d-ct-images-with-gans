@@ -3,6 +3,7 @@ import time
 import yaml
 
 from augmentation.Augmentor import Augmentor
+from visualization.display_image import display_image
 
 with open('../config.yaml', 'r') as f:
     config = yaml.safe_load(f)['augmentation']
@@ -17,7 +18,7 @@ for index, image_mask_path in enumerate(aug.data):
 
     if config['normalize']:
         normalized = aug.normalize(data, voxels=(2, 2, 2))
-        aug.save_image_mask(normalized, 'normalized2mm', scale_intensity=True)
+        aug.save_image_mask(normalized, '2mm', scale_intensity=False)
 
     if config['smooth_gaussian']:
         smoothed = aug.smooth_gaussian(normalized)

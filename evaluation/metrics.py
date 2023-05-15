@@ -1,7 +1,10 @@
 import os
+
+from matplotlib import pyplot as plt
 from torchmetrics.image.kid import KernelInceptionDistance
 
 from numpy import trace, iscomplexobj, cov
+from tqdm import tqdm
 
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 from scipy.linalg import sqrtm
@@ -17,6 +20,7 @@ import torch
 import torch.nn as nn
 from scipy import linalg
 import sys
+from sklearn.manifold import TSNE
 
 
 class Flatten(torch.nn.Module):
@@ -81,9 +85,7 @@ def calculate_fid(act1, act2):
     # calculate mean and covariance statistics
     mu1, sigma1 = act1.mean(axis=0), cov(act1, rowvar=False)
     mu2, sigma2 = act2.mean(axis=0), cov(act2, rowvar=False)
-    # calculate sum squared difference between means
     ssdiff = np.sum((mu1 - mu2) ** 2.0)
-    # calculate sqrt of product between cov
     covmean = sqrtm(sigma1.dot(sigma2))
     # check and correct imaginary numbers from sqrt
     if iscomplexobj(covmean):
@@ -107,39 +109,36 @@ def calculate_inception_score(p_yx, eps=1E-16):
     return is_score
 
 
-def calculate_kernel_distance_score(act1, act2):
-    kid = KernelInceptionDistance()
+def calc_tsne(act1, act2):
+    all_features = np.concatenate((act1, act2))
+    tsne = TSNE(n_components=2, perplexity=10, learning_rate=200)
+    embeddings = tsne.fit_transform(all_features)
 
-    kid.update(act1, real=True)
-    kid.update(act2, real=False)
-    kid_mean, kid_std = kid.compute()
-    return kid_mean, kid_std
+    plt.scatter(embeddings[:len(act1), 0], embeddings[:len(act1), 1], label='Real')
+    plt.scatter(embeddings[len(act2):, 0], embeddings[len(act2):, 1], label='Generated')
+    plt.legend(loc='upper left')
+    plt.subplots_adjust(wspace=0.1, hspace=0.05, top=0.85, bottom=0.15, left=0, right=1)
+
+    plt.axis('off')
+    plt.savefig('tsne.png')
 
 
-def evaluate(real_images_path, generated_images_path, limit=None):
-    # Load real samples
+def evaluate(real_images_path, generated_images_path, batch_size, tsne=False):
     dataset = CustomDataset(real_images_path, transform=transforms.ToTensor())
-    if limit is not None:
-        real_sampler = SubsetRandomSampler(range(limit))
-        real_loader = DataLoader(dataset, batch_size=32, sampler=real_sampler)
-    else:
-        real_loader = DataLoader(dataset, batch_size=32, shuffle=True)
+    real_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
     # Load generated samples
     dataset = CustomDataset(generated_images_path, transform=transforms.ToTensor())
-    if limit is not None:
-        fake_sampler = SubsetRandomSampler(range(limit))
-        fake_loader = DataLoader(dataset, batch_size=32, sampler=fake_sampler)
-    else:
-        fake_loader = DataLoader(dataset, batch_size=32, shuffle=True)
+    fake_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model = get_feature_extractor().to(device)
 
-    # print(f'Calculating activations from real images [{real_images_path}]...')
     act1 = calculate_activation_statistics(model, real_loader)
-    # print(f'Calculating activations from fake images [{generated_images_path}]...')
     act2 = calculate_activation_statistics(model, fake_loader)
+
+    if tsne:
+        calc_tsne(act1, act2)
 
     fid_score = calculate_fid(act1, act2)
     is_score = calculate_inception_score(act2)

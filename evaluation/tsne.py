@@ -1,43 +1,53 @@
 import glob
-
 from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
 import numpy as np
 import nibabel as nib
-from skimage.transform import resize
 from tqdm import tqdm
+import matplotlib as mpl
 
-real_images = glob.glob('../data/original/images/*.nii.gz')
-fake_images = glob.glob('../data/original/images/*.nii.gz')
+mpl.use('TkAgg')
 
-real_images = real_images[:10]
-fake_images = fake_images[:10]
+experiments = ['128_H17_binary_mask_non_interpolateBASELINE',
+               '5.8.2 alt_concatenated_cropped_interpolated baseline',
+               '5.6.5 normalized15mm top1'
+               ]
+real_images = glob.glob('../data/128/interpolated_resized/images/*.nii.gz')
 
 real_samples = []
 for real_img in tqdm(real_images):
     real_data = nib.load(real_img)
-    data = resize(real_data.get_fdata(), (128, 128, 128), mode='constant', cval=-1)
-    real_samples.append(data)
-
+    real_samples.append(real_data.get_fdata())
 real_samples = np.array(real_samples)
 
-fake_samples = []
-for fake_img in tqdm(fake_images):
-    fake_data = nib.load(fake_img)
-    data = resize(fake_data.get_fdata(), (128, 128, 128), mode='constant', cval=-1)
+for experiment in experiments:
+    fake_images = glob.glob(f'../data/generated_images/{experiment}/nifti/post_processed/images/*.nii.gz')
 
-    fake_samples.append(data)
-fake_samples = np.array(fake_samples)
+    fake_samples = []
+    for fake_img in tqdm(fake_images):
+        fake_data = nib.load(fake_img)
+        fake_samples.append(fake_data.get_fdata())
 
-# Concatenate real and fake samples
-all_samples = np.concatenate((real_samples, fake_samples))
+    fake_samples = np.array(fake_samples)
 
-# Perform t-SNE dimensionality reduction on the concatenated samples
-tsne = TSNE(n_components=2, perplexity=10, learning_rate=200)
-embeddings = tsne.fit_transform(all_samples.reshape(len(all_samples), -1))
+    # Perform t-SNE on real_samples
+    tsne = TSNE(n_components=2, perplexity=10, learning_rate=200, random_state=42)
+    real_embeddings = tsne.fit_transform(real_samples.reshape(len(real_samples), -1))
 
-# Visualize the embeddings
-plt.scatter(embeddings[:len(real_samples), 0], embeddings[:len(real_samples), 1], label='Real')
-plt.scatter(embeddings[len(real_samples):, 0], embeddings[len(real_samples):, 1], label='Fake')
-plt.legend()
-plt.show()
+    # Plot real samples with a specific color
+    plt.scatter(real_embeddings[:, 0], real_embeddings[:, 1], c=[(0.3, 0.6, 1.0)], label='Real')
+
+    # Perform t-SNE on generated_samples
+    generated_embeddings = tsne.fit_transform(fake_samples.reshape(len(fake_samples), -1))
+
+    # Plot generated samples with a different color
+    plt.scatter(generated_embeddings[:, 0], generated_embeddings[:, 1], c='orange', label='Generated')
+
+    plt.legend(loc='upper left')
+    plt.subplots_adjust(wspace=0.1, hspace=0.05, top=0.85, bottom=0.15, left=0, right=1)
+
+    plt.axis('off')
+    plt.savefig(f'tsne_{experiment}.png')
+    plt.close()
+    # plt.show()
+    # exit()

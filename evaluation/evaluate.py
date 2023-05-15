@@ -1,25 +1,18 @@
-import os
-
 import pandas as pd
-from tqdm import tqdm
-
 from evaluation.metrics import evaluate
+experiment = '128_H17_binary_mask_non_interpolateBASELINE'
+real_images = '128/interpolated_resized'
 
-filename = 'latent_dims.csv'
+print('Experiment:', experiment)
 
 results = []
+for mode in ['images', 'masks']:
+    real_data = f'../data/{real_images}/{mode}'
+    fake_data = f'../data/generated_images/{experiment}/nifti/post_processed/{mode}'
 
-folders = [f for f in os.listdir('../data/generated_images')]
-folder_names = [f for f in folders]
-
-exps = ['normalized15x15x3']
-for experiment in tqdm(folder_names):
-    if experiment not in exps:
-        continue
-    fid_score, is_score = evaluate(real_images_path='../data/concat',
-                                   generated_images_path=f'../data/generated_images/{experiment}/nifti')
-
-    results.append([experiment, fid_score, is_score])
-
+    fid_score, is_score = evaluate(real_images_path=real_data,
+                                   generated_images_path=fake_data, batch_size=32)
+    print(mode, fid_score, is_score)
+    results.append([mode, fid_score, is_score])
 df = pd.DataFrame(results, columns=['Experiment', 'FID', 'IS'])
-df.to_csv(filename, index=False)
+df.to_csv(f'results/{experiment}.csv', index=False)

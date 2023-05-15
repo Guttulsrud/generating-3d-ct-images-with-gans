@@ -39,8 +39,8 @@ class Storage:
         if not os.path.exists(path):
             os.mkdir(path)
 
-        blob = self.bucket.blob(f'{experiment_name}/config.yml')
-        blob.download_to_filename(f'{path}/config.yml')
+        # blob = self.bucket.blob(f'{experiment_name}/config.yml')
+        # blob.download_to_filename(f'{path}/config.yml')
 
         for blob in self.bucket.list_blobs(prefix=f"{experiment_name}/"):
             if "event" in blob.name:

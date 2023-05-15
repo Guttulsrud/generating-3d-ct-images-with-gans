@@ -6,8 +6,6 @@ import numpy as np
 from matplotlib import pyplot as plt
 from tqdm import tqdm
 
-from visualization.display_image import display_image
-
 
 def split_image_mask(image_path, im_size, return_nifti=False, return_numpy=False):
     nifti_img = nib.load(image_path)

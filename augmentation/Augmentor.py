@@ -303,11 +303,9 @@ class Augmentor:
         writer = NibabelWriter()
 
         image_data = data_dict['image'][0, :, :, :]
-        mask_data = data_dict['mask'][0, :, :, :]
 
         if scale_intensity:
             image_data = np.interp(image_data, [-1024, 600], [-1, 1])
-            mask_data = np.interp(mask_data, [0, 2], [-1, 1])
 
         writer.set_data_array(image_data, channel_dim=None)
         writer.set_metadata({"affine": image_affine, "original_affine": image_affine})
@@ -316,6 +314,10 @@ class Augmentor:
         if not self.images_only:
             if not os.path.exists(mask_path):
                 os.makedirs(mask_path)
+
+            mask_data = data_dict['mask'][0, :, :, :]
+            if scale_intensity:
+                mask_data = np.interp(mask_data, [0, 2], [-1, 1])
 
             mask_affine = data_dict['mask'].affine
             mask_name = data_dict['mask'].meta['filename_or_obj'].split('\\')[-1]
